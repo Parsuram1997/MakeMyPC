@@ -39,113 +39,127 @@
         }
     </style>
 <script id="tailwind-config">
-        tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                "surface-dim": "#071327",
-                "primary": "#adc6ff",
-                "primary-fixed-dim": "#adc6ff",
-                "on-tertiary-fixed": "#351000",
-                "secondary-fixed": "#7cf5f7",
-                "on-error": "#690005",
-                "secondary": "#5cd8da",
-                "on-primary": "#002e69",
-                "tertiary-fixed-dim": "#ffb595",
-                "surface-bright": "#2e394f",
-                "on-primary-container": "#00285c",
-                "surface-container-highest": "#2a354a",
-                "background": "#071327",
-                "inverse-surface": "#d7e2ff",
-                "surface-tint": "#adc6ff",
-                "tertiary": "#ffb595",
-                "primary-fixed": "#d8e2ff",
-                "on-surface": "#d7e2ff",
-                "outline-variant": "#414755",
-                "cyber-teal": "#00A4A6",
-                "on-secondary-fixed": "#002020",
-                "on-surface-variant": "#c1c6d7",
-                "tertiary-container": "#ef6719",
-                "outline": "#8b90a0",
-                "on-error-container": "#ffdad6",
-                "on-background": "#d7e2ff",
-                "secondary-fixed-dim": "#5cd8da",
-                "secondary-container": "#00a4a6",
-                "surface-container-lowest": "#030e22",
-                "hardware-gray": "#111111",
-                "on-primary-fixed": "#001a41",
-                "error-container": "#93000a",
-                "error": "#ffb4ab",
-                "surface": "#071327",
-                "on-tertiary-container": "#4c1a00",
-                "electric-blue": "#007AFF",
-                "on-secondary-container": "#003233",
-                "on-secondary-fixed-variant": "#004f50",
-                "inverse-on-surface": "#263046",
-                "surface-container-low": "#101b30",
-                "primary-container": "#4b8eff",
-                "tertiary-fixed": "#ffdbcc",
-                "on-secondary": "#003738",
-                "surface-container-high": "#1f2a3f",
-                "surface-container": "#142034",
-                "surface-deep": "#00081C",
-                "inverse-primary": "#005bc1",
-                "surface-variant": "#2a354a",
-                "surface-glass": "rgba(255, 255, 255, 0.03)",
-                "on-tertiary-fixed-variant": "#7c2e00",
-                "on-primary-fixed-variant": "#004493",
-                "on-tertiary": "#571e00"
-              },
-              "borderRadius": {
-                "DEFAULT": "0.25rem",
-                "lg": "0.5rem",
-                "xl": "0.75rem",
-                "full": "9999px"
-              },
-              "spacing": {
-                "margin-mobile": "20px",
-                "gutter": "24px",
-                "base": "8px",
-                "margin-desktop": "64px",
-                "container-max": "1280px"
-              },
-              "fontFamily": {
-                "label-mono": ["JetBrains Mono"],
-                "headline-sm": ["Inter"],
-                "display-lg": ["Inter"],
-                "headline-lg": ["Inter"],
-                "body-sm": ["Inter"],
-                "body-md": ["Inter"],
-                "display-lg-mobile": ["Inter"]
-              },
-              "fontSize": {
-                "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
-                "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
-                "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
-              }
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#adc6ff",
+                    "on-tertiary-container": "#4c1a00",
+                    "inverse-on-surface": "#263046",
+                    "secondary-fixed-dim": "#5cd8da",
+                    "surface-container-low": "#101b30",
+                    "surface-container": "#142034",
+                    "primary-fixed-dim": "#adc6ff",
+                    "outline-variant": "#414755",
+                    "electric-blue": "#007AFF",
+                    "background": "#071327",
+                    "surface-bright": "#2e394f",
+                    "secondary": "#5cd8da",
+                    "surface": "#071327",
+                    "on-primary-container": "#00285c",
+                    "tertiary-container": "#ef6719",
+                    "hardware-gray": "#111111",
+                    "on-background": "#d7e2ff",
+                    "on-tertiary-fixed": "#351000",
+                    "tertiary": "#ffb595",
+                    "primary-container": "#4b8eff",
+                    "surface-tint": "#adc6ff",
+                    "surface-container-lowest": "#030e22",
+                    "primary-fixed": "#d8e2ff",
+                    "on-primary": "#002e69",
+                    "on-secondary-fixed": "#002020",
+                    "surface-deep": "#00081C",
+                    "secondary-container": "#00a4a6",
+                    "on-secondary-fixed-variant": "#004f50",
+                    "cyber-teal": "#00A4A6",
+                    "on-surface": "#d7e2ff",
+                    "tertiary-fixed": "#ffdbcc",
+                    "error": "#ffb4ab",
+                    "on-surface-variant": "#c1c6d7",
+                    "on-tertiary-fixed-variant": "#7c2e00",
+                    "outline": "#8b90a0",
+                    "surface-dim": "#071327",
+                    "on-error": "#690005",
+                    "on-primary-fixed": "#001a41",
+                    "surface-container-highest": "#2a354a",
+                    "inverse-primary": "#005bc1",
+                    "on-primary-fixed-variant": "#004493",
+                    "secondary-fixed": "#7cf5f7",
+                    "surface-variant": "#2a354a",
+                    "inverse-surface": "#d7e2ff",
+                    "on-tertiary": "#571e00",
+                    "on-error-container": "#ffdad6",
+                    "surface-glass": "rgba(255, 255, 255, 0.03)",
+                    "error-container": "#93000a",
+                    "on-secondary": "#003738",
+                    "on-secondary-container": "#003233",
+                    "tertiary-fixed-dim": "#ffb595",
+                    "surface-container-high": "#1f2a3f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "base": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-mono": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
             }
-          }
-        }
+          },
+        },
+      }
     </script>
 </head>
 <body class="bg-surface-deep text-on-surface">
 <!-- Top Navigation Bar (Shared Component) -->
-<nav class="fixed top-0 w-full z-50 border-b border-white/10 bg-surface-glass backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
+<nav class="fixed top-0 w-full z-50 bg-surface-glass backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
 <div class="flex justify-between items-center max-w-container-max mx-auto px-margin-desktop h-20">
-<div class="text-headline-lg font-headline-lg font-black text-on-surface tracking-tighter">MakeMyPC</div>
-<div class="hidden md:flex gap-x-8">
-<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Shop</a>
-<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">Builder</a>
-<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Resources</a>
+<a href="index.html" class="text-headline-lg font-headline-lg font-black text-on-surface tracking-tighter">MakeMyPC</a>
+<div class="hidden md:flex gap-x-8 items-center">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="prebuilt-pcs.html">Shop</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="custom-pc-builder.html">Builder</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="support-faq.html">Resources</a>
 </div>
 <div class="flex items-center gap-x-6">
-<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">shopping_cart</button>
-<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">account_circle</button>
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-body-sm font-body-sm focus:outline-none focus:border-electric-blue w-64 transition-all" placeholder="Search Components" type="text"/>
+</div>
+<div class="flex gap-x-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100 relative" onclick="window.location.href='shopping-cart.html'">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span id="cart-badge" class="absolute -top-1 -right-1 bg-error text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+</button>
+<a href="login.html" id="auth-login-btn" class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100 flex items-center">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</a>
+<a href="account-settings.html" id="auth-avatar-btn" class="hidden w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm hover:brightness-110 transition-all">
+<span id="avatar-initial">U</span>
+</a>
+</div>
 </div>
 </div>
 </nav>
@@ -172,97 +186,8 @@
 </div>
 </div>
 <!-- Product List -->
-<div class="space-y-4">
-<!-- Item 1: GPU -->
-<div class="glass-card glass-edge rounded-xl p-4 md:p-6 flex flex-col md:flex-row gap-6 group hover:border-primary/40 transition-all duration-300">
-<div class="w-full md:w-32 h-32 rounded-lg bg-surface-container overflow-hidden flex items-center justify-center">
-<img class="w-full h-full object-cover" data-alt="A high-end cinematic product photo of a high-performance graphics card with triple fans and glowing RGB lighting accents, resting on a reflective black surface in a dark studio setting. The lighting is dominated by electric blue and deep cyan tones, highlighting the metallic texture and technical precision of the component." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDF8R1ssKwNj4kmCf8lJbffFyJrmxs3RIeDDCn3jusMRfWPiNUm_oMqbJ4BOLxFM2iSPH7Vcomcs2LgcziZQForgSasYqoW5MW81kpj4x9kK8a7VdlAQFOcpoCXpxbL-wkqH4NgZ9cWSXAzW6GS0W8VRaovOFOLhC-XJyzDKaT-kv6ZSyZEMUSXz0XFaZcJsz7h3cfdANIpS7PJrbUySfbPSoPRFKyOJQIjqpF-5f740q_ZUbpQJCC_D_eIgPQ_YF2BYDX4gT7XQw-h">
-</div>
-<div class="flex-1">
-<div class="flex justify-between items-start">
-<div>
-<h3 class="font-headline-sm text-headline-sm mb-1">NVIDIA GeForce RTX 4090</h3>
-<p class="font-body-sm text-on-surface-variant max-w-md">24GB GDDR6X, Ada Lovelace Architecture, DLSS 3.0 Support, Triple Fan Cooling System.</p>
-</div>
-<span class="font-label-mono text-headline-sm text-primary">$1,599.99</span>
-</div>
-<div class="flex flex-wrap justify-between items-center mt-6 gap-4">
-<div class="flex items-center bg-surface-container rounded-lg border border-white/5 p-1">
-<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors">—</button>
-<span class="w-10 text-center font-label-mono text-label-mono">01</span>
-<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors">+</button>
-</div>
-<div class="flex gap-4">
-<button class="flex items-center gap-2 text-on-surface-variant hover:text-error transition-all font-label-mono text-label-mono">
-<span class="material-symbols-outlined text-base">delete</span> Remove
-                                    </button>
-<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-all font-label-mono text-label-mono">
-<span class="material-symbols-outlined text-base">bookmark</span> Save for Later
-                                    </button>
-</div>
-</div>
-</div>
-</div>
-<!-- Item 2: CPU -->
-<div class="glass-card glass-edge rounded-xl p-4 md:p-6 flex flex-col md:flex-row gap-6 group hover:border-primary/40 transition-all duration-300">
-<div class="w-full md:w-32 h-32 rounded-lg bg-surface-container overflow-hidden flex items-center justify-center">
-<img class="w-full h-full object-cover" data-alt="Close-up macro photography of a flagship processor chip resting on an anti-static mat. The metallic surface of the integrated heat spreader is engraved with high-tech laser markings. Cool blue rim lighting defines the edges of the chip, creating a futuristic and surgically precise atmosphere within the dark background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBoyWit3g257GRynR0X-Xiip6bF8Q5RhJHoxBuQC-s4H_OsBwuMMG06KS-pIGYqKE4NywtyfhO7Tql1prHdrzHyk0QeTpb7sKf9FoH5qdprOpxBNGcOPdUNFpE93S8P0yNIb5itU1GUQ8gOLyF2-JrE_nzet4RszzoOEpa43GNCdN9C6Igek5TadEHTtXMGi2UtyUD5kF441IT6NafZ6C2C6DrEK4YOBFChkrCiP4Gb1Of-qJ4nN-RJzmOmjQkAo6vw9aNgE-iifC5">
-</div>
-<div class="flex-1">
-<div class="flex justify-between items-start">
-<div>
-<h3 class="font-headline-sm text-headline-sm mb-1">Intel Core i9-14900K</h3>
-<p class="font-body-sm text-on-surface-variant max-w-md">24-Core (8P+16E), 6.0 GHz Turbo Boost, LGA 1700 Socket, Unlocked for Overclocking.</p>
-</div>
-<span class="font-label-mono text-headline-sm text-primary">$589.00</span>
-</div>
-<div class="flex flex-wrap justify-between items-center mt-6 gap-4">
-<div class="flex items-center bg-surface-container rounded-lg border border-white/5 p-1">
-<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors">—</button>
-<span class="w-10 text-center font-label-mono text-label-mono">01</span>
-<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors">+</button>
-</div>
-<div class="flex gap-4">
-<button class="flex items-center gap-2 text-on-surface-variant hover:text-error transition-all font-label-mono text-label-mono">
-<span class="material-symbols-outlined text-base">delete</span> Remove
-                                    </button>
-<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-all font-label-mono text-label-mono">
-<span class="material-symbols-outlined text-base">bookmark</span> Save for Later
-                                    </button>
-</div>
-</div>
-</div>
-</div>
-<!-- Item 3: RAM -->
-<div class="glass-card glass-edge rounded-xl p-4 md:p-6 flex flex-col md:flex-row gap-6 group hover:border-primary/40 transition-all duration-300">
-<div class="w-full md:w-32 h-32 rounded-lg bg-surface-container overflow-hidden flex items-center justify-center">
-<img class="w-full h-full object-cover" data-alt="Sleek DDR5 RAM modules with integrated RGB lighting strips glowing in a soft electric blue gradient. The modules feature brushed aluminum heat spreaders with geometric patterns. They are displayed against a dark, tech-oriented backdrop with soft bokeh effects from other computer components, emphasizing a high-end gaming aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM7SzHskuIRs7hYnLfW2J3IeqagO8E-bUcnfbHVtAD0_q5RUp_WswMOWD--83h7Wh281HtZo3ZEZLSpmotZtoetfUxY5S365OzRNEZ67IjdMEcwumJBD_F0FKt66HiIGGypTPl9iftew8uDjhoQVY1LqG7PuHpxoECc1lUkylRfYJmQfApsgvXcci0qWt9AG-r3w_wk6mBaXSFehhMhXRv8DguLJu5w--Q8aiTw47gXnqQeYRjvJNl1flL-zOtFdDbCpvfMbkS2qI4">
-</div>
-<div class="flex-1">
-<div class="flex justify-between items-start">
-<div>
-<h3 class="font-headline-sm text-headline-sm mb-1">Dominator Titanium 64GB DDR5</h3>
-<p class="font-body-sm text-on-surface-variant max-w-md">6400MT/s, CL32, Dual Channel Kit, Custom RGB Lighting via iCUE.</p>
-</div>
-<span class="font-label-mono text-headline-sm text-primary">$349.99</span>
-</div>
-<div class="flex flex-wrap justify-between items-center mt-6 gap-4">
-<div class="flex items-center bg-surface-container rounded-lg border border-white/5 p-1">
-<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors">—</button>
-<span class="w-10 text-center font-label-mono text-label-mono">01</span>
-<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors">+</button>
-</div>
-<div class="flex gap-4">
-<button class="flex items-center gap-2 text-on-surface-variant hover:text-error transition-all font-label-mono text-label-mono">
-<span class="material-symbols-outlined text-base">delete</span> Remove
-                                    </button>
-<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-all font-label-mono text-label-mono">
-<span class="material-symbols-outlined text-base">bookmark</span> Save for Later
-                                    </button>
-</div>
-</div>
-</div>
-</div>
+<div id="cart-items-container" class="space-y-4">
+    <!-- Dynamic items will be injected here -->
 </div>
 <!-- Secondary Actions -->
 <div class="flex justify-start pt-4">
@@ -512,4 +437,5 @@
     </script>
 
 
+<script type="module" src="js/auth.js"></script>
 </body></html>

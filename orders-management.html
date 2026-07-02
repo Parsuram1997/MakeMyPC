@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Orders Management | MakeMyPC Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom Scrollbar for Glassmorphism */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 40px 40px -20px rgba(0, 0, 0, 0.15);
+        }
+        .status-badge {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+    </style>
+<!-- Tailwind Configuration Injection -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#adc6ff",
+                    "on-tertiary-container": "#4c1a00",
+                    "inverse-on-surface": "#263046",
+                    "secondary-fixed-dim": "#5cd8da",
+                    "surface-container-low": "#101b30",
+                    "surface-container": "#142034",
+                    "primary-fixed-dim": "#adc6ff",
+                    "outline-variant": "#414755",
+                    "electric-blue": "#007AFF",
+                    "background": "#071327",
+                    "surface-bright": "#2e394f",
+                    "secondary": "#5cd8da",
+                    "surface": "#071327",
+                    "on-primary-container": "#00285c",
+                    "tertiary-container": "#ef6719",
+                    "hardware-gray": "#111111",
+                    "on-background": "#d7e2ff",
+                    "on-tertiary-fixed": "#351000",
+                    "tertiary": "#ffb595",
+                    "primary-container": "#4b8eff",
+                    "surface-tint": "#adc6ff",
+                    "surface-container-lowest": "#030e22",
+                    "primary-fixed": "#d8e2ff",
+                    "on-primary": "#002e69",
+                    "on-secondary-fixed": "#002020",
+                    "surface-deep": "#00081C",
+                    "secondary-container": "#00a4a6",
+                    "on-secondary-fixed-variant": "#004f50",
+                    "cyber-teal": "#00A4A6",
+                    "on-surface": "#d7e2ff",
+                    "tertiary-fixed": "#ffdbcc",
+                    "error": "#ffb4ab",
+                    "on-surface-variant": "#c1c6d7",
+                    "on-tertiary-fixed-variant": "#7c2e00",
+                    "outline": "#8b90a0",
+                    "surface-dim": "#071327",
+                    "on-error": "#690005",
+                    "on-primary-fixed": "#001a41",
+                    "surface-container-highest": "#2a354a",
+                    "inverse-primary": "#005bc1",
+                    "on-primary-fixed-variant": "#004493",
+                    "secondary-fixed": "#7cf5f7",
+                    "surface-variant": "#2a354a",
+                    "inverse-surface": "#d7e2ff",
+                    "on-tertiary": "#571e00",
+                    "on-error-container": "#ffdad6",
+                    "surface-glass": "rgba(255, 255, 255, 0.03)",
+                    "error-container": "#93000a",
+                    "on-secondary": "#003738",
+                    "on-secondary-container": "#003233",
+                    "tertiary-fixed-dim": "#ffb595",
+                    "surface-container-high": "#1f2a3f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "base": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-mono": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary/30">
+<!-- Side Navigation Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r border-white/10 bg-surface-deep dark:bg-surface-deep flex flex-col py-6 z-50">
+<div class="px-6 mb-8">
+<h1 class="font-headline-sm text-headline-sm font-bold text-electric-blue dark:text-primary">MakeMyPC</h1>
+<p class="text-xs text-on-surface-variant tracking-wider mt-1">Enterprise Admin</p>
+</div>
+<nav class="fixed top-0 w-full z-50 bg-surface-glass backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-desktop h-20">
+<a href="index.html" class="text-headline-lg font-headline-lg font-black text-on-surface tracking-tighter">MakeMyPC</a>
+<div class="hidden md:flex gap-x-8 items-center">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="prebuilt-pcs.html">Shop</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="custom-pc-builder.html">Builder</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="support-faq.html">Resources</a>
+</div>
+<div class="flex items-center gap-x-6">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-body-sm font-body-sm focus:outline-none focus:border-electric-blue w-64 transition-all" placeholder="Search Components" type="text"/>
+</div>
+<div class="flex gap-x-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100 relative" onclick="window.location.href='shopping-cart.html'">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span id="cart-badge" class="absolute -top-1 -right-1 bg-error text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+</button>
+<a href="login.html" id="auth-login-btn" class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100 flex items-center">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</a>
+<a href="account-settings.html" id="auth-avatar-btn" class="hidden w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm hover:brightness-110 transition-all">
+<span id="avatar-initial">U</span>
+</a>
+</div>
+</div>
+</div>
+</nav>
+<div class="mt-auto px-4">
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-glass border border-white/5">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-xs">AD</div>
+<div class="overflow-hidden">
+<p class="text-xs font-bold truncate">Admin Profile</p>
+<p class="text-[10px] text-on-surface-variant truncate">Sign out</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Top Navigation -->
+<header class="sticky top-0 z-40 w-full ml-64 bg-surface-container/80 dark:bg-surface-container/80 backdrop-blur-md border-b border-white/5 shadow-sm">
+<div class="flex justify-between items-center h-16 px-gutter max-w-container-max">
+<!-- Global Search Component -->
+<div class="flex-1 max-w-lg relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-surface-container-lowest border border-white/10 rounded-full py-2 pl-10 pr-4 text-body-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all" placeholder="Search orders, customers, or parts..." type="text"/>
+</div>
+<div class="flex items-center gap-4 ml-gutter">
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-all relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-tertiary-container rounded-full"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 p-gutter max-w-container-max mx-auto">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Orders Management</h2>
+<p class="text-on-surface-variant font-body-sm">Track and fulfill high-performance PC orders across all regions.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-glass border border-white/10 rounded-lg text-body-sm hover:bg-white/5 transition-all">
+<span class="material-symbols-outlined text-body-md">download</span>
+                    Download Export
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-electric-blue text-white rounded-lg text-body-sm font-medium hover:shadow-[0_0_15px_rgba(0,122,255,0.4)] transition-all">
+<span class="material-symbols-outlined text-body-md">person_add</span>
+                    Assign Technician
+                </button>
+</div>
+</div>
+<!-- Filter Bar -->
+<div class="mb-6 overflow-x-auto pb-2">
+<div class="flex items-center gap-2 min-w-max">
+<button class="px-4 py-1.5 rounded-full text-body-sm bg-primary text-on-primary font-medium">All</button>
+<button class="px-4 py-1.5 rounded-full text-body-sm bg-surface-container-high text-on-surface-variant hover:bg-surface-bright transition-colors">Pending</button>
+<button class="px-4 py-1.5 rounded-full text-body-sm bg-surface-container-high text-on-surface-variant hover:bg-surface-bright transition-colors">Processing</button>
+<button class="px-4 py-1.5 rounded-full text-body-sm bg-surface-container-high text-on-surface-variant hover:bg-surface-bright transition-colors">Assembling</button>
+<button class="px-4 py-1.5 rounded-full text-body-sm bg-surface-container-high text-on-surface-variant hover:bg-surface-bright transition-colors">Shipped</button>
+<button class="px-4 py-1.5 rounded-full text-body-sm bg-surface-container-high text-on-surface-variant hover:bg-surface-bright transition-colors">Delivered</button>
+<button class="px-4 py-1.5 rounded-full text-body-sm bg-surface-container-high text-on-surface-variant hover:bg-surface-bright transition-colors">Cancelled</button>
+<div class="h-6 w-[1px] bg-white/10 mx-2"></div>
+<button class="flex items-center gap-1 px-3 py-1.5 text-body-sm text-primary">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                    More Filters
+                </button>
+</div>
+</div>
+<!-- Orders Table Section -->
+<div class="glass-card rounded-xl overflow-hidden border border-white/5">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-white/5 border-b border-white/10">
+<th class="px-6 py-4"><input class="rounded bg-surface-container-lowest border-white/20 text-primary focus:ring-primary" type="checkbox"/></th>
+<th class="px-4 py-4 font-body-sm text-on-surface-variant font-medium">Order ID</th>
+<th class="px-4 py-4 font-body-sm text-on-surface-variant font-medium">Date</th>
+<th class="px-4 py-4 font-body-sm text-on-surface-variant font-medium">Customer Name</th>
+<th class="px-4 py-4 font-body-sm text-on-surface-variant font-medium">Build Type</th>
+<th class="px-4 py-4 font-body-sm text-on-surface-variant font-medium text-right">Amount</th>
+<th class="px-4 py-4 font-body-sm text-on-surface-variant font-medium">Payment</th>
+<th class="px-4 py-4 font-body-sm text-on-surface-variant font-medium text-center">Shipping Status</th>
+<th class="px-4 py-4 font-body-sm text-on-surface-variant font-medium text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<!-- Row 1 -->
+<tr class="hover:bg-white/2 transition-colors">
+<td class="px-6 py-4"><input class="rounded bg-surface-container-lowest border-white/20 text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="px-4 py-4 font-label-mono text-primary">#MPC-89210</td>
+<td class="px-4 py-4 font-body-sm text-on-surface-variant">Oct 12, 2023</td>
+<td class="px-4 py-4 font-body-sm font-medium">Julianna Vane</td>
+<td class="px-4 py-4">
+<span class="text-[11px] px-2 py-0.5 rounded-full border border-cyber-teal/30 text-cyber-teal bg-cyber-teal/5">Custom Build</span>
+</td>
+<td class="px-4 py-4 font-label-mono text-right">$4,299.00</td>
+<td class="px-4 py-4">
+<div class="flex items-center gap-2 text-green-400">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-xs">Paid</span>
+</div>
+</td>
+<td class="px-4 py-4 text-center">
+<span class="status-badge bg-tertiary-container/20 text-tertiary-container">
+<span class="material-symbols-outlined text-[14px]">precision_manufacturing</span>
+                                    Assembling
+                                </span>
+</td>
+<td class="px-4 py-4 text-right space-x-2">
+<button class="p-1.5 rounded-lg hover:bg-white/10 text-on-surface-variant hover:text-on-surface transition-all" title="View Details">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-white/10 text-on-surface-variant hover:text-on-surface transition-all" title="Assign Technician">
+<span class="material-symbols-outlined">assignment_ind</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-white/2 transition-colors">
+<td class="px-6 py-4"><input class="rounded bg-surface-container-lowest border-white/20 text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="px-4 py-4 font-label-mono text-primary">#MPC-89211</td>
+<td class="px-4 py-4 font-body-sm text-on-surface-variant">Oct 12, 2023</td>
+<td class="px-4 py-4 font-body-sm font-medium">Marcus Chen</td>
+<td class="px-4 py-4">
+<span class="text-[11px] px-2 py-0.5 rounded-full border border-on-surface-variant/30 text-on-surface-variant bg-on-surface-variant/5">Prebuilt (RTX 4090)</span>
+</td>
+<td class="px-4 py-4 font-label-mono text-right">$3,150.00</td>
+<td class="px-4 py-4">
+<div class="flex items-center gap-2 text-green-400">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-xs">Paid</span>
+</div>
+</td>
+<td class="px-4 py-4 text-center">
+<span class="status-badge bg-primary-container/20 text-primary">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span>
+                                    Shipped
+                                </span>
+</td>
+<td class="px-4 py-4 text-right space-x-2">
+<button class="p-1.5 rounded-lg hover:bg-white/10 text-on-surface-variant hover:text-on-surface transition-all" title="View Details">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-white/10 text-on-surface-variant hover:text-on-surface transition-all" title="Track Shipment">
+<span class="material-symbols-outlined">location_on</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-white/2 transition-colors">
+<td class="px-6 py-4"><input class="rounded bg-surface-container-lowest border-white/20 text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="px-4 py-4 font-label-mono text-primary">#MPC-89212</td>
+<td class="px-4 py-4 font-body-sm text-on-surface-variant">Oct 11, 2023</td>
+<td class="px-4 py-4 font-body-sm font-medium">Aisha Roberts</td>
+<td class="px-4 py-4">
+<span class="text-[11px] px-2 py-0.5 rounded-full border border-cyber-teal/30 text-cyber-teal bg-cyber-teal/5">Custom Build</span>
+</td>
+<td class="px-4 py-4 font-label-mono text-right">$5,720.50</td>
+<td class="px-4 py-4">
+<div class="flex items-center gap-2 text-on-surface-variant/50">
+<span class="material-symbols-outlined text-[16px]">pending</span>
+<span class="text-xs">Pending</span>
+</div>
+</td>
+<td class="px-4 py-4 text-center">
+<span class="status-badge bg-white/5 text-on-surface-variant border border-white/10">
+<span class="material-symbols-outlined text-[14px]">hourglass_empty</span>
+                                    Pending Review
+                                </span>
+</td>
+<td class="px-4 py-4 text-right space-x-2">
+<button class="p-1.5 rounded-lg hover:bg-white/10 text-on-surface-variant hover:text-on-surface transition-all" title="View Details">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-white/10 text-on-surface-variant hover:text-on-surface transition-all" title="Assign Technician">
+<span class="material-symbols-outlined">assignment_ind</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-white/2 transition-colors">
+<td class="px-6 py-4"><input class="rounded bg-surface-container-lowest border-white/20 text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="px-4 py-4 font-label-mono text-primary">#MPC-89213</td>
+<td class="px-4 py-4 font-body-sm text-on-surface-variant">Oct 11, 2023</td>
+<td class="px-4 py-4 font-body-sm font-medium">Dominik Szabo</td>
+<td class="px-4 py-4">
+<span class="text-[11px] px-2 py-0.5 rounded-full border border-on-surface-variant/30 text-on-surface-variant bg-on-surface-variant/5">Prebuilt (Workstation)</span>
+</td>
+<td class="px-4 py-4 font-label-mono text-right">$8,400.00</td>
+<td class="px-4 py-4">
+<div class="flex items-center gap-2 text-green-400">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-xs">Paid</span>
+</div>
+</td>
+<td class="px-4 py-4 text-center">
+<span class="status-badge bg-cyber-teal/20 text-cyber-teal">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                                    Delivered
+                                </span>
+</td>
+<td class="px-4 py-4 text-right space-x-2">
+<button class="p-1.5 rounded-lg hover:bg-white/10 text-on-surface-variant hover:text-on-surface transition-all" title="View Details">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-white/10 text-on-surface-variant hover:text-on-surface transition-all" title="Track Shipment">
+<span class="material-symbols-outlined">inventory</span>
+</button>
+</td>
+</tr>
+<!-- Row 5 (Processing) -->
+<tr class="hover:bg-white/2 transition-colors">
+<td class="px-6 py-4"><input class="rounded bg-surface-container-lowest border-white/20 text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="px-4 py-4 font-label-mono text-primary">#MPC-89214</td>
+<td class="px-4 py-4 font-body-sm text-on-surface-variant">Oct 10, 2023</td>
+<td class="px-4 py-4 font-body-sm font-medium">Elena Petrova</td>
+<td class="px-4 py-4">
+<span class="text-[11px] px-2 py-0.5 rounded-full border border-cyber-teal/30 text-cyber-teal bg-cyber-teal/5">Custom Build</span>
+</td>
+<td class="px-4 py-4 font-label-mono text-right">$2,100.00</td>
+<td class="px-4 py-4">
+<div class="flex items-center gap-2 text-green-400">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-xs">Paid</span>
+</div>
+</td>
+<td class="px-4 py-4 text-center">
+<span class="status-badge bg-amber-500/20 text-amber-500">
+<span class="material-symbols-outlined text-[14px]">settings_suggest</span>
+                                    Processing
+                                </span>
+</td>
+<td class="px-4 py-4 text-right space-x-2">
+<button class="p-1.5 rounded-lg hover:bg-white/10 text-on-surface-variant hover:text-on-surface transition-all" title="View Details">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-white/10 text-on-surface-variant hover:text-on-surface transition-all">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Control -->
+<div class="px-6 py-4 bg-white/2 border-t border-white/10 flex items-center justify-between">
+<span class="text-body-sm text-on-surface-variant">Showing <span class="text-on-surface font-medium">1-10</span> of 420 orders</span>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-white/10 text-on-surface-variant hover:bg-white/5 disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-on-primary font-medium text-xs">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-white/10 text-on-surface-variant hover:bg-white/5 text-xs transition-colors">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-white/10 text-on-surface-variant hover:bg-white/5 text-xs transition-colors">3</button>
+<span class="px-2 text-on-surface-variant">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-white/10 text-on-surface-variant hover:bg-white/5 text-xs transition-colors">42</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-white/10 text-on-surface-variant hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Quick Summary Widgets (Bento Pattern) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mt-gutter">
+<div class="glass-card p-5 rounded-xl border border-white/5">
+<p class="text-xs text-on-surface-variant uppercase tracking-widest font-bold mb-2">Total Revenue</p>
+<h3 class="text-headline-sm font-label-mono">$1.24M</h3>
+<div class="flex items-center gap-1 text-green-400 text-xs mt-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span>+12.5% vs last month</span>
+</div>
+</div>
+<div class="glass-card p-5 rounded-xl border border-white/5">
+<p class="text-xs text-on-surface-variant uppercase tracking-widest font-bold mb-2">Build Pipeline</p>
+<h3 class="text-headline-sm font-label-mono">24 Units</h3>
+<div class="w-full bg-white/5 h-1.5 rounded-full mt-2 overflow-hidden">
+<div class="bg-cyber-teal h-full w-2/3"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant mt-1 text-right">66% Capacity</p>
+</div>
+<div class="glass-card p-5 rounded-xl border border-white/5">
+<p class="text-xs text-on-surface-variant uppercase tracking-widest font-bold mb-2">Average Build Time</p>
+<h3 class="text-headline-sm font-label-mono">4.2 Days</h3>
+<div class="flex items-center gap-1 text-on-surface-variant text-xs mt-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span>Industry standard: 5 days</span>
+</div>
+</div>
+<div class="glass-card p-5 rounded-xl border border-white/5">
+<p class="text-xs text-on-surface-variant uppercase tracking-widest font-bold mb-2">Customer Sat</p>
+<h3 class="text-headline-sm font-label-mono">4.9 / 5</h3>
+<div class="flex gap-0.5 mt-1">
+<span class="material-symbols-outlined text-[14px] text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px] text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px] text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px] text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px] text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Background Glow -->
+<div class="fixed bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-primary/10 blur-[150px] -z-10 rounded-full"></div>
+<div class="fixed top-[-20%] left-[-10%] w-[400px] h-[400px] bg-cyber-teal/5 blur-[120px] -z-10 rounded-full"></div>
+<script>
+        // Simple Micro-interaction for table rows
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('click', (e) => {
+                if (e.target.type !== 'checkbox' && !e.target.closest('button')) {
+                    const checkbox = row.querySelector('input[type="checkbox"]');
+                    if (checkbox) checkbox.checked = !checkbox.checked;
+                    row.classList.toggle('bg-white/5');
+                }
+            });
+        });
+
+        // Filter tag toggle
+        document.querySelectorAll('.min-w-max button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.min-w-max button').forEach(b => {
+                    b.className = "px-4 py-1.5 rounded-full text-body-sm bg-surface-container-high text-on-surface-variant hover:bg-surface-bright transition-colors";
+                });
+                if(!btn.innerText.includes('More')) {
+                    btn.className = "px-4 py-1.5 rounded-full text-body-sm bg-primary text-on-primary font-medium";
+                }
+            });
+        });
+    </script>
+</body></html>

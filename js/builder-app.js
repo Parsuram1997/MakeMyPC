@@ -392,14 +392,18 @@ function renderReviewPage() {
 }
 
 function renderCheckoutPage() {
-    const grid = document.getElementById('component-grid');
-    document.getElementById('step-header').textContent = 'Checkout';
-    document.getElementById('step-desc').textContent = 'Complete your order.';
-    grid.innerHTML = `<div class="glass-card rounded-xl p-12 text-center">
-        <span class="material-symbols-outlined text-6xl text-cyber-teal mb-4 block">task_alt</span>
-        <h2 class="text-headline-lg font-headline-lg text-primary mb-2">Checkout Mockup</h2>
-        <p class="text-on-surface-variant">This is where the payment gateway would load.</p>
-    </div>`;
+    const build = {
+        id: 'MPC-' + Math.floor(Math.random() * 1000000),
+        name: 'Custom PC Build',
+        parts: state.selections,
+        price: Object.values(state.selections).reduce((sum, p) => sum + (p ? p.price : 0), 0)
+    };
+    
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    cart.push(build);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    window.location.href = 'shopping-cart.html';
 }
 
 // Ensure init when DOM loads

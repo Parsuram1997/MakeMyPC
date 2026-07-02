@@ -48,113 +48,128 @@
         }
     </style>
 <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "tertiary": "#ffb595",
-                        "outline-variant": "#414755",
-                        "secondary": "#5cd8da",
-                        "inverse-on-surface": "#263046",
-                        "on-primary-fixed": "#001a41",
-                        "on-primary-fixed-variant": "#004493",
-                        "on-secondary-fixed": "#002020",
-                        "secondary-container": "#00a4a6",
-                        "surface": "#071327",
-                        "on-tertiary-container": "#4c1a00",
-                        "surface-variant": "#2a354a",
-                        "electric-blue": "#007AFF",
-                        "tertiary-fixed": "#ffdbcc",
-                        "surface-container-low": "#101b30",
-                        "on-secondary-container": "#003233",
-                        "error-container": "#93000a",
-                        "cyber-teal": "#00A4A6",
-                        "on-tertiary": "#571e00",
-                        "inverse-primary": "#005bc1",
-                        "on-error-container": "#ffdad6",
-                        "hardware-gray": "#111111",
-                        "on-primary": "#002e69",
-                        "on-primary-container": "#00285c",
-                        "surface-deep": "#00081C",
-                        "secondary-fixed-dim": "#5cd8da",
-                        "primary-fixed-dim": "#adc6ff",
-                        "surface-bright": "#2e394f",
-                        "surface-container-highest": "#2a354a",
-                        "inverse-surface": "#d7e2ff",
-                        "surface-container": "#142034",
-                        "on-tertiary-fixed-variant": "#7c2e00",
-                        "surface-glass": "rgba(255, 255, 255, 0.03)",
-                        "error": "#ffb4ab",
-                        "surface-container-high": "#1f2a3f",
-                        "tertiary-container": "#ef6719",
-                        "on-surface-variant": "#c1c6d7",
-                        "on-secondary": "#003738",
-                        "on-surface": "#d7e2ff",
-                        "surface-dim": "#071327",
-                        "tertiary-fixed-dim": "#ffb595",
-                        "primary": "#adc6ff",
-                        "primary-fixed": "#d8e2ff",
-                        "background": "#071327",
-                        "secondary-fixed": "#7cf5f7",
-                        "surface-tint": "#adc6ff",
-                        "primary-container": "#4b8eff",
-                        "surface-container-lowest": "#030e22",
-                        "on-background": "#d7e2ff",
-                        "on-secondary-fixed-variant": "#004f50",
-                        "outline": "#8b90a0",
-                        "on-error": "#690005",
-                        "on-tertiary-fixed": "#351000"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "margin-mobile": "20px",
-                        "gutter": "24px",
-                        "margin-desktop": "64px",
-                        "container-max": "1280px",
-                        "base": "8px"
-                    },
-                    "fontFamily": {
-                        "headline-lg": ["Inter"],
-                        "body-md": ["Inter"],
-                        "body-sm": ["Inter"],
-                        "label-mono": ["JetBrains Mono"],
-                        "headline-sm": ["Inter"],
-                        "display-lg": ["Inter"],
-                        "display-lg-mobile": ["Inter"]
-                    },
-                    "fontSize": {
-                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
-                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                        "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
-                        "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                        "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
-                    }
-                },
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#adc6ff",
+                    "on-tertiary-container": "#4c1a00",
+                    "inverse-on-surface": "#263046",
+                    "secondary-fixed-dim": "#5cd8da",
+                    "surface-container-low": "#101b30",
+                    "surface-container": "#142034",
+                    "primary-fixed-dim": "#adc6ff",
+                    "outline-variant": "#414755",
+                    "electric-blue": "#007AFF",
+                    "background": "#071327",
+                    "surface-bright": "#2e394f",
+                    "secondary": "#5cd8da",
+                    "surface": "#071327",
+                    "on-primary-container": "#00285c",
+                    "tertiary-container": "#ef6719",
+                    "hardware-gray": "#111111",
+                    "on-background": "#d7e2ff",
+                    "on-tertiary-fixed": "#351000",
+                    "tertiary": "#ffb595",
+                    "primary-container": "#4b8eff",
+                    "surface-tint": "#adc6ff",
+                    "surface-container-lowest": "#030e22",
+                    "primary-fixed": "#d8e2ff",
+                    "on-primary": "#002e69",
+                    "on-secondary-fixed": "#002020",
+                    "surface-deep": "#00081C",
+                    "secondary-container": "#00a4a6",
+                    "on-secondary-fixed-variant": "#004f50",
+                    "cyber-teal": "#00A4A6",
+                    "on-surface": "#d7e2ff",
+                    "tertiary-fixed": "#ffdbcc",
+                    "error": "#ffb4ab",
+                    "on-surface-variant": "#c1c6d7",
+                    "on-tertiary-fixed-variant": "#7c2e00",
+                    "outline": "#8b90a0",
+                    "surface-dim": "#071327",
+                    "on-error": "#690005",
+                    "on-primary-fixed": "#001a41",
+                    "surface-container-highest": "#2a354a",
+                    "inverse-primary": "#005bc1",
+                    "on-primary-fixed-variant": "#004493",
+                    "secondary-fixed": "#7cf5f7",
+                    "surface-variant": "#2a354a",
+                    "inverse-surface": "#d7e2ff",
+                    "on-tertiary": "#571e00",
+                    "on-error-container": "#ffdad6",
+                    "surface-glass": "rgba(255, 255, 255, 0.03)",
+                    "error-container": "#93000a",
+                    "on-secondary": "#003738",
+                    "on-secondary-container": "#003233",
+                    "tertiary-fixed-dim": "#ffb595",
+                    "surface-container-high": "#1f2a3f"
             },
-        }
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "base": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-mono": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
     </script>
 </head>
 <body class="bg-surface-deep text-on-surface font-body-md hardware-grid selection:bg-electric-blue selection:text-white">
 <!-- TopNavBar -->
-<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 max-w-container-max mx-auto backdrop-blur-xl border-b border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.3)] bg-surface-glass">
-<div class="font-headline-lg text-headline-lg font-bold text-electric-blue">MakeMyPC</div>
-<div class="hidden md:flex items-center gap-8">
-<a class="font-headline-sm text-headline-sm font-semibold text-on-surface-variant hover:text-on-surface transition-colors" href="#">Build</a>
-<a class="font-headline-sm text-headline-sm font-semibold text-on-surface-variant hover:text-on-surface transition-colors" href="#">Prebuilts</a>
-<a class="font-headline-sm text-headline-sm font-semibold text-on-surface-variant hover:text-on-surface transition-colors" href="#">Components</a>
-<a class="font-headline-sm text-headline-sm font-semibold text-electric-blue border-b-2 border-electric-blue pb-1" href="#">Support</a>
+<nav class="fixed top-0 w-full z-50 bg-surface-glass backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-desktop h-20">
+<a href="index.html" class="text-headline-lg font-headline-lg font-black text-on-surface tracking-tighter">MakeMyPC</a>
+<div class="hidden md:flex gap-x-8 items-center">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="prebuilt-pcs.html">Shop</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="custom-pc-builder.html">Builder</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-mono text-label-mono" href="support-faq.html">Resources</a>
 </div>
-<div class="flex items-center gap-6">
-<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-electric-blue transition-colors" data-icon="shopping_cart">shopping_cart</span>
-<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-electric-blue transition-colors" data-icon="account_circle">account_circle</span>
+<div class="flex items-center gap-x-6">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-body-sm font-body-sm focus:outline-none focus:border-electric-blue w-64 transition-all" placeholder="Search Components" type="text"/>
+</div>
+<div class="flex gap-x-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100 relative" onclick="window.location.href='shopping-cart.html'">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span id="cart-badge" class="absolute -top-1 -right-1 bg-error text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+</button>
+<a href="login.html" id="auth-login-btn" class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100 flex items-center">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</a>
+<a href="account-settings.html" id="auth-avatar-btn" class="hidden w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm hover:brightness-110 transition-all">
+<span id="avatar-initial">U</span>
+</a>
+</div>
+</div>
 </div>
 </nav>
 <main class="pt-20">
@@ -426,4 +441,5 @@
             }
         });
     </script>
+<script type="module" src="js/auth.js"></script>
 </body></html>

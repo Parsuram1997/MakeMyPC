@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MakeMyPC Admin - Compatibility Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Injection of Brand Anchors -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#adc6ff",
+                    "on-tertiary-container": "#4c1a00",
+                    "inverse-on-surface": "#263046",
+                    "secondary-fixed-dim": "#5cd8da",
+                    "surface-container-low": "#101b30",
+                    "surface-container": "#142034",
+                    "primary-fixed-dim": "#adc6ff",
+                    "outline-variant": "#414755",
+                    "electric-blue": "#007AFF",
+                    "background": "#071327",
+                    "surface-bright": "#2e394f",
+                    "secondary": "#5cd8da",
+                    "surface": "#071327",
+                    "on-primary-container": "#00285c",
+                    "tertiary-container": "#ef6719",
+                    "hardware-gray": "#111111",
+                    "on-background": "#d7e2ff",
+                    "on-tertiary-fixed": "#351000",
+                    "tertiary": "#ffb595",
+                    "primary-container": "#4b8eff",
+                    "surface-tint": "#adc6ff",
+                    "surface-container-lowest": "#030e22",
+                    "primary-fixed": "#d8e2ff",
+                    "on-primary": "#002e69",
+                    "on-secondary-fixed": "#002020",
+                    "surface-deep": "#00081C",
+                    "secondary-container": "#00a4a6",
+                    "on-secondary-fixed-variant": "#004f50",
+                    "cyber-teal": "#00A4A6",
+                    "on-surface": "#d7e2ff",
+                    "tertiary-fixed": "#ffdbcc",
+                    "error": "#ffb4ab",
+                    "on-surface-variant": "#c1c6d7",
+                    "on-tertiary-fixed-variant": "#7c2e00",
+                    "outline": "#8b90a0",
+                    "surface-dim": "#071327",
+                    "on-error": "#690005",
+                    "on-primary-fixed": "#001a41",
+                    "surface-container-highest": "#2a354a",
+                    "inverse-primary": "#005bc1",
+                    "on-primary-fixed-variant": "#004493",
+                    "secondary-fixed": "#7cf5f7",
+                    "surface-variant": "#2a354a",
+                    "inverse-surface": "#d7e2ff",
+                    "on-tertiary": "#571e00",
+                    "on-error-container": "#ffdad6",
+                    "surface-glass": "rgba(255, 255, 255, 0.03)",
+                    "error-container": "#93000a",
+                    "on-secondary": "#003738",
+                    "on-secondary-container": "#003233",
+                    "tertiary-fixed-dim": "#ffb595",
+                    "surface-container-high": "#1f2a3f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "base": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-mono": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        background-color: #071327;
+        background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.02) 1px, transparent 0);
+        background-size: 32px 32px;
+        color: #d7e2ff;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 40px 40px -20px rgba(0, 0, 0, 0.15);
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: rgba(255,255,255,0.02);
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #4b8eff;
+        border-radius: 2px;
+      }
+    </style>
+</head>
+<body class="font-body-md overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r border-white/10 bg-surface-deep dark:bg-surface-deep backdrop-blur-xl flex flex-col py-6 z-50">
+<div class="px-6 mb-8">
+<h1 class="font-headline-sm text-headline-sm font-bold text-electric-blue dark:text-primary">MakeMyPC</h1>
+<p class="text-xs text-on-surface-variant tracking-wider uppercase opacity-60">Enterprise Admin</p>
+</div>
+<nav class="fixed top-0 w-full z-50 bg-surface-glass backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-desktop h-20">
+<a href="index.html" class="text-headline-lg font-headline-lg font-black text-on-surface tracking-tighter">MakeMyPC</a>
+<div class="hidden md:flex gap-x-8 items-center">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="prebuilt-pcs.html">Shop</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="custom-pc-builder.html">Builder</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="support-faq.html">Resources</a>
+</div>
+<div class="flex items-center gap-x-6">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-body-sm font-body-sm focus:outline-none focus:border-electric-blue w-64 transition-all" placeholder="Search Components" type="text"/>
+</div>
+<div class="flex gap-x-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100 relative" onclick="window.location.href='shopping-cart.html'">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span id="cart-badge" class="absolute -top-1 -right-1 bg-error text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+</button>
+<a href="login.html" id="auth-login-btn" class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100 flex items-center">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</a>
+<a href="account-settings.html" id="auth-avatar-btn" class="hidden w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm hover:brightness-110 transition-all">
+<span id="avatar-initial">U</span>
+</a>
+</div>
+</div>
+</div>
+</nav>
+<div class="px-4 mt-auto">
+<div class="flex items-center gap-3 p-3 rounded-xl bg-white/5">
+<div class="w-10 h-10 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a high-tech system administrator in a dark, blue-lit server room. The individual is wearing a modern black uniform with subtle silver accents. The lighting is dramatic, highlighting the sleek contours of the surrounding high-end computer hardware. The overall mood is serious and technologically advanced, fitting a premium PC building platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZWTuqGe-9rzFEG1vZNQlnrWsmQUWad6PaiO7R-FRI_4NBfSBTDcvLc51va5JkVy5NOPwlwMQlK23ilGynMMsEt1GB-RGHxV9m-sRWmwPPaBQXaWLSILmLxxjT8Mek5R90gt_7TjFlUV2YoIFX4Qpr5DIYXtgBGBos3KXqMtIdM_xt5TsU5BjGfnclJg96lPoLsX-qyY2sB7IW4ZwLayMX85ME1S1lmLBc1K15YVWJW7502PcTIm4XPw"/>
+</div>
+<div>
+<p class="text-body-sm font-semibold text-on-surface">Alex Rivera</p>
+<p class="text-[10px] text-on-surface-variant">Lead Architect</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Shell -->
+<div class="ml-64 flex flex-col h-screen relative">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-40 w-full h-16 px-gutter flex justify-between items-center bg-surface-container/80 dark:bg-surface-container/80 backdrop-blur-md border-b border-white/5 shadow-sm">
+<div class="flex items-center gap-4">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Compatibility Manager</span>
+<div class="h-4 w-px bg-white/10"></div>
+<div class="flex items-center gap-2 bg-surface-container-low border border-white/10 px-3 py-1.5 rounded-full focus-within:ring-1 focus-within:ring-primary transition-all">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm text-on-surface w-64 placeholder:text-on-surface-variant/40" placeholder="Search rules..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all">help</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all">account_circle</button>
+</div>
+<button class="bg-electric-blue hover:shadow-[0_0_15px_rgba(0,122,255,0.4)] px-4 py-2 rounded-lg text-body-sm font-bold transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span>
+                    New Rule
+                </button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto p-gutter custom-scrollbar">
+<div class="max-w-container-max mx-auto grid grid-cols-12 gap-gutter">
+<!-- Section: Overview Rule Builder -->
+<div class="col-span-8 flex flex-col gap-gutter">
+<!-- CPU ↔ Motherboard -->
+<section class="glass-card rounded-xl p-6 relative overflow-hidden">
+<div class="flex justify-between items-center mb-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">memory</span>
+<h2 class="font-headline-sm text-headline-sm">Socket Validation</h2>
+</div>
+<span class="font-label-mono text-label-mono px-2 py-1 rounded bg-cyber-teal/20 text-cyber-teal">CPU ↔ MOTHERBOARD</span>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="space-y-4">
+<label class="text-xs font-bold uppercase text-on-surface-variant/60 tracking-widest">Active Socket Rules</label>
+<div class="space-y-2">
+<div class="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/5 hover:border-primary/50 transition-colors">
+<div class="flex flex-col">
+<span class="font-label-mono text-primary text-sm">LGA1700</span>
+<span class="text-xs text-on-surface-variant">Intel 12th/13th/14th Gen</span>
+</div>
+<span class="material-symbols-outlined text-cyber-teal">check_circle</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/5 hover:border-primary/50 transition-colors">
+<div class="flex flex-col">
+<span class="font-label-mono text-primary text-sm">AM5</span>
+<span class="text-xs text-on-surface-variant">AMD Ryzen 7000/8000 Series</span>
+</div>
+<span class="material-symbols-outlined text-cyber-teal">check_circle</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest/50 rounded-xl p-4 border border-dashed border-white/10 flex flex-col justify-center items-center gap-3">
+<button class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/5 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+<p class="text-body-sm text-on-surface-variant">Map New Socket Protocol</p>
+</div>
+</div>
+</section>
+<!-- RAM & GPU Matrix -->
+<div class="grid grid-cols-2 gap-gutter">
+<!-- RAM ↔ Motherboard -->
+<div class="glass-card rounded-xl p-6">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<h3 class="font-headline-sm text-headline-sm">Memory Slots</h3>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<span class="text-body-sm text-on-surface-variant">DDR5 Speed Limit</span>
+<span class="font-label-mono text-electric-blue">8400 MT/s</span>
+</div>
+<div class="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
+<div class="w-[75%] h-full bg-electric-blue"></div>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-4">
+<div class="p-2 bg-white/5 rounded border border-white/5">
+<p class="text-[10px] text-on-surface-variant uppercase">Slots</p>
+<p class="font-label-mono">4x DIMM</p>
+</div>
+<div class="p-2 bg-white/5 rounded border border-white/5">
+<p class="text-[10px] text-on-surface-variant uppercase">Max Cap</p>
+<p class="font-label-mono">192 GB</p>
+</div>
+</div>
+</div>
+</div>
+<!-- GPU ↔ Cabinet -->
+<div class="glass-card rounded-xl p-6">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary">straighten</span>
+<h3 class="font-headline-sm text-headline-sm">GPU Clearance</h3>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between p-2 rounded bg-surface-container-high">
+<span class="text-xs">Mini-ITX Max</span>
+<span class="font-label-mono text-tertiary">305mm</span>
+</div>
+<div class="flex justify-between p-2 rounded bg-surface-container-high">
+<span class="text-xs">Mid-Tower Max</span>
+<span class="font-label-mono text-tertiary">380mm</span>
+</div>
+<div class="flex justify-between p-2 rounded bg-surface-container-high">
+<span class="text-xs">Full-Tower Max</span>
+<span class="font-label-mono text-tertiary">450mm</span>
+</div>
+</div>
+</div>
+</div>
+<!-- PSU Calculator -->
+<section class="glass-card rounded-xl p-6 overflow-hidden relative">
+<div class="flex justify-between items-center mb-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">bolt</span>
+<h2 class="font-headline-sm text-headline-sm">Power Draw Estimator</h2>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1 bg-white/5 rounded text-xs hover:bg-white/10">Import CSV</button>
+<button class="px-3 py-1 bg-electric-blue/20 text-electric-blue rounded text-xs">Save Tiers</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-white/10">
+<th class="py-3 font-label-mono text-xs text-on-surface-variant/60">COMPONENT CATEGORY</th>
+<th class="py-3 font-label-mono text-xs text-on-surface-variant/60 text-right">BASE DRAW (W)</th>
+<th class="py-3 font-label-mono text-xs text-on-surface-variant/60 text-right">PEAK DRAW (W)</th>
+<th class="py-3 font-label-mono text-xs text-on-surface-variant/60 text-right">HEADROOM %</th>
+</tr>
+</thead>
+<tbody class="text-body-sm">
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+<td class="py-4 font-semibold text-primary">High-End GPU (4090 Class)</td>
+<td class="py-4 text-right font-label-mono">450W</td>
+<td class="py-4 text-right font-label-mono">600W</td>
+<td class="py-4 text-right font-label-mono text-cyber-teal">20%</td>
+</tr>
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+<td class="py-4 font-semibold text-primary">Extreme CPU (i9/R9)</td>
+<td class="py-4 text-right font-label-mono">125W</td>
+<td class="py-4 text-right font-label-mono">250W</td>
+<td class="py-4 text-right font-label-mono text-cyber-teal">15%</td>
+</tr>
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+<td class="py-4 font-semibold text-primary">Performance NVMe</td>
+<td class="py-4 text-right font-label-mono">5W</td>
+<td class="py-4 text-right font-label-mono">10W</td>
+<td class="py-4 text-right font-label-mono text-cyber-teal">5%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Right Sidebar: Rules & Audit -->
+<div class="col-span-4 flex flex-col gap-gutter">
+<!-- Automatic Validation Rules -->
+<section class="glass-card rounded-xl p-6 flex flex-col">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<h2 class="font-headline-sm text-headline-sm">System Validation</h2>
+</div>
+<div class="space-y-4">
+<!-- Toggle Item 1 -->
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container">
+<div>
+<p class="text-body-sm font-semibold">Heatsink Height Check</p>
+<p class="text-[10px] text-on-surface-variant">Prevent side panel interference</p>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-electric-blue"></div>
+</div>
+</div>
+<!-- Toggle Item 2 -->
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container">
+<div>
+<p class="text-body-sm font-semibold">BIOS Version Warning</p>
+<p class="text-[10px] text-on-surface-variant">Flag older MOBOs with new CPUs</p>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-electric-blue"></div>
+</div>
+</div>
+<!-- Toggle Item 3 -->
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container">
+<div>
+<p class="text-body-sm font-semibold">PCIe Lane Calculation</p>
+<p class="text-[10px] text-on-surface-variant">Validate bandwidth distribution</p>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-electric-blue"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Audit Log -->
+<section class="glass-card rounded-xl p-6 flex-1 flex flex-col">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">history</span>
+<h2 class="font-headline-sm text-headline-sm">Rule Audit</h2>
+</div>
+<div class="flex-1 space-y-6 relative overflow-y-auto custom-scrollbar pr-2">
+<!-- Timeline Item -->
+<div class="relative pl-6 before:absolute before:left-[3px] before:top-2 before:bottom-[-24px] before:w-px before:bg-white/10">
+<div class="absolute left-0 top-1 w-2 h-2 rounded-full bg-electric-blue shadow-[0_0_8px_#007AFF]"></div>
+<div class="flex flex-col">
+<span class="text-[10px] font-label-mono text-on-surface-variant">09:42 AM - TODAY</span>
+<p class="text-body-sm text-on-surface mt-1">LGA1700 validation updated</p>
+<span class="text-[10px] text-on-surface-variant italic">by Alex Rivera</span>
+</div>
+</div>
+<div class="relative pl-6 before:absolute before:left-[3px] before:top-2 before:bottom-[-24px] before:w-px before:bg-white/10">
+<div class="absolute left-0 top-1 w-2 h-2 rounded-full bg-cyber-teal shadow-[0_0_8px_#00A4A6]"></div>
+<div class="flex flex-col">
+<span class="text-[10px] font-label-mono text-on-surface-variant">YESTERDAY</span>
+<p class="text-body-sm text-on-surface mt-1">New GPU Clearance: Corsair 4000D</p>
+<span class="text-[10px] text-on-surface-variant italic">by Sarah Chen</span>
+</div>
+</div>
+<div class="relative pl-6">
+<div class="absolute left-0 top-1 w-2 h-2 rounded-full bg-white/20"></div>
+<div class="flex flex-col">
+<span class="text-[10px] font-label-mono text-on-surface-variant">2 DAYS AGO</span>
+<p class="text-body-sm text-on-surface mt-1">Global PSU Headroom adjusted to 20%</p>
+<span class="text-[10px] text-on-surface-variant italic">System Auto-Update</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-2 text-xs font-bold text-on-surface-variant border border-white/10 rounded hover:bg-white/5 transition-all">
+                            View Full History
+                        </button>
+</section>
+</div>
+</div>
+</main>
+<!-- Floating Feedback Glow (Atmospheric effect) -->
+<div class="fixed bottom-0 right-0 w-[500px] h-[500px] bg-electric-blue/5 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+<div class="fixed top-0 left-64 w-[300px] h-[300px] bg-cyber-teal/5 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+</div>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Simple hover effect for glass cards to simulate hardware lighting
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Toggle simulation
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const parent = this.closest('.bg-surface-container');
+                if(this.checked) {
+                    parent.classList.add('border-primary/20');
+                    parent.style.boxShadow = '0 0 15px rgba(0, 122, 255, 0.05)';
+                } else {
+                    parent.classList.remove('border-primary/20');
+                    parent.style.boxShadow = 'none';
+                }
+            });
+        });
+    </script>
+</body></html>
