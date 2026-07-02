@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MakeMyPC | Performance &amp; Compatibility Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        body {
+            background-color: #00081C;
+            color: #d7e2ff;
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(0, 122, 255, 0.2);
+            border-color: rgba(0, 122, 255, 0.4);
+        }
+        .custom-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 4px;
+            background: #1f2a3f;
+            border-radius: 2px;
+            outline: none;
+        }
+        .custom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #007AFF;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 122, 255, 0.5);
+        }
+        .segmented-progress {
+            display: flex;
+            gap: 2px;
+        }
+        .segment {
+            height: 8px;
+            flex: 1;
+            background: #1f2a3f;
+            border-radius: 1px;
+        }
+        .segment.active-teal { background: #00A4A6; }
+        .segment.active-blue { background: #007AFF; }
+    </style>
+<!-- Tailwind Config Injection -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#adc6ff",
+                        "on-tertiary-container": "#4c1a00",
+                        "inverse-on-surface": "#263046",
+                        "secondary-fixed-dim": "#5cd8da",
+                        "surface-container-low": "#101b30",
+                        "surface-container": "#142034",
+                        "primary-fixed-dim": "#adc6ff",
+                        "outline-variant": "#414755",
+                        "electric-blue": "#007AFF",
+                        "background": "#071327",
+                        "surface-bright": "#2e394f",
+                        "secondary": "#5cd8da",
+                        "surface": "#071327",
+                        "on-primary-container": "#00285c",
+                        "tertiary-container": "#ef6719",
+                        "hardware-gray": "#111111",
+                        "on-background": "#d7e2ff",
+                        "on-tertiary-fixed": "#351000",
+                        "tertiary": "#ffb595",
+                        "primary-container": "#4b8eff",
+                        "surface-tint": "#adc6ff",
+                        "surface-container-lowest": "#030e22",
+                        "primary-fixed": "#d8e2ff",
+                        "on-primary": "#002e69",
+                        "on-secondary-fixed": "#002020",
+                        "surface-deep": "#00081C",
+                        "secondary-container": "#00a4a6",
+                        "on-secondary-fixed-variant": "#004f50",
+                        "cyber-teal": "#00A4A6",
+                        "on-surface": "#d7e2ff",
+                        "tertiary-fixed": "#ffdbcc",
+                        "error": "#ffb4ab",
+                        "on-surface-variant": "#c1c6d7",
+                        "on-tertiary-fixed-variant": "#7c2e00",
+                        "outline": "#8b90a0",
+                        "surface-dim": "#071327",
+                        "on-error": "#690005",
+                        "on-primary-fixed": "#001a41",
+                        "surface-container-highest": "#2a354a",
+                        "inverse-primary": "#005bc1",
+                        "on-primary-fixed-variant": "#004493",
+                        "secondary-fixed": "#7cf5f7",
+                        "surface-variant": "#2a354a",
+                        "inverse-surface": "#d7e2ff",
+                        "on-tertiary": "#571e00",
+                        "on-error-container": "#ffdad6",
+                        "surface-glass": "rgba(255, 255, 255, 0.03)",
+                        "error-container": "#93000a",
+                        "on-secondary": "#003738",
+                        "on-secondary-container": "#003233",
+                        "tertiary-fixed-dim": "#ffb595",
+                        "surface-container-high": "#1f2a3f"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "container-max": "1280px",
+                        "margin-desktop": "64px",
+                        "base": "8px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-mono": ["JetBrains Mono"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 border-b border-white/10 bg-surface-glass backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-desktop h-20">
+<div class="text-headline-lg font-headline-lg font-black text-on-surface tracking-tighter">MakeMyPC</div>
+<nav class="hidden md:flex items-center gap-x-8">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Shop</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Builder</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">Resources</a>
+</nav>
+<div class="flex items-center gap-x-6">
+<div class="relative hidden lg:block">
+<input class="bg-surface-container border border-outline-variant/30 rounded-full py-2 px-6 text-body-sm w-64 focus:outline-none focus:ring-1 focus:ring-primary" placeholder="Search compatibility..." type="text"/>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-all">shopping_cart</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-all">account_circle</span>
+</div>
+</div>
+</header>
+<!-- Sidebar Summary (Persistent context) -->
+<aside class="fixed right-0 top-20 h-screen w-80 border-l border-white/10 bg-surface-glass backdrop-blur-lg shadow-2xl flex flex-col p-6 gap-y-8 hidden xl:flex">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Build Summary</h2>
+<p class="font-label-mono text-label-mono text-primary uppercase tracking-widest mt-1">Live Stats</p>
+</div>
+<div class="space-y-6">
+<div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5 transition-all hover:bg-white/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-cyber-teal" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-mono text-label-mono">Compatibility</span>
+</div>
+<span class="text-cyber-teal font-bold">100%</span>
+</div>
+<div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5 transition-all hover:bg-white/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-electric-blue">speed</span>
+<span class="font-label-mono text-label-mono">Performance</span>
+</div>
+<span class="text-electric-blue font-bold">8.4k Pts</span>
+</div>
+<div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5 transition-all hover:bg-white/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary">bolt</span>
+<span class="font-label-mono text-label-mono">Power Draw</span>
+</div>
+<span class="text-tertiary font-bold">420W</span>
+</div>
+</div>
+<button class="mt-auto bg-electric-blue text-white py-4 rounded-xl font-bold text-headline-sm shadow-lg shadow-electric-blue/20 hover:scale-[1.02] active:scale-95 transition-all">
+            Checkout Now
+        </button>
+</aside>
+<main class="pt-28 pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto xl:mr-80">
+<!-- Hero Title -->
+<section class="mb-12">
+<h1 class="font-display-lg text-display-lg mb-4 text-on-surface">Precision Tools</h1>
+<p class="text-on-surface-variant text-body-md max-w-2xl">Validate your hardware selection with professional-grade FPS simulation, PSU wattage calculations, and real-time physical compatibility checks.</p>
+</section>
+<!-- Bento Grid Tools -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- FPS Calculator (6 Cols) -->
+<section class="md:col-span-12 lg:col-span-7 glass-panel p-8 rounded-2xl glow-hover transition-all">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">FPS Estimator</h3>
+<p class="font-label-mono text-label-mono text-primary">GPU &amp; CPU SYNERGY</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant p-2 bg-white/5 rounded-lg">videogame_asset</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+<div class="space-y-4">
+<label class="font-label-mono text-label-mono text-on-surface-variant block">SELECT GAME</label>
+<select class="w-full bg-surface-container border border-outline-variant/30 rounded-xl p-3 text-body-sm focus:border-primary outline-none">
+<option>Cyberpunk 2077</option>
+<option>Call of Duty: Warzone</option>
+<option>Elden Ring</option>
+<option>Valorant</option>
+</select>
+</div>
+<div class="space-y-4">
+<label class="font-label-mono text-label-mono text-on-surface-variant block">RESOLUTION</label>
+<div class="flex gap-2">
+<button class="flex-1 py-2 px-3 rounded-lg bg-primary text-on-primary font-bold text-label-mono">1440P</button>
+<button class="flex-1 py-2 px-3 rounded-lg bg-surface-container text-on-surface-variant font-bold text-label-mono hover:bg-white/5 transition-all">4K</button>
+<button class="flex-1 py-2 px-3 rounded-lg bg-surface-container text-on-surface-variant font-bold text-label-mono hover:bg-white/5 transition-all">1080P</button>
+</div>
+</div>
+</div>
+<div class="space-y-8 mb-10">
+<div class="space-y-3">
+<div class="flex justify-between text-label-mono">
+<span class="text-on-surface-variant">Visual Quality</span>
+<span class="text-primary font-bold">Ultra Settings</span>
+</div>
+<input class="custom-slider" max="100" min="0" type="range" value="80"/>
+</div>
+</div>
+<div class="bg-surface-container-high rounded-2xl p-6 relative overflow-hidden">
+<div class="flex items-end justify-between relative z-10">
+<div>
+<p class="font-label-mono text-label-mono text-primary mb-1">EXPECTED PERFORMANCE</p>
+<h4 class="text-[48px] font-black text-on-surface leading-none">114 <span class="text-headline-sm font-medium opacity-60">FPS</span></h4>
+</div>
+<div class="flex items-end gap-1 h-12">
+<div class="w-2 bg-primary/20 h-4 rounded-t-sm"></div>
+<div class="w-2 bg-primary/40 h-8 rounded-t-sm"></div>
+<div class="w-2 bg-primary/60 h-6 rounded-t-sm"></div>
+<div class="w-2 bg-primary h-12 rounded-t-sm shadow-[0_0_10px_rgba(0,122,255,0.5)]"></div>
+<div class="w-2 bg-primary/50 h-9 rounded-t-sm"></div>
+</div>
+</div>
+<!-- Background aesthetic glow -->
+<div class="absolute -right-10 -bottom-10 w-40 h-40 bg-electric-blue/10 blur-[60px] rounded-full"></div>
+</div>
+</section>
+<!-- PSU Calculator (5 Cols) -->
+<section class="md:col-span-12 lg:col-span-5 glass-panel p-8 rounded-2xl glow-hover transition-all">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Power Load</h3>
+<p class="font-label-mono text-label-mono text-tertiary">THERMAL HEADROOM</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant p-2 bg-white/5 rounded-lg">bolt</span>
+</div>
+<div class="space-y-6">
+<div class="p-4 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
+<div>
+<p class="font-label-mono text-label-mono opacity-60">RTX 4080 Super</p>
+<p class="text-body-sm font-bold">320W peak</p>
+</div>
+<div class="segmented-progress w-24">
+<div class="segment active-blue"></div>
+<div class="segment active-blue"></div>
+<div class="segment active-blue"></div>
+<div class="segment active-blue"></div>
+<div class="segment active-blue"></div>
+<div class="segment"></div>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
+<div>
+<p class="font-label-mono text-label-mono opacity-60">Core i9-14900K</p>
+<p class="text-body-sm font-bold">253W peak</p>
+</div>
+<div class="segmented-progress w-24">
+<div class="segment active-teal"></div>
+<div class="segment active-teal"></div>
+<div class="segment active-teal"></div>
+<div class="segment"></div>
+<div class="segment"></div>
+<div class="segment"></div>
+</div>
+</div>
+<div class="pt-8 border-t border-white/10 mt-4">
+<div class="flex justify-between items-center mb-4">
+<span class="text-body-md font-medium">Total Estimated Draw</span>
+<span class="text-headline-lg font-bold text-on-surface">618W</span>
+</div>
+<div class="p-4 rounded-xl bg-tertiary/10 border border-tertiary/20">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-tertiary">warning</span>
+<div>
+<p class="text-body-sm font-bold text-tertiary">Recommended PSU: 850W Gold</p>
+<p class="text-[12px] text-tertiary/80 leading-tight">Operating at 72.7% efficiency peak. High transient spikes likely.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Build Compatibility Master List (12 Cols) -->
+<section class="md:col-span-12 glass-panel p-8 rounded-2xl glow-hover transition-all">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Physical Clearance &amp; Logic</h3>
+<p class="font-label-mono text-label-mono text-cyber-teal">REAL-TIME VALIDATION</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-surface-container rounded-lg font-label-mono text-label-mono border border-outline-variant/30 hover:border-primary transition-all">Export Report</button>
+<button class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-mono text-label-mono font-bold shadow-lg shadow-primary/20">Clear All</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="border-b border-white/10">
+<tr>
+<th class="py-4 px-2 font-label-mono text-label-mono opacity-50">COMPONENT TYPE</th>
+<th class="py-4 px-2 font-label-mono text-label-mono opacity-50">SELECTED PART</th>
+<th class="py-4 px-2 font-label-mono text-label-mono opacity-50">CLEARANCE STATS</th>
+<th class="py-4 px-2 font-label-mono text-label-mono opacity-50 text-right">STATUS</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<tr class="group hover:bg-white/[0.02] transition-all">
+<td class="py-6 px-2 text-body-sm font-medium">GPU Clearance</td>
+<td class="py-6 px-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container border border-white/10 flex items-center justify-center">
+<img class="w-8 h-8 object-contain" data-alt="High-end NVIDIA GeForce RTX graphics card with triple fan cooler, professional studio lighting, dark hardware aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgAbAspK7J0qR_36AmH4L5618TFYZ2mdvZz38WuDXzvW7zfdlWg93aHMHIvHF-u6F49DQv9QOWFxZo2GoLu3Rh_C6kRGxPGm_mpDJvbtS6UKYIX_P3TckcWQIl_XOelYlbebqrwL5XemumQ4Ri7j0Y8kB9L1EwvUUDFHcBJo7LuBBCL4aezL1jMnzjuG0H-icvnUbOnYkkW7EaNl5onD-ZvfpAlEMBJojuVVP5aG6bRsIJuW1m2JVVOJzglfa_GItSnq-LgfsvJzmQ"/>
+</div>
+<span class="text-body-sm">ASUS ROG Strix RTX 4080 Super</span>
+</div>
+</td>
+<td class="py-6 px-2 font-label-mono text-label-mono">357.6mm Length / 3.5 Slot</td>
+<td class="py-6 px-2 text-right">
+<span class="px-3 py-1 rounded-full bg-cyber-teal/10 text-cyber-teal text-[10px] font-bold border border-cyber-teal/20">PASSED</span>
+</td>
+</tr>
+<tr class="group hover:bg-white/[0.02] transition-all">
+<td class="py-6 px-2 text-body-sm font-medium">CPU Cooler Depth</td>
+<td class="py-6 px-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container border border-white/10 flex items-center justify-center">
+<img class="w-8 h-8 object-contain" data-alt="Noctua NH-D15 premium air cooler, detailed aluminum fins, soft studio shadows, tech industrial style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAh2-Egfus_g22uOOCUjWbXCQL7QoveWQ2dw7kMHsr9SmNM5Td_WP-TKN62-8xifwVOL1CDpKCXaJCXVJChzxXDlYqz5BFALewmADG7ypr2K2smeYADRo7G9P9j5alKD28qZGZmssrp9rXpqPzgnyKMOnQ3-RtQNJGLhU2TlocnjWAfY49PBvrbrMq52QczsPH5v6PObzQT0GZ-w50O2L_LZUodaG5Y_3ceYOH7syKGchNo4I6N8iSr2k18yVz8ihYg6EuijxIaUMx6"/>
+</div>
+<span class="text-body-sm">Noctua NH-D15 Chromax.Black</span>
+</div>
+</td>
+<td class="py-6 px-2 font-label-mono text-label-mono">165mm Height Clearance</td>
+<td class="py-6 px-2 text-right">
+<span class="px-3 py-1 rounded-full bg-error/10 text-error text-[10px] font-bold border border-error/20">TIGHT FIT</span>
+</td>
+</tr>
+<tr class="group hover:bg-white/[0.02] transition-all">
+<td class="py-6 px-2 text-body-sm font-medium">Motherboard VRM</td>
+<td class="py-6 px-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container border border-white/10 flex items-center justify-center">
+<img class="w-8 h-8 object-contain" data-alt="High-end Z790 motherboard, black heatsinks, detailed circuitry, professional product photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJPEIqtVj2gxJ587b7I3wimMp_Bw002vhbySfKYePRXoNHX5MdIZL-It_Lj-u0o5XrMZefEYEIJPH3-n2mtNacTtPF1BRkSt2FyY5LDxm5o3RH-qy6_o9Af_6uoKdVGEUfzRESAurjhNVQCuwbL8C2ANitpdsL8gu9pGQSRmqo8dyiWmR_I3CmeKQV8_VF5ciRXWjY1z3n27PZ-zL3DUcaRpZS-7QftmU6QATUrY0-h6igXq4U2PdjdjsyXadWzM8zsUdYEbTwEux5"/>
+</div>
+<span class="text-body-sm">Z790 Maximus Dark Hero</span>
+</div>
+</td>
+<td class="py-6 px-2 font-label-mono text-label-mono">ATX / LGA 1700 Socket</td>
+<td class="py-6 px-2 text-right">
+<span class="px-3 py-1 rounded-full bg-cyber-teal/10 text-cyber-teal text-[10px] font-bold border border-cyber-teal/20">COMPATIBLE</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-surface-deep border-t border-white/5">
+<div class="max-w-container-max mx-auto px-margin-desktop py-16 grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="col-span-1 md:col-span-1">
+<div class="font-headline-sm text-headline-sm text-on-surface mb-6">MakeMyPC</div>
+<p class="text-body-sm text-on-surface-variant mb-6">Engineering the ultimate custom PC experience since 2024.</p>
+<p class="font-label-mono text-label-mono text-on-surface-variant">© 2024 MakeMyPC. All Rights Reserved.</p>
+</div>
+<div class="flex flex-col gap-3">
+<p class="font-label-mono text-label-mono text-primary font-bold mb-2 uppercase">Partners</p>
+<a class="text-on-surface-variant hover:text-primary underline transition-all text-body-sm" href="#">Intel</a>
+<a class="text-on-surface-variant hover:text-primary underline transition-all text-body-sm" href="#">NVIDIA</a>
+<a class="text-on-surface-variant hover:text-primary underline transition-all text-body-sm" href="#">AMD</a>
+</div>
+<div class="flex flex-col gap-3">
+<p class="font-label-mono text-label-mono text-primary font-bold mb-2 uppercase">Legal</p>
+<a class="text-on-surface-variant hover:text-primary underline transition-all text-body-sm" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary underline transition-all text-body-sm" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-3">
+<p class="font-label-mono text-label-mono text-primary font-bold mb-2 uppercase">Connect</p>
+<a class="text-on-surface-variant hover:text-primary underline transition-all text-body-sm" href="#">Newsletter</a>
+<div class="mt-4 flex gap-4">
+<span class="material-symbols-outlined opacity-60 hover:opacity-100 cursor-pointer transition-all">public</span>
+<span class="material-symbols-outlined opacity-60 hover:opacity-100 cursor-pointer transition-all">settings</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Simple slider visual update
+        const sliders = document.querySelectorAll('.custom-slider');
+        sliders.forEach(slider => {
+            slider.addEventListener('input', (e) => {
+                const val = e.target.value;
+                const parent = e.target.closest('div');
+                const label = parent.querySelector('.text-primary');
+                if (label) {
+                    if (val < 33) label.textContent = 'Low Settings';
+                    else if (val < 66) label.textContent = 'Medium Settings';
+                    else if (val < 90) label.textContent = 'Ultra Settings';
+                    else label.textContent = 'Psycho Settings';
+                }
+            });
+        });
+    </script>
+</body></html>

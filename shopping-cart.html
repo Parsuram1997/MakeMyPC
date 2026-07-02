@@ -1,0 +1,515 @@
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Your Build | MakeMyPC</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        body {
+            background-color: #00081C;
+            color: #d7e2ff;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+        .glass-edge {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hardware-accent {
+            background: linear-gradient(90deg, #007AFF 0%, #00A4A6 100%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "surface-dim": "#071327",
+                "primary": "#adc6ff",
+                "primary-fixed-dim": "#adc6ff",
+                "on-tertiary-fixed": "#351000",
+                "secondary-fixed": "#7cf5f7",
+                "on-error": "#690005",
+                "secondary": "#5cd8da",
+                "on-primary": "#002e69",
+                "tertiary-fixed-dim": "#ffb595",
+                "surface-bright": "#2e394f",
+                "on-primary-container": "#00285c",
+                "surface-container-highest": "#2a354a",
+                "background": "#071327",
+                "inverse-surface": "#d7e2ff",
+                "surface-tint": "#adc6ff",
+                "tertiary": "#ffb595",
+                "primary-fixed": "#d8e2ff",
+                "on-surface": "#d7e2ff",
+                "outline-variant": "#414755",
+                "cyber-teal": "#00A4A6",
+                "on-secondary-fixed": "#002020",
+                "on-surface-variant": "#c1c6d7",
+                "tertiary-container": "#ef6719",
+                "outline": "#8b90a0",
+                "on-error-container": "#ffdad6",
+                "on-background": "#d7e2ff",
+                "secondary-fixed-dim": "#5cd8da",
+                "secondary-container": "#00a4a6",
+                "surface-container-lowest": "#030e22",
+                "hardware-gray": "#111111",
+                "on-primary-fixed": "#001a41",
+                "error-container": "#93000a",
+                "error": "#ffb4ab",
+                "surface": "#071327",
+                "on-tertiary-container": "#4c1a00",
+                "electric-blue": "#007AFF",
+                "on-secondary-container": "#003233",
+                "on-secondary-fixed-variant": "#004f50",
+                "inverse-on-surface": "#263046",
+                "surface-container-low": "#101b30",
+                "primary-container": "#4b8eff",
+                "tertiary-fixed": "#ffdbcc",
+                "on-secondary": "#003738",
+                "surface-container-high": "#1f2a3f",
+                "surface-container": "#142034",
+                "surface-deep": "#00081C",
+                "inverse-primary": "#005bc1",
+                "surface-variant": "#2a354a",
+                "surface-glass": "rgba(255, 255, 255, 0.03)",
+                "on-tertiary-fixed-variant": "#7c2e00",
+                "on-primary-fixed-variant": "#004493",
+                "on-tertiary": "#571e00"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+              },
+              "spacing": {
+                "margin-mobile": "20px",
+                "gutter": "24px",
+                "base": "8px",
+                "margin-desktop": "64px",
+                "container-max": "1280px"
+              },
+              "fontFamily": {
+                "label-mono": ["JetBrains Mono"],
+                "headline-sm": ["Inter"],
+                "display-lg": ["Inter"],
+                "headline-lg": ["Inter"],
+                "body-sm": ["Inter"],
+                "body-md": ["Inter"],
+                "display-lg-mobile": ["Inter"]
+              },
+              "fontSize": {
+                "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="bg-surface-deep text-on-surface">
+<!-- Top Navigation Bar (Shared Component) -->
+<nav class="fixed top-0 w-full z-50 border-b border-white/10 bg-surface-glass backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-desktop h-20">
+<div class="text-headline-lg font-headline-lg font-black text-on-surface tracking-tighter">MakeMyPC</div>
+<div class="hidden md:flex gap-x-8">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Shop</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">Builder</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Resources</a>
+</div>
+<div class="flex items-center gap-x-6">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">shopping_cart</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">account_circle</button>
+</div>
+</div>
+</nav>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-32 pb-24">
+<header class="mb-12">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Build Cart</h1>
+<p class="font-body-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-cyber-teal fill-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                Configuration validated for compatibility
+            </p>
+</header>
+<div class="flex flex-col lg:flex-row gap-gutter">
+<!-- Left Column: Item List -->
+<section class="flex-1 space-y-6">
+<!-- Build Header / Group Title -->
+<div class="glass-card rounded-xl p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<h2 class="font-headline-sm text-headline-sm">Ultimate 4K Rig</h2>
+<span class="font-label-mono text-label-mono text-cyber-teal">Reference ID: MPC-992-KINETIC</span>
+</div>
+<div class="flex items-center gap-2 bg-cyber-teal/10 px-4 py-2 rounded-full border border-cyber-teal/20">
+<span class="material-symbols-outlined text-cyber-teal text-sm">bolt</span>
+<span class="font-label-mono text-label-mono text-cyber-teal uppercase">100% Compatible</span>
+</div>
+</div>
+<!-- Product List -->
+<div class="space-y-4">
+<!-- Item 1: GPU -->
+<div class="glass-card glass-edge rounded-xl p-4 md:p-6 flex flex-col md:flex-row gap-6 group hover:border-primary/40 transition-all duration-300">
+<div class="w-full md:w-32 h-32 rounded-lg bg-surface-container overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="A high-end cinematic product photo of a high-performance graphics card with triple fans and glowing RGB lighting accents, resting on a reflective black surface in a dark studio setting. The lighting is dominated by electric blue and deep cyan tones, highlighting the metallic texture and technical precision of the component." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDF8R1ssKwNj4kmCf8lJbffFyJrmxs3RIeDDCn3jusMRfWPiNUm_oMqbJ4BOLxFM2iSPH7Vcomcs2LgcziZQForgSasYqoW5MW81kpj4x9kK8a7VdlAQFOcpoCXpxbL-wkqH4NgZ9cWSXAzW6GS0W8VRaovOFOLhC-XJyzDKaT-kv6ZSyZEMUSXz0XFaZcJsz7h3cfdANIpS7PJrbUySfbPSoPRFKyOJQIjqpF-5f740q_ZUbpQJCC_D_eIgPQ_YF2BYDX4gT7XQw-h">
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-1">NVIDIA GeForce RTX 4090</h3>
+<p class="font-body-sm text-on-surface-variant max-w-md">24GB GDDR6X, Ada Lovelace Architecture, DLSS 3.0 Support, Triple Fan Cooling System.</p>
+</div>
+<span class="font-label-mono text-headline-sm text-primary">$1,599.99</span>
+</div>
+<div class="flex flex-wrap justify-between items-center mt-6 gap-4">
+<div class="flex items-center bg-surface-container rounded-lg border border-white/5 p-1">
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors">—</button>
+<span class="w-10 text-center font-label-mono text-label-mono">01</span>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors">+</button>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-error transition-all font-label-mono text-label-mono">
+<span class="material-symbols-outlined text-base">delete</span> Remove
+                                    </button>
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-all font-label-mono text-label-mono">
+<span class="material-symbols-outlined text-base">bookmark</span> Save for Later
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 2: CPU -->
+<div class="glass-card glass-edge rounded-xl p-4 md:p-6 flex flex-col md:flex-row gap-6 group hover:border-primary/40 transition-all duration-300">
+<div class="w-full md:w-32 h-32 rounded-lg bg-surface-container overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Close-up macro photography of a flagship processor chip resting on an anti-static mat. The metallic surface of the integrated heat spreader is engraved with high-tech laser markings. Cool blue rim lighting defines the edges of the chip, creating a futuristic and surgically precise atmosphere within the dark background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBoyWit3g257GRynR0X-Xiip6bF8Q5RhJHoxBuQC-s4H_OsBwuMMG06KS-pIGYqKE4NywtyfhO7Tql1prHdrzHyk0QeTpb7sKf9FoH5qdprOpxBNGcOPdUNFpE93S8P0yNIb5itU1GUQ8gOLyF2-JrE_nzet4RszzoOEpa43GNCdN9C6Igek5TadEHTtXMGi2UtyUD5kF441IT6NafZ6C2C6DrEK4YOBFChkrCiP4Gb1Of-qJ4nN-RJzmOmjQkAo6vw9aNgE-iifC5">
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-1">Intel Core i9-14900K</h3>
+<p class="font-body-sm text-on-surface-variant max-w-md">24-Core (8P+16E), 6.0 GHz Turbo Boost, LGA 1700 Socket, Unlocked for Overclocking.</p>
+</div>
+<span class="font-label-mono text-headline-sm text-primary">$589.00</span>
+</div>
+<div class="flex flex-wrap justify-between items-center mt-6 gap-4">
+<div class="flex items-center bg-surface-container rounded-lg border border-white/5 p-1">
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors">—</button>
+<span class="w-10 text-center font-label-mono text-label-mono">01</span>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors">+</button>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-error transition-all font-label-mono text-label-mono">
+<span class="material-symbols-outlined text-base">delete</span> Remove
+                                    </button>
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-all font-label-mono text-label-mono">
+<span class="material-symbols-outlined text-base">bookmark</span> Save for Later
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 3: RAM -->
+<div class="glass-card glass-edge rounded-xl p-4 md:p-6 flex flex-col md:flex-row gap-6 group hover:border-primary/40 transition-all duration-300">
+<div class="w-full md:w-32 h-32 rounded-lg bg-surface-container overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Sleek DDR5 RAM modules with integrated RGB lighting strips glowing in a soft electric blue gradient. The modules feature brushed aluminum heat spreaders with geometric patterns. They are displayed against a dark, tech-oriented backdrop with soft bokeh effects from other computer components, emphasizing a high-end gaming aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM7SzHskuIRs7hYnLfW2J3IeqagO8E-bUcnfbHVtAD0_q5RUp_WswMOWD--83h7Wh281HtZo3ZEZLSpmotZtoetfUxY5S365OzRNEZ67IjdMEcwumJBD_F0FKt66HiIGGypTPl9iftew8uDjhoQVY1LqG7PuHpxoECc1lUkylRfYJmQfApsgvXcci0qWt9AG-r3w_wk6mBaXSFehhMhXRv8DguLJu5w--Q8aiTw47gXnqQeYRjvJNl1flL-zOtFdDbCpvfMbkS2qI4">
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-1">Dominator Titanium 64GB DDR5</h3>
+<p class="font-body-sm text-on-surface-variant max-w-md">6400MT/s, CL32, Dual Channel Kit, Custom RGB Lighting via iCUE.</p>
+</div>
+<span class="font-label-mono text-headline-sm text-primary">$349.99</span>
+</div>
+<div class="flex flex-wrap justify-between items-center mt-6 gap-4">
+<div class="flex items-center bg-surface-container rounded-lg border border-white/5 p-1">
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors">—</button>
+<span class="w-10 text-center font-label-mono text-label-mono">01</span>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors">+</button>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-error transition-all font-label-mono text-label-mono">
+<span class="material-symbols-outlined text-base">delete</span> Remove
+                                    </button>
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-all font-label-mono text-label-mono">
+<span class="material-symbols-outlined text-base">bookmark</span> Save for Later
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Actions -->
+<div class="flex justify-start pt-4">
+<button class="group flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-medium">
+<span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                        Continue Shopping
+                    </button>
+</div>
+</section>
+<!-- Right Column: Sticky Order Summary -->
+<aside class="w-full lg:w-96">
+<div class="sticky top-24 space-y-6">
+<!-- Order Summary Card -->
+<div class="glass-card glass-edge rounded-2xl p-8">
+<h2 class="font-headline-sm text-headline-sm mb-8">Order Summary</h2>
+<div class="space-y-4 mb-8">
+<div class="flex justify-between font-body-md text-on-surface-variant">
+<span class="">Subtotal</span>
+<span class="font-label-mono">$2,538.98</span>
+</div>
+<div class="flex justify-between font-body-md text-on-surface-variant">
+<span class="">Estimated Shipping</span>
+<span class="font-label-mono text-cyber-teal">FREE</span>
+</div>
+<div class="flex justify-between font-body-md text-on-surface-variant">
+<span class="">Sales Tax</span>
+<span class="font-label-mono">$203.12</span>
+</div>
+<div class="pt-4 border-t border-white/10 flex justify-between">
+<span class="font-headline-sm">Grand Total</span>
+<span class="font-headline-sm text-primary">$2,742.10</span>
+</div>
+</div>
+<!-- Promo Code -->
+<div class="space-y-2 mb-8">
+<label class="font-label-mono text-label-mono text-on-surface-variant uppercase">Promo Code</label>
+<div class="flex gap-2">
+<input class="flex-1 bg-surface-container-low border border-white/10 rounded-lg px-4 py-2 text-on-surface focus:outline-none focus:border-primary transition-colors" placeholder="BUILD2024" type="text">
+<button class="px-4 py-2 border border-primary/40 text-primary rounded-lg hover:bg-primary/10 transition-colors font-medium">Apply</button>
+</div>
+</div>
+<!-- Compatibility Trust Badge -->
+<div class="space-y-3 mb-8">
+    <label class="flex items-center gap-3 cursor-pointer group">
+        <div class="relative flex items-center">
+            <input type="checkbox" class="peer h-5 w-5 rounded border-white/10 bg-surface-container-low text-electric-blue focus:ring-electric-blue focus:ring-offset-0 transition-all">
+        </div>
+        <span class="font-label-mono text-label-mono text-on-surface-variant uppercase group-hover:text-on-surface transition-colors">Add a Gift Message (Free)</span>
+    </label>
+    <div class="hidden peer-checked:block space-y-2">
+        <textarea class="w-full bg-surface-container-low border border-white/10 rounded-lg px-4 py-3 text-body-sm text-on-surface focus:outline-none focus:border-primary transition-colors resize-none" placeholder="Enter your message here..." rows="3" maxlength="250"></textarea>
+        <div class="flex justify-end">
+            <span class="text-[10px] font-label-mono text-on-surface-variant/60">0 / 250 characters</span>
+        </div>
+    </div>
+</div><div class="bg-primary/5 border border-primary/20 rounded-xl p-4 mb-8 flex items-start gap-4">
+<div class="mt-1">
+<span class="material-symbols-outlined text-primary fill-icon">shield_lock</span>
+</div>
+<div>
+<h4 class="font-label-mono text-label-mono text-primary uppercase mb-1">MakeMyPC Promise</h4>
+<p class="font-body-sm text-on-surface-variant">All components are verified for physical clearance and BIOS compatibility.</p>
+</div>
+</div>
+<div class="space-y-4 mb-8 pt-6 border-t border-white/10">
+    <h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase">Calculate Shipping</h3>
+    <div class="flex gap-2">
+        <input type="text" placeholder="ZIP / Postal Code" class="flex-1 bg-surface-container-low border border-white/10 rounded-lg px-4 py-2 text-on-surface focus:outline-none focus:border-primary transition-colors text-sm">
+        <button class="px-4 py-2 border border-primary/40 text-primary rounded-lg hover:bg-primary/10 transition-colors font-medium text-sm">Calculate</button>
+    </div>
+    <div class="space-y-2">
+        <div class="flex justify-between items-center p-3 rounded-lg bg-white/5 border border-white/5">
+            <div>
+                <p class="text-body-sm font-medium">Standard</p>
+                <p class="text-xs text-on-surface-variant">Est. Delivery: Oct 24</p>
+            </div>
+            <span class="font-label-mono text-cyber-teal">FREE</span>
+        </div>
+        <div class="flex justify-between items-center p-3 rounded-lg bg-white/5 border border-white/5">
+            <div>
+                <p class="text-body-sm font-medium">Express</p>
+                <p class="text-xs text-on-surface-variant">Est. Delivery: Oct 21</p>
+            </div>
+            <span class="font-label-mono text-primary">$15.00</span>
+        </div>
+    </div>
+</div><button class="w-full bg-electric-blue hover:shadow-[0_0_20px_rgba(0,122,255,0.4)] text-white font-bold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group mb-4">
+                            Proceed to Checkout
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<p class="text-center font-body-sm text-on-surface-variant/60 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">lock</span> Secure 256-bit Encrypted Checkout
+                        </p>
+</div>
+<!-- Live Stats Widget -->
+<div class="glass-card rounded-2xl p-6 border-l-4 border-electric-blue">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-label-mono text-label-mono uppercase text-on-surface-variant">Live Performance Stats</h3>
+<span class="flex h-2 w-2 rounded-full bg-cyber-teal animate-pulse"></span>
+</div>
+<div class="space-y-4">
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-label-mono">
+<span class="">Gaming (4K Ultra)</span>
+<span class="text-cyber-teal">144+ FPS</span>
+</div>
+<div class="h-1 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-cyber-teal" style="width: 95%;"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-label-mono">
+<span class="">Estimated Power Draw</span>
+<span class="">720W / 850W</span>
+</div>
+<div class="h-1 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-electric-blue" style="width: 82%;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Upsell: Frequently Bought Together -->
+<section class="mt-24">
+<div class="flex items-center justify-between mb-8">
+<h2 class="font-headline-lg text-headline-lg">Recommended Accessories</h2>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors text-primary">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Accessory 1 -->
+<div class="glass-card glass-edge rounded-xl p-6 flex flex-col h-full group hover:-translate-y-2 transition-all duration-300">
+<div class="h-40 rounded-lg bg-surface-container mb-6 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional tube of high-performance thermal paste with a applicator nozzle, positioned against a dark technical background. Soft cyan backlighting highlights the sleek packaging and metallic cap, emphasizing the cooling efficiency and enthusiast-grade quality of the product." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhVh-uweezOhUt4zXVnevL8AWsbfrIObwR9WPaocT9fg4lGHjO35YX2YFUdOYmpcLqQrqQpw2Cn__5JCQAftvJSoedfo_yWHgEyzJ_crPEF0MOO3_azg0Q9ylP4VZkX-nVwUK_3I_q6Ex8MK-uu_6PmeJZcIjn2vAiOfba3GplDmWLcZ7X8wUq9W3Sg4a0EXOWfKlTJzVD0PaGc3HFnyeW6jk70ziXryH6cH6GM-4BlHy22NBniifBLnMExj46in3zaqfEAcofYqNz">
+</div>
+<div class="flex-1">
+<h4 class="font-headline-sm text-body-md font-bold mb-2">High-Performance Thermal Paste</h4>
+<p class="font-body-sm text-on-surface-variant mb-4">Carbon-based formula for superior heat dissipation.</p>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-mono text-primary">$12.99</span>
+<button class="material-symbols-outlined text-electric-blue bg-white/5 hover:bg-electric-blue hover:text-white p-2 rounded-lg transition-all">add_shopping_cart</button>
+</div>
+</div>
+<!-- Accessory 2 -->
+<div class="glass-card glass-edge rounded-xl p-6 flex flex-col h-full group hover:-translate-y-2 transition-all duration-300">
+<div class="h-40 rounded-lg bg-surface-container mb-6 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A set of custom braided power supply cables in a striking white and electric blue pattern. The cables are neatly arranged with clear acrylic cable combs, creating a clean and professional appearance. The background is a minimalist dark tech space with subtle blue glows reflecting off the braided nylon textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChgmWe95wVy2Mvt1ScjzRqiLghqO8JpuywRt1OwgTrkIxwSOkn2x3lP-Ne3v1cgOpmD3wv1ZGst0XcvztuyE-2HUYJRxkYUnKefbmQNdIa_VXX5laBEfQT3jgN_wOYFRwt-V1gaIuqGJO-z9wWGjVCJB2NDph9QHFDXjwhaj_MAhmuVEiZKBpDBbEXCTLQWnYSTszkkIKJQuxAwseQ-79h5Dq3hyFJ6q2q0ge654ly5aG6hd752TOcyuPpByegzLPyPrd3RDHT4eUp">
+</div>
+<div class="flex-1">
+<h4 class="font-headline-sm text-body-md font-bold mb-2">Braided Cable Extension Kit</h4>
+<p class="font-body-sm text-on-surface-variant mb-4">Custom white &amp; blue sleeves with cable combs included.</p>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-mono text-primary">$49.00</span>
+<button class="material-symbols-outlined text-electric-blue bg-white/5 hover:bg-electric-blue hover:text-white p-2 rounded-lg transition-all">add_shopping_cart</button>
+</div>
+</div>
+<!-- Accessory 3 -->
+<div class="glass-card glass-edge rounded-xl p-6 flex flex-col h-full group hover:-translate-y-2 transition-all duration-300">
+<div class="h-40 rounded-lg bg-surface-container mb-6 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A specialized toolkit for PC building, featuring precision magnetic screwdrivers, tweezers, and an anti-static wrist strap arranged in a custom-fitted EVA foam case. The lighting is sharp and clinical, with cold white highlights on the chrome tool tips and deep blue accents on the tool handles." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSG4mIcrPqkZS7gfTTgHv4Ya3CXxPbE0lNxbiGX8NnYYVEIf5yDvw3hQKOM-0LNK8dIKd5w-UjwoeA6Mu75BLO5F04rEZs0ynEymU0hLwIDMU1Tee9SjLrxq56E0QOXG-rumrzmTgILMz911hKdMOLoJ3mLHESw9iDyJ01gyZJxJKG2JY-MONYlmLS3E-2PFNd4FZuWqFzZSROIUtWgfFVbiVDkHG8Fi96OGABQLzzqIGXen2gFtJoj6jPALl8LUEoTQ7upEmCxtq2">
+</div>
+<div class="flex-1">
+<h4 class="font-headline-sm text-body-md font-bold mb-2">Pro PC Builder's Toolkit</h4>
+<p class="font-body-sm text-on-surface-variant mb-4">Essential magnetic tools for delicate hardware assembly.</p>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-mono text-primary">$34.99</span>
+<button class="material-symbols-outlined text-electric-blue bg-white/5 hover:bg-electric-blue hover:text-white p-2 rounded-lg transition-all">add_shopping_cart</button>
+</div>
+</div>
+<!-- Accessory 4 -->
+<div class="glass-card glass-edge rounded-xl p-6 flex flex-col h-full group hover:-translate-y-2 transition-all duration-300">
+<div class="h-40 rounded-lg bg-surface-container mb-6 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A pair of ultra-thin, addressable RGB LED strips glowing with a smooth spectrum of neon colors. The strips are flexible and feature a diffused surface for even lighting. They are shown mounted on a dark frame, casting a vibrant multi-colored glow against a dark, metallic wall texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD98Vz3LJYFpERD1MO5ozZpmUUlWCuUS6-1yfY4P-U04oYkuyOfeM1oG6lPBY00ahQDFaDPNVdLFdtRhVQ-sytLNTB0X75XDAoCzajNpGIiLATFX4PifxQ69WzxgUU_7QBTjJPxjaZglSO9551NW1nqErAZ7FD6QLjbbXq4c79YOjBH8PjnAlX35QZ6smqugkveIdg3RLh67KqMUMO_chvdVNMwUyHAXCIm9mp-GxCpHjrHTG0UeOHMqRPJDbQeMH7Zj4PC55e8tzr3">
+</div>
+<div class="flex-1">
+<h4 class="font-headline-sm text-body-md font-bold mb-2">Magnetic ARGB Lighting Strips</h4>
+<p class="font-body-sm text-on-surface-variant mb-4">Aura Sync &amp; Mystic Light compatible ambient lighting.</p>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-mono text-primary">$24.00</span>
+<button class="material-symbols-outlined text-electric-blue bg-white/5 hover:bg-electric-blue hover:text-white p-2 rounded-lg transition-all">add_shopping_cart</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-surface-deep border-t border-white/5">
+<div class="max-w-container-max mx-auto px-margin-desktop py-16 grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="col-span-1 md:col-span-1">
+<div class="font-headline-sm text-headline-sm text-on-surface mb-6">MakeMyPC</div>
+<p class="font-body-sm text-on-surface-variant mb-4">Precision engineering for the modern creator and gamer.</p>
+</div>
+<div>
+<h5 class="font-label-mono text-label-mono text-on-surface uppercase mb-6">Partners</h5>
+<ul class="space-y-4">
+<li class=""><a class="text-on-surface-variant font-body-sm hover:text-primary underline transition-all" href="#">Intel</a></li>
+<li class=""><a class="text-on-surface-variant font-body-sm hover:text-primary underline transition-all" href="#">NVIDIA</a></li>
+<li class=""><a class="text-on-surface-variant font-body-sm hover:text-primary underline transition-all" href="#">AMD</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-mono text-label-mono text-on-surface uppercase mb-6">Legal</h5>
+<ul class="space-y-4">
+<li class=""><a class="text-on-surface-variant font-body-sm hover:text-primary underline transition-all" href="#">Privacy Policy</a></li>
+<li class=""><a class="text-on-surface-variant font-body-sm hover:text-primary underline transition-all" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-mono text-label-mono text-on-surface uppercase mb-6">Updates</h5>
+<p class="text-on-surface-variant font-body-sm mb-4">Get the latest hardware news.</p>
+<a class="text-on-surface-variant font-body-sm hover:text-primary underline transition-all" href="#">Newsletter</a>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop py-8 border-t border-white/5 text-center md:text-left">
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 MakeMyPC. All Rights Reserved.</p>
+</div>
+</footer>
+<script>
+        // Micro-interactions for quantity selectors
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', function() {
+                this.classList.add('scale-95');
+            });
+            btn.addEventListener('mouseup', function() {
+                this.classList.remove('scale-95');
+            });
+            btn.addEventListener('mouseleave', function() {
+                this.classList.remove('scale-95');
+            });
+        });
+
+        // Simple cart update simulation
+        const quantityElements = document.querySelectorAll('.font-label-mono.text-label-mono');
+        // (Just visual placeholders for now)
+    </script>
+
+
+</body></html>

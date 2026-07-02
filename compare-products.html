@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MakeMyPC | Compare Components</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#001a41",
+                    "surface-variant": "#2a354a",
+                    "cyber-teal": "#00A4A6",
+                    "surface-dim": "#071327",
+                    "tertiary-container": "#ef6719",
+                    "surface-container-low": "#101b30",
+                    "surface-container-high": "#1f2a3f",
+                    "on-error-container": "#ffdad6",
+                    "electric-blue": "#007AFF",
+                    "on-secondary-fixed": "#002020",
+                    "primary-fixed": "#d8e2ff",
+                    "secondary-fixed-dim": "#5cd8da",
+                    "secondary-fixed": "#7cf5f7",
+                    "hardware-gray": "#111111",
+                    "surface-container-highest": "#2a354a",
+                    "surface-container": "#142034",
+                    "on-tertiary": "#571e00",
+                    "tertiary-fixed": "#ffdbcc",
+                    "surface-glass": "rgba(255, 255, 255, 0.03)",
+                    "on-tertiary-fixed-variant": "#7c2e00",
+                    "on-primary": "#002e69",
+                    "primary": "#adc6ff",
+                    "surface-container-lowest": "#030e22",
+                    "outline": "#8b90a0",
+                    "inverse-primary": "#005bc1",
+                    "tertiary-fixed-dim": "#ffb595",
+                    "outline-variant": "#414755",
+                    "on-surface": "#d7e2ff",
+                    "on-primary-fixed-variant": "#004493",
+                    "on-secondary-container": "#003233",
+                    "on-error": "#690005",
+                    "secondary-container": "#00a4a6",
+                    "on-primary-container": "#00285c",
+                    "inverse-on-surface": "#263046",
+                    "background": "#071327",
+                    "on-secondary-fixed-variant": "#004f50",
+                    "on-background": "#d7e2ff",
+                    "on-surface-variant": "#c1c6d7",
+                    "surface": "#071327",
+                    "on-tertiary-container": "#4c1a00",
+                    "on-tertiary-fixed": "#351000",
+                    "tertiary": "#ffb595",
+                    "surface-bright": "#2e394f",
+                    "surface-deep": "#00081C",
+                    "primary-container": "#4b8eff",
+                    "error-container": "#93000a",
+                    "on-secondary": "#003738",
+                    "surface-tint": "#adc6ff",
+                    "secondary": "#5cd8da",
+                    "error": "#ffb4ab",
+                    "primary-fixed-dim": "#adc6ff",
+                    "inverse-surface": "#d7e2ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "margin-mobile": "20px",
+                    "base": "8px",
+                    "gutter": "24px",
+                    "margin-desktop": "64px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-mono": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #00081C;
+            color: #d7e2ff;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hardware-glow:hover {
+            box-shadow: 0 0 20px rgba(0, 122, 255, 0.2);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden pt-20">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface-glass backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-desktop h-20">
+<div class="flex items-center gap-12">
+<a class="text-headline-lg font-headline-lg font-black text-on-surface tracking-tighter" href="#">MakeMyPC</a>
+<nav class="hidden md:flex gap-8">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="#">Shop</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-mono text-label-mono" href="#">Builder</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="#">Resources</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center bg-white/5 border border-white/10 rounded-full px-4 py-1.5 gap-2">
+<span class="material-symbols-outlined text-surface-variant text-sm" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm p-0 w-48 text-on-surface" placeholder="Search hardware..." type="text"/>
+</div>
+<div class="flex gap-4">
+<button class="material-symbols-outlined p-2 text-on-surface hover:text-primary transition-all active:scale-95" data-icon="shopping_cart">shopping_cart</button>
+<button class="material-symbols-outlined p-2 text-on-surface hover:text-primary transition-all active:scale-95" data-icon="account_circle">account_circle</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Side Stats Bar (Locked to Right) -->
+<aside class="fixed right-0 top-20 h-screen w-80 border-l border-white/10 bg-surface-glass backdrop-blur-lg shadow-2xl flex flex-col p-6 gap-y-8 z-40 hidden xl:flex">
+<div class="space-y-1">
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Build Summary</h2>
+<p class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-widest">Live Stats</p>
+</div>
+<nav class="flex flex-col gap-2">
+<div class="flex items-center gap-4 p-3 rounded-lg text-primary border-r-4 border-primary bg-primary/10 transition-all cursor-default">
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+<span class="font-label-mono text-label-mono">Compatibility: 100%</span>
+</div>
+<div class="flex items-center gap-4 p-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all cursor-pointer">
+<span class="material-symbols-outlined" data-icon="speed">speed</span>
+<span class="font-label-mono text-label-mono">Performance: Elite</span>
+</div>
+<div class="flex items-center gap-4 p-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all cursor-pointer">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+<span class="font-label-mono text-label-mono">Power: 750W / 1000W</span>
+</div>
+<div class="flex items-center gap-4 p-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all cursor-pointer">
+<span class="material-symbols-outlined" data-icon="list_alt">list_alt</span>
+<span class="font-label-mono text-label-mono">Summary: 12 Items</span>
+</div>
+</nav>
+<div class="mt-auto pb-24">
+<div class="mb-4 space-y-2">
+<div class="flex justify-between font-label-mono text-label-mono">
+<span class="text-on-surface-variant">Est. Total</span>
+<span class="text-on-surface text-xl font-bold">$2,499.00</span>
+</div>
+</div>
+<button class="w-full bg-electric-blue text-on-primary-fixed font-bold py-4 rounded-xl shadow-lg shadow-electric-blue/20 hover:scale-[1.02] active:scale-95 transition-all">
+                Checkout Now
+            </button>
+</div>
+</aside>
+<main class="max-w-container-max mx-auto px-margin-desktop py-12 md:pr-96 lg:pr-margin-desktop xl:pr-[360px]">
+<!-- Page Header -->
+<div class="mb-12">
+<div class="flex items-center gap-2 text-electric-blue mb-4">
+<span class="material-symbols-outlined text-sm" data-icon="arrow_back">arrow_back</span>
+<span class="font-label-mono text-label-mono uppercase tracking-widest">Back to Components</span>
+</div>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-4">Compare Processors</h1>
+<p class="text-body-md text-on-surface-variant max-w-2xl">Benchmarking the industry's top silicon. Analyze architecture, clock speeds, and real-world thermal efficiency to find your perfect core.</p>
+</div>
+<!-- Sticky Header Controls -->
+<div class="sticky top-20 z-30 bg-surface-deep/80 backdrop-blur-md py-4 mb-8 border-b border-white/5">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<button class="bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-full font-label-mono text-label-mono transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span>
+                        All Specs
+                    </button>
+<button class="text-electric-blue hover:underline font-label-mono text-label-mono transition-all">
+                        Highlight Differences
+                    </button>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-mono text-label-mono text-on-surface-variant">3 Items Selected</span>
+<button class="text-on-surface-variant hover:text-error transition-all material-symbols-outlined" data-icon="delete">delete</button>
+</div>
+</div>
+</div>
+<!-- Comparison Table (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter relative">
+<!-- Column Labels (Visible on Desktop) -->
+<div class="hidden lg:block absolute -left-48 top-[460px] space-y-32 w-40 text-right">
+<div class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-tighter">Architecture</div>
+<div class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-tighter">Clock Speeds</div>
+<div class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-tighter">Cores / Threads</div>
+<div class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-tighter">Efficiency</div>
+</div>
+<!-- CPU 1: Intel Core i9 -->
+<div class="group flex flex-col gap-6">
+<!-- Card Header -->
+<div class="glass-card rounded-3xl p-6 relative overflow-hidden group-hover:border-electric-blue/50 transition-all duration-500">
+<div class="absolute top-0 right-0 p-4">
+<div class="bg-electric-blue/10 text-electric-blue px-3 py-1 rounded-full font-label-mono text-[10px] font-bold">TOP PICK</div>
+</div>
+<div class="aspect-square bg-gradient-to-br from-white/5 to-transparent rounded-2xl mb-6 flex items-center justify-center p-8 group-hover:scale-105 transition-transform duration-500">
+<img class="w-full h-auto drop-shadow-2xl" data-alt="Intel Core i9 14900K Processor in high resolution" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEnXlJ66yxiBcWcELxtl_lLn26hB7C_cx5h9z5V26jXTsZwmymNeT-3GPYyJ27Vu9JlxmL882CX6lRrh5wUVq_YeST3NKF5xauaT1cyNORiUr2CLF4AuaOhREBT0lLftHwtcF_3iYzlASeqe0BhAPzBDCK3yLNdNHhZAN9qZutJ49tSrM25RMNyD2BcrS5vZs6012iRE8HyP01ktvID43bgw0UL-QfngORE-FFQAdScn7WOfQAsWDN5-t345_orn13gaFjhqOO-Lkh"/>
+</div>
+<div class="mb-4">
+<p class="font-label-mono text-label-mono text-electric-blue mb-1">Intel Core</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">i9-14900K</h3>
+</div>
+<div class="flex items-baseline gap-2 mb-6">
+<span class="text-2xl font-bold text-on-surface">$589.00</span>
+<span class="text-on-surface-variant line-through text-sm">$620.00</span>
+</div>
+<button class="w-full bg-white/5 hover:bg-electric-blue hover:text-on-primary-fixed border border-white/10 py-3 rounded-xl font-bold transition-all active:scale-95">Add to Build</button>
+</div>
+<!-- Spec List -->
+<div class="flex flex-col gap-4">
+<!-- Benchmarking Card -->
+<div class="glass-card rounded-2xl p-5 border-l-4 border-electric-blue">
+<p class="font-label-mono text-[10px] text-on-surface-variant uppercase mb-3">Benchmark: 4K Gaming</p>
+<div class="flex items-end justify-between">
+<span class="text-3xl font-black text-on-surface">144 <span class="text-sm font-normal text-on-surface-variant">FPS</span></span>
+<div class="flex gap-1">
+<div class="w-2 h-4 bg-electric-blue rounded-sm"></div>
+<div class="w-2 h-4 bg-electric-blue rounded-sm"></div>
+<div class="w-2 h-4 bg-electric-blue rounded-sm"></div>
+<div class="w-2 h-4 bg-electric-blue rounded-sm"></div>
+<div class="w-2 h-4 bg-white/10 rounded-sm"></div>
+</div>
+</div>
+</div>
+<!-- Specs Bento -->
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-card rounded-2xl p-4">
+<span class="material-symbols-outlined text-electric-blue mb-2" data-icon="memory">memory</span>
+<p class="text-xs text-on-surface-variant mb-1">Architecture</p>
+<p class="font-label-mono text-on-surface">Raptor Lake</p>
+</div>
+<div class="glass-card rounded-2xl p-4">
+<span class="material-symbols-outlined text-electric-blue mb-2" data-icon="speed">speed</span>
+<p class="text-xs text-on-surface-variant mb-1">Boost Clock</p>
+<p class="font-label-mono text-on-surface">6.0 GHz</p>
+</div>
+<div class="glass-card rounded-2xl p-4">
+<span class="material-symbols-outlined text-electric-blue mb-2" data-icon="dns">dns</span>
+<p class="text-xs text-on-surface-variant mb-1">Cores</p>
+<p class="font-label-mono text-on-surface">24 (8P+16E)</p>
+</div>
+<div class="glass-card rounded-2xl p-4">
+<span class="material-symbols-outlined text-electric-blue mb-2" data-icon="bolt">bolt</span>
+<p class="text-xs text-on-surface-variant mb-1">TDP</p>
+<p class="font-label-mono text-on-surface">125W - 253W</p>
+</div>
+</div>
+</div>
+</div>
+<!-- CPU 2: AMD Ryzen 9 -->
+<div class="group flex flex-col gap-6">
+<!-- Card Header -->
+<div class="glass-card rounded-3xl p-6 relative overflow-hidden group-hover:border-cyber-teal/50 transition-all duration-500">
+<div class="aspect-square bg-gradient-to-br from-white/5 to-transparent rounded-2xl mb-6 flex items-center justify-center p-8 group-hover:scale-105 transition-transform duration-500">
+<img class="w-full h-auto drop-shadow-2xl" data-alt="AMD Ryzen 9 7950X3D Processor showing its IHS design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHGY104cIFJkUz51UgE7P97-9Yu9RwpE1iNo3k5aBp3qzCI7SfolyD23dIB1yP9tjqX0B_WX_25FZI4FB3Pnz6EWaWi1Gnt3zAy0e9-iboL1TQAyJC2Ttmi6fZ2PeqDXkSeOoxZk3EH9CP3T7n2MqyvaJlbNOALMwBy91iPpLWxm2lwj6w-Kod7pr4xQHKxF6PYapYqtX77liLTR4N4BcM1XL_ESMSwxiK5O4WjGB8qz5A3ye0OdYYYCNQiiSTMwStwst2R6kECNdE"/>
+</div>
+<div class="mb-4">
+<p class="font-label-mono text-label-mono text-cyber-teal mb-1">AMD Ryzen</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">7950X3D</h3>
+</div>
+<div class="flex items-baseline gap-2 mb-6">
+<span class="text-2xl font-bold text-on-surface">$649.00</span>
+</div>
+<button class="w-full bg-white/5 hover:bg-cyber-teal hover:text-hardware-gray border border-white/10 py-3 rounded-xl font-bold transition-all active:scale-95">Add to Build</button>
+</div>
+<!-- Spec List -->
+<div class="flex flex-col gap-4">
+<!-- Benchmarking Card -->
+<div class="glass-card rounded-2xl p-5 border-l-4 border-cyber-teal">
+<p class="font-label-mono text-[10px] text-on-surface-variant uppercase mb-3">Benchmark: 4K Gaming</p>
+<div class="flex items-end justify-between">
+<span class="text-3xl font-black text-on-surface">152 <span class="text-sm font-normal text-on-surface-variant">FPS</span></span>
+<div class="flex gap-1">
+<div class="w-2 h-4 bg-cyber-teal rounded-sm"></div>
+<div class="w-2 h-4 bg-cyber-teal rounded-sm"></div>
+<div class="w-2 h-4 bg-cyber-teal rounded-sm"></div>
+<div class="w-2 h-4 bg-cyber-teal rounded-sm"></div>
+<div class="w-2 h-4 bg-cyber-teal rounded-sm"></div>
+</div>
+</div>
+</div>
+<!-- Specs Bento -->
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-card rounded-2xl p-4">
+<span class="material-symbols-outlined text-cyber-teal mb-2" data-icon="memory">memory</span>
+<p class="text-xs text-on-surface-variant mb-1">Architecture</p>
+<p class="font-label-mono text-on-surface">Zen 4 / 3D</p>
+</div>
+<div class="glass-card rounded-2xl p-4">
+<span class="material-symbols-outlined text-cyber-teal mb-2" data-icon="speed">speed</span>
+<p class="text-xs text-on-surface-variant mb-1">Boost Clock</p>
+<p class="font-label-mono text-on-surface">5.7 GHz</p>
+</div>
+<div class="glass-card rounded-2xl p-4">
+<span class="material-symbols-outlined text-cyber-teal mb-2" data-icon="dns">dns</span>
+<p class="text-xs text-on-surface-variant mb-1">Cores</p>
+<p class="font-label-mono text-on-surface">16 Cores</p>
+</div>
+<div class="glass-card rounded-2xl p-4">
+<span class="material-symbols-outlined text-cyber-teal mb-2" data-icon="bolt">bolt</span>
+<p class="text-xs text-on-surface-variant mb-1">TDP</p>
+<p class="font-label-mono text-on-surface">120W Max</p>
+</div>
+</div>
+</div>
+</div>
+<!-- CPU 3: Placeholder/Add New -->
+<div class="flex flex-col gap-6">
+<div class="glass-card rounded-3xl p-6 border-dashed border-2 border-white/10 flex flex-col items-center justify-center min-h-[460px] text-center hover:bg-white/5 transition-all cursor-pointer">
+<div class="w-20 h-20 rounded-full bg-white/5 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-3xl text-on-surface-variant" data-icon="add">add</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface-variant mb-2">Compare Another</h3>
+<p class="text-body-sm text-on-surface-variant max-w-[200px]">Select a third component to see side-by-side performance</p>
+</div>
+</div>
+</div>
+<!-- Performance Comparison Graph (Custom Interaction Area) -->
+<section class="mt-24">
+<div class="flex justify-between items-end mb-12">
+<div class="space-y-2">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Power &amp; Thermal Efficiency</h2>
+<p class="text-body-md text-on-surface-variant">Watts consumed per frame rendered. Measured at peak 1440p load.</p>
+</div>
+<div class="flex gap-4 font-label-mono text-label-mono">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-electric-blue"></span>
+                        Intel
+                    </div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-cyber-teal"></span>
+                        AMD
+                    </div>
+</div>
+</div>
+<div class="glass-card rounded-3xl p-8 overflow-hidden relative">
+<div class="space-y-12 relative z-10">
+<!-- Graph Row 1 -->
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="font-label-mono text-label-mono text-on-surface">Power Draw (W)</span>
+<span class="text-electric-blue font-bold">253W</span>
+</div>
+<div class="h-4 w-full bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-electric-blue w-[85%] rounded-full shadow-[0_0_15px_rgba(0,122,255,0.5)]"></div>
+</div>
+</div>
+<!-- Graph Row 2 -->
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="font-label-mono text-label-mono text-on-surface">Thermal Junction (°C)</span>
+<span class="text-cyber-teal font-bold">89°C</span>
+</div>
+<div class="h-4 w-full bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-cyber-teal w-[60%] rounded-full shadow-[0_0_15px_rgba(0,164,166,0.5)]"></div>
+</div>
+</div>
+</div>
+<!-- Background decoration -->
+<div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-electric-blue/5 to-transparent pointer-events-none"></div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-deep border-t border-white/5 w-full mt-24">
+<div class="max-w-container-max mx-auto px-margin-desktop py-16 grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="col-span-1 md:col-span-1">
+<div class="font-headline-sm text-headline-sm text-on-surface mb-6">MakeMyPC</div>
+<p class="text-body-sm text-on-surface-variant mb-6">Building the future of computing, one component at a time. Precision engineered for the elite.</p>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-mono text-label-mono text-on-surface uppercase tracking-widest">Partners</h4>
+<a class="text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Intel</a>
+<a class="text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">NVIDIA</a>
+<a class="text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">AMD</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-mono text-label-mono text-on-surface uppercase tracking-widest">Legal</h4>
+<a class="text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Privacy Policy</a>
+<a class="text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-mono text-label-mono text-on-surface uppercase tracking-widest">Connect</h4>
+<a class="text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Newsletter</a>
+<div class="mt-4 flex gap-4">
+<div class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-white/10 cursor-pointer">
+<span class="material-symbols-outlined text-sm" data-icon="share">share</span>
+</div>
+<div class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-white/10 cursor-pointer">
+<span class="material-symbols-outlined text-sm" data-icon="hub">hub</span>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop py-8 border-t border-white/5 text-center">
+<p class="font-label-mono text-[10px] text-on-surface-variant">© 2024 MakeMyPC. All Rights Reserved. Engineered for Performance.</p>
+</div>
+</footer>
+<!-- Selection FAB (Mobile Only) -->
+<button class="md:hidden fixed bottom-6 right-6 w-16 h-16 bg-electric-blue text-on-primary rounded-full shadow-2xl flex items-center justify-center z-50">
+<span class="material-symbols-outlined" data-icon="compare_arrows">compare_arrows</span>
+</button>
+<script>
+        // Micro-interaction for benchmark bars
+        document.querySelectorAll('.h-full.bg-electric-blue, .h-full.bg-cyber-teal').forEach(bar => {
+            const finalWidth = bar.style.width;
+            bar.style.width = '0%';
+            setTimeout(() => {
+                bar.style.transition = 'width 1.5s cubic-bezier(0.22, 1, 0.36, 1)';
+                bar.style.width = finalWidth;
+            }, 500);
+        });
+
+        // Toggle sticky header elevation on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-xl');
+                header.classList.add('bg-surface-deep/90');
+            } else {
+                header.classList.remove('shadow-xl');
+                header.classList.remove('bg-surface-deep/90');
+            }
+        });
+    </script>
+</body></html>

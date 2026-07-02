@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MakeMyPC | Build Your Masterpiece</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#adc6ff",
+                    "on-tertiary-container": "#4c1a00",
+                    "inverse-on-surface": "#263046",
+                    "secondary-fixed-dim": "#5cd8da",
+                    "surface-container-low": "#101b30",
+                    "surface-container": "#142034",
+                    "primary-fixed-dim": "#adc6ff",
+                    "outline-variant": "#414755",
+                    "electric-blue": "#007AFF",
+                    "background": "#071327",
+                    "surface-bright": "#2e394f",
+                    "secondary": "#5cd8da",
+                    "surface": "#071327",
+                    "on-primary-container": "#00285c",
+                    "tertiary-container": "#ef6719",
+                    "hardware-gray": "#111111",
+                    "on-background": "#d7e2ff",
+                    "on-tertiary-fixed": "#351000",
+                    "tertiary": "#ffb595",
+                    "primary-container": "#4b8eff",
+                    "surface-tint": "#adc6ff",
+                    "surface-container-lowest": "#030e22",
+                    "primary-fixed": "#d8e2ff",
+                    "on-primary": "#002e69",
+                    "on-secondary-fixed": "#002020",
+                    "surface-deep": "#00081C",
+                    "secondary-container": "#00a4a6",
+                    "on-secondary-fixed-variant": "#004f50",
+                    "cyber-teal": "#00A4A6",
+                    "on-surface": "#d7e2ff",
+                    "tertiary-fixed": "#ffdbcc",
+                    "error": "#ffb4ab",
+                    "on-surface-variant": "#c1c6d7",
+                    "on-tertiary-fixed-variant": "#7c2e00",
+                    "outline": "#8b90a0",
+                    "surface-dim": "#071327",
+                    "on-error": "#690005",
+                    "on-primary-fixed": "#001a41",
+                    "surface-container-highest": "#2a354a",
+                    "inverse-primary": "#005bc1",
+                    "on-primary-fixed-variant": "#004493",
+                    "secondary-fixed": "#7cf5f7",
+                    "surface-variant": "#2a354a",
+                    "inverse-surface": "#d7e2ff",
+                    "on-tertiary": "#571e00",
+                    "on-error-container": "#ffdad6",
+                    "surface-glass": "rgba(255, 255, 255, 0.03)",
+                    "error-container": "#93000a",
+                    "on-secondary": "#003738",
+                    "on-secondary-container": "#003233",
+                    "tertiary-fixed-dim": "#ffb595",
+                    "surface-container-high": "#1f2a3f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "base": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-mono": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #00081C;
+            color: #d7e2ff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+        .hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 122, 255, 0.15) 0%, rgba(0, 8, 28, 0) 70%);
+            z-index: -1;
+        }
+        .cyber-border {
+            position: relative;
+        }
+        .cyber-border::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #007AFF, transparent);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="bg-background">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface-glass backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-desktop h-20">
+<div class="text-headline-lg font-headline-lg font-black text-on-surface tracking-tighter">
+                MakeMyPC
+            </div>
+<div class="hidden md:flex gap-x-8 items-center">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-mono text-label-mono" href="#">Shop</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="#">Builder</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="#">Resources</a>
+</div>
+<div class="flex items-center gap-x-6">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-body-sm font-body-sm focus:outline-none focus:border-electric-blue w-64 transition-all" placeholder="Search Components" type="text"/>
+</div>
+<div class="flex gap-x-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[921px] flex items-center overflow-hidden">
+<div class="hero-glow -top-20 -left-20"></div>
+<div class="hero-glow bottom-0 right-0 opacity-50"></div>
+<!-- Background Animation Placeholder -->
+
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center z-10">
+<div class="space-y-base">
+<div class="inline-block py-1 px-3 rounded-full border border-electric-blue/30 bg-electric-blue/10 text-electric-blue font-label-mono text-label-mono mb-4">
+                        NEXT-GEN CUSTOM RIGS
+                    </div>
+<h1 class="font-display-lg text-display-lg text-on-surface leading-tight">
+                        Build Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-cyber-teal">Masterpiece</span>
+</h1>
+<p class="text-on-surface-variant font-body-md text-body-md max-w-lg mt-6">
+                        Experience surgical precision in PC building. Select flagship hardware, ensure 100% compatibility, and let our master technicians assemble your dream workstation.
+                    </p>
+<div class="flex flex-wrap gap-4 pt-10">
+<button class="bg-electric-blue text-white px-8 py-4 rounded-lg font-headline-sm text-headline-sm hover:shadow-[0_0_20px_rgba(0,122,255,0.4)] transition-all active:scale-95">
+                            Start Building
+                        </button>
+<button class="glass-card text-on-surface px-8 py-4 rounded-lg font-headline-sm text-headline-sm hover:bg-white/10 transition-all border border-white/10">
+                            View Gallery
+                        </button>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute -inset-4 bg-gradient-to-tr from-electric-blue/20 to-cyber-teal/20 blur-3xl opacity-30 group-hover:opacity-50 transition-opacity duration-700"></div>
+<div class="relative transform transition-transform duration-700 hover:scale-[1.02]">
+<img class="w-full drop-shadow-2xl" data-alt="A hyper-realistic 3D render of a high-end custom gaming PC with tempered glass panels, glowing RGB internal components, and custom water cooling loops with electric blue liquid. The case is anodized black aluminum, set against a dark, tech-inspired background with subtle blue volumetric lighting. The aesthetic is ultra-modern, clean, and highlights the technical craftsmanship of enthusiast hardware." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnGfLF382OXuTSEv1Tq35Sdna7mmsIPXVh0D5H39T0q0upbUvQ6j3p_hNbRyIHBvRt3OK1pJ71t1rJZ8o-PvUM82Kw_oqkWXlwYOgyL7ROy_0Cy0g8HoLTCx3rOK02xtXN2fL2Puo6oRfYUajTSML9dOaR3Qk1esvhIYtS6HFKpTeFi-SUHN21h9nlw-TgyZJ5PgcttFndtIcooAfYt4j2UNxa3osBaono8cK14XAwuCHG9RPJJzZqDn5mHPH1dDIxFes8KZzRu0rx"/>
+<!-- Floating Data Tags -->
+<div class="absolute top-1/4 -right-8 glass-card p-4 rounded-xl border-l-4 border-electric-blue animate-bounce" style="animation-duration: 3s;">
+<div class="text-label-mono font-label-mono text-on-surface-variant">RTX 4090</div>
+<div class="text-headline-sm font-headline-sm text-electric-blue">144+ FPS</div>
+</div>
+<div class="absolute bottom-1/4 -left-8 glass-card p-4 rounded-xl border-l-4 border-cyber-teal animate-bounce" style="animation-duration: 4s;">
+<div class="text-label-mono font-label-mono text-on-surface-variant">TEMPS</div>
+<div class="text-headline-sm font-headline-sm text-cyber-teal">52°C LOAD</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Brand Wall -->
+<section class="py-16 border-y border-white/5 bg-surface-deep/50">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<p class="text-center text-label-mono font-label-mono text-on-surface-variant uppercase tracking-widest mb-10">Trusted by Industry Titans</p>
+<div class="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+<div class="h-8 md:h-10 text-on-surface font-black text-2xl">INTEL</div>
+<div class="h-8 md:h-10 text-on-surface font-black text-2xl">NVIDIA</div>
+<div class="h-8 md:h-10 text-on-surface font-black text-2xl">AMD</div>
+<div class="h-8 md:h-10 text-on-surface font-black text-2xl">CORSAIR</div>
+<div class="h-8 md:h-10 text-on-surface font-black text-2xl">ASUS</div>
+</div>
+</div>
+</section>
+<!-- Features Section -->
+<section class="py-32 relative">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="text-center mb-20">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Why Build with Us?</h2>
+<p class="text-on-surface-variant font-body-md text-body-md max-w-2xl mx-auto">We combine the customization of a DIY build with the reliability and support of a premium manufacturer.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Feature 1 -->
+<div class="glass-card p-8 rounded-2xl group hover:border-electric-blue/50 transition-all duration-300">
+<div class="w-14 h-14 rounded-xl bg-electric-blue/10 flex items-center justify-center text-electric-blue mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">precision_manufacturing</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Premium Assembly</h3>
+<p class="text-on-surface-variant font-body-sm text-body-sm leading-relaxed">
+                            Every PC is hand-assembled by enthusiast builders. We prioritize surgical cable management and optimal thermal airflow for every chassis.
+                        </p>
+</div>
+<!-- Feature 2 -->
+<div class="glass-card p-8 rounded-2xl group hover:border-cyber-teal/50 transition-all duration-300">
+<div class="w-14 h-14 rounded-xl bg-cyber-teal/10 flex items-center justify-center text-cyber-teal mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">3-Year Warranty</h3>
+<p class="text-on-surface-variant font-body-sm text-body-sm leading-relaxed">
+                            Peace of mind comes standard. We offer a comprehensive 3-year warranty covering all hardware components and our labor.
+                        </p>
+</div>
+<!-- Feature 3 -->
+<div class="glass-card p-8 rounded-2xl group hover:border-primary/50 transition-all duration-300">
+<div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">fact_check</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Compatibility Assurance</h3>
+<p class="text-on-surface-variant font-body-sm text-body-sm leading-relaxed">
+                            Our proprietary algorithm checks wattage, physical clearance, and BIOS versions in real-time as you build your rig.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Builds Gallery -->
+<section class="py-32 bg-surface-container/30">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Build Gallery</h2>
+<p class="text-on-surface-variant font-body-md text-body-md">Get inspired by what our community is creating.</p>
+</div>
+<div class="flex gap-4">
+<button class="p-3 rounded-full glass-card hover:bg-white/10 transition-all">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<button class="p-3 rounded-full glass-card hover:bg-white/10 transition-all text-electric-blue">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Build Card 1 -->
+<div class="glass-card rounded-2xl overflow-hidden flex flex-col hover:translate-y-[-8px] transition-all duration-500 group">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A professional photograph of a compact, white mini-ITX PC build on a minimalist oak desk. The build features clean white cables, a frosted glass side panel, and soft warm ambient lighting. The background is a clean, modern home office setup with a high-resolution monitor and aesthetic peripherals. The lighting is soft and inviting, emphasizing a 'lifestyle' aesthetic for home workstations." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2JC8d8033My4MGtDL2iO8WUR_jKleE8J7f6fPEi1u2W_YnkQeUSCEJCqiUz4Oxw4J0H0_AX0qD9W5wEASQ8leTJyt9C5HwXr5huObTsMei77VOdk6Awt0GiBq3l_Mf331LBUSxSWSn08NgdY4n0KMF8_ySz03DzMtWmHzXjDieR0crWAyJF5-tBj9QGPPBVMnjCe5IvZ-aXXlA9-JP7OYBnLN0qigEw-t7xSlIb2aEfL5U0bQPVdt7Q53Xt4WqQMWFfr2rByCGG8k"/>
+<div class="absolute top-4 right-4 bg-surface-deep/80 backdrop-blur-md px-3 py-1 rounded-full text-label-mono font-label-mono text-electric-blue border border-electric-blue/20">
+                                $2,499
+                            </div>
+</div>
+<div class="p-6 flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">The Snowblind</h4>
+<p class="text-on-surface-variant text-body-sm font-body-sm">Created by @TechArtisan</p>
+</div>
+<div class="flex items-center text-cyber-teal">
+<span class="material-symbols-outlined text-sm mr-1" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-label-mono font-label-mono">1.2k</span>
+</div>
+</div>
+<div class="space-y-3 mb-8">
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">memory</span>
+<span class="text-label-mono font-label-mono uppercase">Ryzen 9 7900X</span>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">videogame_asset</span>
+<span class="text-label-mono font-label-mono uppercase">RTX 4080 White Edition</span>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">data_usage</span>
+<span class="text-label-mono font-label-mono uppercase">64GB DDR5 6000MHz</span>
+</div>
+</div>
+<button class="w-full py-3 bg-white/5 border border-white/10 rounded-lg text-on-surface font-label-mono text-label-mono uppercase tracking-widest hover:bg-electric-blue hover:text-white transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+                                Clone Build
+                            </button>
+</div>
+</div>
+<!-- Build Card 2 -->
+<div class="glass-card rounded-2xl overflow-hidden flex flex-col hover:translate-y-[-8px] transition-all duration-500 group">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A dramatic close-up of a high-performance gaming PC in a dark room. The build features aggressive red and purple RGB lighting, vertical GPU mounting, and custom sleeved cables in black and red. The side panel is removed to show the intricate details of the liquid cooling radiator and spinning fans. The atmosphere is intense and powerful, evoking a high-stakes competitive gaming mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaGEVhJb4qXhWFSHCPcOH3sXKZF5gdLJfLiShwpS1ryaSdctrI-hFQp6EikgyOuKAAwzkCwWUa6yAIsH9ESZum2wSh4c4-alo1W28TZ4PMIDxKpcuQ0HwEPpGjKziBupbxGomsFnoOCsQeipgZMouYVTLSiyVAKuva5vpPebEHEQeRaJCnBHe4obZgIfV_ANVMGO1PKF0mk0qgFOMF_WN_3Q3LeLpAu-1VYGJGxVFpY91HCSHodMFCZQnMNGHJijPAca4AxHV3j6nl"/>
+<div class="absolute top-4 right-4 bg-surface-deep/80 backdrop-blur-md px-3 py-1 rounded-full text-label-mono font-label-mono text-electric-blue border border-electric-blue/20">
+                                $4,150
+                            </div>
+</div>
+<div class="p-6 flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Midnight Forge</h4>
+<p class="text-on-surface-variant text-body-sm font-body-sm">Created by @BuildMaster_X</p>
+</div>
+<div class="flex items-center text-cyber-teal">
+<span class="material-symbols-outlined text-sm mr-1" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-label-mono font-label-mono">2.8k</span>
+</div>
+</div>
+<div class="space-y-3 mb-8">
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">memory</span>
+<span class="text-label-mono font-label-mono uppercase">Core i9-14900K</span>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">videogame_asset</span>
+<span class="text-label-mono font-label-mono uppercase">RTX 4090 OC</span>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">data_usage</span>
+<span class="text-label-mono font-label-mono uppercase">128GB DDR5</span>
+</div>
+</div>
+<button class="w-full py-3 bg-white/5 border border-white/10 rounded-lg text-on-surface font-label-mono text-label-mono uppercase tracking-widest hover:bg-electric-blue hover:text-white transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+                                Clone Build
+                            </button>
+</div>
+</div>
+<!-- Build Card 3 -->
+<div class="glass-card rounded-2xl overflow-hidden flex flex-col hover:translate-y-[-8px] transition-all duration-500 group">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A clean, professional workstation build focused on productivity. The case is a sleek, windowless brushed aluminum Fractal Design chassis. The setup is presented in a bright, modern studio environment with soft natural lighting. The build emphasizes silence and efficiency, featuring high-end air cooling and professional-grade I/O. The style is sophisticated, adult, and performance-oriented." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAWJ_oQFP8r5oPyp-6SXVLsf2Ai5fDRSovmV6hULwbV4_Q2CpICDNRz6vAhBgzNMpbD6b_WjAKRnDFMnlMlVVAUhHysa6_dE2UuL1B0r1KCXJc5mTuGdWfhWm6EItAuze_zQXNX2uSHqmzc-EQPnJpuAhfei0ABA6rYm3EEDi1El50c04cBLZZ9EKA8cFxOsEC4ZjS30dwp-_838UrHDaNW2iWlYfrHm_13YBQszaXfhSRCFZfo-7O02JZOMxrxpi9YzDwXkgDrvib"/>
+<div class="absolute top-4 right-4 bg-surface-deep/80 backdrop-blur-md px-3 py-1 rounded-full text-label-mono font-label-mono text-electric-blue border border-electric-blue/20">
+                                $1,850
+                            </div>
+</div>
+<div class="p-6 flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Quiet Creator</h4>
+<p class="text-on-surface-variant text-body-sm font-body-sm">Created by @StudioFlow</p>
+</div>
+<div class="flex items-center text-cyber-teal">
+<span class="material-symbols-outlined text-sm mr-1" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-label-mono font-label-mono">842</span>
+</div>
+</div>
+<div class="space-y-3 mb-8">
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">memory</span>
+<span class="text-label-mono font-label-mono uppercase">Core i7-14700K</span>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">videogame_asset</span>
+<span class="text-label-mono font-label-mono uppercase">RTX 4070 Ti Super</span>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">data_usage</span>
+<span class="text-label-mono font-label-mono uppercase">32GB DDR5</span>
+</div>
+</div>
+<button class="w-full py-3 bg-white/5 border border-white/10 rounded-lg text-on-surface font-label-mono text-label-mono uppercase tracking-widest hover:bg-electric-blue hover:text-white transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+                                Clone Build
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA Banner -->
+<section class="py-32 overflow-hidden relative">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="relative glass-card rounded-3xl p-12 md:p-24 overflow-hidden text-center border-electric-blue/20">
+<div class="absolute -top-24 -left-24 w-64 h-64 bg-electric-blue/20 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-24 -right-24 w-64 h-64 bg-cyber-teal/20 rounded-full blur-3xl"></div>
+<div class="relative z-10">
+<h2 class="font-display-lg text-headline-lg md:text-display-lg text-on-surface mb-8">Ready to evolve your setup?</h2>
+<p class="text-on-surface-variant font-body-md text-body-md max-w-xl mx-auto mb-12">
+                            Our component inventory is updated daily. Start your custom PC journey today and get free shipping on your first masterpiece.
+                        </p>
+<button class="bg-electric-blue text-white px-12 py-5 rounded-lg font-headline-sm text-headline-sm hover:shadow-[0_0_30px_rgba(0,122,255,0.5)] transition-all active:scale-95 inline-flex items-center gap-3">
+                            Start Customizing <span class="material-symbols-outlined">rocket_launch</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-deep border-t border-white/5 w-full">
+<div class="max-w-container-max mx-auto px-margin-desktop py-16 grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="md:col-span-1">
+<div class="font-headline-sm text-headline-sm text-on-surface mb-6">MakeMyPC</div>
+<p class="text-on-surface-variant font-body-sm text-body-sm leading-relaxed mb-8">
+                    The surgical standard in custom PC building. Precision performance, uncompromising quality.
+                </p>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-lg glass-card flex items-center justify-center text-on-surface-variant hover:text-primary transition-all cursor-pointer">
+<span class="material-symbols-outlined">language</span>
+</div>
+<div class="w-10 h-10 rounded-lg glass-card flex items-center justify-center text-on-surface-variant hover:text-primary transition-all cursor-pointer">
+<span class="material-symbols-outlined">public</span>
+</div>
+</div>
+</div>
+<div>
+<h5 class="font-label-mono text-label-mono text-on-surface uppercase tracking-widest mb-6">Explore</h5>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all" href="#">Intel Builds</a></li>
+<li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all" href="#">AMD Rigs</a></li>
+<li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all" href="#">NVIDIA Graphics</a></li>
+<li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all" href="#">Workstations</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-mono text-label-mono text-on-surface uppercase tracking-widest mb-6">Support</h5>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all" href="#">Privacy Policy</a></li>
+<li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all" href="#">Terms of Service</a></li>
+<li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all" href="#">Warranty Info</a></li>
+<li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-mono text-label-mono text-on-surface uppercase tracking-widest mb-6">The Monthly Build</h5>
+<p class="text-on-surface-variant font-body-sm text-body-sm mb-6">Get tech news and featured builds delivered monthly.</p>
+<div class="flex">
+<input class="bg-surface-container-low border border-white/10 rounded-l-lg px-4 py-3 text-body-sm font-body-sm w-full focus:outline-none focus:border-electric-blue" placeholder="Email address" type="email"/>
+<button class="bg-electric-blue text-white px-4 rounded-r-lg hover:bg-electric-blue/90 active:opacity-80 transition-all">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop py-8 border-t border-white/5 flex flex-col md:row justify-between items-center gap-4">
+<p class="text-on-surface-variant font-label-mono text-label-mono">© 2024 MakeMyPC. All Rights Reserved.</p>
+<div class="flex gap-x-8">
+<span class="text-on-surface-variant font-label-mono text-label-mono hover:text-on-surface cursor-pointer">System Status: <span class="text-cyber-teal">ONLINE</span></span>
+</div>
+</div>
+</footer>
+<!-- SideNavBar - Only visible in Build Mode (Contextual) -->
+<!-- Determined active navigation based on 'Shop' intent for homepage -->
+<script>
+        // Micro-interactions and subtle effects
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            // Subtle parallax for hero glows
+            const glows = document.querySelectorAll('.hero-glow');
+            glows.forEach((glow, index) => {
+                const multiplier = (index + 1) * 20;
+                glow.style.transform = `translate(${x * multiplier}px, ${y * multiplier}px)`;
+            });
+        });
+
+        // Intersection Observer for reveal animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+            revealObserver.observe(card);
+        });
+    </script>
+</body></html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Tracking | MakeMyPC</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #071327; /* theme background */
+            color: #d7e2ff; /* theme on-background */
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .step-glow {
+            box-shadow: 0 0 15px rgba(0, 122, 255, 0.4);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#2a354a",
+                    "on-error": "#690005",
+                    "surface": "#071327",
+                    "outline": "#8b90a0",
+                    "surface-container-lowest": "#030e22",
+                    "surface-tint": "#adc6ff",
+                    "on-primary-fixed": "#001a41",
+                    "on-secondary-fixed-variant": "#004f50",
+                    "primary-fixed": "#d8e2ff",
+                    "surface-container-low": "#101b30",
+                    "tertiary-fixed": "#ffdbcc",
+                    "secondary-fixed-dim": "#5cd8da",
+                    "surface-dim": "#071327",
+                    "secondary-container": "#00a4a6",
+                    "error-container": "#93000a",
+                    "on-primary-fixed-variant": "#004493",
+                    "on-secondary-fixed": "#002020",
+                    "background": "#071327",
+                    "on-primary-container": "#00285c",
+                    "surface-variant": "#2a354a",
+                    "on-tertiary-fixed": "#351000",
+                    "on-tertiary-container": "#4c1a00",
+                    "cyber-teal": "#00A4A6",
+                    "tertiary": "#ffb595",
+                    "on-background": "#d7e2ff",
+                    "outline-variant": "#414755",
+                    "surface-deep": "#00081C",
+                    "primary": "#adc6ff",
+                    "hardware-gray": "#111111",
+                    "tertiary-fixed-dim": "#ffb595",
+                    "secondary-fixed": "#7cf5f7",
+                    "electric-blue": "#007AFF",
+                    "on-surface": "#d7e2ff",
+                    "primary-container": "#4b8eff",
+                    "surface-container": "#142034",
+                    "on-tertiary-fixed-variant": "#7c2e00",
+                    "inverse-on-surface": "#263046",
+                    "surface-bright": "#2e394f",
+                    "surface-glass": "rgba(255, 255, 255, 0.03)",
+                    "on-tertiary": "#571e00",
+                    "primary-fixed-dim": "#adc6ff",
+                    "on-secondary-container": "#003233",
+                    "on-primary": "#002e69",
+                    "on-surface-variant": "#c1c6d7",
+                    "error": "#ffb4ab",
+                    "secondary": "#5cd8da",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-high": "#1f2a3f",
+                    "inverse-surface": "#d7e2ff",
+                    "tertiary-container": "#ef6719",
+                    "inverse-primary": "#005bc1",
+                    "on-secondary": "#003738"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "gutter": "24px",
+                    "margin-desktop": "64px",
+                    "base": "8px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "label-mono": ["JetBrains Mono"],
+                    "display-lg": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface-deep text-on-background selection:bg-electric-blue/30 overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop max-w-container-max mx-auto h-20 bg-surface-glass backdrop-blur-xl border-b border-white/10 shadow-[0_40px_40px_rgba(0,0,0,0.15)]">
+<div class="flex items-center gap-8">
+<span class="font-headline-lg text-headline-lg font-bold text-electric-blue tracking-tighter">MakeMyPC</span>
+<nav class="hidden md:flex gap-6">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-electric-blue hover:bg-white/5 transition-colors px-2 py-1 rounded" href="#">Build</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-electric-blue hover:bg-white/5 transition-colors px-2 py-1 rounded" href="#">Prebuilts</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-electric-blue hover:bg-white/5 transition-colors px-2 py-1 rounded" href="#">Components</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-electric-blue hover:bg-white/5 transition-colors px-2 py-1 rounded" href="#">Support</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center bg-white/5 border border-white/10 rounded-full px-4 py-1.5 focus-within:border-electric-blue transition-all">
+<span class="material-symbols-outlined text-outline text-sm" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm font-body-sm w-48 placeholder:text-outline/50" placeholder="Track another order..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-on-surface hover:text-electric-blue transition-colors active:scale-95 duration-200" data-icon="shopping_cart">shopping_cart</button>
+<button class="material-symbols-outlined text-electric-blue border-b-2 border-electric-blue pb-1 active:scale-95 duration-200" data-icon="account_circle">account_circle</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="mt-28 mb-20 px-4 md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Order Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
+<div>
+<nav class="flex items-center gap-2 mb-4 text-outline font-label-mono text-label-mono uppercase tracking-widest">
+<span>Account</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+<span>Orders</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-electric-blue">MPC-992-KINETIC</span>
+</nav>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-2">In Assembly</h1>
+<p class="font-body-md text-body-md text-outline">Order <span class="text-on-surface font-bold">#MPC-992-KINETIC</span> • Estimated Arrival <span class="text-electric-blue font-bold">Oct 24</span></p>
+</div>
+<button class="flex items-center gap-2 px-6 py-3 bg-surface-glass border border-white/10 rounded-xl hover:bg-white/10 transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+<span class="font-body-md text-body-md">Invoice PDF</span>
+</button>
+</div>
+<!-- Visual Progress Tracker -->
+<section class="glass-panel rounded-2xl p-8 md:p-12 mb-8 relative overflow-hidden">
+<!-- Background Decoration -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-electric-blue/10 blur-[100px] rounded-full"></div>
+<div class="relative z-10">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 md:gap-4">
+<!-- Step 1: Done -->
+<div class="flex-1 w-full relative">
+<div class="flex flex-row md:flex-col items-center md:items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-electric-blue flex items-center justify-center text-white step-glow">
+<span class="material-symbols-outlined text-[20px]" data-icon="check" data-weight="fill">check</span>
+</div>
+<div class="md:mt-4">
+<p class="font-headline-sm text-headline-sm text-on-surface">Order Confirmed</p>
+<p class="font-label-mono text-label-mono text-outline uppercase">Oct 18, 2024</p>
+</div>
+</div>
+<div class="hidden md:block absolute top-5 left-10 right-0 h-0.5 bg-electric-blue"></div>
+</div>
+<!-- Step 2: Current -->
+<div class="flex-1 w-full relative">
+<div class="flex flex-row md:flex-col items-center md:items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-deep border-2 border-electric-blue flex items-center justify-center text-electric-blue animate-pulse">
+<span class="material-symbols-outlined text-[20px]" data-icon="precision_manufacturing">precision_manufacturing</span>
+</div>
+<div class="md:mt-4">
+<p class="font-headline-sm text-headline-sm text-electric-blue">Assembly</p>
+<p class="font-label-mono text-label-mono text-electric-blue/60 uppercase">In Progress</p>
+</div>
+</div>
+<div class="hidden md:block absolute top-5 left-10 right-0 h-0.5 bg-white/10"></div>
+</div>
+<!-- Step 3: Pending -->
+<div class="flex-1 w-full relative">
+<div class="flex flex-row md:flex-col items-center md:items-start gap-4 opacity-40">
+<div class="w-10 h-10 rounded-full bg-surface-deep border border-white/20 flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="fact_check">fact_check</span>
+</div>
+<div class="md:mt-4">
+<p class="font-headline-sm text-headline-sm">Quality Testing</p>
+<p class="font-label-mono text-label-mono uppercase">Pending</p>
+</div>
+</div>
+<div class="hidden md:block absolute top-5 left-10 right-0 h-0.5 bg-white/10"></div>
+</div>
+<!-- Step 4: Pending -->
+<div class="flex-1 w-full relative">
+<div class="flex flex-row md:flex-col items-center md:items-start gap-4 opacity-40">
+<div class="w-10 h-10 rounded-full bg-surface-deep border border-white/20 flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="local_shipping">local_shipping</span>
+</div>
+<div class="md:mt-4">
+<p class="font-headline-sm text-headline-sm">Shipped</p>
+<p class="font-label-mono text-label-mono uppercase">Pending</p>
+</div>
+</div>
+<div class="hidden md:block absolute top-5 left-10 right-0 h-0.5 bg-white/10"></div>
+</div>
+<!-- Step 5: Pending -->
+<div class="flex-0 shrink-0">
+<div class="flex flex-row md:flex-col items-center md:items-start gap-4 opacity-40">
+<div class="w-10 h-10 rounded-full bg-surface-deep border border-white/20 flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="package_2">package_2</span>
+</div>
+<div class="md:mt-4">
+<p class="font-headline-sm text-headline-sm">Delivered</p>
+<p class="font-label-mono text-label-mono uppercase">Pending</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Layout for Details -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left Column: Live Updates & Shipping -->
+<div class="lg:col-span-5 space-y-8">
+<!-- Live Updates -->
+<div class="glass-panel rounded-2xl p-8">
+<h2 class="font-headline-sm text-headline-sm mb-8 flex items-center gap-2">
+<span class="material-symbols-outlined text-electric-blue" data-icon="history">history</span>
+                        Live Updates
+                    </h2>
+<div class="space-y-10 relative">
+<!-- Vertical line -->
+<div class="absolute left-[11px] top-2 bottom-2 w-px bg-white/10"></div>
+<!-- Log Item 1 -->
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-electric-blue/20 border border-electric-blue flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-electric-blue shadow-[0_0_8px_#007aff]"></div>
+</div>
+<div class="font-label-mono text-label-mono text-outline mb-1 uppercase tracking-wider">Today, 10:24 AM</div>
+<p class="font-body-md text-body-md text-on-surface">Components picked and ready for assembly in Stage 2 bay.</p>
+</div>
+<!-- Log Item 2 -->
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-outline/40"></div>
+</div>
+<div class="font-label-mono text-label-mono text-outline mb-1 uppercase tracking-wider">Oct 18, 2:15 PM</div>
+<p class="font-body-md text-body-md text-on-surface">Order confirmed. Payment successfully processed via Credit Card.</p>
+</div>
+</div>
+</div>
+<!-- Shipping Info -->
+<div class="glass-panel rounded-2xl p-8">
+<h2 class="font-headline-sm text-headline-sm mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-electric-blue" data-icon="map">map</span>
+                        Shipping Info
+                    </h2>
+<div class="space-y-4">
+<div class="flex items-start gap-4">
+<div class="p-2 bg-white/5 rounded-lg text-outline">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</div>
+<div>
+<p class="font-label-mono text-label-mono text-outline uppercase mb-1">Recipient</p>
+<p class="font-body-md text-body-md">Jonathan Precision</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="p-2 bg-white/5 rounded-lg text-outline">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+</div>
+<div>
+<p class="font-label-mono text-label-mono text-outline uppercase mb-1">Address</p>
+<p class="font-body-md text-body-md">1024 Silicon Valley Drive, Suite 404, San Jose, CA 95134, USA</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="p-2 bg-white/5 rounded-lg text-outline">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+</div>
+<div>
+<p class="font-label-mono text-label-mono text-outline uppercase mb-1">Courier</p>
+<p class="font-body-md text-body-md flex items-center gap-2">
+                                    FedEx Express
+                                    <span class="bg-electric-blue/10 text-electric-blue px-2 py-0.5 rounded text-[10px] font-bold">NEXT DAY</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Build Details -->
+<div class="lg:col-span-7">
+<div class="glass-panel rounded-2xl overflow-hidden">
+<div class="p-8 border-b border-white/5 bg-white/5 flex justify-between items-center">
+<h2 class="font-headline-sm text-headline-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-electric-blue" data-icon="inventory_2">inventory_2</span>
+                            Build Summary
+                        </h2>
+<span class="font-label-mono text-label-mono text-outline uppercase">8 Components Total</span>
+</div>
+<div class="p-4 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- GPU -->
+<div class="flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors border border-transparent hover:border-white/10 group">
+<div class="w-16 h-16 shrink-0 bg-hardware-gray rounded-lg overflow-hidden border border-white/5">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A premium high-performance NVIDIA RTX 4090 graphics card with triple-fan cooling and sleek matte black shroud. The image is set against a dark, tech-oriented studio background with subtle blue rim lighting to emphasize its precision engineering and powerful presence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3ct0lgO6PaGwuoNA_bPBuJ4VC8PcfWBST60QufaOA5Oj5GVCK9_udFcz6T4Ku4S8xrwlngr_2v9C-qjhOZJcquo4IHbWNkl2S0WsnG14SzmQT-E9_otvJnEdaDBPYRcz8wPg7MKgM6FFF5lNI4wpXCj14zUbSpHzEtRE8JkfMrBHk09kGmrXe4v8bpa4GmasfwXN98deASvxlw4kdFl2m5R5B4KE57r9ULuHSXHNAHn7kV4uxXV0izwtgRXAyfzK3sNeTnYzV_0vU"/>
+</div>
+<div>
+<p class="font-label-mono text-label-mono text-electric-blue uppercase">Graphics</p>
+<p class="font-body-md text-body-md font-bold truncate max-w-[180px]">NVIDIA RTX 4090</p>
+<p class="font-label-mono text-[10px] text-outline">24GB GDDR6X</p>
+</div>
+</div>
+<!-- CPU -->
+<div class="flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors border border-transparent hover:border-white/10 group">
+<div class="w-16 h-16 shrink-0 bg-hardware-gray rounded-lg overflow-hidden border border-white/5">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A top-down architectural shot of an Intel Core i9-14900K processor resting on a reflective black surface. The lighting is dramatic and surgical, highlighting the intricate gold contacts and metallic heat spreader. The overall aesthetic is clean, technical, and high-end." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJBcx7Sy7xJnM_9_TZ8ljhKBjcjzL4rhonbe7bhNfJbSBprQMfpQBNWR9xngD-pK_Le5RVlml6UAN93_FdfxAvbLfFbkj5VyRtNSPHpXsvWCI1OBe4kSw-l9BL64a35vvFveTl3i7wyQOUw1nE_lvJbfos1_OqKTwev2UMMv4gKI0pUoBsQt4CRP6dMNE4nPsoYZGTz2rayE0gjBPj2E6aDOFcYR78_acOigctGPLu_XzrLQiuj-7R45IfvDpjY_q08fN5lOVmae17"/>
+</div>
+<div>
+<p class="font-label-mono text-label-mono text-electric-blue uppercase">Processor</p>
+<p class="font-body-md text-body-md font-bold truncate max-w-[180px]">Intel Core i9-14900K</p>
+<p class="font-label-mono text-[10px] text-outline">24 Cores / 32 Threads</p>
+</div>
+</div>
+<!-- RAM -->
+<div class="flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors border border-transparent hover:border-white/10 group">
+<div class="w-16 h-16 shrink-0 bg-hardware-gray rounded-lg overflow-hidden border border-white/5">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Close-up of two high-speed 32GB DDR5 memory sticks with premium heat spreaders and subtle RGB lighting effects. The image is shot with a shallow depth of field in a high-tech dark environment, showcasing the sleek, anodized aluminum finish and modern industrial design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1a7Sg9QiQamDKJquEfi4z11A76rxnbj0lZWgVp_q_w0Cbfe3-QN8fnHV_GCoHXaCMtiko1FekafULsKJ-S7X3ADRlovbp0pMyYcM6z-HUxImiEKsqDMN8RsXBuk6JN6X7_Y-R9r7Ol_vfUYXsWLaxuak9sBHouGVjDZLQAJVyfnCPH1xFl_BrxsdIVSyA_SqkjhYpgr5h1kIlJJxKSNeeR3WBCjDwgeb5Ye1wnMD7ymCX-XKMiQ7eIO26qO9fRNQnKAijNT0iXnNl"/>
+</div>
+<div>
+<p class="font-label-mono text-label-mono text-electric-blue uppercase">Memory</p>
+<p class="font-body-md text-body-md font-bold truncate max-w-[180px]">64GB DDR5 6400MHz</p>
+<p class="font-label-mono text-[10px] text-outline">Dual Channel Kit</p>
+</div>
+</div>
+<!-- Case -->
+<div class="flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors border border-transparent hover:border-white/10 group">
+<div class="w-16 h-16 shrink-0 bg-hardware-gray rounded-lg overflow-hidden border border-white/5">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A stunning cinematic shot of a premium full-tower PC chassis made of tempered glass and brushed aluminum. The internal components are faintly visible, bathed in a soft electric blue glow. The perspective is from a 45-degree angle, emphasizing the clean lines and sophisticated minimalist build quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0g3LsM-qtPpHQcILcEuIud2ScowamPvY19mTuDmn46dSgF04e1j6wk_eGP7JXYf7KQHw7wWhnl0XCHl6-y_uq8v64zbG9DpfzbRGG80QaMr4ci5qdMV6WwDHVQw4jIw-hUgpXF_mev8T456Fiy1exifr6a-GIfiqumYpdmgL32jp9MnzgjBRsTiFnY22T1qejIIflTz8IuykB0HW7z7VQSveU-2n9pIvNTuK4M3w-38_aOb_JiUTyOWs4oB7TsnFLLoaocHvkC726"/>
+</div>
+<div>
+<p class="font-label-mono text-label-mono text-electric-blue uppercase">Chassis</p>
+<p class="font-body-md text-body-md font-bold truncate max-w-[180px]">Kinetic X-1 Glass</p>
+<p class="font-label-mono text-[10px] text-outline">Mid-Tower ATX</p>
+</div>
+</div>
+</div>
+<div class="p-8 bg-white/5 mt-4 border-t border-white/5">
+<div class="flex justify-between items-center">
+<div>
+<p class="font-body-md text-body-md">Order Total</p>
+<p class="font-label-mono text-label-mono text-outline">Inclusive of all taxes and priority shipping</p>
+</div>
+<span class="font-display-lg-mobile text-display-lg-mobile text-on-surface">$4,299.00</span>
+</div>
+</div>
+</div>
+<!-- Support Callout -->
+<div class="mt-8 flex items-center justify-between p-6 rounded-2xl bg-primary-container/10 border border-primary-container/20">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-primary">Need assistance with this build?</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Our specialist technicians are available 24/7 for order consultations.</p>
+</div>
+</div>
+<button class="px-6 py-2 bg-electric-blue text-white rounded-lg font-bold hover:brightness-110 active:scale-95 transition-all">Chat Now</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-8 bg-surface-deep border-t border-white/5 mt-20">
+<div class="flex flex-col gap-4 items-center md:items-start">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">MakeMyPC</span>
+<p class="font-label-mono text-label-mono text-outline max-w-sm text-center md:text-left opacity-80 uppercase tracking-wider">
+                © 2024 MakeMyPC Kinetic Precision Engineering. All rights reserved.
+            </p>
+</div>
+<div class="flex gap-8">
+<a class="font-label-mono text-label-mono text-outline hover:text-on-surface transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-mono text-label-mono text-outline hover:text-on-surface transition-colors" href="#">Terms of Service</a>
+<a class="font-label-mono text-label-mono text-outline hover:text-on-surface transition-colors" href="#">Warranty Info</a>
+<a class="font-label-mono text-label-mono text-outline hover:text-on-surface transition-colors" href="#">Contact</a>
+</div>
+</footer>
+<!-- Simple Interactivity Script -->
+<script>
+        // Progress bar micro-animation on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const progressContainer = document.querySelector('section.glass-panel');
+            progressContainer.style.opacity = '0';
+            progressContainer.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                progressContainer.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                progressContainer.style.opacity = '1';
+                progressContainer.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body></html>

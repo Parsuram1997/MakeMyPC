@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Support | MakeMyPC - Kinetic Precision Engineering</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            transition: all 0.3s ease;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 40px 40px rgba(0, 0, 0, 0.3);
+        }
+        .glass-card:hover {
+            border-color: rgba(0, 122, 255, 0.4);
+            box-shadow: 0 0 30px rgba(0, 122, 255, 0.1);
+        }
+        .hardware-grid {
+            background-image: radial-gradient(rgba(0, 122, 255, 0.05) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
+            transform: rotate(45deg);
+            animation: shimmer-effect 6s infinite linear;
+        }
+        @keyframes shimmer-effect {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#ffb595",
+                        "outline-variant": "#414755",
+                        "secondary": "#5cd8da",
+                        "inverse-on-surface": "#263046",
+                        "on-primary-fixed": "#001a41",
+                        "on-primary-fixed-variant": "#004493",
+                        "on-secondary-fixed": "#002020",
+                        "secondary-container": "#00a4a6",
+                        "surface": "#071327",
+                        "on-tertiary-container": "#4c1a00",
+                        "surface-variant": "#2a354a",
+                        "electric-blue": "#007AFF",
+                        "tertiary-fixed": "#ffdbcc",
+                        "surface-container-low": "#101b30",
+                        "on-secondary-container": "#003233",
+                        "error-container": "#93000a",
+                        "cyber-teal": "#00A4A6",
+                        "on-tertiary": "#571e00",
+                        "inverse-primary": "#005bc1",
+                        "on-error-container": "#ffdad6",
+                        "hardware-gray": "#111111",
+                        "on-primary": "#002e69",
+                        "on-primary-container": "#00285c",
+                        "surface-deep": "#00081C",
+                        "secondary-fixed-dim": "#5cd8da",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface-bright": "#2e394f",
+                        "surface-container-highest": "#2a354a",
+                        "inverse-surface": "#d7e2ff",
+                        "surface-container": "#142034",
+                        "on-tertiary-fixed-variant": "#7c2e00",
+                        "surface-glass": "rgba(255, 255, 255, 0.03)",
+                        "error": "#ffb4ab",
+                        "surface-container-high": "#1f2a3f",
+                        "tertiary-container": "#ef6719",
+                        "on-surface-variant": "#c1c6d7",
+                        "on-secondary": "#003738",
+                        "on-surface": "#d7e2ff",
+                        "surface-dim": "#071327",
+                        "tertiary-fixed-dim": "#ffb595",
+                        "primary": "#adc6ff",
+                        "primary-fixed": "#d8e2ff",
+                        "background": "#071327",
+                        "secondary-fixed": "#7cf5f7",
+                        "surface-tint": "#adc6ff",
+                        "primary-container": "#4b8eff",
+                        "surface-container-lowest": "#030e22",
+                        "on-background": "#d7e2ff",
+                        "on-secondary-fixed-variant": "#004f50",
+                        "outline": "#8b90a0",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#351000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-mono": ["JetBrains Mono"],
+                        "headline-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "display-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface-deep text-on-surface font-body-md hardware-grid selection:bg-electric-blue selection:text-white">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 max-w-container-max mx-auto backdrop-blur-xl border-b border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.3)] bg-surface-glass">
+<div class="font-headline-lg text-headline-lg font-bold text-electric-blue">MakeMyPC</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-headline-sm text-headline-sm font-semibold text-on-surface-variant hover:text-on-surface transition-colors" href="#">Build</a>
+<a class="font-headline-sm text-headline-sm font-semibold text-on-surface-variant hover:text-on-surface transition-colors" href="#">Prebuilts</a>
+<a class="font-headline-sm text-headline-sm font-semibold text-on-surface-variant hover:text-on-surface transition-colors" href="#">Components</a>
+<a class="font-headline-sm text-headline-sm font-semibold text-electric-blue border-b-2 border-electric-blue pb-1" href="#">Support</a>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-electric-blue transition-colors" data-icon="shopping_cart">shopping_cart</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-electric-blue transition-colors" data-icon="account_circle">account_circle</span>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Search Section -->
+<section class="relative min-h-[614px] flex flex-col items-center justify-center text-center px-margin-mobile md:px-margin-desktop overflow-hidden">
+<!-- Background Decoration -->
+<div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-electric-blue/10 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-cyber-teal/5 blur-[150px] rounded-full"></div>
+</div>
+<div class="relative z-10 max-w-3xl w-full space-y-8">
+<div class="space-y-4">
+<span class="font-label-mono text-label-mono uppercase text-electric-blue tracking-[0.2em]">Technical Resources</span>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg leading-tight">
+                        How can we help with your <span class="text-electric-blue">build?</span>
+</h1>
+</div>
+<div class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-electric-blue to-cyber-teal rounded-xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+<div class="relative flex items-center bg-surface-container-highest border border-white/10 rounded-xl px-6 py-4">
+<span class="material-symbols-outlined text-outline mr-4" data-icon="search">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-headline-sm font-body-md placeholder:text-outline/50" placeholder="Search documentation, order numbers, or hardware issues..." type="text"/>
+<kbd class="hidden md:inline-flex items-center gap-1 px-2 py-1 bg-white/5 border border-white/10 rounded text-xs text-outline font-label-mono">
+<span class="material-symbols-outlined text-[10px]" data-icon="keyboard_command_key">keyboard_command_key</span> K
+                        </kbd>
+</div>
+</div>
+<div class="flex flex-wrap justify-center gap-3">
+<span class="text-body-sm text-outline">Popular:</span>
+<a class="text-body-sm text-on-surface-variant hover:text-electric-blue transition-colors px-3 py-1 bg-white/5 rounded-full border border-white/5" href="#">BIOS Update</a>
+<a class="text-body-sm text-on-surface-variant hover:text-electric-blue transition-colors px-3 py-1 bg-white/5 rounded-full border border-white/5" href="#">RMA Status</a>
+<a class="text-body-sm text-on-surface-variant hover:text-electric-blue transition-colors px-3 py-1 bg-white/5 rounded-full border border-white/5" href="#">Compatibility Checker</a>
+</div>
+</div>
+</section>
+<!-- Troubleshooting Categories Grid -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16">
+<div class="mb-12 flex items-end justify-between">
+<div>
+<h2 class="font-headline-lg text-headline-lg mb-2">Troubleshooting Categories</h2>
+<p class="text-on-surface-variant">Surgical precision for your hardware issues.</p>
+</div>
+<div class="hidden md:block h-px flex-1 bg-white/5 mx-12 mb-4"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-gutter">
+<!-- BIOS & Firmware -->
+<div class="glass-card p-8 rounded-xl group cursor-pointer flex flex-col justify-between min-h-[280px] transition-all">
+<div>
+<div class="w-12 h-12 bg-electric-blue/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-electric-blue/20 transition-colors">
+<span class="material-symbols-outlined text-electric-blue" data-icon="memory">memory</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-3">BIOS & Firmware Updates</h3>
+<p class="text-body-sm text-on-surface-variant">Update protocols for stable performance and security.</p>
+</div>
+<div class="pt-6 flex items-center text-electric-blue font-label-mono text-xs uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
+                        Access Docs <span class="material-symbols-outlined ml-2 text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Compatibility -->
+<div class="glass-card p-8 rounded-xl group cursor-pointer flex flex-col justify-between min-h-[280px] transition-all">
+<div>
+<div class="w-12 h-12 bg-cyber-teal/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-cyber-teal/20 transition-colors">
+<span class="material-symbols-outlined text-cyber-teal" data-icon="dynamic_form">dynamic_form</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-3">Compatibility Troubleshooting</h3>
+<p class="text-body-sm text-on-surface-variant">Solve hardware conflicts and clearance issues.</p>
+</div>
+<div class="pt-6 flex items-center text-cyber-teal font-label-mono text-xs uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
+                        Check Compatibility <span class="material-symbols-outlined ml-2 text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Windows & Driver -->
+<div class="glass-card p-8 rounded-xl group cursor-pointer flex flex-col justify-between min-h-[280px] transition-all">
+<div>
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary" data-icon="settings_input_component">settings_input_component</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-3">Windows & Driver Setup</h3>
+<p class="text-body-sm text-on-surface-variant">OS optimization and critical driver deployment guides.</p>
+</div>
+<div class="pt-6 flex items-center text-primary font-label-mono text-xs uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
+                        Guide Library <span class="material-symbols-outlined ml-2 text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Warranty -->
+<div class="glass-card p-8 rounded-xl group cursor-pointer flex flex-col justify-between min-h-[280px] transition-all">
+<div>
+<div class="w-12 h-12 bg-tertiary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-tertiary/20 transition-colors">
+<span class="material-symbols-outlined text-tertiary" data-icon="verified_user">verified_user</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-3">Warranty & Returns</h3>
+<p class="text-body-sm text-on-surface-variant">Easy RMA processes and coverage information.</p>
+</div>
+<div class="pt-6 flex items-center text-tertiary font-label-mono text-xs uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
+                        Check Status <span class="material-symbols-outlined ml-2 text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Assembly Support -->
+<div class="glass-card p-8 rounded-xl group cursor-pointer flex flex-col justify-between min-h-[280px] transition-all">
+<div>
+<div class="w-12 h-12 bg-secondary-container/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-secondary-container/20 transition-colors">
+<span class="material-symbols-outlined text-secondary-container" data-icon="handyman">handyman</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-3">Assembly Support</h3>
+<p class="text-body-sm text-on-surface-variant">Visual walkthroughs for delicate component installs.</p>
+</div>
+<div class="pt-6 flex items-center text-secondary-container font-label-mono text-xs uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
+                        Watch Tutorials <span class="material-symbols-outlined ml-2 text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured FAQ Section -->
+<section class="bg-surface-container-lowest py-24">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid md:grid-cols-12 gap-gutter">
+<div class="md:col-span-5">
+<span class="font-label-mono text-label-mono uppercase text-cyber-teal mb-4 block">Knowledge Base</span>
+<h2 class="font-headline-lg text-headline-lg mb-6">Frequently Asked Questions</h2>
+<p class="text-on-surface-variant mb-8 max-w-md">Can't find what you're looking for? Our documentation is updated daily based on community feedback.</p>
+<div class="space-y-4">
+<div class="glass-card p-6 rounded-lg flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="description">description</span>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Technical Whitepapers</p>
+<p class="text-body-sm text-on-surface-variant">Deep dives into architecture.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="md:col-span-7 space-y-4">
+<!-- FAQ Items -->
+<div class="group">
+<button class="w-full flex items-center justify-between p-6 bg-surface-container border border-white/5 rounded-xl hover:border-electric-blue/30 transition-all text-left">
+<span class="font-headline-sm text-headline-sm">How do I track my custom build?</span>
+<span class="material-symbols-outlined transition-transform group-hover:rotate-180" data-icon="expand_more">expand_more</span>
+</button>
+<div class="hidden group-focus-within:block p-6 text-on-surface-variant bg-surface-container/50 border-x border-b border-white/5 rounded-b-xl -mt-2">
+                            You can track your build in real-time through your Account Dashboard. We provide 5 key milestones: Parts Sourcing, Professional Assembly, Stress Testing (24h), Quality Control, and Final Packaging.
+                        </div>
+</div>
+<div class="group">
+<button class="w-full flex items-center justify-between p-6 bg-surface-container border border-white/5 rounded-xl hover:border-electric-blue/30 transition-all text-left">
+<span class="font-headline-sm text-headline-sm">What is the standard warranty on prebuilts?</span>
+<span class="material-symbols-outlined transition-transform group-hover:rotate-180" data-icon="expand_more">expand_more</span>
+</button>
+<div class="hidden group-focus-within:block p-6 text-on-surface-variant bg-surface-container/50 border-x border-b border-white/5 rounded-b-xl -mt-2">
+                            All MakeMyPC prebuilts come with a 3-year Kinetic Precision Warranty, covering all labor and defective hardware components. We also offer optional 'Pro-Support' for onsite repairs in selected regions.
+                        </div>
+</div>
+<div class="group">
+<button class="w-full flex items-center justify-between p-6 bg-surface-container border border-white/5 rounded-xl hover:border-electric-blue/30 transition-all text-left">
+<span class="font-headline-sm text-headline-sm">How do I update my BIOS safely?</span>
+<span class="material-symbols-outlined transition-transform group-hover:rotate-180" data-icon="expand_more">expand_more</span>
+</button>
+<div class="hidden group-focus-within:block p-6 text-on-surface-variant bg-surface-container/50 border-x border-b border-white/5 rounded-b-xl -mt-2">
+                            Updating BIOS should only be done if you encounter stability issues. Use the integrated BIOS Flashback button on your motherboard with a FAT32-formatted USB drive. Ensure power is uninterruptible during this process.
+                        </div>
+</div>
+<div class="group">
+<button class="w-full flex items-center justify-between p-6 bg-surface-container border border-white/5 rounded-xl hover:border-electric-blue/30 transition-all text-left">
+<span class="font-headline-sm text-headline-sm">What is your shipping & return policy?</span>
+<span class="material-symbols-outlined transition-transform group-hover:rotate-180" data-icon="expand_more">expand_more</span>
+</button>
+<div class="hidden group-focus-within:block p-6 text-on-surface-variant bg-surface-container/50 border-x border-b border-white/5 rounded-b-xl -mt-2">
+                            We ship globally using expedited freight to ensure hardware safety. Returns are accepted within 30 days for unopened components. Custom builds are subject to a 15% restocking fee.
+                        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Direct Support Channels -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg mb-4">Still need assistance?</h2>
+<p class="text-on-surface-variant">Our engineers are standing by to help you solve any technical challenge.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Live Chat -->
+<div class="shimmer bg-electric-blue/5 border border-electric-blue/20 rounded-2xl p-10 text-center flex flex-col items-center">
+<div class="w-16 h-16 bg-electric-blue rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(0,122,255,0.4)]">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="chat">chat</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-2">Live Chat</h3>
+<p class="text-on-surface-variant mb-8">Average response: <span class="text-electric-blue font-semibold">2 minutes</span></p>
+<button class="w-full py-4 bg-electric-blue text-white rounded-lg font-semibold hover:bg-primary-container transition-all active:scale-95">Start Conversation</button>
+</div>
+<!-- Email Support -->
+<div class="glass-card rounded-2xl p-10 text-center flex flex-col items-center">
+<div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mb-6 border border-white/10">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="mail">mail</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-2">Email Support</h3>
+<p class="text-on-surface-variant mb-8">Detailed technical analysis</p>
+<button class="w-full py-4 bg-white/5 border border-white/10 text-on-surface rounded-lg font-semibold hover:bg-white/10 transition-all active:scale-95">Submit Ticket</button>
+</div>
+<!-- Community Discord -->
+<div class="glass-card rounded-2xl p-10 text-center flex flex-col items-center">
+<div class="w-16 h-16 bg-[#5865F2]/10 rounded-full flex items-center justify-center mb-6 border border-[#5865F2]/20">
+<span class="material-symbols-outlined text-[#5865F2] text-3xl" data-icon="groups">groups</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-2">Community Discord</h3>
+<p class="text-on-surface-variant mb-8">Join 50k+ fellow builders</p>
+<button class="w-full py-4 bg-[#5865F2] text-white rounded-lg font-semibold hover:opacity-90 transition-all active:scale-95">Join Server</button>
+</div>
+</div>
+</section>
+<!-- Newsletter / CTA -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-24">
+<div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-surface-container-high to-surface-deep border border-white/5 p-12 md:p-24 flex flex-col md:flex-row items-center justify-between gap-12">
+<div class="max-w-lg">
+<h2 class="font-display-lg-mobile md:font-headline-lg text-display-lg-mobile md:text-headline-lg mb-4">Stay Optimized</h2>
+<p class="text-on-surface-variant text-body-md">Get critical driver updates, bios releases, and enthusiast build tips delivered directly to your inbox monthly.</p>
+</div>
+<div class="flex-1 w-full max-w-md">
+<form class="flex flex-col sm:flex-row gap-4">
+<input class="flex-1 bg-surface-container-lowest border border-white/10 rounded-xl px-6 py-4 focus:border-electric-blue focus:ring-0" placeholder="engineer@domain.com" type="email"/>
+<button class="bg-electric-blue text-white px-8 py-4 rounded-xl font-bold hover:shadow-[0_0_25px_rgba(0,122,255,0.3)] transition-all" type="submit">Subscribe</button>
+</form>
+</div>
+<!-- Abstract circuit line deco -->
+<svg class="absolute top-0 right-0 opacity-10 pointer-events-none" fill="none" height="400" viewbox="0 0 400 400" width="400" xmlns="http://www.w3.org/2000/svg">
+<path d="M400 100H300L250 150H150L100 200V400" stroke="#007AFF" stroke-width="2"></path>
+<circle cx="100" cy="200" fill="#007AFF" r="4"></circle>
+<path d="M400 50H350V250L300 300H200" stroke="#007AFF" stroke-width="2"></path>
+<circle cx="200" cy="300" fill="#007AFF" r="4"></circle>
+</svg>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-base max-w-container-max mx-auto border-t border-white/5 bg-surface-deep">
+<div class="flex flex-col gap-2">
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface">MakeMyPC</div>
+<p class="font-body-sm text-body-sm text-outline">© 2024 MakeMyPC. Kinetic Precision Engineering.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-body-sm text-body-sm text-outline transition-colors hover:text-electric-blue cursor-pointer" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-outline transition-colors hover:text-electric-blue cursor-pointer" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-outline transition-colors hover:text-electric-blue cursor-pointer" href="#">Warranty</a>
+<a class="font-body-sm text-body-sm text-outline transition-colors hover:text-electric-blue cursor-pointer" href="#">Contact</a>
+</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center hover:border-electric-blue transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-sm text-outline group-hover:text-electric-blue" data-icon="public">public</span>
+</div>
+<div class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center hover:border-electric-blue transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-sm text-outline group-hover:text-electric-blue" data-icon="chat_bubble">chat_bubble</span>
+</div>
+</div>
+</footer>
+<script>
+        // Simple search focus micro-interaction
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                document.querySelector('input').focus();
+            }
+        });
+
+        // Sticky nav scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-surface-deep/90');
+            } else {
+                nav.classList.remove('bg-surface-deep/90');
+            }
+        });
+    </script>
+</body></html>
