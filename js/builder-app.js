@@ -231,85 +231,15 @@ window.removePart = function(categoryKey) {
 
 // 5. Render Sidebar
 function renderSidebar() {
-    const listContainer = document.getElementById('sidebar-selection-list');
-    const priceEl = document.getElementById('sidebar-total-price');
-    const powerEl = document.getElementById('sidebar-power');
-    const powerBar = document.getElementById('sidebar-power-bar');
-    const recPsuEl = document.getElementById('sidebar-rec-psu');
-    const checkoutBtn = document.getElementById('sidebar-checkout-btn');
-    
-    if (!listContainer) return;
-
-    let total = 0;
-    let html = '';
-    
-    // Map of icons
-    const icons = {
-        cpu: 'memory', mobo: 'dns', ram: 'memory_alt', gpu: 'developer_board',
-        storage: 'hard_drive', cooler: 'ac_unit', psu: 'power', case: 'desktop_windows',
-        fans: 'mode_fan', accessories: 'keyboard'
-    };
-
-    steps.filter(s => s.key).forEach(step => {
-        const part = state.selections[step.key];
-        if (part) {
-            total += part.price;
-            html += `
-            <li class="flex items-center gap-2 text-xs group">
-                <div class="w-6 h-6 rounded bg-white/5 flex items-center justify-center flex-shrink-0">
-                    <span class="material-symbols-outlined text-[10px] text-primary">${icons[step.key]}</span>
-                </div>
-                <div class="flex-1 truncate flex flex-col">
-                    <span class="text-[8px] text-on-surface-variant uppercase leading-none">${step.label}</span>
-                    <span class="truncate leading-tight text-[11px]">${part.model}</span>
-                </div>
-                <span class="text-primary material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 cursor-pointer transition-opacity" onclick="removePart('${step.key}')">close</span>
-            </li>
-            `;
-        } else {
-            html += `
-            <li class="flex items-center gap-2 text-xs opacity-30 cursor-pointer hover:opacity-80 transition-opacity" onclick="goToStep(${steps.findIndex(s=>s.key===step.key)})">
-                <div class="w-6 h-6 rounded bg-white/5 flex items-center justify-center border border-dashed border-white/10 flex-shrink-0"></div>
-                <span class="flex-1 text-[11px]">Select ${step.label}...</span>
-            </li>
-            `;
-        }
-    });
-    
-    listContainer.innerHTML = html;
-    priceEl.textContent = formatPrice(total);
-    
-    const power = calculateTotalPower();
-    powerEl.textContent = power + 'W';
-    
-    // Recommended PSU is total power * 1.5 for headroom
-    const recPsu = Math.ceil((power * 1.5) / 50) * 50;
-    if(recPsuEl) recPsuEl.textContent = recPsu + 'W Recommended';
-    
-    // PSU bar (assuming 1000W max for bar scale)
-    if(powerBar) {
-        const psuSelected = state.selections.psu;
-        const maxScale = psuSelected ? psuSelected.wattage : 1000;
-        const percent = Math.min(100, (power / maxScale) * 100);
-        powerBar.style.width = percent + '%';
-        if (percent > 90) powerBar.classList.replace('bg-tertiary', 'bg-error');
-        else powerBar.classList.replace('bg-error', 'bg-tertiary');
-    }
-    
-    // Enable/disable checkout
-    const essentialKeys = ['cpu', 'mobo', 'ram', 'storage', 'psu', 'case'];
-    const isReady = essentialKeys.every(k => state.selections[k] !== null);
-    if(checkoutBtn) {
-        if(isReady) {
-            checkoutBtn.classList.remove('opacity-50', 'pointer-events-none');
-            checkoutBtn.innerHTML = `<span>Review Build</span><span class="material-symbols-outlined">arrow_forward</span>`;
-            checkoutBtn.onclick = () => { window.location.href = 'shopping-cart.html'; }; // Go to cart
-        } else {
-            checkoutBtn.classList.add('opacity-50', 'pointer-events-none');
-            checkoutBtn.innerHTML = `<span>Select Required Parts</span>`;
-        }
+    if (typeof window.renderAdvancedSidebar === 'function') {
+        window.renderAdvancedSidebar();
     }
 }
+
+window.removePart = function(stepKey) {
+    state.selections[stepKey] = null;
+    initApp();
+};
 
 // 6. Review Page
 function renderReviewPage() {
