@@ -11,9 +11,7 @@ const steps = [
     { id: 'psu', label: 'Power Supply', key: 'psu' },
     { id: 'case', label: 'Cabinet', key: 'case' },
     { id: 'fans', label: 'Fans/RGB', key: 'fans' },
-    { id: 'accessories', label: 'Accessories', key: 'accessories' },
-    { id: 'review', label: 'Review Build', key: null },
-    { id: 'checkout', label: 'Checkout', key: null }
+    { id: 'accessories', label: 'Accessories', key: 'accessories' }
 ];
 
 const state = {
@@ -51,7 +49,8 @@ function renderTopBar() {
     
     let html = '';
     steps.forEach((step, index) => {
-        const isCompleted = index < state.currentStepIndex || (step.key && state.selections[step.key]);
+        const isCompleted = !!(step.key && state.selections[step.key]);
+        const isSkipped = index < state.currentStepIndex && !isCompleted;
         const isActive = index === state.currentStepIndex;
         
         let circleClass = 'border border-white/20';
@@ -65,6 +64,10 @@ function renderTopBar() {
             circleClass = 'bg-cyber-teal text-on-primary border-none';
             textClass = 'text-cyber-teal';
             icon = '✓';
+        } else if (isSkipped) {
+            circleClass = 'border-2 border-white/40 text-white/60';
+            textClass = 'opacity-60';
+            icon = '−'; // A dash to indicate skipped
         }
         
         html += `
@@ -74,7 +77,7 @@ function renderTopBar() {
             </div>
         `;
         if (index < steps.length - 1) {
-            html += `<div class="h-px w-8 bg-white/10 mt-[-20px] flex-shrink-0"></div>`;
+            html += `<div class="h-px flex-1 bg-white/10 mt-[-20px] min-w-[10px]"></div>`;
         }
     });
     
@@ -87,6 +90,7 @@ window.goToStep = function(index) {
         state.currentStepIndex = index;
         renderTopBar();
         renderMainContent();
+        renderSidebar();
     }
 };
 
@@ -192,7 +196,7 @@ function renderMainContent() {
                         <button onclick="selectPart('${step.key}', '${part.id}')" class="flex-1 py-3 rounded-lg font-bold transition-all active:scale-95 ${isSelected ? 'bg-white/10 text-primary border border-primary/50' : 'bg-primary text-on-primary hover:brightness-110'}">
                             ${isSelected ? 'Selected' : 'Add to Build'}
                         </button>
-                        <button class="w-12 h-12 flex items-center justify-center border border-white/10 rounded-lg hover:bg-white/5 transition-all text-on-surface-variant">
+                        <button title="${part.features.join(', ')}" onclick="window.showToast('Specs: ' + decodeURIComponent('${encodeURIComponent(part.features.join(', '))}'), 'info')" class="w-12 h-12 flex items-center justify-center border border-white/10 rounded-lg hover:bg-white/5 transition-all text-on-surface-variant">
                             <span class="material-symbols-outlined">info</span>
                         </button>
                     </div>
@@ -209,7 +213,7 @@ window.selectPart = function(categoryKey, partId) {
     state.selections[categoryKey] = part;
     
     // Auto-advance if not the last step
-    if (state.currentStepIndex < steps.length - 2) {
+    if (state.currentStepIndex < steps.length - 1) {
         goToStep(state.currentStepIndex + 1);
     } else {
         renderMainContent();
@@ -251,22 +255,22 @@ function renderSidebar() {
         if (part) {
             total += part.price;
             html += `
-            <li class="flex items-center gap-3 text-body-sm group">
-                <div class="w-8 h-8 rounded bg-white/5 flex items-center justify-center flex-shrink-0">
-                    <span class="material-symbols-outlined text-xs text-primary">${icons[step.key]}</span>
+            <li class="flex items-center gap-2 text-xs group">
+                <div class="w-6 h-6 rounded bg-white/5 flex items-center justify-center flex-shrink-0">
+                    <span class="material-symbols-outlined text-[10px] text-primary">${icons[step.key]}</span>
                 </div>
                 <div class="flex-1 truncate flex flex-col">
-                    <span class="text-[9px] text-on-surface-variant uppercase leading-none">${step.label}</span>
-                    <span class="truncate leading-tight">${part.model}</span>
+                    <span class="text-[8px] text-on-surface-variant uppercase leading-none">${step.label}</span>
+                    <span class="truncate leading-tight text-[11px]">${part.model}</span>
                 </div>
                 <span class="text-primary material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 cursor-pointer transition-opacity" onclick="removePart('${step.key}')">close</span>
             </li>
             `;
         } else {
             html += `
-            <li class="flex items-center gap-3 text-body-sm opacity-30 cursor-pointer hover:opacity-80 transition-opacity" onclick="goToStep(${steps.findIndex(s=>s.key===step.key)})">
-                <div class="w-8 h-8 rounded bg-white/5 flex items-center justify-center border border-dashed border-white/10 flex-shrink-0"></div>
-                <span class="flex-1 text-sm">Select ${step.label}...</span>
+            <li class="flex items-center gap-2 text-xs opacity-30 cursor-pointer hover:opacity-80 transition-opacity" onclick="goToStep(${steps.findIndex(s=>s.key===step.key)})">
+                <div class="w-6 h-6 rounded bg-white/5 flex items-center justify-center border border-dashed border-white/10 flex-shrink-0"></div>
+                <span class="flex-1 text-[11px]">Select ${step.label}...</span>
             </li>
             `;
         }
@@ -299,7 +303,7 @@ function renderSidebar() {
         if(isReady) {
             checkoutBtn.classList.remove('opacity-50', 'pointer-events-none');
             checkoutBtn.innerHTML = `<span>Review Build</span><span class="material-symbols-outlined">arrow_forward</span>`;
-            checkoutBtn.onclick = () => goToStep(10); // Review step
+            checkoutBtn.onclick = () => { window.location.href = 'shopping-cart.html'; }; // Go to cart
         } else {
             checkoutBtn.classList.add('opacity-50', 'pointer-events-none');
             checkoutBtn.innerHTML = `<span>Select Required Parts</span>`;

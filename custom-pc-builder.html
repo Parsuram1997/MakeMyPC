@@ -174,8 +174,8 @@
 <main class="pt-20 min-h-screen flex max-w-container-max mx-auto">
 <!-- Left: Selection Area -->
 <div class="flex-1 min-w-0 px-margin-desktop py-10 pb-32">
-<!-- Builder Progress Steps -->
-<div id="step-bar-container" class="flex items-center gap-8 mb-12 overflow-x-auto pb-4 custom-scrollbar">
+<!-- Top Progress Bar -->
+<div id="step-bar-container" class="flex items-center justify-between mb-12 w-full">
 </div>
 <div class="mb-8">
 <h1 id="step-header" class="font-headline-lg text-headline-lg mb-2">Choose your Processor</h1>
@@ -188,21 +188,21 @@
 <!-- Right: SideNavBar (Build Summary) -->
 <aside class="hidden xl:flex flex-col sticky top-20 h-[calc(100vh-5rem)] w-80 border-l border-white/10 bg-surface-glass backdrop-blur-lg shadow-2xl z-40 overflow-y-auto custom-scrollbar flex-shrink-0">
 <div class="p-6 flex flex-col h-full">
-<div class="mb-8">
+<div class="mb-4">
 <h2 class="text-headline-sm font-headline-sm text-on-surface mb-1">Build Summary</h2>
 <div class="flex items-center gap-2 text-cyber-teal">
 <span class="material-symbols-outlined text-[18px]" data-icon="check_circle">check_circle</span>
 <span class="text-label-mono text-[10px] font-label-mono uppercase tracking-widest">Compatibility Clear</span>
 </div>
 </div>
-<div class="space-y-6 mb-8 flex-1">
+<div class="space-y-4 mb-4 flex-1">
 <!-- Stat 1: Price -->
 <div class="flex flex-col gap-1">
 <span class="text-label-mono text-on-surface-variant uppercase text-[10px]">Total Price</span>
-<div id="sidebar-total-price" class="text-headline-lg font-headline-lg text-primary tracking-tighter">₹0.00</div>
+<div id="sidebar-total-price" class="text-headline-md font-headline-md text-primary tracking-tighter">₹0.00</div>
 </div>
 <!-- Stat 2: Performance -->
-<div class="space-y-3">
+<div class="space-y-2">
 <div class="flex justify-between items-center">
 <span class="text-label-mono text-on-surface-variant uppercase text-[10px]">Est. 4K Performance</span>
 <span class="material-symbols-outlined text-primary text-sm" data-icon="speed">speed</span>
@@ -245,14 +245,14 @@
 </div>
 </div>
 <!-- Selected Parts List -->
-<div class="pt-6 border-t border-white/5">
-<span class="text-label-mono text-on-surface-variant uppercase text-[10px] mb-4 block">Selection List</span>
-<ul id="sidebar-selection-list" class="space-y-3">
+<div class="pt-4 border-t border-white/5">
+<span class="text-label-mono text-on-surface-variant uppercase text-[10px] mb-2 block">Selection List</span>
+<ul id="sidebar-selection-list" class="space-y-1.5">
 </ul>
 </div>
 </div>
-<div class="mt-auto pt-6 border-t border-white/10 space-y-4">
-<button id="sidebar-checkout-btn" class="w-full bg-electric-blue text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-[0_0_30px_rgba(0,122,255,0.4)] hover:brightness-110 active:scale-95 transition-all opacity-50 pointer-events-none">
+<div class="mt-auto pt-4 border-t border-white/10 space-y-2">
+<button id="sidebar-checkout-btn" class="w-full bg-electric-blue text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-[0_0_30px_rgba(0,122,255,0.4)] hover:brightness-110 active:scale-95 transition-all opacity-50 pointer-events-none">
 <span>Select Required Parts</span>
 </button>
 <p class="text-[10px] text-center text-on-surface-variant uppercase tracking-widest font-label-mono">Free shipping on all builds</p>
@@ -296,6 +296,7 @@
 <p class="text-label-mono text-[11px] text-on-surface-variant">© 2024 MakeMyPC. All Rights Reserved.</p>
 </div>
 </footer>
+<script src="js/global.js"></script>
 <script src="js/builder-data.js"></script>
 <script src="js/builder-app.js"></script>
 <script type="module" src="js/auth.js"></script>

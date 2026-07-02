@@ -197,7 +197,7 @@
 <div class="flex justify-between items-start">
 <div>
 <p class="font-label-mono text-label-mono text-outline uppercase">Total Revenue</p>
-<h4 class="font-headline-lg text-headline-lg mt-2 font-bold text-on-surface">$248,590</h4>
+<h4 class="font-headline-lg text-headline-lg mt-2 font-bold text-on-surface">₹248,590</h4>
 </div>
 <span class="material-symbols-outlined text-cyber-teal p-2 bg-cyber-teal/10 rounded-lg" data-icon="payments">payments</span>
 </div>
@@ -373,7 +373,7 @@
 <div class="font-label-mono text-xs text-outline">alex.r@example.com</div>
 </td>
 <td class="py-4 text-on-surface-variant font-body-sm">RTX 4090 | Ryzen 9 7950X</td>
-<td class="py-4 font-label-mono">$4,299.00</td>
+<td class="py-4 font-label-mono">₹4,299.00</td>
 <td class="py-4">
 <span class="status-badge bg-electric-blue/10 text-electric-blue border border-electric-blue/20">Processing</span>
 </td>
@@ -388,7 +388,7 @@
 <div class="font-label-mono text-xs text-outline">schen.tech@example.com</div>
 </td>
 <td class="py-4 text-on-surface-variant font-body-sm">RTX 4080 | Core i7-14700K</td>
-<td class="py-4 font-label-mono">$2,850.00</td>
+<td class="py-4 font-label-mono">₹2,850.00</td>
 <td class="py-4">
 <span class="status-badge bg-cyber-teal/10 text-cyber-teal border border-cyber-teal/20">Shipped</span>
 </td>
@@ -403,7 +403,7 @@
 <div class="font-label-mono text-xs text-outline">mthorne@probuild.net</div>
 </td>
 <td class="py-4 text-on-surface-variant font-body-sm">RTX 5090 | Core i9-14900K</td>
-<td class="py-4 font-label-mono">$5,499.00</td>
+<td class="py-4 font-label-mono">₹5,499.00</td>
 <td class="py-4">
 <span class="status-badge bg-outline/10 text-on-surface-variant border border-outline/20">Delivered</span>
 </td>
@@ -438,8 +438,8 @@
                     const rect = card.getBoundingClientRect();
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
-                    card.style.setProperty('--mouse-x', `${x}px`);
-                    card.style.setProperty('--mouse-y', `${y}px`);
+                    card.style.setProperty('--mouse-x', `₹{x}px`);
+                    card.style.setProperty('--mouse-y', `₹{y}px`);
                 });
             });
         });
