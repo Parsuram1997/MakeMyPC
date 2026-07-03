@@ -1,4 +1,4 @@
-// builder-data.js
+db_content = """// builder-data.js
 // Enterprise Mock Database for MakeMyPC Custom Builder
 
 const db = {
@@ -147,8 +147,6 @@ const db = {
             dlss: 'Yes',
             fsr: 'No',
             power_consumption: '450W',
-            power: 450,
-            length: 304,
             recommended_psu: '1000W',
             features: ['24GB GDDR6X', 'DLSS 3.0', 'Ada Lovelace'],
             badge: 'Ultimate'
@@ -166,8 +164,6 @@ const db = {
             dlss: 'No',
             fsr: 'Yes',
             power_consumption: '355W',
-            power: 355,
-            length: 287,
             recommended_psu: '850W',
             features: ['24GB GDDR6', 'RDNA 3', 'FSR 3.0'],
             badge: 'Value Flagship'
@@ -247,7 +243,6 @@ const db = {
             stock: 'In Stock',
             type: 'Liquid Cooler',
             radiator_size: '360mm',
-            sockets: ['LGA1700', 'AM4', 'AM5'],
             rgb: 'Yes',
             noise_level: '27 dBA',
             features: ['360mm AIO', 'LCD Display', 'F120 RGB Fans'],
@@ -262,7 +257,6 @@ const db = {
             stock: 'In Stock',
             type: 'Air Cooler',
             height: '165mm',
-            sockets: ['LGA1700', 'AM4', 'AM5'],
             rgb: 'No',
             noise_level: '24 dBA',
             features: ['Dual Tower', '140mm Fans', 'Ultra Quiet'],
@@ -294,8 +288,6 @@ const db = {
             image: 'https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&w=400&q=80',
             stock: 'In Stock',
             form_factor: 'ATX',
-            max_gpu_length: 422,
-            max_cooler_height: 167,
             front_panel: 'USB Type-C',
             rgb: 'Yes',
             tempered_glass: 'Yes',
@@ -320,30 +312,10 @@ const db = {
             badge: 'Best RGB'
         }
     ],
-    accessories: [
-        {
-            id: 'acc_logitech_gpro_x_superlight',
-            brand: 'Logitech',
-            model: 'G PRO X Superlight',
-            price: 12500,
-            image: 'https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=400&q=80',
-            stock: 'In Stock',
-            type: 'Mouse',
-            wireless: 'Yes',
-            features: ['Ultra Lightweight', 'HERO Sensor', 'Wireless'],
-            badge: 'Esports'
-        },
-        {
-            id: 'acc_razer_huntsman_mini',
-            brand: 'Razer',
-            model: 'Huntsman Mini',
-            price: 10000,
-            image: 'https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=400&q=80',
-            stock: 'In Stock',
-            type: 'Keyboard',
-            switches: 'Optical',
-            features: ['60% Form Factor', 'Optical Switches', 'RGB'],
-            badge: 'Popular'
-        }
-    ]
+    accessories: []
 };
+"""
+
+with open('c:/Projects/MakeMyPC/js/builder-data.js', 'w', encoding='utf-8') as f:
+    f.write(db_content)
+print("Database updated.")

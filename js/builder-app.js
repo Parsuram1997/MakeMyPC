@@ -6,22 +6,26 @@ const steps = [
     { id: 'mobo', label: 'Motherboard', key: 'mobo' },
     { id: 'ram', label: 'Memory', key: 'ram' },
     { id: 'gpu', label: 'Graphics', key: 'gpu' },
-    { id: 'storage', label: 'Storage', key: 'storage' },
+    { id: 'ssd', label: 'SSD', key: 'ssd' },
+    { id: 'hdd', label: 'HDD', key: 'hdd' },
     { id: 'cooler', label: 'Cooler', key: 'cooler' },
     { id: 'psu', label: 'Power Supply', key: 'psu' },
     { id: 'case', label: 'Cabinet', key: 'case' },
     { id: 'fans', label: 'Fans/RGB', key: 'fans' },
-    { id: 'accessories', label: 'Accessories', key: 'accessories' }
+    { id: 'accessories', label: 'Accessories', key: 'accessories' },
+    { id: 'review', label: 'Review', key: null }
 ];
 
 const state = {
     currentStepIndex: 0,
+    filters: { searchQuery: '', sortBy: 'popularity', activeFilters: {} },
     selections: {
         cpu: null,
         mobo: null,
         ram: null,
         gpu: null,
-        storage: null,
+        ssd: null,
+        hdd: null,
         cooler: null,
         psu: null,
         case: null,
@@ -49,7 +53,12 @@ function renderTopBar() {
     
     let html = '';
     steps.forEach((step, index) => {
-        const isCompleted = !!(step.key && state.selections[step.key]);
+        let isCompleted = !!(step.key && state.selections[step.key]);
+        if (step.id === 'review') {
+            const requiredParts = ['cpu', 'mobo', 'ram', 'ssd', 'psu', 'case'];
+            isCompleted = requiredParts.every(part => state.selections[part]);
+        }
+        
         const isSkipped = index < state.currentStepIndex && !isCompleted;
         const isActive = index === state.currentStepIndex;
         
@@ -57,9 +66,14 @@ function renderTopBar() {
         let textClass = 'opacity-50';
         let icon = index + 1;
         
-        if (isActive) {
+        if (isActive && isCompleted) {
+            circleClass = 'bg-cyber-teal text-on-primary font-bold hardware-glow border-none';
+            textClass = 'text-cyber-teal font-bold';
+            icon = '✓';
+        } else if (isActive) {
             circleClass = 'bg-primary text-on-primary font-bold hardware-glow border-none';
             textClass = 'text-primary font-bold';
+            icon = index + 1;
         } else if (isCompleted) {
             circleClass = 'bg-cyber-teal text-on-primary border-none';
             textClass = 'text-cyber-teal';
@@ -88,6 +102,9 @@ function renderTopBar() {
 window.goToStep = function(index) {
     if (index >= 0 && index < steps.length) {
         state.currentStepIndex = index;
+    state.filters.searchQuery = '';
+    const searchInput = document.getElementById('filter-search');
+    if(searchInput) searchInput.value = '';
         renderTopBar();
         renderMainContent();
         renderSidebar();
@@ -97,6 +114,204 @@ window.goToStep = function(index) {
 window.nextStep = function() {
     goToStep(state.currentStepIndex + 1);
 };
+
+
+// 2.5 Filtering Engine
+const filterDefinitions = {
+    cpu: [
+        { key: 'brand', label: 'Brand', options: ['Intel', 'AMD'] },
+        { key: 'socket', label: 'Socket', options: ['LGA1700', 'AM4', 'AM5'] },
+        { key: 'core_count', label: 'Cores', options: ['6', '8', '12', '16', '24'] }
+    ],
+    mobo: [
+        { key: 'brand', label: 'Brand', options: ['ASUS', 'MSI', 'Gigabyte', 'ASRock'] },
+        { key: 'socket', label: 'Socket', options: ['LGA1700', 'AM4', 'AM5'] },
+        { key: 'form_factor', label: 'Size', options: ['ATX', 'Micro ATX', 'Mini ITX'] }
+    ],
+    ram: [
+        { key: 'brand', label: 'Brand', options: ['Corsair', 'G.Skill', 'Crucial'] },
+        { key: 'capacity', label: 'Capacity', options: ['16GB', '32GB', '64GB'] },
+        { key: 'type', label: 'Type', options: ['DDR4', 'DDR5'] }
+    ],
+    gpu: [
+        { key: 'brand', label: 'Brand', options: ['NVIDIA', 'AMD', 'Intel'] },
+        { key: 'vram', label: 'VRAM', options: ['8GB', '12GB', '16GB', '24GB'] },
+        { key: 'memory_type', label: 'Mem Type', options: ['GDDR6', 'GDDR6X'] }
+    ],
+    ssd: [
+        { key: 'brand', label: 'Brand', options: ['Samsung', 'Western Digital', 'Crucial'] },
+        { key: 'capacity', label: 'Capacity', options: ['1TB', '2TB', '4TB'] },
+        { key: 'pcie_gen', label: 'Generation', options: ['Gen3', 'Gen4', 'Gen5'] }
+    ],
+    hdd: [
+        { key: 'brand', label: 'Brand', options: ['Seagate', 'Western Digital'] },
+        { key: 'capacity', label: 'Capacity', options: ['1TB', '2TB', '4TB', '8TB'] },
+        { key: 'rpm', label: 'Speed', options: ['5400', '7200'] }
+    ],
+    cooler: [
+        { key: 'brand', label: 'Brand', options: ['NZXT', 'Corsair', 'Noctua', 'Deepcool'] },
+        { key: 'type', label: 'Type', options: ['Air Cooler', 'Liquid Cooler'] },
+        { key: 'radiator_size', label: 'Rad Size', options: ['120mm', '240mm', '360mm'] }
+    ],
+    psu: [
+        { key: 'brand', label: 'Brand', options: ['Corsair', 'EVGA', 'Seasonic'] },
+        { key: 'wattage', label: 'Wattage', options: ['650W', '750W', '850W', '1000W'] },
+        { key: 'efficiency', label: 'Rating', options: ['Bronze', 'Gold', 'Platinum'] }
+    ],
+    case: [
+        { key: 'brand', label: 'Brand', options: ['Lian Li', 'NZXT', 'Corsair'] },
+        { key: 'form_factor', label: 'Size', options: ['ATX', 'Micro ATX', 'Mini ITX'] },
+        { key: 'color', label: 'Color', options: ['Black', 'White'] }
+    ],
+    fans: [
+        { key: 'brand', label: 'Brand', options: ['Lian Li', 'Corsair', 'Noctua'] },
+        { key: 'size', label: 'Size', options: ['120mm', '140mm'] },
+        { key: 'rgb', label: 'RGB', options: ['Yes', 'No', 'ARGB'] }
+    ]
+};
+
+window.updateSearch = function(query) {
+    state.filters.searchQuery = query.toLowerCase();
+    renderMainContent();
+};
+
+window.setSort = function(sortType) {
+    state.filters.sortBy = sortType;
+    const sortBtn = document.getElementById('current-sort');
+    if (sortBtn) {
+        if (sortType === 'popularity') sortBtn.textContent = 'Popularity';
+        if (sortType === 'price_asc') sortBtn.textContent = 'Price: Low to High';
+        if (sortType === 'price_desc') sortBtn.textContent = 'Price: High to Low';
+    }
+    renderMainContent();
+};
+
+window.toggleFilter = function(category, key, value) {
+    if (!state.filters.activeFilters[category]) {
+        state.filters.activeFilters[category] = {};
+    }
+    if (!state.filters.activeFilters[category][key]) {
+        state.filters.activeFilters[category][key] = [];
+    }
+    
+    const arr = state.filters.activeFilters[category][key];
+    const index = arr.indexOf(value);
+    if (index > -1) {
+        arr.splice(index, 1);
+        if (arr.length === 0) delete state.filters.activeFilters[category][key];
+    } else {
+        arr.push(value);
+    }
+    renderMainContent();
+};
+
+window.clearFilters = function() {
+    state.filters.activeFilters = {};
+    state.filters.searchQuery = '';
+    const searchInput = document.getElementById('filter-search');
+    if (searchInput) searchInput.value = '';
+    renderMainContent();
+};
+
+function applyFilters(parts, category) {
+    let result = [...parts];
+    
+    // Search
+    if (state.filters.searchQuery) {
+        result = result.filter(p => 
+            p.brand.toLowerCase().includes(state.filters.searchQuery) || 
+            p.model.toLowerCase().includes(state.filters.searchQuery)
+        );
+    }
+    
+    // Active Filters
+    const active = state.filters.activeFilters[category];
+    if (active) {
+        Object.keys(active).forEach(filterKey => {
+            const selectedValues = active[filterKey];
+            if (selectedValues.length > 0) {
+                result = result.filter(p => {
+                    const pVal = p[filterKey];
+                    if (Array.isArray(pVal)) {
+                        return pVal.some(v => selectedValues.includes(v));
+                    }
+                    return selectedValues.includes(pVal);
+                });
+            }
+        });
+    }
+    
+    // Sort
+    if (state.filters.sortBy === 'price_asc') {
+        result.sort((a, b) => a.price - b.price);
+    } else if (state.filters.sortBy === 'price_desc') {
+        result.sort((a, b) => b.price - a.price);
+    }
+    
+    return result;
+}
+
+function renderFiltersUI(category) {
+    const container = document.getElementById('dynamic-filters');
+    const chipsContainer = document.getElementById('active-filters-container');
+    const clearBtn = document.getElementById('clear-filters-btn');
+    if (!container || !chipsContainer) return;
+    
+    const defs = filterDefinitions[category];
+    if (!defs) {
+        container.innerHTML = '';
+        chipsContainer.innerHTML = '';
+        if(clearBtn) clearBtn.classList.add('hidden');
+        return;
+    }
+    
+    let html = '';
+    let chipsHtml = '';
+    let hasFilters = false;
+    const active = state.filters.activeFilters[category] || {};
+
+    defs.forEach(def => {
+        let activeCount = active[def.key] ? active[def.key].length : 0;
+        
+        html += `
+        <div class="relative group/dropdown">
+            <button class="bg-surface-container-low border border-white/10 rounded-lg px-3 py-1.5 text-xs flex items-center justify-between w-28 hover:bg-white/5 transition-all">
+                ${def.label} ${activeCount > 0 ? `<span class="bg-primary text-on-primary rounded-full w-4 h-4 flex items-center justify-center text-[10px]">${activeCount}</span>` : '<span class="material-symbols-outlined text-[14px]">arrow_drop_down</span>'}
+            </button>
+            <div class="absolute left-0 top-full mt-2 w-48 bg-surface-deep border border-white/10 rounded-lg shadow-2xl opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-all flex flex-col z-50 p-2 max-h-64 overflow-y-auto">
+        `;
+        
+        def.options.forEach(opt => {
+            const isChecked = active[def.key] && active[def.key].includes(opt);
+            html += `
+                <label class="flex items-center gap-2 px-2 py-1.5 hover:bg-white/5 rounded cursor-pointer text-sm">
+                    <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="window.toggleFilter('${category}', '${def.key}', '${opt}')" class="rounded border-white/20 bg-black/50 text-primary focus:ring-primary focus:ring-offset-surface">
+                    ${opt}
+                </label>
+            `;
+            
+            if (isChecked) {
+                hasFilters = true;
+                chipsHtml += `
+                    <div class="bg-primary/10 text-primary border border-primary/20 rounded-full px-3 py-1 text-xs flex items-center gap-1">
+                        ${opt}
+                        <button onclick="window.toggleFilter('${category}', '${def.key}', '${opt}')" class="hover:text-white"><span class="material-symbols-outlined text-[14px]">close</span></button>
+                    </div>
+                `;
+            }
+        });
+        
+        html += `</div></div>`;
+    });
+    
+    container.innerHTML = html;
+    chipsContainer.innerHTML = chipsHtml;
+    
+    if (clearBtn) {
+        if (hasFilters) clearBtn.classList.remove('hidden');
+        else clearBtn.classList.add('hidden');
+    }
+}
 
 // 3. Compatibility Engine
 function getCompatibleParts(categoryKey) {
@@ -113,11 +328,11 @@ function getCompatibleParts(categoryKey) {
         }
         // RAM -> Mobo RAM Type Match
         if (categoryKey === 'ram' && mobo) {
-            if (part.ram_support !== mobo.ram_support) return false;
+            if (part.type !== mobo.ram_support) return false;
         }
         // RAM -> CPU RAM Support (if mobo not selected yet)
         if (categoryKey === 'ram' && !mobo && cpu) {
-            if (!cpu.ram_support.includes(part.ram_support)) return false;
+            if (!cpu.ram_support.includes(part.type)) return false;
         }
         // GPU -> Case clearance
         if (categoryKey === 'gpu' && pccase && part.length > 0) {
@@ -149,10 +364,15 @@ function renderMainContent() {
     
     const step = steps[state.currentStepIndex];
     
+    const filterContainer = document.getElementById('filter-container');
+    
     if (step.id === 'review') {
+        if (filterContainer) filterContainer.classList.add('hidden');
         renderReviewPage();
         return;
     }
+    if (filterContainer) filterContainer.classList.remove('hidden');
+    
     if (step.id === 'checkout') {
         renderCheckoutPage();
         return;
@@ -161,7 +381,14 @@ function renderMainContent() {
     header.textContent = `Choose your ${step.label}`;
     desc.textContent = `Select a compatible ${step.label.toLowerCase()} for your build. Incompatible parts are automatically hidden.`;
     
-    const parts = getCompatibleParts(step.key);
+
+    const rawParts = getCompatibleParts(step.key);
+    renderFiltersUI(step.key);
+    const parts = applyFilters(rawParts, step.key);
+    
+    const countSpan = document.getElementById('product-count');
+    if (countSpan) countSpan.textContent = `${parts.length} items`;
+    
     
     let html = '';
     if (parts.length === 0) {
@@ -196,7 +423,18 @@ function renderMainContent() {
                         <button onclick="selectPart('${step.key}', '${part.id}')" class="flex-1 py-3 rounded-lg font-bold transition-all active:scale-95 ${isSelected ? 'bg-white/10 text-primary border border-primary/50' : 'bg-primary text-on-primary hover:brightness-110'}">
                             ${isSelected ? 'Selected' : 'Add to Build'}
                         </button>
-                        <button title="${part.features.join(', ')}" onclick="window.showToast('Specs: ' + decodeURIComponent('${encodeURIComponent(part.features.join(', '))}'), 'info')" class="w-12 h-12 flex items-center justify-center border border-white/10 rounded-lg hover:bg-white/5 transition-all text-on-surface-variant">
+                        
+                        <a href="https://amazon.in/s?k=${encodeURIComponent(part.brand + ' ' + part.model)}" target="_blank" title="Buy on Amazon" class="w-12 h-12 flex-shrink-0 flex items-center justify-center border border-white/10 rounded-lg hover:bg-[#FF9900]/10 transition-all text-[#FF9900] group/amz p-2">
+                            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-full h-full group-hover/amz:scale-110 transition-transform">
+                                <path d="M13.882 17.587c-2.316.924-4.708 1.4-6.848 1.4-2.825 0-4.664-.476-4.664-.476.368.96 1.637 1.777 3.328 2.053 2.378.435 5.094.343 7.568-.313 1.15-.316 2.062-.843 2.062-.843l-1.446-1.82zM12.22 8.718c-.802 0-1.39.29-1.724.97-.13.3-.223.774-.223 1.258 0 1.22.28 1.968.805 2.502.493.523 1.144.693 1.956.693.687 0 1.206-.21 1.576-.412v-1.61c-.413.284-.91.433-1.343.433-.61 0-1.015-.226-1.223-.54-.22-.32-.224-.8-.224-1.35v-1.1h2.984v-1.2h-2.984V6.02h-1.61v2.33h-.995v1.2h.995v1.48c0 .927.203 1.636.577 2.128.434.524.966.71 1.868.71.97 0 1.79-.24 2.158-.403v-1.18c-.428-.276-1.14-.6-2.18-.6z"/>
+                            </svg>
+                        </a>
+
+                        <a href="https://www.flipkart.com/search?q=${encodeURIComponent(part.brand + ' ' + part.model)}" target="_blank" title="Buy on Flipkart" class="w-12 h-12 flex-shrink-0 flex items-center justify-center border border-white/10 rounded-lg hover:bg-[#2874F0]/10 transition-all group/fk p-2">
+                            <img src="images/flipkart-icon.png" alt="Flipkart" class="w-full h-full object-contain group-hover/fk:scale-110 transition-transform">
+                        </a>
+
+                        <button title="${part.features.join(', ')}" onclick="window.showToast('Specs: ' + decodeURIComponent('${encodeURIComponent(part.features.join(', '))}'), 'info')" class="w-12 h-12 flex-shrink-0 flex items-center justify-center border border-white/10 rounded-lg hover:bg-white/5 transition-all text-on-surface-variant">
                             <span class="material-symbols-outlined">info</span>
                         </button>
                     </div>
@@ -258,17 +496,17 @@ function renderReviewPage() {
         if (part) {
             subtotal += part.price;
             partsHtml += `
-            <div class="flex justify-between items-center py-4 border-b border-white/5">
+            <div class="flex justify-between items-center py-2 border-b border-white/5">
                 <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-white/5 rounded p-1">
+                    <div class="w-10 h-10 bg-white/5 rounded p-1">
                         ${part.image ? `<img src="${part.image}" class="w-full h-full object-contain">` : ''}
                     </div>
                     <div>
                         <div class="text-[10px] text-on-surface-variant uppercase">${step.label}</div>
-                        <div class="font-medium">${part.brand} ${part.model}</div>
+                        <div class="font-medium text-sm">${part.brand} ${part.model}</div>
                     </div>
                 </div>
-                <div class="font-label-mono text-primary">${formatPrice(part.price)}</div>
+                <div class="font-label-mono text-primary text-sm">${formatPrice(part.price)}</div>
             </div>
             `;
         }
@@ -285,41 +523,8 @@ function renderReviewPage() {
             <span class="material-symbols-outlined">verified</span> All parts are 100% compatible
         </h3>
         
-        <div class="mb-8">
+        <div class="mb-2">
             ${partsHtml}
-        </div>
-        
-        <div class="bg-surface-container rounded-lg p-6 space-y-3 font-label-mono text-sm">
-            <div class="flex justify-between text-on-surface-variant">
-                <span>Subtotal (Excl. Tax)</span>
-                <span>${formatPrice(subtotal)}</span>
-            </div>
-            <div class="flex justify-between text-on-surface-variant">
-                <span>GST (18%)</span>
-                <span>${formatPrice(gst)}</span>
-            </div>
-            <div class="flex justify-between text-on-surface-variant">
-                <span>Professional Assembly</span>
-                <span>${formatPrice(assembly)}</span>
-            </div>
-            <div class="flex justify-between text-on-surface-variant">
-                <span>Shipping (Pan-India)</span>
-                <span>${shipping === 0 ? 'FREE' : formatPrice(shipping)}</span>
-            </div>
-            <div class="h-px w-full bg-white/10 my-4"></div>
-            <div class="flex justify-between text-headline-sm font-headline-sm text-primary">
-                <span>Grand Total</span>
-                <span>${formatPrice(grandTotal)}</span>
-            </div>
-        </div>
-        
-        <div class="mt-8 flex gap-4">
-            <button class="flex-1 bg-electric-blue text-white py-4 rounded-xl font-bold shadow-[0_0_20px_rgba(0,122,255,0.4)] hover:brightness-110 active:scale-95 transition-all" onclick="goToStep(11)">
-                Proceed to Secure Checkout
-            </button>
-            <button class="px-6 py-4 rounded-xl border border-white/20 hover:bg-white/5 font-medium flex items-center gap-2 transition-all">
-                <span class="material-symbols-outlined">download</span> Download PDF
-            </button>
         </div>
     </div>
     `;

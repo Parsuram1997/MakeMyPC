@@ -1,32 +1,26 @@
-import os
 import glob
 import re
 
-html_files = glob.glob('c:/Projects/MakeMyPC/*.html')
+nav_replacement = """<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-xs" href="prebuilt-pcs.html">Shop</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-mono text-xs" href="builder-landing.html">Builder</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-xs" href="#">Resources</a>"""
 
-new_auth_icons = '''<div class="flex gap-x-4">
-<button class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100 relative" onclick="window.location.href='shopping-cart.html'">
-<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
-<span id="cart-badge" class="absolute -top-1 -right-1 bg-error text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
-</button>
-<a href="login.html" id="auth-login-btn" class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100 flex items-center">
-<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
-</a>
-<a href="account-settings.html" id="auth-avatar-btn" class="hidden w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm hover:brightness-110 transition-all">
-<span id="avatar-initial">U</span>
-</a>
-</div>'''
-
-for file in html_files:
+for file in glob.glob('*.html'):
+    if file == 'builder-landing.html':
+        continue
+    
     with open(file, 'r', encoding='utf-8') as f:
         content = f.read()
     
-    # We match <div class="flex gap-x-4">...</div> inside nav
-    content = re.sub(r'<div class="flex gap-x-4">[\s\S]*?(?=</div>\s*</div>\s*</div>\s*</nav>)</div>', new_auth_icons, content)
+    # We want to find the <div class="hidden md:flex gap-x-8 items-center"> and replace its contents up to </div>
+    pattern = r'(<div class="hidden md:flex gap-x-8 items-center">)(.*?)(</div>\s*<div class="flex items-center gap-x-6">)'
     
-    # 2. Add auth.js script before </body>
-    if '<script type="module" src="js/auth.js"></script>' not in content:
-        content = content.replace('</body>', '<script type="module" src="js/auth.js"></script>\n</body>')
+    def repl(m):
+        return m.group(1) + '\n' + nav_replacement + '\n' + m.group(3)
         
-    with open(file, 'w', encoding='utf-8') as f:
-        f.write(content)
+    new_content = re.sub(pattern, repl, content, flags=re.DOTALL)
+    
+    if new_content != content:
+        with open(file, 'w', encoding='utf-8') as f:
+            f.write(new_content)
+        print(f'Updated {file}')

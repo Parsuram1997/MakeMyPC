@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
+<html class="dark" lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>MakeMyPC | Custom PC Builder</title>
+<title>MakeMyPC | Choose Builder</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <style>
         :root {
@@ -17,35 +16,60 @@
             background-color: #00081C;
             color: #d7e2ff;
             font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
         .glass-card {
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .glass-card:hover {
+            transform: translateY(-10px);
             border-color: rgba(0, 122, 255, 0.4);
-            box-shadow: 0 0 20px rgba(0, 122, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 122, 255, 0.15);
         }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #007AFF;
-            border-radius: 10px;
-        }
+        
         .hardware-glow {
-            filter: drop-shadow(0 0 15px rgba(0, 122, 255, 0.3));
+            filter: drop-shadow(0 0 15px rgba(0, 122, 255, 0.4));
         }
-        .step-active {
-            color: #adc6ff;
-            border-bottom: 2px solid #adc6ff;
+
+        .builder-option {
+            opacity: 0;
+            animation: slideUp 0.8s ease-out forwards;
         }
-    </style>
+        
+        .builder-option:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Floating background elements */
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: float 10s infinite alternate ease-in-out;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, -50px) scale(1.1); }
+        }
+</style>
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -141,7 +165,12 @@
       }
     </script>
 </head>
-<body class="bg-surface-deep text-on-surface overflow-x-hidden">
+<body class="bg-surface-deep text-on-surface min-h-screen flex flex-col relative">
+
+<!-- Background Ambient Orbs -->
+<div class="bg-orb w-[600px] h-[600px] bg-electric-blue/20 -top-40 -left-40"></div>
+<div class="bg-orb w-[500px] h-[500px] bg-cyber-teal/10 bottom-0 -right-20" style="animation-delay: -5s;"></div>
+
 <!-- TopNavBar -->
 <nav class="fixed top-0 w-full z-50 bg-surface-glass backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
 <div class="flex justify-between items-center max-w-container-max mx-auto px-margin-desktop h-20">
@@ -171,99 +200,82 @@
 </div>
 </div>
 </nav>
-<main class="pt-20 min-h-screen flex max-w-container-max mx-auto">
-<!-- Left: Selection Area -->
-<div class="flex-1 min-w-0 px-margin-desktop py-6 pb-32">
-<!-- Top Progress Bar -->
-<div id="step-bar-container" class="flex items-center justify-between mb-6 w-full">
-</div>
-<div class="mb-6">
-    <div class="mb-3">
-        <h1 id="step-header" class="font-headline-lg text-headline-lg mb-1">Choose your Processor</h1>
-        <p id="step-desc" class="text-on-surface-variant font-body-md">Select the heart of your system. Higher core counts improve multitasking and workstation performance.</p>
-    </div>
+
+<main class="flex-1 flex flex-col items-center justify-center pt-24 pb-20 px-4 md:px-8 max-w-6xl mx-auto w-full z-10">
     
-    <div id="filter-container" class="flex flex-col gap-2 bg-surface-container-low/40 px-4 py-3 rounded-xl border border-white/5">
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
-            <div class="flex items-center">
-                <span id="product-count" class="text-sm font-label-mono bg-white/10 px-4 py-1.5 rounded-lg text-on-surface shadow-inner">0 items</span>
+    <div class="text-center mb-16 animate-[slideUp_0.8s_ease-out]">
+        <h1 class="text-5xl md:text-6xl font-black mb-6 tracking-tight">How do you want to <span class="text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-cyber-teal hardware-glow">build?</span></h1>
+        <p class="text-xl text-on-surface-variant max-w-2xl mx-auto">Choose your path. Let our AI guide you, or take complete control over every single component.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
+        
+        <!-- Smart Builder Option -->
+        <div class="builder-option glass-card rounded-3xl p-8 flex flex-col h-full relative overflow-hidden group">
+            <div class="absolute inset-0 bg-gradient-to-br from-electric-blue/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            <div class="mb-8 relative z-10 flex items-center justify-center w-20 h-20 rounded-2xl bg-electric-blue/20 border border-electric-blue/30 mx-auto group-hover:scale-110 transition-transform duration-500">
+                <span class="material-symbols-outlined text-5xl text-electric-blue hardware-glow">auto_awesome</span>
             </div>
             
-            <div class="flex items-center gap-2 w-full md:w-auto md:flex-1 justify-end">
-                <div class="relative w-full md:max-w-xs">
-                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
-                    <input type="text" id="filter-search" onkeyup="window.updateSearch(this.value)" class="bg-surface-deep border border-white/10 rounded-lg pl-9 pr-4 py-1.5 text-sm focus:outline-none focus:border-primary w-full transition-all" placeholder="Search components...">
+            <h2 class="text-3xl font-bold text-center mb-4 relative z-10">Smart Builder</h2>
+            <p class="text-center text-on-surface-variant mb-8 relative z-10 h-12">Perfect for beginners. Answer 2 simple questions and let our AI build the perfect PC for you.</p>
+            
+            <div class="space-y-4 mb-10 flex-1 relative z-10">
+                <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-electric-blue mt-0.5">check_circle</span>
+                    <span>AI-Powered intelligent component selection</span>
                 </div>
-                <div class="relative group">
-                    <button class="bg-surface-deep border border-white/10 rounded-lg px-3 py-1.5 text-sm flex items-center gap-2 hover:bg-white/5 transition-all whitespace-nowrap">
-                        <span class="material-symbols-outlined text-sm text-primary">sort</span> <span id="current-sort">Popularity</span>
-                    </button>
-                    <div class="absolute right-0 top-full mt-2 w-48 bg-surface border border-white/10 rounded-lg shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all flex flex-col overflow-hidden z-50">
-                        <button class="text-left px-4 py-2 text-sm hover:bg-white/5" onclick="window.setSort('popularity')">Popularity</button>
-                        <button class="text-left px-4 py-2 text-sm hover:bg-white/5" onclick="window.setSort('price_asc')">Price: Low to High</button>
-                        <button class="text-left px-4 py-2 text-sm hover:bg-white/5" onclick="window.setSort('price_desc')">Price: High to Low</button>
-                    </div>
+                <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-electric-blue mt-0.5">check_circle</span>
+                    <span>Guaranteed 100% hardware compatibility</span>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-electric-blue mt-0.5">check_circle</span>
+                    <span>Optimized for your specific budget & use-case</span>
                 </div>
             </div>
+            
+            <button onclick="window.location.href='smart-builder.html'" class="w-full py-4 rounded-xl bg-electric-blue hover:bg-electric-blue/90 text-white font-black text-lg shadow-[0_0_20px_rgba(0,122,255,0.4)] transition-all transform active:scale-95 relative z-10 flex justify-center items-center gap-2">
+                Start Smart Build <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
         </div>
-        
-        <div id="dynamic-filters" class="flex flex-wrap items-center justify-end gap-2 pt-2 border-t border-white/5"></div>
+
+        <!-- Custom Builder Option -->
+        <div class="builder-option glass-card rounded-3xl p-8 flex flex-col h-full relative overflow-hidden group">
+            <div class="absolute inset-0 bg-gradient-to-br from-cyber-teal/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            <div class="mb-8 relative z-10 flex items-center justify-center w-20 h-20 rounded-2xl bg-cyber-teal/20 border border-cyber-teal/30 mx-auto group-hover:scale-110 transition-transform duration-500">
+                <span class="material-symbols-outlined text-5xl text-cyber-teal filter drop-shadow-[0_0_15px_rgba(0,164,166,0.4)]">build</span>
+            </div>
+            
+            <h2 class="text-3xl font-bold text-center mb-4 relative z-10">Custom Builder</h2>
+            <p class="text-center text-on-surface-variant mb-8 relative z-10 h-12">For experienced enthusiasts. Take complete control and hand-pick every single component.</p>
+            
+            <div class="space-y-4 mb-10 flex-1 relative z-10">
+                <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-cyber-teal mt-0.5">check_circle</span>
+                    <span>Complete freedom over parts selection</span>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-cyber-teal mt-0.5">check_circle</span>
+                    <span>Deep performance analytics and FPS estimates</span>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-cyber-teal mt-0.5">check_circle</span>
+                    <span>Real-time power draw calculations</span>
+                </div>
+            </div>
+            
+            <button onclick="window.location.href='custom-pc-builder.html'" class="w-full py-4 rounded-xl border-2 border-cyber-teal text-cyber-teal hover:bg-cyber-teal hover:text-surface-deep font-black text-lg transition-all transform active:scale-95 relative z-10 flex justify-center items-center gap-2 shadow-[0_0_15px_rgba(0,164,166,0.2)] hover:shadow-[0_0_25px_rgba(0,164,166,0.5)]">
+                Start Custom Build <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+        </div>
+
     </div>
-    
-    <div class="flex items-center gap-4 mt-4">
-        <div id="active-filters-container" class="flex flex-wrap gap-2 empty:hidden"></div>
-        <button id="clear-filters-btn" class="text-xs text-primary hover:underline hidden" onclick="window.clearFilters()">Clear All</button>
-    </div>
-</div>
-<!-- Component Grid -->
-<div id="component-grid" class="grid grid-cols-1 gap-gutter">
-</div>
-</div>
-<!-- Right: SideNavBar (Build Summary) -->
-<aside class="hidden md:flex flex-col w-80 lg:w-96 flex-shrink-0 bg-surface-deep/80 backdrop-blur-2xl border border-white/10 sticky top-24 h-[calc(100vh-120px)] rounded-2xl shadow-[0_0_30px_rgba(0,150,255,0.05)] overflow-hidden z-20">
-    <!-- Sidebar rendered via JS -->
-    <div id="sidebar-root" class="flex flex-col h-full relative"></div>
-</aside>
 </main>
-<!-- Footer -->
-<footer class="w-full bg-surface-deep border-t border-white/5 mt-20 relative z-10">
-<div class="max-w-container-max mx-auto px-margin-desktop py-16 grid grid-cols-1 md:grid-cols-4 gap-gutter">
-<div class="space-y-4">
-<div class="font-headline-sm text-headline-sm text-on-surface">MakeMyPC</div>
-<p class="text-body-sm text-on-surface-variant">The future of custom performance computing. Built by enthusiasts, for enthusiasts.</p>
-</div>
-<div>
-<h4 class="text-label-mono text-on-surface font-bold uppercase mb-6">Partners</h4>
-<ul class="space-y-3">
-<li><a class="text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Intel</a></li>
-<li><a class="text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">NVIDIA</a></li>
-<li><a class="text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">AMD</a></li>
-</ul>
-</div>
-<div>
-<h4 class="text-label-mono text-on-surface font-bold uppercase mb-6">Support</h4>
-<ul class="space-y-3">
-<li><a class="text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Privacy Policy</a></li>
-<li><a class="text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Terms of Service</a></li>
-<li><a class="text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Shipping</a></li>
-</ul>
-</div>
-<div>
-<h4 class="text-label-mono text-on-surface font-bold uppercase mb-6">Community</h4>
-<a class="text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Newsletter</a>
-<div class="mt-6 flex gap-4">
-<span class="material-symbols-outlined cursor-pointer hover:text-primary" data-icon="forum">forum</span>
-<span class="material-symbols-outlined cursor-pointer hover:text-primary" data-icon="share">share</span>
-</div>
-</div>
-</div>
-<div class="max-w-container-max mx-auto px-margin-desktop py-8 border-t border-white/5 text-center md:text-left">
-<p class="text-label-mono text-[11px] text-on-surface-variant">© 2024 MakeMyPC. All Rights Reserved.</p>
-</div>
-</footer>
+
+<script src="js/auth-utils.js"></script>
 <script src="js/global.js"></script>
-<script src="js/builder-data.js"></script>
-<script src="js/builder-sidebar.js"></script>
-<script src="js/builder-app.js"></script>
-<script type="module" src="js/auth.js"></script>
-</body></html>
+</body>
+</html>

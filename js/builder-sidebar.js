@@ -215,7 +215,7 @@ function renderAdvancedSidebar() {
         
         const icons = {
             cpu: 'memory', mobo: 'dns', ram: 'memory_alt', gpu: 'developer_board',
-            storage: 'hard_drive', cooler: 'ac_unit', psu: 'power', case: 'desktop_windows',
+            ssd: 'storage', hdd: 'hard_drive', cooler: 'ac_unit', psu: 'power', case: 'desktop_windows',
             fans: 'mode_fan', accessories: 'keyboard'
         };
 
@@ -262,10 +262,35 @@ function renderAdvancedSidebar() {
                 <button onclick="window.showToast('Share link copied to clipboard!', 'success')" class="flex-1 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded font-label-mono text-[10px] uppercase flex items-center justify-center gap-1 transition-colors"><span class="material-symbols-outlined text-[14px]">share</span> Share</button>
                 <button onclick="window.showToast('Generating PDF...', 'info')" class="flex-1 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded font-label-mono text-[10px] uppercase flex items-center justify-center gap-1 transition-colors"><span class="material-symbols-outlined text-[14px]">picture_as_pdf</span> PDF</button>
             </div>
-            <button id="sidebar-checkout-btn" class="w-full bg-electric-blue text-white py-3 rounded-lg font-bold flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(0,122,255,0.3)] hover:brightness-110 active:scale-95 transition-all ${total > 0 ? '' : 'opacity-50 pointer-events-none'}">
-                <span class="material-symbols-outlined text-[18px]">shopping_cart_checkout</span>
-                <span>${total > 0 ? 'Checkout' : 'Add Parts First'}</span>
-            </button>
+            
+            ${(() => {
+                const requiredParts = ['cpu', 'mobo', 'ram', 'ssd', 'psu', 'case'];
+                const isBuildComplete = requiredParts.every(part => state.selections[part]);
+                const isReviewStep = state.currentStepIndex === 11;
+                
+                if (isReviewStep) {
+                    return `
+                    <div class="flex gap-2">
+                        <button id="sidebar-add-cart-btn" class="flex-1 bg-surface-deep hover:bg-white/5 border border-white/10 text-white py-3 rounded-lg font-bold flex items-center justify-center gap-2 transition-all">
+                            <span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                            <span class="text-sm">Add Cart</span>
+                        </button>
+                        <button id="sidebar-checkout-btn" class="flex-1 bg-electric-blue hover:brightness-110 active:scale-95 cursor-pointer shadow-[0_0_20px_rgba(0,122,255,0.3)] text-white py-3 rounded-lg font-bold flex items-center justify-center gap-2 transition-all">
+                            <span class="material-symbols-outlined text-[18px]">shopping_cart_checkout</span>
+                            <span class="text-sm">Checkout</span>
+                        </button>
+                    </div>
+                    `;
+                } else {
+                    return `
+                    <button id="sidebar-checkout-btn" class="w-full ${isBuildComplete ? 'bg-electric-blue hover:brightness-110 active:scale-95 cursor-pointer shadow-[0_0_20px_rgba(0,122,255,0.3)]' : 'bg-surface-deep/50 border border-white/10 opacity-50 pointer-events-none'} text-white py-3 rounded-lg font-bold flex items-center justify-center gap-2 transition-all">
+                        <span class="material-symbols-outlined text-[18px]">visibility</span>
+                        <span>${isBuildComplete ? 'Review Build' : 'Complete Build First'}</span>
+                    </button>
+                    `;
+                }
+            })()}
+            
             <div class="text-center text-[9px] text-cyber-teal font-label-mono mt-2">
                 <span class="material-symbols-outlined text-[10px] align-middle">local_shipping</span> Est. Delivery: 3-5 Business Days
             </div>
@@ -274,20 +299,55 @@ function renderAdvancedSidebar() {
 
     root.innerHTML = html;
     
-    // Bind checkout button if ready
-    if (total > 0) {
-        document.getElementById('sidebar-checkout-btn').onclick = () => { 
-            const build = {
-                id: 'MPC-' + Math.floor(100000 + Math.random() * 900000),
-                name: 'Custom PC Build',
-                parts: state.selections,
-                price: total
+    // Bind review/checkout button if ready
+    const requiredParts = ['cpu', 'mobo', 'ram', 'ssd', 'psu', 'case'];
+    const isBuildComplete = requiredParts.every(part => state.selections[part]);
+    if (isBuildComplete) {
+        const checkoutBtn = document.getElementById('sidebar-checkout-btn');
+        if (checkoutBtn) {
+            checkoutBtn.onclick = () => { 
+                if (state.currentStepIndex === 11) {
+                    // Direct Checkout -> No cart adding
+                    const build = {
+                        id: 'MPC-' + Math.floor(100000 + Math.random() * 900000),
+                        name: 'Custom PC Build',
+                        parts: state.selections,
+                        price: total
+                    };
+                    localStorage.setItem('checkout_item', JSON.stringify(build));
+                    window.location.href = 'shopping-cart.html'; 
+                } else {
+                    window.goToStep(11);
+                }
             };
-            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-            cart.push(build);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            window.location.href = 'shopping-cart.html'; 
-        };
+        }
+        
+        const addCartBtn = document.getElementById('sidebar-add-cart-btn');
+        if (addCartBtn) {
+            addCartBtn.onclick = () => {
+                const build = {
+                    id: 'MPC-' + Math.floor(100000 + Math.random() * 900000),
+                    name: 'Custom PC Build',
+                    parts: state.selections,
+                    price: total
+                };
+                const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+                cart.push(build);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                
+                if (window.updateCartBadge) window.updateCartBadge();
+                
+                addCartBtn.innerHTML = `<span class="material-symbols-outlined text-[18px] text-cyber-teal">check</span><span class="text-sm text-cyber-teal">Added</span>`;
+                
+                setTimeout(() => {
+                    // Reset the builder
+                    Object.keys(state.selections).forEach(key => {
+                        state.selections[key] = null;
+                    });
+                    window.goToStep(0);
+                }, 1500);
+            };
+        }
     }
 }
 

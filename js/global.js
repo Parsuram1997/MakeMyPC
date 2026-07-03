@@ -14,30 +14,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Update Nav Links
-    const navLinks = document.querySelectorAll('header nav a');
-    navLinks.forEach(a => {
-        const text = a.textContent.toLowerCase();
-        if (text.includes('shop')) a.href = 'prebuilt-pcs.html';
-        if (text.includes('builder')) a.href = 'custom-pc-builder.html';
-        if (text.includes('resources')) a.href = 'support-faq.html';
-    });
+    const navContainer = document.querySelector('nav .hidden.md\\:flex.gap-x-8.items-center');
+    if (navContainer) {
+        const navLinks = navContainer.querySelectorAll('a');
+        const path = window.location.pathname.toLowerCase();
+        navLinks.forEach(a => {
+            const text = a.textContent.toLowerCase();
+            
+            // Update hrefs
+            if (text.includes('shop')) a.href = 'prebuilt-pcs.html';
+            if (text.includes('builder')) a.href = 'builder-landing.html';
+            if (text.includes('resources')) a.href = 'support-faq.html';
+            
+            // Reset styles
+            a.className = 'text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-xs';
+            
+            // Apply active style
+            if ((path.includes('prebuilt') && text.includes('shop')) ||
+                (path.includes('builder') && text.includes('builder')) ||
+                (path.includes('support') && text.includes('resources'))) {
+                a.className = 'text-primary font-bold border-b-2 border-primary pb-1 font-label-mono text-xs';
+            }
+        });
+    }
 
     // Update Header Icons
-    const cartBtn = document.querySelector('header button[data-icon="shopping_cart"]');
+    window.updateCartBadge = function() {
+        const badges = document.querySelectorAll('#cart-badge');
+        let cart = [];
+        try {
+            cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        } catch(e) {}
+        
+        badges.forEach(badge => {
+            if (cart.length > 0) {
+                badge.textContent = cart.length;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        });
+    };
+    window.updateCartBadge();
+    
+    // Setup Cart Button Redirect
+    const cartBtn = document.querySelector('header button:has(span[data-icon="shopping_cart"]), header button span[data-icon="shopping_cart"]');
     if (cartBtn) {
-        cartBtn.addEventListener('click', () => {
+        const clickable = cartBtn.tagName === 'SPAN' ? cartBtn.parentElement : cartBtn;
+        clickable.addEventListener('click', (e) => {
+            e.preventDefault();
             window.location.href = 'shopping-cart.html';
         });
-        
-        // Add a badge if there are items in the cart
-        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        if (cart.length > 0) {
-            cartBtn.classList.add('relative');
-            const badge = document.createElement('span');
-            badge.className = 'absolute -top-1 -right-1 bg-tertiary text-on-tertiary text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold';
-            badge.textContent = cart.length;
-            cartBtn.appendChild(badge);
-        }
     }
 
     const accountBtn = document.querySelector('header button[data-icon="account_circle"]');

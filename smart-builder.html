@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MakeMyPC | Smart Builder</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+        }
+        body {
+            background-color: #00081C;
+            color: #d7e2ff;
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+        .glass-card:hover {
+            border-color: rgba(0, 122, 255, 0.4);
+            box-shadow: 0 0 20px rgba(0, 122, 255, 0.1);
+        }
+        .hardware-glow {
+            filter: drop-shadow(0 0 15px rgba(0, 122, 255, 0.3));
+        }
+        
+        .wizard-step {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease-out;
+        }
+        
+        .wizard-step.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+</style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#adc6ff",
+                    "on-tertiary-container": "#4c1a00",
+                    "inverse-on-surface": "#263046",
+                    "secondary-fixed-dim": "#5cd8da",
+                    "surface-container-low": "#101b30",
+                    "surface-container": "#142034",
+                    "primary-fixed-dim": "#adc6ff",
+                    "outline-variant": "#414755",
+                    "electric-blue": "#007AFF",
+                    "background": "#071327",
+                    "surface-bright": "#2e394f",
+                    "secondary": "#5cd8da",
+                    "surface": "#071327",
+                    "on-primary-container": "#00285c",
+                    "tertiary-container": "#ef6719",
+                    "hardware-gray": "#111111",
+                    "on-background": "#d7e2ff",
+                    "on-tertiary-fixed": "#351000",
+                    "tertiary": "#ffb595",
+                    "primary-container": "#4b8eff",
+                    "surface-tint": "#adc6ff",
+                    "surface-container-lowest": "#030e22",
+                    "primary-fixed": "#d8e2ff",
+                    "on-primary": "#002e69",
+                    "on-secondary-fixed": "#002020",
+                    "surface-deep": "#00081C",
+                    "secondary-container": "#00a4a6",
+                    "on-secondary-fixed-variant": "#004f50",
+                    "cyber-teal": "#00A4A6",
+                    "on-surface": "#d7e2ff",
+                    "tertiary-fixed": "#ffdbcc",
+                    "error": "#ffb4ab",
+                    "on-surface-variant": "#c1c6d7",
+                    "on-tertiary-fixed-variant": "#7c2e00",
+                    "outline": "#8b90a0",
+                    "surface-dim": "#071327",
+                    "on-error": "#690005",
+                    "on-primary-fixed": "#001a41",
+                    "surface-container-highest": "#2a354a",
+                    "inverse-primary": "#005bc1",
+                    "on-primary-fixed-variant": "#004493",
+                    "secondary-fixed": "#7cf5f7",
+                    "surface-variant": "#2a354a",
+                    "inverse-surface": "#d7e2ff",
+                    "on-tertiary": "#571e00",
+                    "on-error-container": "#ffdad6",
+                    "surface-glass": "rgba(255, 255, 255, 0.03)",
+                    "error-container": "#93000a",
+                    "on-secondary": "#003738",
+                    "on-secondary-container": "#003233",
+                    "tertiary-fixed-dim": "#ffb595",
+                    "surface-container-high": "#1f2a3f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "base": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-mono": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface-deep text-on-surface overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface-glass backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-desktop h-20">
+<a href="index.html" class="text-headline-lg font-headline-lg font-black text-on-surface tracking-tighter">MakeMyPC</a>
+<div class="hidden md:flex gap-x-8 items-center">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-xs" href="prebuilt-pcs.html">Shop</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-mono text-xs" href="builder-landing.html">Builder</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-xs" href="#">Resources</a>
+</div>
+<div class="flex items-center gap-x-6">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-body-sm font-body-sm focus:outline-none focus:border-electric-blue w-64 transition-all" placeholder="Search Components" type="text"/>
+</div>
+<div class="flex gap-x-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100 relative" onclick="window.location.href='shopping-cart.html'">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span id="cart-badge" class="absolute -top-1 -right-1 bg-error text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+</button>
+<a href="login.html" id="auth-login-btn" class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100 flex items-center">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</a>
+<a href="account-settings.html" id="auth-avatar-btn" class="hidden w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm hover:brightness-110 transition-all">
+<span id="avatar-initial">U</span>
+</a>
+</div>
+</div>
+</div>
+</nav>
+
+<main class="pt-24 min-h-screen flex max-w-5xl mx-auto px-8 pb-32">
+    <div class="w-full" id="wizard-container">
+        <!-- Progress Bar -->
+        <div class="mb-12 flex items-center justify-center gap-2" id="wizard-progress">
+            <!-- Rendered via JS -->
+        </div>
+        
+        <!-- Step 1: Purpose -->
+        <div class="wizard-step active" id="step-1">
+            <h1 class="text-4xl font-bold text-center mb-4">What will you use this PC for?</h1>
+            <p class="text-center text-on-surface-variant mb-12">Select your primary use-case so we can optimize the hardware.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                <!-- Option 1 -->
+                <div class="glass-card rounded-2xl p-6 cursor-pointer hover:-translate-y-1 transition-all group" onclick="smartBuilder.selectPurpose('gaming')">
+                    <span class="material-symbols-outlined text-5xl text-electric-blue mb-4 group-hover:hardware-glow">sports_esports</span>
+                    <h3 class="text-2xl font-bold mb-2">Gaming</h3>
+                    <p class="text-on-surface-variant text-sm">Optimized for high framerates, 4K gaming, and streaming.</p>
+                </div>
+                <!-- Option 2 -->
+                <div class="glass-card rounded-2xl p-6 cursor-pointer hover:-translate-y-1 transition-all group" onclick="smartBuilder.selectPurpose('creation')">
+                    <span class="material-symbols-outlined text-5xl text-cyber-teal mb-4 group-hover:hardware-glow">video_camera_front</span>
+                    <h3 class="text-2xl font-bold mb-2">Content Creation</h3>
+                    <p class="text-on-surface-variant text-sm">Optimized for video editing, 3D rendering, and heavy multitasking.</p>
+                </div>
+                <!-- Option 3 -->
+                <div class="glass-card rounded-2xl p-6 cursor-pointer hover:-translate-y-1 transition-all group" onclick="smartBuilder.selectPurpose('office')">
+                    <span class="material-symbols-outlined text-5xl text-primary mb-4 group-hover:hardware-glow">work</span>
+                    <h3 class="text-2xl font-bold mb-2">Office & Productivity</h3>
+                    <p class="text-on-surface-variant text-sm">Reliable, fast, and quiet for browsing, coding, and office work.</p>
+                </div>
+                <!-- Option 4 -->
+                <div class="glass-card rounded-2xl p-6 cursor-pointer hover:-translate-y-1 transition-all group" onclick="smartBuilder.selectPurpose('developer')">
+                    <span class="material-symbols-outlined text-5xl text-electric-blue mb-4 group-hover:hardware-glow">terminal</span>
+                    <h3 class="text-2xl font-bold mb-2">Coding & Developer</h3>
+                    <p class="text-on-surface-variant text-sm">Optimized for compiling code, running VMs, Docker, and heavy multitasking.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Budget -->
+        <div class="wizard-step" id="step-2">
+            <h1 class="text-4xl font-bold text-center mb-4">What is your budget?</h1>
+            <p class="text-center text-on-surface-variant mb-12">We'll find the best performance within your price range.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="glass-card rounded-2xl p-6 text-center cursor-pointer hover:-translate-y-1 transition-all group" onclick="smartBuilder.selectBudget(50000)">
+                    <h3 class="text-xl font-bold text-primary mb-2">Entry Level</h3>
+                    <div class="text-2xl font-black mb-4">Under ₹50,000</div>
+                    <p class="text-on-surface-variant text-xs">Great for basic 1080p gaming or everyday tasks.</p>
+                </div>
+                <div class="glass-card rounded-2xl p-6 text-center cursor-pointer hover:-translate-y-1 transition-all group border-electric-blue/50 hardware-glow" onclick="smartBuilder.selectBudget(100000)">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-electric-blue text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Most Popular</div>
+                    <h3 class="text-xl font-bold text-electric-blue mb-2">Mid-Range</h3>
+                    <div class="text-2xl font-black mb-4">₹50K - ₹1.0L</div>
+                    <p class="text-on-surface-variant text-xs">Solid 1440p gaming and smooth productivity.</p>
+                </div>
+                <div class="glass-card rounded-2xl p-6 text-center cursor-pointer hover:-translate-y-1 transition-all group" onclick="smartBuilder.selectBudget(200000)">
+                    <h3 class="text-xl font-bold text-cyber-teal mb-2">Enthusiast</h3>
+                    <div class="text-2xl font-black mb-4">₹1.0L - ₹2.0L</div>
+                    <p class="text-on-surface-variant text-xs">4K gaming, heavy video editing, and max settings.</p>
+                </div>
+                <div class="glass-card rounded-2xl p-6 text-center cursor-pointer hover:-translate-y-1 transition-all group md:col-start-2" onclick="smartBuilder.selectBudget(999999)">
+                    <h3 class="text-xl font-bold text-error mb-2">Ultimate</h3>
+                    <div class="text-2xl font-black mb-4">No Limit</div>
+                    <p class="text-on-surface-variant text-xs">The absolute best hardware money can buy.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <button onclick="smartBuilder.prevStep()" class="px-6 py-3 border border-white/20 rounded-xl hover:bg-white/5 transition-all text-sm font-bold">← Back</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Result -->
+        <div class="wizard-step" id="step-3">
+            <!-- Loading State -->
+            <div id="loading-state" class="py-20 text-center">
+                <span class="material-symbols-outlined text-6xl text-electric-blue animate-spin mb-6 hardware-glow" style="animation-duration: 2s;">settings</span>
+                <h2 class="text-2xl font-bold mb-2">Building your dream PC...</h2>
+                <p class="text-on-surface-variant">Analyzing millions of combinations to find the perfect match.</p>
+            </div>
+            
+            <!-- Result UI -->
+            <div id="result-state" class="hidden">
+                <div class="text-center mb-10">
+                    <h1 class="text-4xl font-bold mb-4">Here is your Perfect PC!</h1>
+                    <p class="text-on-surface-variant text-lg">Optimized for <span id="res-purpose" class="text-primary font-bold capitalize"></span> within <span id="res-budget" class="text-primary font-bold"></span>.</p>
+                </div>
+                
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <!-- Parts List -->
+                    <div class="flex-1">
+                        <div class="glass-card rounded-2xl p-6" id="recommended-parts-container">
+                            <!-- Rendered via JS -->
+                        </div>
+                    </div>
+                    
+                    <!-- Summary -->
+                    <div class="w-full lg:w-96 flex-shrink-0">
+                        <div class="glass-card rounded-2xl overflow-hidden sticky top-28 border border-white/10 flex flex-col">
+                            <!-- Price Header -->
+                            <div class="p-6 pb-4 bg-surface-deep/50 border-b border-white/10">
+                                <div class="text-[10px] text-on-surface-variant font-label-mono uppercase tracking-widest mb-1">Estimated Total</div>
+                                <div class="text-headline-lg font-headline-lg font-black tracking-tight text-white hardware-glow" id="res-total">₹0</div>
+                            </div>
+                            
+                            <!-- Build Scores -->
+                            <div class="p-6 pb-2">
+                                <span class="text-label-mono text-on-surface-variant uppercase text-[10px] mb-2 block">Build Scores</span>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div class="bg-white/5 p-2 rounded flex flex-col gap-1">
+                                        <span class="text-[9px] font-label-mono text-on-surface-variant">Gaming</span>
+                                        <div class="text-sm font-bold text-cyber-teal" id="res-gaming-score">0/100</div>
+                                    </div>
+                                    <div class="bg-white/5 p-2 rounded flex flex-col gap-1">
+                                        <span class="text-[9px] font-label-mono text-on-surface-variant">Productivity</span>
+                                        <div class="text-sm font-bold text-electric-blue" id="res-prod-score">0/100</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Compatibility -->
+                            <div class="p-6 pt-4">
+                                <div class="flex items-center justify-between p-3 rounded-lg border border-cyber-teal/30 bg-cyber-teal/5">
+                                    <div class="flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-cyber-teal">check_circle</span>
+                                        <span class="font-bold text-sm text-cyber-teal">100% Compatible</span>
+                                    </div>
+                                </div>
+                                <div class="text-[10px] text-on-surface-variant italic mt-3">
+                                    All components selected by Smart Builder are guaranteed to work together flawlessly.
+                                </div>
+                            </div>
+                            
+                            <!-- Actions -->
+                            <div class="p-4 bg-surface-deep/80 backdrop-blur-md border-t border-white/10 space-y-2 mt-auto">
+                                <button onclick="smartBuilder.addToCart()" id="btn-add-cart" class="w-full bg-electric-blue text-white py-3 rounded-lg font-bold flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(0,122,255,0.3)] hover:brightness-110 active:scale-95 transition-all">
+                                    <span class="material-symbols-outlined text-[18px]">shopping_cart_checkout</span>
+                                    <span>Checkout</span>
+                                </button>
+                                <button onclick="smartBuilder.editInBuilder()" class="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-lg text-sm font-bold transition-all flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined text-[16px]">build</span> Edit in Custom Builder
+                                </button>
+                                <div class="text-center text-[9px] text-cyber-teal font-label-mono mt-2">
+                                    <span class="material-symbols-outlined text-[10px] align-middle">local_shipping</span> Est. Delivery: 3-5 Business Days
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <button onclick="smartBuilder.reset()" class="px-6 py-3 border border-white/20 rounded-xl hover:bg-white/5 transition-all text-sm font-bold">Start Over</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<script src="js/builder-data.js"></script>
+<script src="js/auth-utils.js"></script>
+<script src="js/smart-builder.js"></script>
+<script src="js/global.js"></script>
+</body>
+</html>

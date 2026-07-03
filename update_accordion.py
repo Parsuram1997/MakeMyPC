@@ -1,52 +1,11 @@
+import re
 
-document.addEventListener('DOMContentLoaded', () => {
-    initShoppingCart();
-});
+def update_cart():
+    filepath = 'c:/Projects/MakeMyPC/js/shopping-cart.js'
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
 
-let cartData = null;
-let currentFpsRes = '1440p';
-
-function initShoppingCart() {
-    const root = document.getElementById('checkout-root');
-    if (!root) return;
-    
-    // Load data
-    try {
-        const checkoutStr = localStorage.getItem('checkout_item');
-        if (checkoutStr) {
-            const parsed = JSON.parse(checkoutStr);
-            if (parsed) {
-                cartData = [parsed];
-            }
-        } else {
-            const cartStr = localStorage.getItem('cart');
-            if (cartStr) {
-                const parsed = JSON.parse(cartStr);
-                if (parsed.length > 0) { cartData = parsed; }
-            }
-        }
-    } catch(e) {
-        console.error("Error loading cart", e);
-    }
-    
-    if (!cartData || cartData.length === 0) {
-        root.innerHTML = `
-            <div class="max-w-4xl mx-auto text-center py-32">
-                <span class="material-symbols-outlined text-6xl text-on-surface-variant mb-4">shopping_cart</span>
-                <h1 class="text-3xl font-bold mb-4">Your Build is Empty</h1>
-                <p class="text-on-surface-variant mb-8">Head back to the builder to create your dream PC.</p>
-                <a href="custom-pc-builder.html" class="px-8 py-3 bg-primary text-on-primary rounded-lg font-bold hover:bg-primary/90 transition-all">Go to Builder</a>
-            </div>
-        `;
-        return;
-    }
-
-    renderCheckoutUI();
-}
-
-
-
-
+    script = """
 function renderCheckoutUI() {
     const root = document.getElementById('checkout-root');
     
@@ -302,32 +261,13 @@ function renderCheckoutUI() {
     
     root.innerHTML = html;
 }
-window.toggleBuildDetails = function(index) {
-    const details = document.getElementById('details-build-' + index);
-    const icon = document.getElementById('icon-build-' + index);
-    if (details) {
-        if (details.classList.contains('hidden')) {
-            details.classList.remove('hidden');
-            if(icon) icon.style.transform = 'rotate(180deg)';
-        } else {
-            details.classList.add('hidden');
-            if(icon) icon.style.transform = 'rotate(0deg)';
-        }
-    }
-};
+"""
+    
+    # Replace the renderCheckoutUI function
+    content = re.sub(r'function renderCheckoutUI\(\) \{.*?(?=window\.toggleBuildDetails = function\()', script, content, flags=re.DOTALL)
+    
+    with open(filepath, 'w', encoding='utf-8') as f:
+        f.write(content)
 
-window.clearCart = function() {
-    localStorage.removeItem('cart');
-    localStorage.removeItem('checkout_item');
-    window.location.reload();
-};
-
-window.removeBuild = function(event, index) {
-    event.stopPropagation();
-    if (cartData && cartData.length > index) {
-        cartData.splice(index, 1);
-        localStorage.setItem('cart', JSON.stringify(cartData));
-        if (window.updateCartBadge) window.updateCartBadge();
-        window.location.reload();
-    }
-};
+if __name__ == '__main__':
+    update_cart()
