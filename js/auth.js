@@ -9,9 +9,14 @@ const logoutBtn = document.getElementById('logout-btn');
 // Sign up
 window.handleSignup = async function(e) {
     e.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const nameEl = document.getElementById('signup-name') || document.getElementById('name');
+    const emailEl = document.getElementById('signup-email') || document.getElementById('email');
+    const passwordEl = document.getElementById('signup-password') || document.getElementById('password');
+    
+    const name = nameEl ? nameEl.value : 'New User';
+    const email = emailEl ? emailEl.value : '';
+    const password = passwordEl ? passwordEl.value : '';
+    
     const errorEl = document.getElementById('signup-error');
     const submitBtn = document.getElementById('signup-btn');
     
