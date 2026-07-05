@@ -4,20 +4,26 @@
 const smartBuilder = {
     state: {
         step: 1,
+        os: null,
         purpose: null,
         budget: null,
         generatedBuild: null,
         totalPrice: 0
     },
 
+    selectOS(os) {
+        this.state.os = os;
+        this.goToStep(2);
+    },
+
     selectPurpose(purpose) {
         this.state.purpose = purpose;
-        this.goToStep(2);
+        this.goToStep(3);
     },
 
     selectBudget(budget) {
         this.state.budget = budget;
-        this.goToStep(3);
+        this.goToStep(4);
         this.generateBuild();
     },
 
@@ -42,64 +48,96 @@ const smartBuilder = {
     },
 
     reset() {
+        this.state.os = null;
         this.state.purpose = null;
         this.state.budget = null;
         this.state.generatedBuild = null;
         this.state.totalPrice = 0;
+        
+        if (window.state && window.state.selections) {
+            window.state.selections = {};
+            if (typeof renderAdvancedSidebar === 'function') renderAdvancedSidebar();
+        }
+        
         document.getElementById('result-state').classList.add('hidden');
         document.getElementById('loading-state').classList.remove('hidden');
         this.goToStep(1);
     },
 
     updateProgress() {
-        const progressContainer = document.getElementById('wizard-progress');
-        if (!progressContainer) return;
+        const container = document.getElementById('wizard-progress');
+        if (!container) return;
         
         let html = '';
-        const steps = ['Purpose', 'Budget', 'Result'];
-        
-        steps.forEach((label, index) => {
+        const builderSteps = ['OS', 'Purpose', 'Budget', 'Review'];
+        builderSteps.forEach((label, index) => {
             const stepNum = index + 1;
             const isActive = stepNum === this.state.step;
-            const isPast = stepNum < this.state.step;
+            const isCompleted = stepNum < this.state.step;
+            const isSkipped = stepNum > this.state.step && !isCompleted;
             
-            let circleClass = 'bg-white/10 text-on-surface-variant';
-            if (isActive) circleClass = 'bg-electric-blue text-white shadow-[0_0_15px_rgba(0,122,255,0.4)]';
-            else if (isPast) circleClass = 'bg-primary text-on-primary';
+            let circleClass = 'border border-white/20';
+            let textClass = 'opacity-50';
+            let icon = stepNum;
+            
+            if (isActive && isCompleted) {
+                circleClass = 'bg-cyber-teal text-on-primary font-bold hardware-glow border-none';
+                textClass = 'text-cyber-teal font-bold';
+                icon = '✓';
+            } else if (isActive) {
+                circleClass = 'bg-primary text-on-primary font-bold hardware-glow border-none';
+                textClass = 'text-primary font-bold';
+                icon = stepNum;
+            } else if (isCompleted) {
+                circleClass = 'bg-cyber-teal text-on-primary border-none';
+                textClass = 'text-cyber-teal';
+                icon = '✓';
+            } else if (isSkipped) {
+                circleClass = 'border-2 border-white/40 text-white/60';
+                textClass = 'opacity-60';
+                icon = '−';
+            }
             
             html += `
-                <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-all ${circleClass}">
-                        ${isPast ? '<span class="material-symbols-outlined text-[16px]">check</span>' : stepNum}
-                    </div>
-                    <span class="text-sm font-bold ${isActive || isPast ? 'text-white' : 'text-on-surface-variant'}">${label}</span>
+                <div class="flex flex-col items-center gap-2 group cursor-pointer transition-all ${!isActive && !isCompleted ? 'hover:opacity-100 opacity-50' : ''}" onclick="smartBuilder.goToStep(${stepNum})">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center transition-all ${circleClass}">${icon}</div>
+                    <span class="text-label-mono font-label-mono uppercase text-[10px] whitespace-nowrap ${textClass}">${label}</span>
                 </div>
             `;
-            
-            if (index < steps.length - 1) {
-                html += `<div class="w-12 h-0.5 ${isPast ? 'bg-primary' : 'bg-white/10'} mx-2"></div>`;
+            if (index < builderSteps.length - 1) {
+                html += `<div class="h-px flex-1 bg-white/10 mt-[-20px] min-w-[10px]"></div>`;
             }
         });
         
-        progressContainer.innerHTML = html;
+        container.className = 'flex items-center justify-between mb-6 w-full';
+        container.innerHTML = html;
+        
+        if (typeof renderAdvancedSidebar === 'function') renderAdvancedSidebar();
     },
 
     generateBuild() {
-        // Show loading state
         document.getElementById('loading-state').classList.remove('hidden');
         document.getElementById('result-state').classList.add('hidden');
         
         setTimeout(() => {
             this.runRecommendationEngine();
+            
+            if (window.state && window.state.selections) {
+                Object.keys(this.state.generatedBuild).forEach(key => {
+                    window.state.selections[key] = this.state.generatedBuild[key];
+                });
+                if (typeof renderAdvancedSidebar === 'function') renderAdvancedSidebar();
+            }
+            
             this.renderResult();
             
             document.getElementById('loading-state').classList.add('hidden');
             document.getElementById('result-state').classList.remove('hidden');
-        }, 1500); // Simulate processing delay
+        }, 1500);
     },
 
     runRecommendationEngine() {
-        const { purpose, budget } = this.state;
+        const { os, purpose, budget } = this.state;
         const build = {};
         let remainingBudget = budget;
         
@@ -129,6 +167,14 @@ const smartBuilder = {
             // If we have a CPU/Mobo, filter RAM by generation
             if (category === 'ram' && build.cpu && build.cpu.ram_support) {
                 validParts = validParts.filter(p => build.cpu.ram_support.includes(p.generation || (p.model.includes('DDR5') ? 'DDR5' : 'DDR4')));
+            }
+            
+            // OS-specific filtering: If Linux, prioritize AMD GPUs (we'll filter out NVIDIA if there are AMD alternatives)
+            if (category === 'gpu' && os === 'linux') {
+                const amdGpus = validParts.filter(p => p.brand.toUpperCase().includes('AMD') || p.model.toUpperCase().includes('RADEON'));
+                if (amdGpus.length > 0) {
+                    validParts = amdGpus;
+                }
             }
             
             // If office and no GPU allocation, try to get CPU with integrated graphics

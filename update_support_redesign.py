@@ -1,178 +1,11 @@
-<!DOCTYPE html>
+import re
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Support | MakeMyPC - Kinetic Precision Engineering</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&display=swap" rel="stylesheet"/>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-            transition: all 0.3s ease;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 40px 40px rgba(0, 0, 0, 0.3);
-        }
-        .glass-card:hover {
-            border-color: rgba(0, 122, 255, 0.4);
-            box-shadow: 0 0 30px rgba(0, 122, 255, 0.1);
-        }
-        .hardware-grid {
-            background-image: radial-gradient(rgba(0, 122, 255, 0.05) 1px, transparent 1px);
-            background-size: 32px 32px;
-        }
-        .shimmer {
-            position: relative;
-            overflow: hidden;
-        }
-        .shimmer::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
-            transform: rotate(45deg);
-            animation: shimmer-effect 6s infinite linear;
-        }
-        @keyframes shimmer-effect {
-            0% { transform: translateX(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) rotate(45deg); }
-        }
-    </style>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "primary": "#adc6ff",
-                    "on-tertiary-container": "#4c1a00",
-                    "inverse-on-surface": "#263046",
-                    "secondary-fixed-dim": "#5cd8da",
-                    "surface-container-low": "#101b30",
-                    "surface-container": "#142034",
-                    "primary-fixed-dim": "#adc6ff",
-                    "outline-variant": "#414755",
-                    "electric-blue": "#007AFF",
-                    "background": "#071327",
-                    "surface-bright": "#2e394f",
-                    "secondary": "#5cd8da",
-                    "surface": "#071327",
-                    "on-primary-container": "#00285c",
-                    "tertiary-container": "#ef6719",
-                    "hardware-gray": "#111111",
-                    "on-background": "#d7e2ff",
-                    "on-tertiary-fixed": "#351000",
-                    "tertiary": "#ffb595",
-                    "primary-container": "#4b8eff",
-                    "surface-tint": "#adc6ff",
-                    "surface-container-lowest": "#030e22",
-                    "primary-fixed": "#d8e2ff",
-                    "on-primary": "#002e69",
-                    "on-secondary-fixed": "#002020",
-                    "surface-deep": "#00081C",
-                    "secondary-container": "#00a4a6",
-                    "on-secondary-fixed-variant": "#004f50",
-                    "cyber-teal": "#00A4A6",
-                    "on-surface": "#d7e2ff",
-                    "tertiary-fixed": "#ffdbcc",
-                    "error": "#ffb4ab",
-                    "on-surface-variant": "#c1c6d7",
-                    "on-tertiary-fixed-variant": "#7c2e00",
-                    "outline": "#8b90a0",
-                    "surface-dim": "#071327",
-                    "on-error": "#690005",
-                    "on-primary-fixed": "#001a41",
-                    "surface-container-highest": "#2a354a",
-                    "inverse-primary": "#005bc1",
-                    "on-primary-fixed-variant": "#004493",
-                    "secondary-fixed": "#7cf5f7",
-                    "surface-variant": "#2a354a",
-                    "inverse-surface": "#d7e2ff",
-                    "on-tertiary": "#571e00",
-                    "on-error-container": "#ffdad6",
-                    "surface-glass": "rgba(255, 255, 255, 0.03)",
-                    "error-container": "#93000a",
-                    "on-secondary": "#003738",
-                    "on-secondary-container": "#003233",
-                    "tertiary-fixed-dim": "#ffb595",
-                    "surface-container-high": "#1f2a3f"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "margin-mobile": "20px",
-                    "container-max": "1280px",
-                    "margin-desktop": "64px",
-                    "base": "8px",
-                    "gutter": "24px"
-            },
-            "fontFamily": {
-                    "body-md": ["Inter"],
-                    "body-sm": ["Inter"],
-                    "display-lg-mobile": ["Inter"],
-                    "headline-sm": ["Inter"],
-                    "headline-lg": ["Inter"],
-                    "display-lg": ["Inter"],
-                    "label-mono": ["JetBrains Mono"]
-            },
-            "fontSize": {
-                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
-                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
-                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
-            }
-          },
-        },
-      }
-    </script>
-</head>
-<body class="bg-surface-deep text-on-surface font-body-md hardware-grid selection:bg-electric-blue selection:text-white">
-<!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 bg-surface-glass backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
-<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-desktop h-20">
-<a href="index.html" class="text-headline-lg font-headline-lg font-black text-on-surface tracking-tighter">MakeMyPC</a>
-<div class="hidden md:flex gap-x-8 items-center">
-<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-xs" href="prebuilt-pcs.html">Shop</a>
-<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-mono text-xs" href="builder-landing.html">Builder</a>
-<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-xs" href="#">Resources</a>
-</div>
-<div class="flex items-center gap-x-6">
-<div class="relative hidden lg:block">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-<input class="bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-body-sm font-body-sm focus:outline-none focus:border-electric-blue w-64 transition-all" placeholder="Search Components" type="text"/>
-</div>
-<div class="flex gap-x-4">
-<button class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100 relative" onclick="window.location.href='shopping-cart.html'">
-<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
-<span id="cart-badge" class="absolute -top-1 -right-1 bg-error text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
-</button>
-<a href="login.html" id="auth-login-btn" class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100 flex items-center">
-<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
-</a>
-<a href="account-settings.html" id="auth-avatar-btn" class="hidden w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm hover:brightness-110 transition-all">
-<span id="avatar-initial">U</span>
-</a>
-</div>
-</div>
-</div>
-</nav>
-<main class="pt-20">
+file_path = "c:/Projects/MakeMyPC/support-faq.html"
+with open(file_path, "r", encoding="utf-8") as f:
+    content = f.read()
+
+# Generate the new <main> block
+new_main = """<main class="pt-20">
     <!-- Hero Search Section -->
     <section class="relative min-h-[600px] flex flex-col items-center justify-center text-center px-margin-mobile md:px-margin-desktop overflow-hidden pt-12 pb-16">
         <!-- Background Decoration -->
@@ -915,9 +748,10 @@
             </svg>
         </div>
     </section>
-</main>
-<!-- Footer -->
-<!-- Expanded Footer -->
+</main>"""
+
+# Generate the new <footer> block
+new_footer = """<!-- Expanded Footer -->
 <footer class="bg-surface-deep border-t border-white/5 w-full pt-20">
     <div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 mb-16">
         
@@ -1048,27 +882,11 @@
             </span>
         </div>
     </div>
-</footer>
+</footer>"""
 
-<script>
-        // Simple search focus micro-interaction
-        document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-                e.preventDefault();
-                document.querySelector('input').focus();
-            }
-        });
+content = re.sub(r'<main class="pt-20">.*?</main>', new_main, content, flags=re.DOTALL)
+content = re.sub(r'<footer.*?</footer>', new_footer, content, flags=re.DOTALL)
 
-        // Sticky nav scroll effect
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('bg-surface-deep/90');
-            } else {
-                nav.classList.remove('bg-surface-deep/90');
-            }
-        });
-    </script>
-<script type="module" src="js/auth.js"></script>
-<script src="js/global.js"></script>
-</body></html>
+with open(file_path, "w", encoding="utf-8") as f:
+    f.write(content)
+print("Updated support-faq.html with new redesign.")

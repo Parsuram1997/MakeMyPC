@@ -2,16 +2,18 @@
 // Logic for MakeMyPC Custom Builder
 
 const steps = [
+    { id: 'os', label: 'OS', key: 'os' },
     { id: 'cpu', label: 'CPU', key: 'cpu' },
-    { id: 'mobo', label: 'Motherboard', key: 'mobo' },
-    { id: 'ram', label: 'Memory', key: 'ram' },
-    { id: 'gpu', label: 'Graphics', key: 'gpu' },
+    { id: 'mobo', label: 'Board', key: 'mobo' },
+    { id: 'ram', label: 'RAM', key: 'ram' },
     { id: 'ssd', label: 'SSD', key: 'ssd' },
     { id: 'hdd', label: 'HDD', key: 'hdd' },
     { id: 'cooler', label: 'Cooler', key: 'cooler' },
-    { id: 'psu', label: 'Power Supply', key: 'psu' },
-    { id: 'case', label: 'Cabinet', key: 'case' },
-    { id: 'fans', label: 'Fans/RGB', key: 'fans' },
+    { id: 'psu', label: 'PSU', key: 'psu' },
+    { id: 'case', label: 'Case', key: 'case' },
+    { id: 'gpu', label: 'GPU', key: 'gpu' },
+    { id: 'fans', label: 'Fans', key: 'fans' },
+    { id: 'rgb', label: 'RGB', key: 'rgb' },
     { id: 'accessories', label: 'Accessories', key: 'accessories' },
     { id: 'review', label: 'Review', key: null }
 ];
@@ -30,7 +32,9 @@ const state = {
         psu: null,
         case: null,
         fans: null,
-        accessories: null
+        rgb: null,
+        accessories: null,
+        os: null
     }
 };
 
@@ -46,8 +50,21 @@ function initApp() {
     renderMainContent();
 }
 
-// 1. Render Top Bar
 function renderTopBar() {
+    let containerWrapper = document.getElementById('step-bar-wrapper');
+    const oldContainer = document.getElementById('step-bar-container');
+    
+    // Create wrapper if not exists to fix cutoff
+    if (oldContainer && !containerWrapper) {
+        containerWrapper = document.createElement('div');
+        containerWrapper.id = 'step-bar-wrapper';
+        containerWrapper.className = 'w-full overflow-x-auto custom-scrollbar pb-2 mb-4';
+        oldContainer.parentNode.insertBefore(containerWrapper, oldContainer);
+        containerWrapper.appendChild(oldContainer);
+        oldContainer.classList.add('min-w-max');
+        oldContainer.classList.remove('mb-6');
+    }
+    
     const container = document.getElementById('step-bar-container');
     if (!container) return;
     
@@ -55,7 +72,7 @@ function renderTopBar() {
     steps.forEach((step, index) => {
         let isCompleted = !!(step.key && state.selections[step.key]);
         if (step.id === 'review') {
-            const requiredParts = ['cpu', 'mobo', 'ram', 'ssd', 'psu', 'case'];
+            const requiredParts = ['cpu', 'mobo', 'ram', 'ssd', 'psu', 'case', 'os'];
             isCompleted = requiredParts.every(part => state.selections[part]);
         }
         
@@ -87,7 +104,7 @@ function renderTopBar() {
         html += `
             <div class="flex flex-col items-center gap-2 group cursor-pointer transition-all ${!isActive && !isCompleted ? 'hover:opacity-100 opacity-50' : ''}" onclick="goToStep(${index})">
                 <div class="w-10 h-10 rounded-full flex items-center justify-center transition-all ${circleClass}">${icon}</div>
-                <span class="text-label-mono font-label-mono uppercase text-[10px] whitespace-nowrap ${textClass}">${step.label}</span>
+                <span class="text-label-mono font-label-mono text-[11px] whitespace-nowrap ${textClass}">${step.label}</span>
             </div>
         `;
         if (index < steps.length - 1) {
@@ -162,6 +179,13 @@ const filterDefinitions = {
         { key: 'brand', label: 'Brand', options: ['Lian Li', 'NZXT', 'Corsair'] },
         { key: 'form_factor', label: 'Size', options: ['ATX', 'Micro ATX', 'Mini ITX'] },
         { key: 'color', label: 'Color', options: ['Black', 'White'] }
+    ],
+        os: [
+        { key: 'brand', label: 'Brand', options: ['Microsoft', 'Canonical', 'Custom'] }
+    ],
+        rgb: [
+        { key: 'brand', label: 'Brand', options: ['Corsair', 'DeepCool'] },
+        { key: 'type', label: 'Type', options: ['LED Strip'] }
     ],
     fans: [
         { key: 'brand', label: 'Brand', options: ['Lian Li', 'Corsair', 'Noctua'] },

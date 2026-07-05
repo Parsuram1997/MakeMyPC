@@ -42,14 +42,14 @@ window.handleSignup = async function(e) {
             createdAt: new Date()
         });
 
-        window.showToast('Account created successfully!', 'success');
+        // Firebase automatically logs in the user after signup.
+        // If we want them to log in manually, we must sign them out immediately.
+        await signOut(auth);
+
+        window.showToast('Account created successfully! Please log in.', 'success');
         
         setTimeout(() => {
-            if (role === 'admin') {
-                window.location.href = 'admin-dashboard.html';
-            } else {
-                window.location.href = 'index.html';
-            }
+            window.location.href = 'login.html';
         }, 1500);
     } catch (error) {
         errorEl.textContent = error.message;

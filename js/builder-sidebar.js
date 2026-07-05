@@ -38,20 +38,37 @@ function renderAdvancedSidebar() {
     let compatStatus = 'Clear';
     let compatColor = 'text-cyber-teal';
     let compatIcon = 'check_circle';
+    let compatBg = 'bg-cyber-teal/5 border-cyber-teal/20';
     let compatMessages = [];
+    let criticalWarnings = [];
 
-    if (hasCpu) compatMessages.push('✓ CPU Selected');
-    if (hasGpu) compatMessages.push('✓ GPU Selected');
+    if (hasCpu) compatMessages.push({ icon: 'memory', text: 'CPU Socket Compatible', type: 'success' });
+    if (hasGpu) compatMessages.push({ icon: 'developer_board', text: 'PCIe Generation Matches', type: 'success' });
+    if (state.selections.mobo && state.selections.case) {
+        compatMessages.push({ icon: 'aspect_ratio', text: 'Motherboard fits in Cabinet', type: 'success' });
+    }
     
     if (selectedCount === 0) {
         compatStatus = 'Waiting for Parts';
         compatColor = 'text-on-surface-variant';
         compatIcon = 'inventory_2';
+        compatBg = 'bg-white/5 border-white/10';
     } else if (state.selections.psu && !isPsuSufficient) {
-        compatStatus = 'Warning';
-        compatColor = 'text-warning';
-        compatIcon = 'warning';
-        compatMessages.push('⚠ PSU capacity might be insufficient');
+        compatStatus = 'Issue Detected';
+        compatColor = 'text-error';
+        compatIcon = 'error';
+        compatBg = 'bg-error/5 border-error/20';
+        
+        criticalWarnings.push(`
+            <div class="mt-3 bg-error/10 border border-error/20 rounded p-3 text-error flex gap-3 items-start">
+                <span class="material-symbols-outlined text-[18px]">bolt</span>
+                <div class="flex-1">
+                    <strong class="block text-[12px] mb-1">Power bottleneck detected</strong>
+                    <span class="text-[10px] text-error/80 leading-relaxed block">Your system requires an estimated <strong>${recPsu}W</strong>, but the selected PSU provides only <strong>${state.selections.psu.power}W</strong>. This can cause unexpected shutdowns and instability.</span>
+                    <button onclick="window.goToStep(7)" class="mt-2 px-3 py-1.5 bg-error/20 hover:bg-error/30 rounded text-[11px] font-bold transition-colors w-full">Upgrade PSU</button>
+                </div>
+            </div>
+        `);
     }
 
     const gst = total * 0.18;
@@ -80,14 +97,27 @@ function renderAdvancedSidebar() {
     if (activeTab === 'summary') {
         html += `
             <!-- Compatibility Status -->
-            <div class="bg-white/5 border border-white/10 rounded-xl p-4 relative overflow-hidden group">
-                <div class="absolute -right-6 -top-6 w-24 h-24 bg-${compatColor.split('-')[1]}/20 rounded-full blur-2xl group-hover:bg-${compatColor.split('-')[1]}/30 transition-all"></div>
-                <div class="flex items-center gap-3 mb-2">
-                    <span class="material-symbols-outlined text-2xl ${compatColor}">${compatIcon}</span>
-                    <h3 class="font-headline-sm text-sm uppercase tracking-widest ${compatColor}">Compatibility ${compatStatus}</h3>
+            <div class="${compatBg} rounded-xl p-4 relative group transition-all duration-300">
+                <div class="absolute inset-0 overflow-hidden rounded-xl pointer-events-none">
+                    <div class="absolute -right-6 -top-6 w-24 h-24 bg-${compatColor.split('-')[1]}/10 rounded-full blur-2xl group-hover:bg-${compatColor.split('-')[1]}/20 transition-all"></div>
                 </div>
-                <div class="text-[11px] text-on-surface-variant space-y-1 font-label-mono">
-                    ${compatMessages.length > 0 ? compatMessages.map(m => `<div>${m}</div>`).join('') : 'Select parts to check compatibility.'}
+                
+                <div class="flex items-center gap-3 mb-3 relative z-10">
+                    <span class="material-symbols-outlined text-2xl ${compatColor}">${compatIcon}</span>
+                    <h3 class="font-headline-sm text-sm ${compatColor}">Compatibility: ${compatStatus}</h3>
+                </div>
+                
+                <div class="space-y-1.5 relative z-10">
+                    ${compatMessages.length > 0 ? compatMessages.map(m => `
+                        <div class="flex items-center gap-2 text-[10px] font-label-mono text-on-surface-variant bg-black/20 px-2 py-1.5 rounded">
+                            <span class="material-symbols-outlined text-[14px] text-cyber-teal">check_circle</span>
+                            <span>${m.text}</span>
+                        </div>
+                    `).join('') : '<div class="text-[11px] text-on-surface-variant font-label-mono italic">Select parts to run compatibility checks.</div>'}
+                </div>
+                
+                <div class="relative z-10">
+                    ${criticalWarnings.join('')}
                 </div>
             </div>
 
@@ -183,12 +213,23 @@ function renderAdvancedSidebar() {
                 </div>
 
                 <div class="space-y-2">
-                    ${['CPU Socket', 'Motherboard Chipset', 'BIOS Support', 'RAM Type (DDR4/DDR5)', 'RAM Capacity', 'GPU PCIe Match', 'GPU Length vs Cabinet', 'CPU Cooler Socket', 'Radiator Support', 'PSU Wattage'].map(check => {
-                        const isDone = Math.random() > 0.5 && selectedCount > 2; // Mock logic
+                    ${[
+                        { label: 'CPU Socket', done: !!(state.selections.cpu && state.selections.mobo) },
+                        { label: 'Motherboard Chipset', done: !!state.selections.mobo },
+                        { label: 'BIOS Support', done: !!state.selections.mobo },
+                        { label: 'RAM Type (DDR4/DDR5)', done: !!(state.selections.ram && state.selections.mobo) },
+                        { label: 'RAM Capacity', done: !!state.selections.ram },
+                        { label: 'GPU PCIe Match', done: !!(state.selections.gpu && state.selections.mobo) },
+                        { label: 'GPU Length vs Cabinet', done: !!(state.selections.gpu && state.selections.case) },
+                        { label: 'CPU Cooler Socket', done: !!(state.selections.cpu && state.selections.cooler) },
+                        { label: 'Radiator Support', done: !!(state.selections.cooler && state.selections.case) },
+                        { label: 'PSU Wattage', done: !!(state.selections.psu && isPsuSufficient) }
+                    ].map(check => {
+                        const isDone = check.done;
                         return `
                         <div class="flex items-center gap-2 text-[11px] font-label-mono">
                             <span class="material-symbols-outlined text-[14px] ${isDone ? 'text-cyber-teal' : 'text-white/20'}">${isDone ? 'check_circle' : 'radio_button_unchecked'}</span>
-                            <span class="${isDone ? 'text-white' : 'text-on-surface-variant'}">${check}</span>
+                            <span class="${isDone ? 'text-white' : 'text-on-surface-variant'}">${check.label}</span>
                         </div>
                         `;
                     }).join('')}
@@ -216,7 +257,7 @@ function renderAdvancedSidebar() {
         const icons = {
             cpu: 'memory', mobo: 'dns', ram: 'memory_alt', gpu: 'developer_board',
             ssd: 'storage', hdd: 'hard_drive', cooler: 'ac_unit', psu: 'power', case: 'desktop_windows',
-            fans: 'mode_fan', accessories: 'keyboard'
+            fans: 'mode_fan', rgb: 'lightbulb', accessories: 'keyboard'
         };
 
         steps.filter(s => s.key).forEach(step => {
@@ -266,7 +307,7 @@ function renderAdvancedSidebar() {
             ${(() => {
                 const requiredParts = ['cpu', 'mobo', 'ram', 'ssd', 'psu', 'case'];
                 const isBuildComplete = requiredParts.every(part => state.selections[part]);
-                const isReviewStep = state.currentStepIndex === 11;
+                const isReviewStep = state.currentStepIndex === steps.length - 1;
                 
                 if (isReviewStep) {
                     return `
@@ -306,7 +347,7 @@ function renderAdvancedSidebar() {
         const checkoutBtn = document.getElementById('sidebar-checkout-btn');
         if (checkoutBtn) {
             checkoutBtn.onclick = () => { 
-                if (state.currentStepIndex === 11) {
+                if (state.currentStepIndex === steps.length - 1) {
                     // Direct Checkout -> No cart adding
                     const build = {
                         id: 'MPC-' + Math.floor(100000 + Math.random() * 900000),
@@ -317,7 +358,7 @@ function renderAdvancedSidebar() {
                     localStorage.setItem('checkout_item', JSON.stringify(build));
                     window.location.href = 'shopping-cart.html'; 
                 } else {
-                    window.goToStep(11);
+                    window.goToStep(steps.length - 1);
                 }
             };
         }

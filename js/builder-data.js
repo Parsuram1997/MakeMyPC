@@ -320,6 +320,32 @@ const db = {
             badge: 'Best RGB'
         }
     ],
+    rgb: [
+        {
+            id: 'rgb_corsair_strip',
+            brand: 'Corsair',
+            model: 'iCUE LS100 Smart Lighting Strip',
+            price: 4500,
+            image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=400&q=80',
+            stock: 'In Stock',
+            type: 'LED Strip',
+            length: '450mm',
+            features: ['Diffused Lighting', 'Magnetic', 'iCUE Compatible'],
+            badge: 'Premium'
+        },
+        {
+            id: 'rgb_deepcool_strip',
+            brand: 'DeepCool',
+            model: 'RGB200 EX LED Strip',
+            price: 1500,
+            image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=400&q=80',
+            stock: 'In Stock',
+            type: 'LED Strip',
+            length: '200mm',
+            features: ['Standard RGB', 'Budget Friendly'],
+            badge: 'Value'
+        }
+    ],
     accessories: [
         {
             id: 'acc_logitech_gpro_x_superlight',
@@ -344,6 +370,52 @@ const db = {
             switches: 'Optical',
             features: ['60% Form Factor', 'Optical Switches', 'RGB'],
             badge: 'Popular'
+        }
+    ],
+    os: [
+        {
+            id: 'os_windows_11_home',
+            brand: 'Microsoft',
+            model: 'Windows 11 Home',
+            price: 9500,
+            image: 'https://images.unsplash.com/photo-1633419461186-7d40a38105ec?auto=format&fit=crop&w=400&q=80',
+            stock: 'Digital License',
+            type: 'Operating System',
+            features: ['DirectX 12 Ultimate', 'Auto HDR', 'Seamless Gaming'],
+            badge: 'Standard'
+        },
+        {
+            id: 'os_windows_11_pro',
+            brand: 'Microsoft',
+            model: 'Windows 11 Pro',
+            price: 14500,
+            image: 'https://images.unsplash.com/photo-1633419461186-7d40a38105ec?auto=format&fit=crop&w=400&q=80',
+            stock: 'Digital License',
+            type: 'Operating System',
+            features: ['BitLocker', 'Remote Desktop', 'Hyper-V'],
+            badge: 'Professional'
+        },
+        {
+            id: 'os_ubuntu_linux',
+            brand: 'Canonical',
+            model: 'Ubuntu 24.04 LTS',
+            price: 0,
+            image: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=400&q=80',
+            stock: 'Pre-installed',
+            type: 'Operating System',
+            features: ['Open Source', 'Developer Friendly', 'Free'],
+            badge: 'Free'
+        },
+        {
+            id: 'os_none',
+            brand: 'Custom',
+            model: 'No Operating System',
+            price: 0,
+            image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=400&q=80',
+            stock: 'N/A',
+            type: 'Operating System',
+            features: ['Install your own OS', 'Blank Drive'],
+            badge: ''
         }
     ]
 };
