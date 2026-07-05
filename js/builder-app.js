@@ -45,6 +45,23 @@ const formatPrice = (price) => {
 
 // Initialize App
 function initApp() {
+    const transfer = localStorage.getItem('smart_builder_transfer');
+    if (transfer) {
+        try {
+            const parts = JSON.parse(transfer);
+            Object.keys(parts).forEach(key => {
+                if (state.selections[key] !== undefined) {
+                    state.selections[key] = parts[key];
+                }
+            });
+            // Go straight to review step
+            state.currentStepIndex = steps.length - 1;
+        } catch (e) {
+            console.error('Error parsing transfer', e);
+        }
+        localStorage.removeItem('smart_builder_transfer');
+    }
+
     renderTopBar();
     renderSidebar();
     renderMainContent();
@@ -423,7 +440,7 @@ function renderMainContent() {
             
             html += `
             <div class="glass-card rounded-xl p-6 flex flex-col md:flex-row items-center gap-8 group transition-all ${isSelected ? 'border-primary shadow-[0_0_20px_rgba(0,122,255,0.2)]' : ''}">
-                <div class="w-48 h-48 flex-shrink-0 relative overflow-hidden rounded-lg bg-black/20 flex items-center justify-center p-4">
+                <div onclick="window.location.href='product-details.html'" class="w-48 h-48 flex-shrink-0 relative overflow-hidden rounded-lg bg-black/20 flex items-center justify-center p-4 cursor-pointer">
                     ${part.image ? `<img src="${part.image}" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 hardware-glow" alt="${part.model}">` : `<span class="material-symbols-outlined text-4xl text-on-surface-variant">hardware</span>`}
                 </div>
                 <div class="flex-1 w-full">
@@ -431,7 +448,7 @@ function renderMainContent() {
                         <div>
                             ${part.badge ? `<span class="bg-primary/10 text-primary px-2 py-1 rounded text-[10px] font-label-mono uppercase mb-2 inline-block">${part.badge}</span>` : ''}
                             <div class="text-on-surface-variant text-[10px] uppercase tracking-widest">${part.brand}</div>
-                            <h3 class="text-headline-sm font-headline-sm leading-tight">${part.model}</h3>
+                            <h3 onclick="window.location.href='product-details.html'" class="text-headline-sm font-headline-sm leading-tight cursor-pointer hover:text-primary transition-colors">${part.model}</h3>
                         </div>
                         <div class="text-right">
                             <div class="text-headline-sm font-headline-sm text-primary">${formatPrice(part.price)}</div>

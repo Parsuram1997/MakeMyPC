@@ -210,8 +210,12 @@
 
         <!-- Step 2: Purpose -->
         <div class="wizard-step" id="step-2">
-            <h1 class="text-4xl font-bold text-center mb-4">What will you use this PC for?</h1>
-            <p class="text-center text-on-surface-variant mb-12">Select your primary use-case so we can optimize the hardware.</p>
+            <div class="relative mb-12">
+                <button onclick="smartBuilder.prevStep()" class="absolute left-0 top-0 px-4 py-2 border border-white/20 rounded-xl hover:bg-white/5 transition-all text-sm font-bold flex items-center gap-2 hidden md:flex"><span class="material-symbols-outlined text-[18px]">arrow_back</span> Back</button>
+                <h1 class="text-4xl font-bold text-center mb-4">What will you use this PC for?</h1>
+                <p class="text-center text-on-surface-variant">Select your primary use-case so we can optimize the hardware.</p>
+                <button onclick="smartBuilder.prevStep()" class="mt-4 mx-auto px-4 py-2 border border-white/20 rounded-xl hover:bg-white/5 transition-all text-sm font-bold flex items-center gap-2 md:hidden"><span class="material-symbols-outlined text-[18px]">arrow_back</span> Back</button>
+            </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
                 <!-- Option 1 -->
@@ -243,13 +247,27 @@
 
         <!-- Step 3: Budget -->
         <div class="wizard-step" id="step-3">
-            <h1 class="text-4xl font-bold text-center mb-4">What is your budget?</h1>
-            <p class="text-center text-on-surface-variant mb-12">We'll find the best performance within your price range.</p>
+            <div class="relative mb-12">
+                <button onclick="smartBuilder.prevStep()" class="absolute left-0 top-0 px-4 py-2 border border-white/20 rounded-xl hover:bg-white/5 transition-all text-sm font-bold flex items-center gap-2 hidden md:flex"><span class="material-symbols-outlined text-[18px]">arrow_back</span> Back</button>
+                <h1 class="text-4xl font-bold text-center mb-4">What is your budget?</h1>
+                <p class="text-center text-on-surface-variant">We'll find the best performance within your price range.</p>
+                <button onclick="smartBuilder.prevStep()" class="mt-4 mx-auto px-4 py-2 border border-white/20 rounded-xl hover:bg-white/5 transition-all text-sm font-bold flex items-center gap-2 md:hidden"><span class="material-symbols-outlined text-[18px]">arrow_back</span> Back</button>
+            </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="glass-card rounded-2xl p-6 text-center cursor-pointer hover:-translate-y-1 transition-all group" onclick="smartBuilder.selectBudget(10000)">
+                    <h3 class="text-xl font-bold text-primary mb-2">Ultra Budget</h3>
+                    <div class="text-2xl font-black mb-4">Under ₹10,000</div>
+                    <p class="text-on-surface-variant text-xs">Basic web browsing and media consumption.</p>
+                </div>
+                <div class="glass-card rounded-2xl p-6 text-center cursor-pointer hover:-translate-y-1 transition-all group" onclick="smartBuilder.selectBudget(20000)">
+                    <h3 class="text-xl font-bold text-primary mb-2">Basic</h3>
+                    <div class="text-2xl font-black mb-4">₹10K - ₹20K</div>
+                    <p class="text-on-surface-variant text-xs">Home office and school tasks.</p>
+                </div>
                 <div class="glass-card rounded-2xl p-6 text-center cursor-pointer hover:-translate-y-1 transition-all group" onclick="smartBuilder.selectBudget(50000)">
                     <h3 class="text-xl font-bold text-primary mb-2">Entry Level</h3>
-                    <div class="text-2xl font-black mb-4">Under ₹50,000</div>
+                    <div class="text-2xl font-black mb-4">₹20K - ₹50K</div>
                     <p class="text-on-surface-variant text-xs">Great for basic 1080p gaming or everyday tasks.</p>
                 </div>
                 <div class="glass-card rounded-2xl p-6 text-center cursor-pointer hover:-translate-y-1 transition-all group border-electric-blue/50 hardware-glow" onclick="smartBuilder.selectBudget(100000)">
@@ -263,15 +281,11 @@
                     <div class="text-2xl font-black mb-4">₹1.0L - ₹2.0L</div>
                     <p class="text-on-surface-variant text-xs">4K gaming, heavy video editing, and max settings.</p>
                 </div>
-                <div class="glass-card rounded-2xl p-6 text-center cursor-pointer hover:-translate-y-1 transition-all group md:col-start-2" onclick="smartBuilder.selectBudget(999999)">
+                <div class="glass-card rounded-2xl p-6 text-center cursor-pointer hover:-translate-y-1 transition-all group" onclick="smartBuilder.selectBudget(999999)">
                     <h3 class="text-xl font-bold text-error mb-2">Ultimate</h3>
                     <div class="text-2xl font-black mb-4">No Limit</div>
                     <p class="text-on-surface-variant text-xs">The absolute best hardware money can buy.</p>
                 </div>
-            </div>
-            
-            <div class="mt-12 text-center">
-                <button onclick="smartBuilder.prevStep()" class="px-6 py-3 border border-white/20 rounded-xl hover:bg-white/5 transition-all text-sm font-bold">← Back</button>
             </div>
         </div>
 
@@ -286,9 +300,13 @@
             
             <!-- Result UI -->
             <div id="result-state" class="hidden">
-                <div class="text-center mb-10">
-                    <h1 class="text-4xl font-bold mb-4">Here is your Perfect PC!</h1>
-                    <p class="text-on-surface-variant text-lg">Optimized for <span id="res-purpose" class="text-primary font-bold capitalize"></span> within <span id="res-budget" class="text-primary font-bold"></span>.</p>
+                <div class="relative mb-10">
+                    <button onclick="smartBuilder.reset()" class="absolute left-0 top-0 px-4 py-2 border border-white/20 rounded-xl hover:bg-white/5 transition-all text-sm font-bold flex items-center gap-2 hidden md:flex"><span class="material-symbols-outlined text-[18px]">restart_alt</span> Start Over</button>
+                    <div class="text-center">
+                        <h1 class="text-4xl font-bold mb-4">Here is your Perfect PC!</h1>
+                        <p class="text-on-surface-variant text-lg">Optimized for <span id="res-purpose" class="text-primary font-bold capitalize"></span> within <span id="res-budget" class="text-primary font-bold"></span>.</p>
+                    </div>
+                    <button onclick="smartBuilder.reset()" class="mt-6 mx-auto px-4 py-2 border border-white/20 rounded-xl hover:bg-white/5 transition-all text-sm font-bold flex items-center gap-2 md:hidden"><span class="material-symbols-outlined text-[18px]">restart_alt</span> Start Over</button>
                 </div>
                 
                 <div class="flex flex-col lg:flex-row gap-8">
@@ -351,10 +369,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="mt-12 text-center">
-                    <button onclick="smartBuilder.reset()" class="px-6 py-3 border border-white/20 rounded-xl hover:bg-white/5 transition-all text-sm font-bold">Start Over</button>
                 </div>
             </div>
         </div>

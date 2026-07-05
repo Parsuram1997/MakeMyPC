@@ -122,17 +122,8 @@ const smartBuilder = {
         setTimeout(() => {
             this.runRecommendationEngine();
             
-            if (window.state && window.state.selections) {
-                Object.keys(this.state.generatedBuild).forEach(key => {
-                    window.state.selections[key] = this.state.generatedBuild[key];
-                });
-                if (typeof renderAdvancedSidebar === 'function') renderAdvancedSidebar();
-            }
-            
-            this.renderResult();
-            
-            document.getElementById('loading-state').classList.add('hidden');
-            document.getElementById('result-state').classList.remove('hidden');
+            // Bypass local review and go straight to Custom Builder Review
+            this.editInBuilder();
         }, 1500);
     },
 
@@ -144,13 +135,13 @@ const smartBuilder = {
         // Define allocation ratios based on purpose
         let allocations = {};
         if (purpose === 'gaming') {
-            allocations = { gpu: 0.45, cpu: 0.20, mobo: 0.10, ram: 0.08, storage: 0.07, psu: 0.05, case: 0.05 };
+            allocations = { gpu: 0.45, cpu: 0.20, mobo: 0.10, ram: 0.08, ssd: 0.07, psu: 0.05, case: 0.05 };
         } else if (purpose === 'creation') {
-            allocations = { cpu: 0.35, gpu: 0.25, ram: 0.15, mobo: 0.10, storage: 0.10, psu: 0.05, case: 0.00 }; 
+            allocations = { cpu: 0.30, gpu: 0.25, ram: 0.15, mobo: 0.10, ssd: 0.10, psu: 0.05, case: 0.05 }; 
         } else if (purpose === 'developer') {
-            allocations = { cpu: 0.45, ram: 0.25, storage: 0.15, mobo: 0.10, psu: 0.05, case: 0.00, gpu: 0.0 };
+            allocations = { cpu: 0.40, ram: 0.25, ssd: 0.15, mobo: 0.10, psu: 0.05, case: 0.05, gpu: 0.0 };
         } else { // office
-            allocations = { cpu: 0.40, ram: 0.15, storage: 0.15, mobo: 0.15, psu: 0.10, case: 0.05, gpu: 0.0 };
+            allocations = { cpu: 0.40, ram: 0.15, ssd: 0.15, mobo: 0.15, psu: 0.10, case: 0.05, gpu: 0.0 };
         }
 
         // Helper to find best component within a target price
@@ -166,7 +157,7 @@ const smartBuilder = {
             
             // If we have a CPU/Mobo, filter RAM by generation
             if (category === 'ram' && build.cpu && build.cpu.ram_support) {
-                validParts = validParts.filter(p => build.cpu.ram_support.includes(p.generation || (p.model.includes('DDR5') ? 'DDR5' : 'DDR4')));
+                validParts = validParts.filter(p => build.cpu.ram_support.includes(p.type || p.generation || (p.model.includes('DDR5') ? 'DDR5' : 'DDR4')));
             }
             
             // OS-specific filtering: If Linux, prioritize AMD GPUs (we'll filter out NVIDIA if there are AMD alternatives)
@@ -194,7 +185,7 @@ const smartBuilder = {
         };
 
         // Pick parts in order of importance
-        const order = ['cpu', 'gpu', 'mobo', 'ram', 'storage', 'psu', 'case'];
+        const order = ['cpu', 'gpu', 'mobo', 'ram', 'ssd', 'psu', 'case'];
         let total = 0;
 
         order.forEach(cat => {
@@ -247,7 +238,7 @@ const smartBuilder = {
         
         const categories = {
             cpu: 'Processor', mobo: 'Motherboard', ram: 'Memory', 
-            gpu: 'Graphics', storage: 'Storage', psu: 'Power Supply',
+            gpu: 'Graphics', ssd: 'Storage', psu: 'Power Supply',
             case: 'Cabinet', cooler: 'Cooler'
         };
         
@@ -292,10 +283,19 @@ const smartBuilder = {
 
     editInBuilder() {
         if (!this.state.generatedBuild) return;
-        // The builder uses a different format, but we can pass it via localStorage
-        // To simplify, we will just redirect for now. A robust implementation would map parts to the builder's state format.
-        // Let's create a temporary session key that builder-app.js could theoretically pick up.
-        localStorage.setItem('smart_builder_transfer', JSON.stringify(this.state.generatedBuild));
+        
+        const transferData = { ...this.state.generatedBuild };
+        
+        // Include OS selection
+        if (this.state.os === 'windows') {
+            transferData.os = db.os.find(o => o.id === 'os_windows_11_home') || db.os.find(o => o.id === 'os_windows_11_pro');
+        } else if (this.state.os === 'linux') {
+            transferData.os = db.os.find(o => o.id === 'os_ubuntu_linux');
+        } else if (this.state.os === 'none') {
+            transferData.os = db.os.find(o => o.id === 'os_none');
+        }
+
+        localStorage.setItem('smart_builder_transfer', JSON.stringify(transferData));
         window.location.href = 'custom-pc-builder.html';
     }
 };

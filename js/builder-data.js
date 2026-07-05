@@ -278,6 +278,7 @@ const db = {
             image: 'https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&w=400&q=80',
             stock: 'In Stock',
             wattage: '1000W',
+            power: 1000,
             efficiency: 'Gold',
             modular: 'Fully Modular',
             pcie5: 'Yes',

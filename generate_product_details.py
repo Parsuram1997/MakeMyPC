@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+import os
+
+HTML_CONTENT = """<!DOCTYPE html>
 <html class="dark" lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -170,12 +172,21 @@
 <!-- Page Content -->
 <main class="pt-24 pb-32 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
     
-
+    <!-- Breadcrumbs -->
+    <div class="flex items-center gap-2 text-sm font-label-mono text-on-surface-variant/70 mt-4">
+        <a href="#" class="hover:text-primary transition-colors">Components</a>
+        <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+        <a href="#" class="hover:text-primary transition-colors">Processors</a>
+        <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+        <a href="#" class="hover:text-primary transition-colors">Intel</a>
+        <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+        <span class="text-on-surface">Core i9-14900K</span>
+    </div>
 
     <!-- 1. HERO SECTION -->
-    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <!-- Gallery (Left) -->
-        <div class="lg:col-span-5 flex flex-col gap-4">
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Gallery -->
+        <div class="flex flex-col gap-4">
             <div class="glass-card aspect-square rounded-2xl flex items-center justify-center p-12 relative group cursor-zoom-in glow-blue">
                 <!-- 360 Badge -->
                 <div class="absolute top-4 left-4 bg-white/10 backdrop-blur-md border border-white/20 px-3 py-1 rounded-full flex items-center gap-2 text-xs font-bold text-primary">
@@ -184,30 +195,26 @@
                 </div>
                 <img src="images/i9-14900k-box.png" alt="Intel Core i9-14900K" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 drop-shadow-2xl" onerror="this.src='https://placehold.co/600x600/101b30/d7e2ff?text=i9-14900K'"/>
             </div>
-            <div class="grid grid-cols-6 gap-3">
-                <div class="glass-card aspect-square rounded-xl cursor-pointer border border-primary/50 bg-primary/5 hover:bg-white/10 transition-colors p-2"><img src="https://placehold.co/150x150/101b30/d7e2ff?text=Angle+1" class="w-full h-full object-cover rounded-lg"/></div>
-                <div class="glass-card aspect-square rounded-xl cursor-pointer border border-white/5 hover:border-primary/50 hover:bg-white/10 transition-colors p-2"><img src="https://placehold.co/150x150/101b30/d7e2ff?text=Angle+2" class="w-full h-full object-cover rounded-lg"/></div>
-                <div class="glass-card aspect-square rounded-xl cursor-pointer border border-white/5 hover:border-primary/50 hover:bg-white/10 transition-colors p-2"><img src="https://placehold.co/150x150/101b30/d7e2ff?text=Angle+3" class="w-full h-full object-cover rounded-lg"/></div>
-                <div class="glass-card aspect-square rounded-xl cursor-pointer border border-white/5 hover:border-primary/50 hover:bg-white/10 transition-colors p-2"><img src="https://placehold.co/150x150/101b30/d7e2ff?text=Top" class="w-full h-full object-cover rounded-lg"/></div>
-                <div class="glass-card aspect-square rounded-xl cursor-pointer border border-white/5 hover:border-primary/50 hover:bg-white/10 transition-colors p-2"><img src="https://placehold.co/150x150/101b30/d7e2ff?text=Socket" class="w-full h-full object-cover rounded-lg"/></div>
-                <div class="glass-card aspect-square rounded-xl cursor-pointer border border-white/5 hover:border-primary/50 hover:bg-white/10 transition-colors p-2 flex flex-col items-center justify-center gap-1">
-                    <span class="material-symbols-outlined text-2xl text-on-surface-variant">play_circle</span>
-                    <span class="text-[9px] font-bold text-on-surface-variant uppercase">Video</span>
+            <div class="grid grid-cols-4 gap-4">
+                <div class="glass-card aspect-square rounded-xl cursor-pointer border-primary/50 hover:bg-white/5 transition-colors p-4"><img src="https://placehold.co/150x150/101b30/d7e2ff?text=Angle+1" class="w-full h-full object-cover rounded-lg"/></div>
+                <div class="glass-card aspect-square rounded-xl cursor-pointer hover:bg-white/5 transition-colors p-4"><img src="https://placehold.co/150x150/101b30/d7e2ff?text=Angle+2" class="w-full h-full object-cover rounded-lg"/></div>
+                <div class="glass-card aspect-square rounded-xl cursor-pointer hover:bg-white/5 transition-colors p-4"><img src="https://placehold.co/150x150/101b30/d7e2ff?text=Socket" class="w-full h-full object-cover rounded-lg"/></div>
+                <div class="glass-card aspect-square rounded-xl cursor-pointer hover:bg-white/5 transition-colors p-4 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-4xl text-on-surface-variant">play_circle</span>
                 </div>
             </div>
         </div>
         
-        <!-- Product Details (Middle) -->
-        <div class="lg:col-span-4 flex flex-col pt-2">
-            <div class="flex items-center gap-3 mb-3">
+        <!-- Product Details -->
+        <div class="flex flex-col justify-center">
+            <div class="flex items-center gap-3 mb-2">
                 <img src="images/intel-logo.png" alt="Intel" class="h-6 object-contain grayscale brightness-200 opacity-80" onerror="this.src='https://placehold.co/80x30/transparent/d7e2ff?text=INTEL'"/>
                 <span class="text-xs font-label-mono text-on-surface-variant bg-white/5 px-2 py-1 rounded border border-white/10">SKU: BX8071514900K</span>
             </div>
             
-            <h1 class="text-3xl md:text-4xl font-black tracking-tight text-on-surface mb-2 leading-tight">Intel Core i9-14900K</h1>
-            <p class="text-xl md:text-2xl text-primary font-light mb-4">24-Core (8P+16E) Processor</p>
+            <h1 class="text-4xl md:text-5xl font-black tracking-tight text-on-surface mb-4 leading-tight">Intel Core i9-14900K <br/><span class="text-primary font-light text-2xl md:text-3xl">24-Core (8P+16E) Processor</span></h1>
             
-            <div class="flex items-center gap-4 mb-6 pb-6 border-b border-white/10">
+            <div class="flex items-center gap-4 mb-8">
                 <div class="flex text-[#FFB800] text-sm">
                     <span class="material-symbols-outlined filled">star</span>
                     <span class="material-symbols-outlined filled">star</span>
@@ -218,35 +225,19 @@
                 <span class="text-sm text-on-surface-variant font-medium">4.8 (2,104 Reviews)</span>
             </div>
 
-            <!-- Key Features / Highlights -->
-            <div class="space-y-4 mb-6">
-                <h3 class="font-bold text-sm text-white">Key Features:</h3>
-                <ul class="space-y-2">
-                    <li class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary text-[18px]">check_circle</span> 24 Cores (8 Performance + 16 Efficient)</li>
-                    <li class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary text-[18px]">check_circle</span> 32 Threads, 36MB L3 Cache</li>
-                    <li class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary text-[18px]">check_circle</span> Up to 6.0 GHz Max Clock Speed</li>
-                    <li class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary text-[18px]">check_circle</span> Compatible with Intel 600 & 700 Series Motherboards</li>
-                    <li class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary text-[18px]">check_circle</span> Integrated Intel UHD Graphics 770</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Buy Box / Price (Right) -->
-        <div class="lg:col-span-3 flex flex-col gap-4 pt-2">
             <!-- Price & Stock -->
-            <div class="glass-card rounded-2xl p-6 border border-white/10 relative overflow-hidden flex flex-col gap-6">
+            <div class="glass-card rounded-2xl p-6 mb-8 border-l-4 border-l-primary relative overflow-hidden">
                 <div class="absolute -right-10 -top-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
-                
                 <div class="flex flex-col gap-1">
-                    <div class="flex items-center gap-2 mb-1">
-                        <span class="bg-error/20 text-error px-2 py-0.5 rounded text-xs font-bold">-19%</span>
-                        <span class="text-sm text-on-surface-variant line-through">₹65,000</span>
+                    <div class="flex items-end gap-3">
+                        <span class="text-4xl font-black text-white">₹52,499</span>
+                        <span class="text-lg text-on-surface-variant line-through mb-1">₹65,000</span>
+                        <span class="bg-error/20 text-error px-2 py-0.5 rounded text-xs font-bold mb-2">-19%</span>
                     </div>
-                    <span class="text-4xl font-black text-white">₹52,499</span>
-                    <p class="text-xs text-on-surface-variant/70 font-label-mono mt-1">Inclusive of all taxes</p>
+                    <p class="text-xs text-on-surface-variant/70 font-label-mono">Inclusive of all taxes (GST Invoice Available)</p>
                 </div>
                 
-                <div class="flex flex-col gap-3 text-sm font-medium">
+                <div class="mt-6 flex flex-wrap gap-4 text-sm font-medium">
                     <div class="flex items-center gap-2 text-secondary">
                         <span class="material-symbols-outlined text-[18px]">check_circle</span>
                         In Stock
@@ -255,48 +246,46 @@
                         <span class="material-symbols-outlined text-[18px]">local_shipping</span>
                         Delivery by Tomorrow, 8 PM
                     </div>
-                </div>
-
-                <!-- Actions -->
-                <div class="flex flex-col gap-3">
-                    <button onclick="window.location.href='builder-landing.html'" class="w-full bg-primary text-on-primary font-bold py-3 px-4 rounded-xl hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(173,198,255,0.3)]">
-                        <span class="material-symbols-outlined">build</span>
-                        Add to Build
-                    </button>
-                    <button onclick="window.location.href='shopping-cart.html'" class="w-full bg-white/5 border border-white/10 text-on-surface font-bold py-3 px-4 rounded-xl hover:bg-white/10 active:scale-95 transition-all glow-hover flex items-center justify-center gap-2">
-                        <span class="material-symbols-outlined">shopping_bag</span>
-                        Buy Now
-                    </button>
-                </div>
-                
-                <div class="flex justify-between items-center text-xs font-medium text-on-surface-variant mt-2 border-t border-white/10 pt-4">
-                    <button onclick="alert('Item added to Compare')" class="flex items-center gap-1 hover:text-primary transition-colors">
-                        <span class="material-symbols-outlined text-[16px]">compare_arrows</span> Compare
-                    </button>
-                    <button onclick="alert('Item added to Wishlist')" class="flex items-center gap-1 hover:text-error transition-colors">
-                        <span class="material-symbols-outlined text-[16px]">favorite_border</span> Wishlist
-                    </button>
+                    <div class="flex items-center gap-2 text-on-surface-variant">
+                        <span class="material-symbols-outlined text-[18px]">verified_user</span>
+                        3 Years Warranty
+                    </div>
                 </div>
             </div>
 
-            <!-- Mini Trust Badge -->
-            <div class="glass-card rounded-xl p-4 flex items-center gap-3 border border-white/10">
-                <span class="material-symbols-outlined text-primary text-2xl">verified_user</span>
-                <div>
-                    <h4 class="font-bold text-sm text-white">MakeMyPC Promise</h4>
-                    <p class="text-xs text-on-surface-variant">3 Years Warranty & Genuine Parts</p>
-                </div>
+            <!-- Actions -->
+            <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                <button class="flex-1 bg-primary text-on-primary font-bold py-4 px-6 rounded-xl hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(173,198,255,0.3)]">
+                    <span class="material-symbols-outlined">build</span>
+                    Add to Custom Build
+                </button>
+                <button class="flex-1 glass-card text-on-surface font-bold py-4 px-6 rounded-xl hover:bg-white/10 active:scale-95 transition-all glow-hover flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                    Buy Now
+                </button>
+            </div>
+            
+            <div class="flex gap-6 text-sm font-medium text-on-surface-variant">
+                <button class="flex items-center gap-2 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">compare_arrows</span> Compare
+                </button>
+                <button class="flex items-center gap-2 hover:text-error transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">favorite_border</span> Wishlist
+                </button>
+                <button class="flex items-center gap-2 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">share</span> Share
+                </button>
             </div>
         </div>
     </section>
 
     <!-- Navigation Tabs for the rest of the page -->
-    <div class="sticky top-20 z-40 bg-[#00081C]/90 backdrop-blur-md border-b border-white/10 py-4 -mx-4 px-4 sm:mx-0 sm:px-0 flex justify-between w-full overflow-x-auto no-scrollbar font-label-mono text-[13px] md:text-sm font-bold text-on-surface-variant">
-        <a href="#specs" class="sticky-nav-item active whitespace-nowrap px-2 py-2 text-center transition-all">Specifications</a>
-        <a href="#performance" class="sticky-nav-item whitespace-nowrap px-2 py-2 text-center hover:text-white transition-all">Performance & Benchmarks</a>
-        <a href="#compatibility" class="sticky-nav-item whitespace-nowrap px-2 py-2 text-center hover:text-white transition-all">Compatibility</a>
-        <a href="#gallery" class="sticky-nav-item whitespace-nowrap px-2 py-2 text-center hover:text-white transition-all">Gallery & Media</a>
-        <a href="#support" class="sticky-nav-item whitespace-nowrap px-2 py-2 text-center hover:text-white transition-all">Support & Reviews</a>
+    <div class="sticky top-20 z-40 bg-[#00081C]/90 backdrop-blur-md border-b border-white/10 py-4 -mx-4 px-4 sm:mx-0 sm:px-0 flex gap-6 overflow-x-auto no-scrollbar font-label-mono text-sm font-bold text-on-surface-variant">
+        <a href="#specs" class="sticky-nav-item active whitespace-nowrap px-1 py-2 transition-all">Specifications</a>
+        <a href="#performance" class="sticky-nav-item whitespace-nowrap px-1 py-2 hover:text-white transition-all">Performance & Benchmarks</a>
+        <a href="#compatibility" class="sticky-nav-item whitespace-nowrap px-1 py-2 hover:text-white transition-all">Compatibility</a>
+        <a href="#gallery" class="sticky-nav-item whitespace-nowrap px-1 py-2 hover:text-white transition-all">Gallery & Media</a>
+        <a href="#support" class="sticky-nav-item whitespace-nowrap px-1 py-2 hover:text-white transition-all">Support & Reviews</a>
     </div>
 
     <!-- 2 & 5. SPECIFICATIONS -->
@@ -307,42 +296,34 @@
         </h2>
         
         <!-- Quick Specs Chips -->
-        <!-- Quick Specs Chips -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 w-full">
-            <div class="glass-card px-2 py-3 rounded-xl flex flex-col justify-center items-center text-center group hover:bg-white/10 transition-all border border-white/5 hover:border-primary/50 hover:shadow-[0_0_15px_rgba(173,198,255,0.15)] relative overflow-hidden">
-                <div class="absolute inset-x-0 bottom-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
-                <span class="text-[9px] font-label-mono text-primary uppercase mb-1">Socket</span>
-                <span class="font-bold text-white text-xs">LGA 1700</span>
+        <div class="flex flex-wrap gap-3">
+            <div class="glass-card px-4 py-2 rounded-lg flex flex-col">
+                <span class="text-[10px] font-label-mono text-on-surface-variant/70 uppercase">Socket</span>
+                <span class="font-bold">LGA 1700</span>
             </div>
-            <div class="glass-card px-2 py-3 rounded-xl flex flex-col justify-center items-center text-center group hover:bg-white/10 transition-all border border-white/5 hover:border-primary/50 hover:shadow-[0_0_15px_rgba(173,198,255,0.15)] relative overflow-hidden">
-                <div class="absolute inset-x-0 bottom-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
-                <span class="text-[9px] font-label-mono text-primary uppercase mb-1">Cores</span>
-                <span class="font-bold text-white text-xs">24 (8P+16E)</span>
+            <div class="glass-card px-4 py-2 rounded-lg flex flex-col">
+                <span class="text-[10px] font-label-mono text-on-surface-variant/70 uppercase">Cores / Threads</span>
+                <span class="font-bold">24 (8P+16E) / 32</span>
             </div>
-            <div class="glass-card px-2 py-3 rounded-xl flex flex-col justify-center items-center text-center group hover:bg-white/10 transition-all border border-white/5 hover:border-primary/50 hover:shadow-[0_0_15px_rgba(173,198,255,0.15)] relative overflow-hidden">
-                <div class="absolute inset-x-0 bottom-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
-                <span class="text-[9px] font-label-mono text-primary uppercase mb-1">Max Boost</span>
-                <span class="font-bold text-white text-xs">6.0 GHz</span>
+            <div class="glass-card px-4 py-2 rounded-lg flex flex-col">
+                <span class="text-[10px] font-label-mono text-on-surface-variant/70 uppercase">Max Boost</span>
+                <span class="font-bold">6.0 GHz</span>
             </div>
-            <div class="glass-card px-2 py-3 rounded-xl flex flex-col justify-center items-center text-center group hover:bg-white/10 transition-all border border-white/5 hover:border-primary/50 hover:shadow-[0_0_15px_rgba(173,198,255,0.15)] relative overflow-hidden">
-                <div class="absolute inset-x-0 bottom-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
-                <span class="text-[9px] font-label-mono text-primary uppercase mb-1">TDP</span>
-                <span class="font-bold text-white text-xs">125W</span>
+            <div class="glass-card px-4 py-2 rounded-lg flex flex-col">
+                <span class="text-[10px] font-label-mono text-on-surface-variant/70 uppercase">Base Power (TDP)</span>
+                <span class="font-bold">125W</span>
             </div>
-            <div class="glass-card px-2 py-3 rounded-xl flex flex-col justify-center items-center text-center group hover:bg-white/10 transition-all border border-white/5 hover:border-primary/50 hover:shadow-[0_0_15px_rgba(173,198,255,0.15)] relative overflow-hidden">
-                <div class="absolute inset-x-0 bottom-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
-                <span class="text-[9px] font-label-mono text-primary uppercase mb-1">L3 Cache</span>
-                <span class="font-bold text-white text-xs">36 MB</span>
+            <div class="glass-card px-4 py-2 rounded-lg flex flex-col">
+                <span class="text-[10px] font-label-mono text-on-surface-variant/70 uppercase">L3 Cache</span>
+                <span class="font-bold">36 MB</span>
             </div>
-            <div class="glass-card px-2 py-3 rounded-xl flex flex-col justify-center items-center text-center group hover:bg-white/10 transition-all border border-white/5 hover:border-primary/50 hover:shadow-[0_0_15px_rgba(173,198,255,0.15)] relative overflow-hidden">
-                <div class="absolute inset-x-0 bottom-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
-                <span class="text-[9px] font-label-mono text-primary uppercase mb-1">RAM</span>
-                <span class="font-bold text-white text-xs">DDR5</span>
+            <div class="glass-card px-4 py-2 rounded-lg flex flex-col">
+                <span class="text-[10px] font-label-mono text-on-surface-variant/70 uppercase">Memory Support</span>
+                <span class="font-bold">DDR5-5600 / DDR4-3200</span>
             </div>
-            <div class="glass-card px-2 py-3 rounded-xl flex flex-col justify-center items-center text-center group hover:bg-white/10 transition-all border border-white/5 hover:border-primary/50 hover:shadow-[0_0_15px_rgba(173,198,255,0.15)] relative overflow-hidden">
-                <div class="absolute inset-x-0 bottom-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
-                <span class="text-[9px] font-label-mono text-primary uppercase mb-1">Graphics</span>
-                <span class="font-bold text-white text-xs">UHD 770</span>
+            <div class="glass-card px-4 py-2 rounded-lg flex flex-col">
+                <span class="text-[10px] font-label-mono text-on-surface-variant/70 uppercase">Integrated Graphics</span>
+                <span class="font-bold">Intel UHD 770</span>
             </div>
         </div>
 
@@ -388,166 +369,65 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Overall Score -->
-            <div class="glass-card rounded-2xl p-8 flex flex-col items-center justify-center text-center relative overflow-hidden group hover:border-primary/50 transition-colors duration-500">
+            <div class="glass-card rounded-2xl p-8 flex flex-col items-center justify-center text-center relative overflow-hidden group">
                 <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                <!-- Glowing Ring -->
-                <div class="relative mb-6">
-                    <div class="absolute inset-0 rounded-full border-[10px] border-primary/20 blur-md scale-110"></div>
-                    <div class="w-36 h-36 rounded-full border-8 border-surface-deep border-t-primary border-r-primary flex items-center justify-center relative z-10 glow-blue shadow-[0_0_40px_rgba(74,222,128,0.2)]">
-                        <span class="text-5xl font-black text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">98<span class="text-xl text-primary font-bold">/100</span></span>
-                    </div>
+                <div class="w-32 h-32 rounded-full border-8 border-primary/20 border-t-primary flex items-center justify-center mb-4">
+                    <span class="text-4xl font-black text-white">98<span class="text-lg text-primary">/100</span></span>
                 </div>
-                
-                <h3 class="font-black text-2xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-electric-blue drop-shadow-md mb-2">Elite Tier</h3>
-                <p class="text-sm text-on-surface-variant max-w-[200px] leading-relaxed">Uncompromising performance for gaming and creator workloads.</p>
+                <h3 class="font-bold text-lg">Elite Tier</h3>
+                <p class="text-sm text-on-surface-variant mt-2">Uncompromising performance for gaming and creator workloads.</p>
             </div>
 
             <!-- Workloads -->
-            <div class="md:col-span-2 glass-card rounded-2xl p-8 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8 relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
-                
-                <div class="relative z-10 group cursor-default">
-                    <div class="flex justify-between items-end mb-2">
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-primary text-[20px]">sports_esports</span>
-                            <span class="font-bold text-[13px] text-white/90 uppercase tracking-wide">Gaming (4K/1440p)</span>
-                        </div>
-                        <span class="text-primary text-xs font-bold bg-primary/10 px-2 py-0.5 rounded border border-primary/20">5/5</span>
-                    </div>
-                    <div class="w-full bg-black/40 h-2.5 rounded-full overflow-hidden shadow-inner">
-                        <div class="h-full bg-gradient-to-r from-primary to-green-400 w-full group-hover:shadow-[0_0_15px_rgba(74,222,128,0.8)] transition-all duration-300 relative overflow-hidden">
-                            <div class="absolute inset-0 bg-white/30 w-1/2 -skew-x-12 -translate-x-full group-hover:translate-x-[250%] transition-transform duration-1000"></div>
-                        </div>
-                    </div>
+            <div class="md:col-span-2 glass-card rounded-2xl p-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+                <div>
+                    <div class="flex justify-between mb-2"><span class="font-bold text-sm">Gaming (4K/1440p)</span><span class="text-primary text-sm font-bold">5/5</span></div>
+                    <div class="performance-bar"><div class="performance-fill" style="width: 100%"></div></div>
                 </div>
-
-                <div class="relative z-10 group cursor-default">
-                    <div class="flex justify-between items-end mb-2">
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-electric-blue text-[20px]">movie_edit</span>
-                            <span class="font-bold text-[13px] text-white/90 uppercase tracking-wide">Video Editing</span>
-                        </div>
-                        <span class="text-electric-blue text-xs font-bold bg-electric-blue/10 px-2 py-0.5 rounded border border-electric-blue/20">5/5</span>
-                    </div>
-                    <div class="w-full bg-black/40 h-2.5 rounded-full overflow-hidden shadow-inner">
-                        <div class="h-full bg-gradient-to-r from-electric-blue to-blue-400 w-full group-hover:shadow-[0_0_15px_rgba(59,130,246,0.8)] transition-all duration-300 relative overflow-hidden">
-                            <div class="absolute inset-0 bg-white/30 w-1/2 -skew-x-12 -translate-x-full group-hover:translate-x-[250%] transition-transform duration-1000"></div>
-                        </div>
-                    </div>
+                <div>
+                    <div class="flex justify-between mb-2"><span class="font-bold text-sm">Video Editing (Premiere/Resolve)</span><span class="text-primary text-sm font-bold">5/5</span></div>
+                    <div class="performance-bar"><div class="performance-fill" style="width: 100%"></div></div>
                 </div>
-
-                <div class="relative z-10 group cursor-default">
-                    <div class="flex justify-between items-end mb-2">
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-tertiary text-[20px]">view_in_ar</span>
-                            <span class="font-bold text-[13px] text-white/90 uppercase tracking-wide">3D Rendering</span>
-                        </div>
-                        <span class="text-tertiary text-xs font-bold bg-tertiary/10 px-2 py-0.5 rounded border border-tertiary/20">4.8/5</span>
-                    </div>
-                    <div class="w-full bg-black/40 h-2.5 rounded-full overflow-hidden shadow-inner">
-                        <div class="h-full bg-gradient-to-r from-tertiary to-purple-400 w-[95%] group-hover:shadow-[0_0_15px_rgba(168,85,247,0.8)] transition-all duration-300 relative overflow-hidden">
-                            <div class="absolute inset-0 bg-white/30 w-1/2 -skew-x-12 -translate-x-full group-hover:translate-x-[250%] transition-transform duration-1000"></div>
-                        </div>
-                    </div>
+                <div>
+                    <div class="flex justify-between mb-2"><span class="font-bold text-sm">3D Rendering (Blender)</span><span class="text-primary text-sm font-bold">4.8/5</span></div>
+                    <div class="performance-bar"><div class="performance-fill" style="width: 95%"></div></div>
                 </div>
-
-                <div class="relative z-10 group cursor-default">
-                    <div class="flex justify-between items-end mb-2">
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-cyber-teal text-[20px]">podcasts</span>
-                            <span class="font-bold text-[13px] text-white/90 uppercase tracking-wide">Streaming</span>
-                        </div>
-                        <span class="text-cyber-teal text-xs font-bold bg-cyber-teal/10 px-2 py-0.5 rounded border border-cyber-teal/20">5/5</span>
-                    </div>
-                    <div class="w-full bg-black/40 h-2.5 rounded-full overflow-hidden shadow-inner">
-                        <div class="h-full bg-gradient-to-r from-cyber-teal to-teal-400 w-full group-hover:shadow-[0_0_15px_rgba(45,212,191,0.8)] transition-all duration-300 relative overflow-hidden">
-                            <div class="absolute inset-0 bg-white/30 w-1/2 -skew-x-12 -translate-x-full group-hover:translate-x-[250%] transition-transform duration-1000"></div>
-                        </div>
-                    </div>
+                <div>
+                    <div class="flex justify-between mb-2"><span class="font-bold text-sm">Streaming & Multitasking</span><span class="text-primary text-sm font-bold">5/5</span></div>
+                    <div class="performance-bar"><div class="performance-fill" style="width: 100%"></div></div>
                 </div>
-
-                <div class="relative z-10 group cursor-default">
-                    <div class="flex justify-between items-end mb-2">
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-[#FFB800] text-[20px]">terminal</span>
-                            <span class="font-bold text-[13px] text-white/90 uppercase tracking-wide">Programming</span>
-                        </div>
-                        <span class="text-[#FFB800] text-xs font-bold bg-[#FFB800]/10 px-2 py-0.5 rounded border border-[#FFB800]/20">4.9/5</span>
-                    </div>
-                    <div class="w-full bg-black/40 h-2.5 rounded-full overflow-hidden shadow-inner">
-                        <div class="h-full bg-gradient-to-r from-[#FFB800] to-yellow-400 w-[98%] group-hover:shadow-[0_0_15px_rgba(255,184,0,0.8)] transition-all duration-300 relative overflow-hidden">
-                            <div class="absolute inset-0 bg-white/30 w-1/2 -skew-x-12 -translate-x-full group-hover:translate-x-[250%] transition-transform duration-1000"></div>
-                        </div>
-                    </div>
+                <div>
+                    <div class="flex justify-between mb-2"><span class="font-bold text-sm">Programming & Compiling</span><span class="text-primary text-sm font-bold">4.9/5</span></div>
+                    <div class="performance-bar"><div class="performance-fill" style="width: 98%"></div></div>
                 </div>
-
-                <div class="relative z-10 group cursor-default">
-                    <div class="flex justify-between items-end mb-2">
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-error text-[20px]">psychology</span>
-                            <span class="font-bold text-[13px] text-white/90 uppercase tracking-wide">AI Workloads</span>
-                        </div>
-                        <span class="text-error text-xs font-bold bg-error/10 px-2 py-0.5 rounded border border-error/20">4.2/5</span>
-                    </div>
-                    <div class="w-full bg-black/40 h-2.5 rounded-full overflow-hidden shadow-inner">
-                        <div class="h-full bg-gradient-to-r from-error to-red-400 w-[84%] group-hover:shadow-[0_0_15px_rgba(248,113,113,0.8)] transition-all duration-300 relative overflow-hidden">
-                            <div class="absolute inset-0 bg-white/30 w-1/2 -skew-x-12 -translate-x-full group-hover:translate-x-[250%] transition-transform duration-1000"></div>
-                        </div>
-                    </div>
+                <div>
+                    <div class="flex justify-between mb-2"><span class="font-bold text-sm">AI Workloads (Local Inference)</span><span class="text-primary text-sm font-bold">4.2/5</span></div>
+                    <div class="performance-bar"><div class="performance-fill" style="width: 84%"></div></div>
                 </div>
             </div>
         </div>
 
         <!-- Benchmarks Chart (Simulated) -->
-        <div class="glass-card rounded-2xl p-6 relative overflow-hidden group">
-            <div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors duration-700"></div>
-            
-            <div class="flex justify-between items-center mb-6 relative z-10">
-                <h3 class="font-bold flex items-center gap-2">
-                    <span class="material-symbols-outlined text-primary">speed</span>
-                    Cinebench R23 Multi-Core Score
-                </h3>
-                <span class="text-xs font-label-mono text-primary bg-primary/10 px-2 py-1 rounded border border-primary/20">Higher is better</span>
-            </div>
-            
-            <div class="space-y-5 relative z-10">
-                <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 group/bar">
-                    <span class="w-32 text-sm font-bold text-white flex items-center gap-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(173,198,255,0.8)]"></span>
-                        i9-14900K
-                    </span>
-                    <div class="flex-1 bg-black/40 rounded-full h-7 relative overflow-hidden shadow-inner border border-white/5">
-                        <div class="absolute inset-y-0 left-0 bg-gradient-to-r from-primary to-blue-400 w-[95%] group-hover/bar:shadow-[0_0_15px_rgba(173,198,255,0.6)] transition-all duration-300 overflow-hidden rounded-full">
-                            <div class="absolute inset-0 bg-white/30 w-1/2 -skew-x-12 -translate-x-full group-hover/bar:translate-x-[250%] transition-transform duration-1000"></div>
-                        </div>
-                        <span class="absolute inset-y-0 right-3 flex items-center text-xs font-bold text-white z-10 drop-shadow-md">40,000+</span>
+        <div class="glass-card rounded-2xl p-6">
+            <h3 class="font-bold mb-6">Cinebench R23 Multi-Core Score</h3>
+            <div class="space-y-4">
+                <div class="flex items-center gap-4">
+                    <span class="w-32 text-sm font-medium text-white">i9-14900K</span>
+                    <div class="flex-1 bg-white/5 rounded h-6 relative overflow-hidden">
+                        <div class="absolute inset-y-0 left-0 bg-primary/80 w-[95%]"></div>
+                        <span class="absolute inset-y-0 right-2 flex items-center text-xs font-bold text-white z-10">40,000+</span>
                     </div>
                 </div>
-                
-                <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 group/bar opacity-80 hover:opacity-100 transition-opacity">
-                    <span class="w-32 text-sm text-on-surface-variant flex items-center gap-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-                        Ryzen 9 7950X
-                    </span>
-                    <div class="flex-1 bg-black/40 rounded-full h-7 relative overflow-hidden shadow-inner border border-white/5">
-                        <div class="absolute inset-y-0 left-0 bg-gradient-to-r from-gray-600 to-gray-400 w-[92%] transition-all duration-300 overflow-hidden rounded-full">
-                            <div class="absolute inset-0 bg-white/20 w-1/2 -skew-x-12 -translate-x-full group-hover/bar:translate-x-[250%] transition-transform duration-1000"></div>
-                        </div>
-                        <span class="absolute inset-y-0 right-3 flex items-center text-xs font-bold text-white/80 z-10">38,200</span>
+                <div class="flex items-center gap-4">
+                    <span class="w-32 text-sm text-on-surface-variant">i9-13900K</span>
+                    <div class="flex-1 bg-white/5 rounded h-6 relative overflow-hidden">
+                        <div class="absolute inset-y-0 left-0 bg-white/20 w-[88%]"></div>
                     </div>
                 </div>
-                
-                <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 group/bar opacity-70 hover:opacity-100 transition-opacity">
-                    <span class="w-32 text-sm text-on-surface-variant flex items-center gap-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-                        i9-13900K
-                    </span>
-                    <div class="flex-1 bg-black/40 rounded-full h-7 relative overflow-hidden shadow-inner border border-white/5">
-                        <div class="absolute inset-y-0 left-0 bg-gradient-to-r from-gray-700 to-gray-500 w-[88%] transition-all duration-300 overflow-hidden rounded-full">
-                            <div class="absolute inset-0 bg-white/20 w-1/2 -skew-x-12 -translate-x-full group-hover/bar:translate-x-[250%] transition-transform duration-1000"></div>
-                        </div>
-                        <span class="absolute inset-y-0 right-3 flex items-center text-xs font-bold text-white/70 z-10">36,000</span>
+                <div class="flex items-center gap-4">
+                    <span class="w-32 text-sm text-on-surface-variant">Ryzen 9 7950X</span>
+                    <div class="flex-1 bg-white/5 rounded h-6 relative overflow-hidden">
+                        <div class="absolute inset-y-0 left-0 bg-white/20 w-[92%]"></div>
                     </div>
                 </div>
             </div>
@@ -556,32 +436,18 @@
         <!-- Used in Builds -->
         <div>
             <h3 class="font-bold mb-4 text-on-surface-variant">Featured In MakeMyPC Masterpieces</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 pb-4">
-                <div class="glass-card rounded-xl p-4 hover:bg-white/5 cursor-pointer transition-colors border border-white/5">
+            <div class="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
+                <div class="min-w-[280px] glass-card rounded-xl p-4 hover:bg-white/5 cursor-pointer transition-colors border border-white/5">
                     <img src="https://placehold.co/300x200/142034/adc6ff?text=Project+Nova" class="w-full h-32 object-cover rounded-lg mb-3"/>
                     <h4 class="font-bold text-sm text-white">Project Nova (4K Gaming)</h4>
                     <p class="text-xs text-on-surface-variant mt-1">i9-14900K + RTX 4090</p>
                 </div>
-                <div class="glass-card rounded-xl p-4 hover:bg-white/5 cursor-pointer transition-colors border border-white/5">
+                <div class="min-w-[280px] glass-card rounded-xl p-4 hover:bg-white/5 cursor-pointer transition-colors border border-white/5">
                     <img src="https://placehold.co/300x200/142034/adc6ff?text=Creator+Pro" class="w-full h-32 object-cover rounded-lg mb-3"/>
                     <h4 class="font-bold text-sm text-white">Creator Pro Workstation</h4>
                     <p class="text-xs text-on-surface-variant mt-1">i9-14900K + 128GB RAM</p>
                 </div>
-                <div class="glass-card rounded-xl p-4 hover:bg-white/5 cursor-pointer transition-colors border border-white/5">
-                    <img src="https://placehold.co/300x200/142034/adc6ff?text=Apex+Predator" class="w-full h-32 object-cover rounded-lg mb-3"/>
-                    <h4 class="font-bold text-sm text-white">Apex Predator</h4>
-                    <p class="text-xs text-on-surface-variant mt-1">i9-14900K + RTX 4080 Super</p>
-                </div>
-                <div class="glass-card rounded-xl p-4 hover:bg-white/5 cursor-pointer transition-colors border border-white/5">
-                    <img src="https://placehold.co/300x200/142034/adc6ff?text=Liquid+Beast" class="w-full h-32 object-cover rounded-lg mb-3"/>
-                    <h4 class="font-bold text-sm text-white">Liquid Beast Custom Loop</h4>
-                    <p class="text-xs text-on-surface-variant mt-1">i9-14900K + 64GB DDR5</p>
-                </div>
-                <div class="glass-card rounded-xl p-4 hover:bg-white/5 cursor-pointer transition-colors border border-white/5">
-                    <img src="https://placehold.co/300x200/142034/adc6ff?text=Silent+Shadow" class="w-full h-32 object-cover rounded-lg mb-3"/>
-                    <h4 class="font-bold text-sm text-white">Silent Shadow</h4>
-                    <p class="text-xs text-on-surface-variant mt-1">i9-14900K + Noctua NH-D15</p>
-                </div>
+            </div>
         </div>
     </section>
 
@@ -816,8 +682,8 @@
                 <span class="text-[10px] text-on-surface-variant font-label-mono">Inclusive of GST</span>
             </div>
             <div class="flex gap-2">
-                <button onclick="window.location.href='builder-landing.html'" class="bg-primary text-on-primary font-bold px-4 sm:px-6 py-2.5 rounded-lg hover:brightness-110 active:scale-95 transition-all text-sm whitespace-nowrap shadow-[0_0_15px_rgba(173,198,255,0.3)]">Add to Build</button>
-                <button onclick="window.location.href='shopping-cart.html'" class="glass-card text-on-surface font-bold px-4 py-2.5 rounded-lg hover:bg-white/10 active:scale-95 transition-all text-sm hidden md:block">Buy Now</button>
+                <button class="bg-primary text-on-primary font-bold px-4 sm:px-6 py-2.5 rounded-lg hover:brightness-110 active:scale-95 transition-all text-sm whitespace-nowrap shadow-[0_0_15px_rgba(173,198,255,0.3)]">Add to Build</button>
+                <button class="glass-card text-on-surface font-bold px-4 py-2.5 rounded-lg hover:bg-white/10 active:scale-95 transition-all text-sm hidden md:block">Buy Now</button>
             </div>
         </div>
     </div>
@@ -860,3 +726,8 @@
 
 </body>
 </html>
+"""
+
+# Write the file directly using python script
+with open("product-details.html", "w", encoding="utf-8") as f:
+    f.write(HTML_CONTENT)
