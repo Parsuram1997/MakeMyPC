@@ -117,88 +117,139 @@
     </style>
 </head>
 <body class="font-body-md text-body-md overflow-x-hidden">
-<!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 bg-surface-glass backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
-<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-desktop h-20">
-<a href="index.html" class="text-headline-lg font-headline-lg font-black text-on-surface tracking-tighter">MakeMyPC</a>
-<div class="hidden md:flex gap-x-8 items-center">
-<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="prebuilt-pcs.html">Shop</a>
-<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="custom-pc-builder.html">Builder</a>
-<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="support-faq.html">Resources</a>
-</div>
-<div class="flex items-center gap-x-4 md:gap-x-6">
-<div class="relative hidden lg:block">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-<input class="bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-body-sm font-body-sm focus:outline-none focus:border-electric-blue w-64 transition-all" placeholder="Search Components" type="text"/>
-</div>
-<div class="flex gap-x-2 md:gap-x-4">
-<button class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100 relative" onclick="window.location.href='shopping-cart.html'">
-<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
-<span id="cart-badge" class="absolute -top-1 -right-1 bg-error text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
-</button>
-<a href="login.html" id="auth-login-btn" class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100 flex items-center">
-<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
-</a>
-<a href="account-settings.html" id="auth-avatar-btn" class="hidden w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm hover:brightness-110 transition-all">
-<span id="avatar-initial">U</span>
-</a>
-<!-- Hamburger Menu Button -->
-<button id="mobile-menu-btn" class="md:hidden text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100 flex items-center pl-2">
-<span class="material-symbols-outlined">menu</span>
-</button>
-</div>
-</div>
-</div>
+<!-- ═══ NAVBAR START (auto-generated v2) ═══ -->
+<nav style="position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,0.03);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.1);box-shadow:0 8px 32px 0 rgba(0,0,0,0.3);" id="main-nav">
+  <div style="display:flex;justify-content:space-between;align-items:center;max-width:1280px;margin:0 auto;padding:0 64px;height:72px;">
+
+    <!-- Logo -->
+    <a href="index.html" style="font-size:24px;font-weight:900;color:#d7e2ff;text-decoration:none;letter-spacing:-0.03em;white-space:nowrap;flex-shrink:0;font-family:'Inter',sans-serif;">MakeMyPC</a>
+
+    <!-- Desktop Links -->
+    <div class="hidden md:flex" style="gap:32px;align-items:center;">
+      <a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-mono"      href="shop.html"            style="text-decoration:none;font-size:12px;letter-spacing:0.05em;font-family:'JetBrains Mono','Inter',sans-serif;">Shop</a>
+      <a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-mono"   href="builder-landing.html" style="text-decoration:none;font-size:12px;letter-spacing:0.05em;font-family:'JetBrains Mono','Inter',sans-serif;">Builder</a>
+      <a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-mono" href="support-faq.html"     style="text-decoration:none;font-size:12px;letter-spacing:0.05em;font-family:'JetBrains Mono','Inter',sans-serif;">Resources</a>
+    </div>
+
+    <!-- Right Controls -->
+    <div style="display:flex;align-items:center;gap:16px;">
+
+      <!-- Search (lg+) -->
+      <div class="hidden lg:flex" style="position:relative;">
+        <span class="material-symbols-outlined" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#c1c6d7;font-size:18px;">search</span>
+        <input style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:7px 14px 7px 34px;font-size:13px;color:#d7e2ff;width:220px;outline:none;transition:border-color 0.2s;font-family:'Inter',sans-serif;" placeholder="Search Components" type="text"
+          onfocus="this.style.borderColor='#007AFF'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'"/>
+      </div>
+
+      <!-- Cart -->
+      <button onclick="window.location.href='shopping-cart.html'" style="background:none;border:none;cursor:pointer;color:#c1c6d7;position:relative;padding:4px;display:flex;align-items:center;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">
+        <span class="material-symbols-outlined" style="font-size:24px;" data-icon="shopping_cart">shopping_cart</span>
+        <span id="cart-badge" style="display:none;position:absolute;top:-4px;right:-4px;background:#ffb4ab;color:#690005;font-size:10px;font-weight:700;width:16px;height:16px;border-radius:50%;align-items:center;justify-content:center;font-family:'Inter',sans-serif;">0</span>
+      </button>
+
+      <!-- Login btn (logged out) -->
+      <a href="login.html" id="auth-login-btn" style="color:#c1c6d7;text-decoration:none;display:flex;align-items:center;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">
+        <span class="material-symbols-outlined" style="font-size:24px;" data-icon="account_circle">account_circle</span>
+      </a>
+
+      <!-- Avatar (logged in, hidden by default) -->
+      <a href="account-settings.html" id="auth-avatar-btn" style="display:none;width:36px;height:36px;border-radius:50%;background:#adc6ff;color:#002e69;align-items:center;justify-content:center;font-weight:700;font-size:14px;text-decoration:none;flex-shrink:0;transition:filter 0.2s;" onmouseover="this.style.filter='brightness(1.1)'" onmouseout="this.style.filter='none'">
+        <span id="avatar-initial">U</span>
+      </a>
+
+      <!-- Hamburger (mobile only) -->
+      <button id="mobile-menu-btn" style="display:none;background:none;border:none;cursor:pointer;color:#c1c6d7;align-items:center;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">
+        <span class="material-symbols-outlined" style="font-size:28px;">menu</span>
+      </button>
+    </div>
+
+  </div>
 </nav>
 
-<!-- Mobile Menu Overlay -->
-<div id="mobile-menu" class="fixed inset-0 bg-[#00081C]/95 backdrop-blur-xl z-[60] transform translate-x-full transition-transform duration-300 md:hidden flex flex-col">
-    <div class="flex justify-between items-center p-6 border-b border-white/10">
-        <span class="text-xl font-black text-white tracking-tighter">Menu</span>
-        <button id="mobile-menu-close" class="text-on-surface-variant hover:text-white transition-colors">
-            <span class="material-symbols-outlined text-3xl">close</span>
-        </button>
+<!-- ═══ MOBILE MENU ═══ -->
+<div id="mobile-menu" style="position:fixed;inset:0;background:rgba(0,8,28,0.97);backdrop-filter:blur(20px);z-index:60;transform:translateX(100%);transition:transform 0.3s ease;display:none;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid rgba(255,255,255,0.1);">
+    <a href="index.html" style="font-size:20px;font-weight:900;color:#d7e2ff;text-decoration:none;letter-spacing:-0.03em;font-family:'Inter',sans-serif;">MakeMyPC</a>
+    <button id="mobile-menu-close" style="background:none;border:none;cursor:pointer;color:#c1c6d7;display:flex;align-items:center;">
+      <span class="material-symbols-outlined" style="font-size:28px;">close</span>
+    </button>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:24px;padding:24px;overflow-y:auto;flex:1;">
+    <!-- Mobile Search -->
+    <div style="position:relative;">
+      <span class="material-symbols-outlined" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#c1c6d7;">search</span>
+      <input style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px 12px 36px;font-size:14px;color:#d7e2ff;width:100%;outline:none;box-sizing:border-box;font-family:'Inter',sans-serif;" placeholder="Search Components" type="text"/>
     </div>
-    <div class="flex flex-col gap-6 p-6 overflow-y-auto">
-        <!-- Search -->
-        <div class="relative w-full">
-            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-            <input class="bg-surface-container-low border border-white/10 rounded-lg pl-10 pr-4 py-3 text-body-sm focus:outline-none focus:border-primary w-full transition-all text-white placeholder:text-on-surface-variant/50" placeholder="Search Components" type="text"/>
-        </div>
-        
-        <div class="flex flex-col gap-4 border-b border-white/10 pb-6">
-            <a href="prebuilt-pcs.html" class="text-lg font-bold text-white hover:text-primary flex justify-between items-center">
-                Shop <span class="material-symbols-outlined text-sm">chevron_right</span>
-            </a>
-            <a href="builder-landing.html" class="text-lg font-bold text-white hover:text-primary flex justify-between items-center">
-                Builder <span class="material-symbols-outlined text-sm">chevron_right</span>
-            </a>
-            <a href="support-faq.html" class="text-lg font-bold text-white hover:text-primary flex justify-between items-center">
-                Resources <span class="material-symbols-outlined text-sm">chevron_right</span>
-            </a>
-        </div>
+    <!-- Mobile Nav Links -->
+    <div style="display:flex;flex-direction:column;gap:16px;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:24px;">
+      <a href="shop.html" style="font-size:18px;font-weight:700;color:#d7e2ff;text-decoration:none;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;">
+        Shop <span class="material-symbols-outlined" style="font-size:18px;">chevron_right</span>
+      </a>
+      <a href="builder-landing.html" style="font-size:18px;font-weight:700;color:#d7e2ff;text-decoration:none;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;">
+        Builder <span class="material-symbols-outlined" style="font-size:18px;">chevron_right</span>
+      </a>
+      <a href="support-faq.html" style="font-size:18px;font-weight:700;color:#d7e2ff;text-decoration:none;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;">
+        Resources <span class="material-symbols-outlined" style="font-size:18px;">chevron_right</span>
+      </a>
     </div>
+    <!-- Mobile Auth -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <a id="mobile-auth-login" href="login.html" style="display:flex;align-items:center;gap:12px;color:#c1c6d7;text-decoration:none;font-family:'Inter',sans-serif;">
+        <span class="material-symbols-outlined">account_circle</span> Log In
+      </a>
+      <a id="mobile-auth-account" href="account-settings.html" style="display:none;align-items:center;gap:12px;color:#c1c6d7;text-decoration:none;font-family:'Inter',sans-serif;">
+        <span class="material-symbols-outlined">manage_accounts</span> My Account
+      </a>
+      <a href="shopping-cart.html" style="display:flex;align-items:center;gap:12px;color:#c1c6d7;text-decoration:none;font-family:'Inter',sans-serif;">
+        <span class="material-symbols-outlined">shopping_cart</span> Cart
+      </a>
+    </div>
+  </div>
 </div>
 
-<script>
-    // Mobile Menu Logic
-    document.addEventListener('DOMContentLoaded', () => {
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const closeBtn = document.getElementById('mobile-menu-close');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (menuBtn && closeBtn && mobileMenu) {
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.remove('translate-x-full');
-            });
-            closeBtn.addEventListener('click', () => {
-                mobileMenu.classList.add('translate-x-full');
-            });
-        }
-    });
-</script>
+<!-- Spacer so content doesn't hide under fixed nav -->
+<div style="height:72px;"></div>
 
-<main class="pt-28 pb-20 max-w-container-max mx-auto px-gutter">
+<!-- Mobile Menu JS -->
+<script>
+(function(){
+  var btn=document.getElementById('mobile-menu-btn');
+  var cls=document.getElementById('mobile-menu-close');
+  var mnu=document.getElementById('mobile-menu');
+
+  // Show hamburger only on mobile screens (no Tailwind dependency)
+  function updateHamburger(){
+    if(btn){
+      btn.style.display = window.innerWidth < 768 ? 'flex' : 'none';
+    }
+    // Close mobile menu if window resized to desktop
+    if(mnu && window.innerWidth >= 768){
+      mnu.style.display='none';
+      mnu.style.transform='translateX(100%)';
+    }
+  }
+  updateHamburger();
+  window.addEventListener('resize', updateHamburger);
+
+  if(btn && cls && mnu){
+    btn.addEventListener('click',function(){
+      mnu.style.display='flex';
+      // Small delay so display:flex kicks in before transform
+      setTimeout(function(){ mnu.style.transform='translateX(0)'; }, 10);
+    });
+    cls.addEventListener('click',function(){
+      mnu.style.transform='translateX(100%)';
+      setTimeout(function(){ mnu.style.display='none'; }, 310);
+    });
+  }
+})();
+</script>
+<!-- ═══ NAVBAR END ═══ -->
+
+
+
+
+<main class="pt-8 pb-20 max-w-container-max mx-auto px-gutter">
     <!-- Breadcrumbs & Title -->
     <div class="text-xs text-outline font-label-mono uppercase tracking-widest mb-2">
         <a href="index.html" class="hover:text-primary transition-colors">Home</a> &gt; <span class="text-on-surface">Account Settings</span>
@@ -243,6 +294,15 @@
                         <span class="material-symbols-outlined">favorite</span>
                         <span class="font-headline-sm text-headline-sm">Saved Items</span>
                     </button>
+                    
+                    <a id="admin-dashboard-link" href="admin-dashboard.html" class="w-full flex items-center gap-3 px-4 py-3 mt-2 rounded-lg text-green-500 hover:bg-green-500/10 transition-all border border-green-500/20" style="display:none;">
+                        <span class="material-symbols-outlined">admin_panel_settings</span>
+                        <span class="font-headline-sm text-headline-sm">Admin Dashboard</span>
+                    </a>
+                    <button class="w-full flex items-center gap-3 px-4 py-3 mt-2 rounded-lg text-error hover:bg-error/10 transition-all border border-error/20" onclick="window.logoutUser(event)">
+                        <span class="material-symbols-outlined">logout</span>
+                        <span class="font-headline-sm text-headline-sm">Logout</span>
+                    </button>
                 </nav>
             </div>
             
@@ -274,22 +334,23 @@
                         <div class="flex flex-col items-center gap-3">
                             <div class="relative group">
                                 <div class="w-32 h-32 rounded-full border-2 border-electric-blue overflow-hidden p-1 bg-surface-deep">
-                                    <img class="w-full h-full object-cover rounded-full group-hover:opacity-80 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi_JFuKxItd-O8ZZ1hqqxZcc3IrWCswrcefpV86CZBQlpUjkGzfbqfa6PtCvjr-4titC5wZZWUibCLjYdwZrOPZk1ace6qEVRiy3QWqFL4xbo9wf9ScTiZ0VImGkHW8NhmNnbFh6I_x8nc6T9o0wNe8AGaa6hwaxPNDuX9q6cAld6Ni8gXvIE0-TvYC4qR5EJi-WP7-D1JweNdiCen1CltRhXsRKSR1Id3vwD288eD8UjJr7hUEsbYPbm7lOqpbrXzv1rexah4QvLn" alt="Alex Vandal"/>
+                                    <img id="profile-img" class="w-full h-full object-cover rounded-full group-hover:opacity-80 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi_JFuKxItd-O8ZZ1hqqxZcc3IrWCswrcefpV86CZBQlpUjkGzfbqfa6PtCvjr-4titC5wZZWUibCLjYdwZrOPZk1ace6qEVRiy3QWqFL4xbo9wf9ScTiZ0VImGkHW8NhmNnbFh6I_x8nc6T9o0wNe8AGaa6hwaxPNDuX9q6cAld6Ni8gXvIE0-TvYC4qR5EJi-WP7-D1JweNdiCen1CltRhXsRKSR1Id3vwD288eD8UjJr7hUEsbYPbm7lOqpbrXzv1rexah4QvLn" alt="Alex Vandal"/>
                                 </div>
-                                <button class="absolute bottom-1 right-1 bg-electric-blue text-white p-2 rounded-full shadow-lg hover:scale-110 transition-transform">
+                                <button id="profile-photo-btn-icon" class="absolute bottom-1 right-1 bg-electric-blue text-white p-2 rounded-full shadow-lg hover:scale-110 transition-transform">
                                     <span class="material-symbols-outlined text-sm">photo_camera</span>
                                 </button>
                             </div>
                             <div class="text-center">
-                                <button class="text-electric-blue text-xs font-bold hover:underline">Change Photo</button>
+                                <button id="profile-photo-btn" class="text-electric-blue text-xs font-bold hover:underline">Change Photo</button>
+<input type="file" id="profile-photo-input" accept="image/png, image/jpeg, image/webp" class="hidden" />
                                 <p class="text-[10px] text-outline mt-1 font-label-mono uppercase tracking-widest">JPG, PNG (max. 2MB)</p>
                             </div>
                         </div>
 
                         <div class="flex-1 w-full text-left pt-2">
                             <div class="flex flex-wrap items-center gap-4 mb-2">
-                                <h3 class="font-headline-lg text-headline-lg text-3xl font-bold">Alex Vandal</h3>
-                                <span class="bg-electric-blue/20 border border-electric-blue text-electric-blue px-3 py-1 rounded-full text-label-mono font-label-mono text-[10px] uppercase font-bold flex items-center gap-1">
+                                <h3 id="profile-display-name" class="font-headline-lg text-headline-lg text-3xl font-bold">Alex Vandal</h3>
+                                <span id="profile-role-badge" class="bg-electric-blue/20 border border-electric-blue text-electric-blue px-3 py-1 rounded-full text-label-mono font-label-mono text-[10px] uppercase font-bold flex items-center gap-1">
                                     <span class="material-symbols-outlined text-[14px]">workspace_premium</span> Elite Builder
                                 </span>
                             </div>
@@ -301,20 +362,20 @@
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                                 <div class="space-y-2">
                                     <label class="text-label-mono font-label-mono text-outline uppercase tracking-widest text-[10px]">Display Name</label>
-                                    <input class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:border-electric-blue focus:ring-1 focus:ring-electric-blue/50 transition-colors outline-none text-sm" type="text" value="Alex Vandal"/>
+                                    <input id="profile-name" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:border-electric-blue focus:ring-1 focus:ring-electric-blue/50 transition-colors outline-none text-sm" type="text"/>
                                 </div>
                                 <div class="space-y-2">
                                     <label class="text-label-mono font-label-mono text-outline uppercase tracking-widest text-[10px]">Primary Email</label>
-                                    <input class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:border-electric-blue focus:ring-1 focus:ring-electric-blue/50 transition-colors outline-none text-sm" type="email" value="alex.vandal@techforge.io"/>
+                                    <input id="profile-email" readonly class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:border-electric-blue focus:ring-1 focus:ring-electric-blue/50 transition-colors outline-none text-sm cursor-not-allowed opacity-50" type="email"/>
                                 </div>
                                 <div class="space-y-2">
                                     <label class="text-label-mono font-label-mono text-outline uppercase tracking-widest text-[10px]">Phone Number</label>
-                                    <input class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:border-electric-blue focus:ring-1 focus:ring-electric-blue/50 transition-colors outline-none text-sm" type="tel" value="+91 98765 43210"/>
+                                    <input id="profile-phone" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:border-electric-blue focus:ring-1 focus:ring-electric-blue/50 transition-colors outline-none text-sm" type="tel"/>
                                 </div>
                                 <div class="space-y-2">
                                     <label class="text-label-mono font-label-mono text-outline uppercase tracking-widest text-[10px]">Location</label>
                                     <div class="relative">
-                                        <select class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:border-electric-blue focus:ring-1 focus:ring-electric-blue/50 transition-colors outline-none appearance-none text-sm text-on-surface">
+                                        <select id="profile-location" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:border-electric-blue focus:ring-1 focus:ring-electric-blue/50 transition-colors outline-none appearance-none text-sm text-on-surface">
                                             <option value="bengaluru" selected class="bg-surface-deep text-on-surface">Bengaluru, Karnataka, India</option>
                                             <option value="mumbai" class="bg-surface-deep text-on-surface">Mumbai, Maharashtra, India</option>
                                             <option value="delhi" class="bg-surface-deep text-on-surface">New Delhi, Delhi, India</option>
@@ -324,12 +385,12 @@
                                 </div>
                                 <div class="space-y-2 sm:col-span-2">
                                     <label class="text-label-mono font-label-mono text-outline uppercase tracking-widest text-[10px]">Bio</label>
-                                    <textarea class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:border-electric-blue focus:ring-1 focus:ring-electric-blue/50 transition-colors outline-none text-sm resize-y" rows="3">PC enthusiast & builder. Love crafting high performance setups!</textarea>
+                                    <textarea id="profile-bio" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:border-electric-blue focus:ring-1 focus:ring-electric-blue/50 transition-colors outline-none text-sm resize-y" rows="3"></textarea>
                                 </div>
                             </div>
                             
                             <div class="flex justify-between items-center border-t border-white/10 pt-6">
-                                <button class="bg-electric-blue text-white px-6 py-2.5 rounded-lg font-bold hover:shadow-[0_0_20px_rgba(0,122,255,0.4)] hover:bg-blue-600 active:scale-95 transition-all text-sm">Save Changes</button>
+                                <button id="profile-save-btn" class="bg-electric-blue text-white px-6 py-2.5 rounded-lg font-bold hover:shadow-[0_0_20px_rgba(0,122,255,0.4)] hover:bg-blue-600 active:scale-95 transition-all text-sm flex items-center justify-center gap-2"><span>Save Changes</span></button>
                                 <button class="text-outline hover:text-white text-sm transition-colors border-b border-transparent hover:border-white pb-0.5">Discard Changes</button>
                             </div>
                         </div>
@@ -604,12 +665,73 @@
 </div>
 </div>
 
-<!-- Address Section (Placeholder) -->
+<!-- Address Section -->
 <div class="section-content hidden animate-in fade-in slide-in-from-bottom-4 duration-500" id="section-address">
-<h1 class="font-headline-lg text-headline-lg mb-6">Address Book</h1>
-<div class="glass-card rounded-xl p-8 text-center text-outline">
-    <span class="material-symbols-outlined text-4xl mb-4 opacity-50">location_on</span>
-    <p>No addresses saved yet.</p>
+<div class="flex justify-between items-center mb-6">
+    <h1 class="font-headline-lg text-headline-lg">Address Book</h1>
+    <button id="add-address-btn" class="bg-electric-blue text-white px-4 py-2 rounded-lg font-bold hover:shadow-[0_0_20px_rgba(0,122,255,0.4)] hover:bg-blue-600 active:scale-95 transition-all text-sm flex items-center gap-2">
+        <span class="material-symbols-outlined text-sm">add</span> Add New Address
+    </button>
+</div>
+
+<!-- Address List Container -->
+<div id="address-list-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Rendered addresses will go here -->
+    <div id="no-address-state" class="col-span-1 md:col-span-2 glass-card rounded-xl p-8 text-center text-outline">
+        <span class="material-symbols-outlined text-4xl mb-4 opacity-50">location_on</span>
+        <p>No addresses saved yet.</p>
+    </div>
+</div>
+
+<!-- Add Address Form (Hidden by default) -->
+<div id="add-address-form-container" class="glass-card rounded-xl p-6 mt-6 hidden">
+    <h2 class="font-headline-md text-headline-md mb-6">Add New Address</h2>
+    <form id="address-form" class="space-y-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="space-y-2">
+                <label class="text-label-mono font-label-mono text-outline uppercase tracking-widest text-[10px]">Full Name</label>
+                <input id="addr-name" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:border-electric-blue focus:ring-1 focus:ring-electric-blue/50 transition-colors outline-none text-sm" type="text" placeholder="John Doe"/>
+            </div>
+            <div class="space-y-2">
+                <label class="text-label-mono font-label-mono text-outline uppercase tracking-widest text-[10px]">Phone Number</label>
+                <input id="addr-phone" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:border-electric-blue focus:ring-1 focus:ring-electric-blue/50 transition-colors outline-none text-sm" type="tel" placeholder="10-digit mobile number"/>
+            </div>
+            <div class="space-y-2">
+                <label class="text-label-mono font-label-mono text-outline uppercase tracking-widest text-[10px]">Pincode</label>
+                <input id="addr-pincode" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:border-electric-blue focus:ring-1 focus:ring-electric-blue/50 transition-colors outline-none text-sm" type="text" placeholder="6 digits [0-9] PIN code"/>
+            </div>
+            <div class="space-y-2">
+                <label class="text-label-mono font-label-mono text-outline uppercase tracking-widest text-[10px]">State</label>
+                <input id="addr-state" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:border-electric-blue focus:ring-1 focus:ring-electric-blue/50 transition-colors outline-none text-sm" type="text" placeholder="e.g. Maharashtra"/>
+            </div>
+            <div class="space-y-2">
+                <label class="text-label-mono font-label-mono text-outline uppercase tracking-widest text-[10px]">City</label>
+                <input id="addr-city" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:border-electric-blue focus:ring-1 focus:ring-electric-blue/50 transition-colors outline-none text-sm" type="text" placeholder="e.g. Mumbai"/>
+            </div>
+            <div class="space-y-2">
+                <label class="text-label-mono font-label-mono text-outline uppercase tracking-widest text-[10px]">Address Type</label>
+                <div class="relative">
+                    <select id="addr-type" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:border-electric-blue focus:ring-1 focus:ring-electric-blue/50 transition-colors outline-none appearance-none text-sm text-on-surface">
+                        <option value="Home" class="bg-surface-deep text-on-surface">Home (All day delivery)</option>
+                        <option value="Work" class="bg-surface-deep text-on-surface">Work (Delivery between 10 AM - 5 PM)</option>
+                    </select>
+                    <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline">expand_more</span>
+                </div>
+            </div>
+            <div class="space-y-2 sm:col-span-2">
+                <label class="text-label-mono font-label-mono text-outline uppercase tracking-widest text-[10px]">House No., Building Name</label>
+                <input id="addr-house" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:border-electric-blue focus:ring-1 focus:ring-electric-blue/50 transition-colors outline-none text-sm" type="text" placeholder=""/>
+            </div>
+            <div class="space-y-2 sm:col-span-2">
+                <label class="text-label-mono font-label-mono text-outline uppercase tracking-widest text-[10px]">Road name, Area, Colony</label>
+                <input id="addr-area" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:border-electric-blue focus:ring-1 focus:ring-electric-blue/50 transition-colors outline-none text-sm" type="text" placeholder=""/>
+            </div>
+        </div>
+        <div class="flex gap-4 border-t border-white/10 pt-6">
+            <button type="submit" id="save-address-btn" class="bg-electric-blue text-white px-6 py-2.5 rounded-lg font-bold hover:shadow-[0_0_20px_rgba(0,122,255,0.4)] hover:bg-blue-600 active:scale-95 transition-all text-sm flex items-center justify-center gap-2"><span>Save Address</span></button>
+            <button type="button" id="cancel-address-btn" class="bg-white/5 border border-white/10 text-white px-6 py-2.5 rounded-lg font-bold hover:bg-white/10 active:scale-95 transition-all text-sm">Cancel</button>
+        </div>
+    </form>
 </div>
 </div>
 
@@ -729,6 +851,8 @@
     </div>
 </footer>
 
+
+
 <script>
         function switchTab(tabId) {
             // Update UI classes
@@ -753,4 +877,6 @@
     </script>
 <script type="module" src="js/auth.js"></script>
 <script src="js/global.js"></script>
+<script src="js/profile.js" type="module"></script>
+<script src="js/address.js" type="module"></script>
 </body></html>

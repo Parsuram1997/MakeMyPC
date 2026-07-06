@@ -1,483 +1,916 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>MakeMyPC | Build Your Masterpiece</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>MakeMyPC | India's Smartest AI-Powered Custom PC Builder</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
             "colors": {
-                    "primary": "#adc6ff",
-                    "on-tertiary-container": "#4c1a00",
-                    "inverse-on-surface": "#263046",
-                    "secondary-fixed-dim": "#5cd8da",
-                    "surface-container-low": "#101b30",
-                    "surface-container": "#142034",
-                    "primary-fixed-dim": "#adc6ff",
-                    "outline-variant": "#414755",
-                    "electric-blue": "#007AFF",
-                    "background": "#071327",
-                    "surface-bright": "#2e394f",
-                    "secondary": "#5cd8da",
-                    "surface": "#071327",
-                    "on-primary-container": "#00285c",
-                    "tertiary-container": "#ef6719",
-                    "hardware-gray": "#111111",
-                    "on-background": "#d7e2ff",
-                    "on-tertiary-fixed": "#351000",
-                    "tertiary": "#ffb595",
-                    "primary-container": "#4b8eff",
-                    "surface-tint": "#adc6ff",
-                    "surface-container-lowest": "#030e22",
-                    "primary-fixed": "#d8e2ff",
-                    "on-primary": "#002e69",
-                    "on-secondary-fixed": "#002020",
-                    "surface-deep": "#00081C",
-                    "secondary-container": "#00a4a6",
-                    "on-secondary-fixed-variant": "#004f50",
-                    "cyber-teal": "#00A4A6",
-                    "on-surface": "#d7e2ff",
-                    "tertiary-fixed": "#ffdbcc",
-                    "error": "#ffb4ab",
-                    "on-surface-variant": "#c1c6d7",
-                    "on-tertiary-fixed-variant": "#7c2e00",
-                    "outline": "#8b90a0",
-                    "surface-dim": "#071327",
-                    "on-error": "#690005",
-                    "on-primary-fixed": "#001a41",
-                    "surface-container-highest": "#2a354a",
-                    "inverse-primary": "#005bc1",
-                    "on-primary-fixed-variant": "#004493",
-                    "secondary-fixed": "#7cf5f7",
-                    "surface-variant": "#2a354a",
-                    "inverse-surface": "#d7e2ff",
-                    "on-tertiary": "#571e00",
-                    "on-error-container": "#ffdad6",
-                    "surface-glass": "rgba(255, 255, 255, 0.03)",
-                    "error-container": "#93000a",
-                    "on-secondary": "#003738",
-                    "on-secondary-container": "#003233",
-                    "tertiary-fixed-dim": "#ffb595",
-                    "surface-container-high": "#1f2a3f"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
+              "primary": "#adc6ff",
+              "electric-blue": "#007AFF",
+              "cyber-teal": "#00A4A6",
+              "background": "#071327",
+              "surface": "#071327",
+              "surface-deep": "#00081C",
+              "surface-container-low": "#101b30",
+              "surface-container": "#142034",
+              "surface-container-high": "#1f2a3f",
+              "on-surface": "#d7e2ff",
+              "on-surface-variant": "#c1c6d7",
+              "outline-variant": "#414755",
+              "error": "#ffb4ab",
+              "success": "#34d399",
             },
             "spacing": {
-                    "margin-mobile": "20px",
-                    "container-max": "1280px",
-                    "margin-desktop": "64px",
-                    "base": "8px",
-                    "gutter": "24px"
+              "margin-mobile": "20px",
+              "container-max": "1280px",
+              "margin-desktop": "64px",
+              "base": "8px",
+              "gutter": "24px"
+            },
+            "maxWidth": {
+              "container-max": "1280px"
             },
             "fontFamily": {
-                    "body-md": ["Inter"],
-                    "body-sm": ["Inter"],
-                    "display-lg-mobile": ["Inter"],
-                    "headline-sm": ["Inter"],
-                    "headline-lg": ["Inter"],
-                    "display-lg": ["Inter"],
-                    "label-mono": ["JetBrains Mono"]
+              "body": ["Inter", "sans-serif"],
+              "heading": ["Inter", "sans-serif"],
+              "mono": ["JetBrains Mono", "monospace"]
             },
-            "fontSize": {
-                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
-                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
-                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            "animation": {
+              "float": "float 6s ease-in-out infinite",
+              "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              "glow": "glow 2s ease-in-out infinite alternate"
+            },
+            "keyframes": {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-10px)" }
+              },
+              glow: {
+                "from": { boxShadow: "0 0 10px #007AFF, 0 0 20px #007AFF" },
+                "to": { boxShadow: "0 0 20px #00A4A6, 0 0 30px #00A4A6" }
+              }
             }
-          },
-        },
+          }
+        }
       }
     </script>
-<style>
+    <style>
         body {
             background-color: #00081C;
             color: #d7e2ff;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
         }
         .hero-glow {
             position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 122, 255, 0.15) 0%, rgba(0, 8, 28, 0) 70%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 122, 255, 0.12) 0%, rgba(0, 8, 28, 0) 70%);
             z-index: -1;
+            border-radius: 50%;
         }
-        .cyber-border {
-            position: relative;
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
         }
-        .cyber-border::after {
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .timeline-line::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
+            top: 50%;
+            right: -100%;
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, transparent, #007AFF, transparent);
+            background: linear-gradient(90deg, #007AFF, rgba(0, 164, 166, 0.2));
+            z-index: -1;
+        }
+        .timeline-step:last-child .timeline-line::after {
+            display: none;
         }
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
             vertical-align: middle;
         }
+        .clip-slant {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+        
+        /* Accordion CSS */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .faq-card.active .faq-content {
+            max-height: 500px;
+        }
+        .faq-card.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+        @keyframes float {
+            0%,100% { transform: translateY(0px); }
+            50%     { transform: translateY(-8px); }
+        }
+        @keyframes pulse-core {
+            0%,100% { opacity: 0.4; transform: scale(1); }
+            50%     { opacity: 1;   transform: scale(1.15); }
+        }
     </style>
 </head>
-<body class="bg-background">
-<!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 bg-surface-glass backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
-<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-desktop h-20">
-<a href="index.html" class="text-headline-lg font-headline-lg font-black text-on-surface tracking-tighter">MakeMyPC</a>
-<div class="hidden md:flex gap-x-8 items-center">
-<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="prebuilt-pcs.html">Shop</a>
-<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="custom-pc-builder.html">Builder</a>
-<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="support-faq.html">Resources</a>
-</div>
-<div class="flex items-center gap-x-4 md:gap-x-6">
-<div class="relative hidden lg:block">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-<input class="bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-body-sm font-body-sm focus:outline-none focus:border-electric-blue w-64 transition-all" placeholder="Search Components" type="text"/>
-</div>
-<div class="flex gap-x-2 md:gap-x-4">
-<button class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100 relative" onclick="window.location.href='shopping-cart.html'">
-<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
-<span id="cart-badge" class="absolute -top-1 -right-1 bg-error text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
-</button>
-<a href="login.html" id="auth-login-btn" class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100 flex items-center">
-<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
-</a>
-<a href="account-settings.html" id="auth-avatar-btn" class="hidden w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm hover:brightness-110 transition-all">
-<span id="avatar-initial">U</span>
-</a>
-<!-- Hamburger Menu Button -->
-<button id="mobile-menu-btn" class="md:hidden text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-100 flex items-center pl-2">
-<span class="material-symbols-outlined">menu</span>
-</button>
-</div>
-</div>
-</div>
+<body class="bg-surface-deep text-on-surface pb-16 md:pb-0">
+<!-- ═══ NAVBAR START (auto-generated v2) ═══ -->
+<nav style="position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,0.03);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.1);box-shadow:0 8px 32px 0 rgba(0,0,0,0.3);" id="main-nav">
+  <div style="display:flex;justify-content:space-between;align-items:center;max-width:1280px;margin:0 auto;padding:0 64px;height:72px;">
+
+    <!-- Logo -->
+    <a href="index.html" style="font-size:24px;font-weight:900;color:#d7e2ff;text-decoration:none;letter-spacing:-0.03em;white-space:nowrap;flex-shrink:0;font-family:'Inter',sans-serif;">MakeMyPC</a>
+
+    <!-- Desktop Links -->
+    <div class="hidden md:flex" style="gap:32px;align-items:center;">
+      <a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-mono"      href="shop.html"            style="text-decoration:none;font-size:12px;letter-spacing:0.05em;font-family:'JetBrains Mono','Inter',sans-serif;">Shop</a>
+      <a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-mono"   href="builder-landing.html" style="text-decoration:none;font-size:12px;letter-spacing:0.05em;font-family:'JetBrains Mono','Inter',sans-serif;">Builder</a>
+      <a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-mono" href="support-faq.html"     style="text-decoration:none;font-size:12px;letter-spacing:0.05em;font-family:'JetBrains Mono','Inter',sans-serif;">Resources</a>
+    </div>
+
+    <!-- Right Controls -->
+    <div style="display:flex;align-items:center;gap:16px;">
+
+      <!-- Search (lg+) -->
+      <div class="hidden lg:flex" style="position:relative;">
+        <span class="material-symbols-outlined" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#c1c6d7;font-size:18px;">search</span>
+        <input style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:7px 14px 7px 34px;font-size:13px;color:#d7e2ff;width:220px;outline:none;transition:border-color 0.2s;font-family:'Inter',sans-serif;" placeholder="Search Components" type="text"
+          onfocus="this.style.borderColor='#007AFF'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'"/>
+      </div>
+
+      <!-- Cart -->
+      <button onclick="window.location.href='shopping-cart.html'" style="background:none;border:none;cursor:pointer;color:#c1c6d7;position:relative;padding:4px;display:flex;align-items:center;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">
+        <span class="material-symbols-outlined" style="font-size:24px;" data-icon="shopping_cart">shopping_cart</span>
+        <span id="cart-badge" style="display:none;position:absolute;top:-4px;right:-4px;background:#ffb4ab;color:#690005;font-size:10px;font-weight:700;width:16px;height:16px;border-radius:50%;align-items:center;justify-content:center;font-family:'Inter',sans-serif;">0</span>
+      </button>
+
+      <!-- Login btn (logged out) -->
+      <a href="login.html" id="auth-login-btn" style="color:#c1c6d7;text-decoration:none;display:flex;align-items:center;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">
+        <span class="material-symbols-outlined" style="font-size:24px;" data-icon="account_circle">account_circle</span>
+      </a>
+
+      <!-- Avatar (logged in, hidden by default) -->
+      <a href="account-settings.html" id="auth-avatar-btn" style="display:none;width:36px;height:36px;border-radius:50%;background:#adc6ff;color:#002e69;align-items:center;justify-content:center;font-weight:700;font-size:14px;text-decoration:none;flex-shrink:0;transition:filter 0.2s;" onmouseover="this.style.filter='brightness(1.1)'" onmouseout="this.style.filter='none'">
+        <span id="avatar-initial">U</span>
+      </a>
+
+      <!-- Hamburger (mobile only) -->
+      <button id="mobile-menu-btn" style="display:none;background:none;border:none;cursor:pointer;color:#c1c6d7;align-items:center;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">
+        <span class="material-symbols-outlined" style="font-size:28px;">menu</span>
+      </button>
+    </div>
+
+  </div>
 </nav>
 
-<!-- Mobile Menu Overlay -->
-<div id="mobile-menu" class="fixed inset-0 bg-[#00081C]/95 backdrop-blur-xl z-[60] transform translate-x-full transition-transform duration-300 md:hidden flex flex-col">
-    <div class="flex justify-between items-center p-6 border-b border-white/10">
-        <span class="text-xl font-black text-white tracking-tighter">Menu</span>
-        <button id="mobile-menu-close" class="text-on-surface-variant hover:text-white transition-colors">
-            <span class="material-symbols-outlined text-3xl">close</span>
-        </button>
+<!-- ═══ MOBILE MENU ═══ -->
+<div id="mobile-menu" style="position:fixed;inset:0;background:rgba(0,8,28,0.97);backdrop-filter:blur(20px);z-index:60;transform:translateX(100%);transition:transform 0.3s ease;display:none;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid rgba(255,255,255,0.1);">
+    <a href="index.html" style="font-size:20px;font-weight:900;color:#d7e2ff;text-decoration:none;letter-spacing:-0.03em;font-family:'Inter',sans-serif;">MakeMyPC</a>
+    <button id="mobile-menu-close" style="background:none;border:none;cursor:pointer;color:#c1c6d7;display:flex;align-items:center;">
+      <span class="material-symbols-outlined" style="font-size:28px;">close</span>
+    </button>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:24px;padding:24px;overflow-y:auto;flex:1;">
+    <!-- Mobile Search -->
+    <div style="position:relative;">
+      <span class="material-symbols-outlined" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#c1c6d7;">search</span>
+      <input style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px 12px 36px;font-size:14px;color:#d7e2ff;width:100%;outline:none;box-sizing:border-box;font-family:'Inter',sans-serif;" placeholder="Search Components" type="text"/>
     </div>
-    <div class="flex flex-col gap-6 p-6 overflow-y-auto">
-        <!-- Search -->
-        <div class="relative w-full">
-            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-            <input class="bg-surface-container-low border border-white/10 rounded-lg pl-10 pr-4 py-3 text-body-sm focus:outline-none focus:border-primary w-full transition-all text-white placeholder:text-on-surface-variant/50" placeholder="Search Components" type="text"/>
-        </div>
-        
-        <div class="flex flex-col gap-4 border-b border-white/10 pb-6">
-            <a href="prebuilt-pcs.html" class="text-lg font-bold text-white hover:text-primary flex justify-between items-center">
-                Shop <span class="material-symbols-outlined text-sm">chevron_right</span>
-            </a>
-            <a href="builder-landing.html" class="text-lg font-bold text-white hover:text-primary flex justify-between items-center">
-                Builder <span class="material-symbols-outlined text-sm">chevron_right</span>
-            </a>
-            <a href="support-faq.html" class="text-lg font-bold text-white hover:text-primary flex justify-between items-center">
-                Resources <span class="material-symbols-outlined text-sm">chevron_right</span>
-            </a>
-        </div>
+    <!-- Mobile Nav Links -->
+    <div style="display:flex;flex-direction:column;gap:16px;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:24px;">
+      <a href="shop.html" style="font-size:18px;font-weight:700;color:#d7e2ff;text-decoration:none;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;">
+        Shop <span class="material-symbols-outlined" style="font-size:18px;">chevron_right</span>
+      </a>
+      <a href="builder-landing.html" style="font-size:18px;font-weight:700;color:#d7e2ff;text-decoration:none;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;">
+        Builder <span class="material-symbols-outlined" style="font-size:18px;">chevron_right</span>
+      </a>
+      <a href="support-faq.html" style="font-size:18px;font-weight:700;color:#d7e2ff;text-decoration:none;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;">
+        Resources <span class="material-symbols-outlined" style="font-size:18px;">chevron_right</span>
+      </a>
     </div>
+    <!-- Mobile Auth -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <a id="mobile-auth-login" href="login.html" style="display:flex;align-items:center;gap:12px;color:#c1c6d7;text-decoration:none;font-family:'Inter',sans-serif;">
+        <span class="material-symbols-outlined">account_circle</span> Log In
+      </a>
+      <a id="mobile-auth-account" href="account-settings.html" style="display:none;align-items:center;gap:12px;color:#c1c6d7;text-decoration:none;font-family:'Inter',sans-serif;">
+        <span class="material-symbols-outlined">manage_accounts</span> My Account
+      </a>
+      <a href="shopping-cart.html" style="display:flex;align-items:center;gap:12px;color:#c1c6d7;text-decoration:none;font-family:'Inter',sans-serif;">
+        <span class="material-symbols-outlined">shopping_cart</span> Cart
+      </a>
+    </div>
+  </div>
 </div>
 
+<!-- Spacer so content doesn't hide under fixed nav -->
+<div style="height:72px;"></div>
+
+<!-- Mobile Menu JS -->
 <script>
-    // Mobile Menu Logic
-    document.addEventListener('DOMContentLoaded', () => {
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const closeBtn = document.getElementById('mobile-menu-close');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (menuBtn && closeBtn && mobileMenu) {
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.remove('translate-x-full');
-            });
-            closeBtn.addEventListener('click', () => {
-                mobileMenu.classList.add('translate-x-full');
-            });
-        }
+(function(){
+  var btn=document.getElementById('mobile-menu-btn');
+  var cls=document.getElementById('mobile-menu-close');
+  var mnu=document.getElementById('mobile-menu');
+
+  // Show hamburger only on mobile screens (no Tailwind dependency)
+  function updateHamburger(){
+    if(btn){
+      btn.style.display = window.innerWidth < 768 ? 'flex' : 'none';
+    }
+    // Close mobile menu if window resized to desktop
+    if(mnu && window.innerWidth >= 768){
+      mnu.style.display='none';
+      mnu.style.transform='translateX(100%)';
+    }
+  }
+  updateHamburger();
+  window.addEventListener('resize', updateHamburger);
+
+  if(btn && cls && mnu){
+    btn.addEventListener('click',function(){
+      mnu.style.display='flex';
+      // Small delay so display:flex kicks in before transform
+      setTimeout(function(){ mnu.style.transform='translateX(0)'; }, 10);
     });
+    cls.addEventListener('click',function(){
+      mnu.style.transform='translateX(100%)';
+      setTimeout(function(){ mnu.style.display='none'; }, 310);
+    });
+  }
+})();
 </script>
+<!-- ═══ NAVBAR END ═══ -->
 
-<main class="pt-20">
-<!-- Hero Section -->
-<section class="relative min-h-[921px] flex items-center overflow-hidden">
-<div class="hero-glow -top-20 -left-20"></div>
-<div class="hero-glow bottom-0 right-0 opacity-50"></div>
-<!-- Background Animation Placeholder -->
 
-<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center z-10">
-<div class="space-y-base">
-<div class="inline-block py-1 px-3 rounded-full border border-electric-blue/30 bg-electric-blue/10 text-electric-blue font-label-mono text-label-mono mb-4">
-                        NEXT-GEN CUSTOM RIGS
+
+
+<main class="pt-0">
+        <!-- 1. Hero Section -->
+        <section class="relative min-h-[90vh] flex items-center overflow-hidden pt-10 lg:pt-0">
+            <div class="hero-glow top-0 left-0"></div>
+            <div class="hero-glow bottom-0 right-0 opacity-40"></div>
+            
+            <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10 w-full">
+                <!-- Left Content -->
+                <div class="space-y-8 mt-10 lg:mt-0">
+                    <div class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+                        <span class="text-yellow-400 text-sm">⭐⭐⭐⭐⭐</span>
+                        <span class="text-xs font-mono text-on-surface-variant uppercase">Rated 4.9/5 by 15,000+ Builders</span>
                     </div>
-<h1 class="font-display-lg text-display-lg text-on-surface leading-tight">
-                        Build Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-cyber-teal">Masterpiece</span>
-</h1>
-<p class="text-on-surface-variant font-body-md text-body-md max-w-lg mt-6">
-                        Experience surgical precision in PC building. Select flagship hardware, ensure 100% compatibility, and let our master technicians assemble your dream workstation.
+                    
+                    <h1 class="text-5xl lg:text-7xl font-black leading-[1.1] tracking-tight">
+                        Build Your <br/>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-cyber-teal">Dream PC.</span>
+                    </h1>
+                    
+                    <p class="text-lg text-on-surface-variant max-w-lg">
+                        India's Smartest AI-Powered Custom PC Builder. Select flagship hardware, ensure 100% compatibility, and let our master technicians assemble your masterpiece.
                     </p>
-<div class="flex flex-wrap gap-4 pt-10">
-<button onclick="window.location.href='builder-landing.html'" class="bg-electric-blue text-white px-8 py-4 rounded-lg font-headline-sm text-headline-sm hover:shadow-[0_0_20px_rgba(0,122,255,0.4)] transition-all active:scale-95">
-                            Start Building
+                    
+                    <ul class="space-y-3 font-mono text-sm text-on-surface-variant">
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-success text-lg">check_circle</span> AI Compatibility Check</li>
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-success text-lg">check_circle</span> Cable Managed by Experts</li>
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-success text-lg">check_circle</span> 3-Year Doorstep Warranty</li>
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-success text-lg">check_circle</span> Pan India Secure Delivery</li>
+                    </ul>
+
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <button onclick="window.location.href='builder-landing.html'" class="bg-electric-blue text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-[0_0_25px_rgba(0,122,255,0.6)] transition-all flex items-center gap-2">
+                            Start Building <span class="material-symbols-outlined">build</span>
                         </button>
-<button onclick="window.location.href='prebuilt-pcs.html'" class="glass-card text-on-surface px-8 py-4 rounded-lg font-headline-sm text-headline-sm hover:bg-white/10 transition-all border border-white/10">
-                            View Gallery
+                        <button onclick="window.location.href='shop.html'" class="glass-card text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/10 transition-all">
+                            Explore Builds
                         </button>
-</div>
-</div>
-<div class="relative group">
-<div class="absolute -inset-4 bg-gradient-to-tr from-electric-blue/20 to-cyber-teal/20 blur-3xl opacity-30 group-hover:opacity-50 transition-opacity duration-700"></div>
-<div class="relative transform transition-transform duration-700 hover:scale-[1.02]">
-<img class="w-full drop-shadow-2xl" data-alt="A hyper-realistic 3D render of a high-end custom gaming PC with tempered glass panels, glowing RGB internal components, and custom water cooling loops with electric blue liquid. The case is anodized black aluminum, set against a dark, tech-inspired background with subtle blue volumetric lighting. The aesthetic is ultra-modern, clean, and highlights the technical craftsmanship of enthusiast hardware." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnGfLF382OXuTSEv1Tq35Sdna7mmsIPXVh0D5H39T0q0upbUvQ6j3p_hNbRyIHBvRt3OK1pJ71t1rJZ8o-PvUM82Kw_oqkWXlwYOgyL7ROy_0Cy0g8HoLTCx3rOK02xtXN2fL2Puo6oRfYUajTSML9dOaR3Qk1esvhIYtS6HFKpTeFi-SUHN21h9nlw-TgyZJ5PgcttFndtIcooAfYt4j2UNxa3osBaono8cK14XAwuCHG9RPJJzZqDn5mHPH1dDIxFes8KZzRu0rx"/>
-<!-- Floating Data Tags -->
-<div class="absolute top-1/4 -right-8 glass-card p-4 rounded-xl border-l-4 border-electric-blue animate-bounce" style="animation-duration: 3s;">
-<div class="text-label-mono font-label-mono text-on-surface-variant">RTX 4090</div>
-<div class="text-headline-sm font-headline-sm text-electric-blue">144+ FPS</div>
-</div>
-<div class="absolute bottom-1/4 -left-8 glass-card p-4 rounded-xl border-l-4 border-cyber-teal animate-bounce" style="animation-duration: 4s;">
-<div class="text-label-mono font-label-mono text-on-surface-variant">TEMPS</div>
-<div class="text-headline-sm font-headline-sm text-cyber-teal">52°C LOAD</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Brand Wall -->
-<section class="py-16 border-y border-white/5 bg-surface-deep/50">
-<div class="max-w-container-max mx-auto px-margin-desktop">
-<p class="text-center text-label-mono font-label-mono text-on-surface-variant uppercase tracking-widest mb-10">Trusted by Industry Titans</p>
-<div class="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-<div class="h-8 md:h-10 text-on-surface font-black text-2xl">INTEL</div>
-<div class="h-8 md:h-10 text-on-surface font-black text-2xl">NVIDIA</div>
-<div class="h-8 md:h-10 text-on-surface font-black text-2xl">AMD</div>
-<div class="h-8 md:h-10 text-on-surface font-black text-2xl">CORSAIR</div>
-<div class="h-8 md:h-10 text-on-surface font-black text-2xl">ASUS</div>
-</div>
-</div>
-</section>
-<!-- Features Section -->
-<section class="py-32 relative">
-<div class="max-w-container-max mx-auto px-margin-desktop">
-<div class="text-center mb-20">
-<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Why Build with Us?</h2>
-<p class="text-on-surface-variant font-body-md text-body-md max-w-2xl mx-auto">We combine the customization of a DIY build with the reliability and support of a premium manufacturer.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-<!-- Feature 1 -->
-<div class="glass-card p-8 rounded-2xl group hover:border-electric-blue/50 transition-all duration-300">
-<div class="w-14 h-14 rounded-xl bg-electric-blue/10 flex items-center justify-center text-electric-blue mb-6 group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">precision_manufacturing</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Premium Assembly</h3>
-<p class="text-on-surface-variant font-body-sm text-body-sm leading-relaxed">
-                            Every PC is hand-assembled by enthusiast builders. We prioritize surgical cable management and optimal thermal airflow for every chassis.
-                        </p>
-</div>
-<!-- Feature 2 -->
-<div class="glass-card p-8 rounded-2xl group hover:border-cyber-teal/50 transition-all duration-300">
-<div class="w-14 h-14 rounded-xl bg-cyber-teal/10 flex items-center justify-center text-cyber-teal mb-6 group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">verified_user</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">3-Year Warranty</h3>
-<p class="text-on-surface-variant font-body-sm text-body-sm leading-relaxed">
-                            Peace of mind comes standard. We offer a comprehensive 3-year warranty covering all hardware components and our labor.
-                        </p>
-</div>
-<!-- Feature 3 -->
-<div class="glass-card p-8 rounded-2xl group hover:border-primary/50 transition-all duration-300">
-<div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">fact_check</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Compatibility Assurance</h3>
-<p class="text-on-surface-variant font-body-sm text-body-sm leading-relaxed">
-                            Our proprietary algorithm checks wattage, physical clearance, and BIOS versions in real-time as you build your rig.
-                        </p>
-</div>
-</div>
-</div>
-</section>
-<!-- Featured Builds Gallery -->
-<section class="py-32 bg-surface-container/30">
-<div class="max-w-container-max mx-auto px-margin-desktop">
-<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-<div>
-<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Build Gallery</h2>
-<p class="text-on-surface-variant font-body-md text-body-md">Get inspired by what our community is creating.</p>
-</div>
-<div class="flex gap-4">
-<button class="p-3 rounded-full glass-card hover:bg-white/10 transition-all">
-<span class="material-symbols-outlined">arrow_back</span>
-</button>
-<button class="p-3 rounded-full glass-card hover:bg-white/10 transition-all text-electric-blue">
-<span class="material-symbols-outlined">arrow_forward</span>
-</button>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-<!-- Build Card 1 -->
-<div class="glass-card rounded-2xl overflow-hidden flex flex-col hover:translate-y-[-8px] transition-all duration-500 group">
-<div class="relative h-64 overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A professional photograph of a compact, white mini-ITX PC build on a minimalist oak desk. The build features clean white cables, a frosted glass side panel, and soft warm ambient lighting. The background is a clean, modern home office setup with a high-resolution monitor and aesthetic peripherals. The lighting is soft and inviting, emphasizing a 'lifestyle' aesthetic for home workstations." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2JC8d8033My4MGtDL2iO8WUR_jKleE8J7f6fPEi1u2W_YnkQeUSCEJCqiUz4Oxw4J0H0_AX0qD9W5wEASQ8leTJyt9C5HwXr5huObTsMei77VOdk6Awt0GiBq3l_Mf331LBUSxSWSn08NgdY4n0KMF8_ySz03DzMtWmHzXjDieR0crWAyJF5-tBj9QGPPBVMnjCe5IvZ-aXXlA9-JP7OYBnLN0qigEw-t7xSlIb2aEfL5U0bQPVdt7Q53Xt4WqQMWFfr2rByCGG8k"/>
-<div class="absolute top-4 right-4 bg-surface-deep/80 backdrop-blur-md px-3 py-1 rounded-full text-label-mono font-label-mono text-electric-blue border border-electric-blue/20">
-                                ₹2,499
+                    </div>
+                    
+                    <div class="pt-6 border-t border-white/10 flex items-center gap-6 text-sm font-mono text-on-surface-variant">
+                        <span>Trusted by Creators & Pros</span>
+                    </div>
+                </div>
+                
+                <!-- Right Content (Image) -->
+                <div class="relative group mt-10 lg:mt-0 pb-20 lg:pb-0">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-electric-blue/20 to-cyber-teal/20 blur-3xl opacity-50"></div>
+                    <img class="relative w-full z-10 drop-shadow-2xl animate-float" src="https://images.unsplash.com/photo-1587202372634-32705e3bf49c?q=80&w=1000&auto=format&fit=crop" alt="Premium RGB Gaming PC"/>
+                    
+                    <!-- Floating Data Tags -->
+                    <div class="absolute top-10 -left-6 lg:-left-12 glass-card p-4 rounded-xl border-l-4 border-electric-blue z-20 animate-float" style="animation-delay: 1s;">
+                        <div class="text-xs font-mono text-on-surface-variant">RTX 4090</div>
+                        <div class="text-lg font-bold text-electric-blue">240+ FPS</div>
+                    </div>
+                    <div class="absolute bottom-20 -right-4 lg:-right-8 glass-card p-4 rounded-xl border-l-4 border-cyber-teal z-20 animate-float" style="animation-delay: 2s;">
+                        <div class="text-xs font-mono text-on-surface-variant">AI ENGINE</div>
+                        <div class="text-lg font-bold text-cyber-teal">100% Compatible</div>
+                    </div>
+                    
+                    <!-- Brand Partners -->
+                    <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 w-full flex justify-center gap-6 lg:gap-12 opacity-50 grayscale">
+                        <span class="font-black text-xl lg:text-2xl">INTEL</span>
+                        <span class="font-black text-xl lg:text-2xl">NVIDIA</span>
+                        <span class="font-black text-xl lg:text-2xl">AMD</span>
+                        <span class="font-black text-xl lg:text-2xl">CORSAIR</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Trust Statistics Section -->
+        <section class="py-20 bg-black/40 border-y border-white/5 relative z-20">
+            <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
+                <div class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform">
+                    <span class="material-symbols-outlined text-electric-blue text-3xl mb-2">computer</span>
+                    <div class="text-3xl font-black text-white counter" data-target="15000">0</div>
+                    <div class="text-xs font-mono text-on-surface-variant mt-1">PCs Built</div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform">
+                    <span class="material-symbols-outlined text-cyber-teal text-3xl mb-2">groups</span>
+                    <div class="text-3xl font-black text-white counter" data-target="50000">0</div>
+                    <div class="text-xs font-mono text-on-surface-variant mt-1">Happy Customers</div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform">
+                    <span class="material-symbols-outlined text-success text-3xl mb-2">verified</span>
+                    <div class="text-3xl font-black text-white">99.9%</div>
+                    <div class="text-xs font-mono text-on-surface-variant mt-1">Compatibility</div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform">
+                    <span class="material-symbols-outlined text-electric-blue text-3xl mb-2">local_shipping</span>
+                    <div class="text-3xl font-black text-white counter" data-target="120">0</div>
+                    <div class="text-xs font-mono text-on-surface-variant mt-1">Cities Delivered</div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform">
+                    <span class="material-symbols-outlined text-yellow-400 text-3xl mb-2">star</span>
+                    <div class="text-3xl font-black text-white">4.9★</div>
+                    <div class="text-xs font-mono text-on-surface-variant mt-1">Average Rating</div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform">
+                    <span class="material-symbols-outlined text-cyber-teal text-3xl mb-2">security</span>
+                    <div class="text-3xl font-black text-white">3 Years</div>
+                    <div class="text-xs font-mono text-on-surface-variant mt-1">Warranty</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Shop by Purpose -->
+        <section class="py-32 relative">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-black mb-4">Choose Your Arena</h2>
+                    <p class="text-on-surface-variant max-w-2xl mx-auto">We've engineered perfect starting points for every professional and enthusiast.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                    <!-- Cards -->
+                    <div class="glass-card p-6 rounded-2xl hover:bg-white/5 hover:border-electric-blue/50 transition-all group flex flex-col">
+                        <span class="material-symbols-outlined text-4xl text-electric-blue mb-4 group-hover:scale-110 transition-transform">sports_esports</span>
+                        <h3 class="text-xl font-bold mb-2">Gaming</h3>
+                        <p class="text-sm text-on-surface-variant mb-6 flex-grow">Max FPS, Ray Tracing, zero bottlenecks.</p>
+                        <div class="text-xs font-mono text-on-surface-variant mb-4">From ₹60,000</div>
+                        <button class="w-full py-2 rounded bg-white/10 hover:bg-electric-blue text-white transition-colors text-sm font-bold">Start Building</button>
+                    </div>
+                    
+                    <div class="glass-card p-6 rounded-2xl hover:bg-white/5 hover:border-cyber-teal/50 transition-all group flex flex-col">
+                        <span class="material-symbols-outlined text-4xl text-cyber-teal mb-4 group-hover:scale-110 transition-transform">movie_edit</span>
+                        <h3 class="text-xl font-bold mb-2">Video Editing</h3>
+                        <p class="text-sm text-on-surface-variant mb-6 flex-grow">4K/8K timeline playback without drops.</p>
+                        <div class="text-xs font-mono text-on-surface-variant mb-4">From ₹95,000</div>
+                        <button class="w-full py-2 rounded bg-white/10 hover:bg-cyber-teal text-white transition-colors text-sm font-bold">Start Building</button>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl hover:bg-white/5 hover:border-purple-500/50 transition-all group flex flex-col">
+                        <span class="material-symbols-outlined text-4xl text-purple-500 mb-4 group-hover:scale-110 transition-transform">memory</span>
+                        <h3 class="text-xl font-bold mb-2">AI & ML</h3>
+                        <p class="text-sm text-on-surface-variant mb-6 flex-grow">Massive VRAM and tensor core power.</p>
+                        <div class="text-xs font-mono text-on-surface-variant mb-4">From ₹1,50,000</div>
+                        <button class="w-full py-2 rounded bg-white/10 hover:bg-purple-600 text-white transition-colors text-sm font-bold">Start Building</button>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl hover:bg-white/5 hover:border-orange-500/50 transition-all group flex flex-col">
+                        <span class="material-symbols-outlined text-4xl text-orange-500 mb-4 group-hover:scale-110 transition-transform">architecture</span>
+                        <h3 class="text-xl font-bold mb-2">Architecture</h3>
+                        <p class="text-sm text-on-surface-variant mb-6 flex-grow">Flawless AutoCAD & Revit rendering.</p>
+                        <div class="text-xs font-mono text-on-surface-variant mb-4">From ₹85,000</div>
+                        <button class="w-full py-2 rounded bg-white/10 hover:bg-orange-600 text-white transition-colors text-sm font-bold">Start Building</button>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl hover:bg-white/5 hover:border-pink-500/50 transition-all group flex flex-col">
+                        <span class="material-symbols-outlined text-4xl text-pink-500 mb-4 group-hover:scale-110 transition-transform">podcasts</span>
+                        <h3 class="text-xl font-bold mb-2">Streaming</h3>
+                        <p class="text-sm text-on-surface-variant mb-6 flex-grow">Dual-PC setup power in one silent rig.</p>
+                        <div class="text-xs font-mono text-on-surface-variant mb-4">From ₹1,10,000</div>
+                        <button class="w-full py-2 rounded bg-white/10 hover:bg-pink-600 text-white transition-colors text-sm font-bold">Start Building</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. How It Works -->
+        <section class="py-24 bg-surface-container/30">
+            <div class="max-w-7xl mx-auto px-6">
+                <h2 class="text-4xl font-black text-center mb-16">The MakeMyPC Experience</h2>
+                <div class="flex flex-col md:flex-row justify-between relative">
+                    <!-- Lines for Desktop -->
+                    <div class="hidden md:block absolute top-10 left-10 right-10 h-1 bg-white/10 rounded">
+                        <div class="h-full bg-electric-blue w-0" id="timeline-progress"></div>
+                    </div>
+                    
+                    <!-- Steps -->
+                    <div class="timeline-step relative flex flex-col items-center text-center z-10 w-full md:w-1/6 mb-8 md:mb-0">
+                        <div class="w-20 h-20 rounded-full glass-card flex items-center justify-center text-3xl mb-4 border-2 border-electric-blue/30 text-electric-blue">1</div>
+                        <h4 class="font-bold mb-2">Choose Purpose</h4>
+                        <p class="text-xs text-on-surface-variant px-2">Select your workflow</p>
+                    </div>
+                    <div class="timeline-step relative flex flex-col items-center text-center z-10 w-full md:w-1/6 mb-8 md:mb-0">
+                        <div class="w-20 h-20 rounded-full glass-card flex items-center justify-center text-3xl mb-4 border-2 border-white/10 text-white">2</div>
+                        <h4 class="font-bold mb-2">Pick Parts</h4>
+                        <p class="text-xs text-on-surface-variant px-2">Select premium components</p>
+                    </div>
+                    <div class="timeline-step relative flex flex-col items-center text-center z-10 w-full md:w-1/6 mb-8 md:mb-0">
+                        <div class="w-20 h-20 rounded-full glass-card flex items-center justify-center text-3xl mb-4 border-2 border-white/10 text-white"><span class="material-symbols-outlined text-cyber-teal">smart_toy</span></div>
+                        <h4 class="font-bold mb-2">AI Check</h4>
+                        <p class="text-xs text-on-surface-variant px-2">100% compatibility verified</p>
+                    </div>
+                    <div class="timeline-step relative flex flex-col items-center text-center z-10 w-full md:w-1/6 mb-8 md:mb-0">
+                        <div class="w-20 h-20 rounded-full glass-card flex items-center justify-center text-3xl mb-4 border-2 border-white/10 text-white"><span class="material-symbols-outlined">precision_manufacturing</span></div>
+                        <h4 class="font-bold mb-2">Expert Build</h4>
+                        <p class="text-xs text-on-surface-variant px-2">Surgical assembly</p>
+                    </div>
+                    <div class="timeline-step relative flex flex-col items-center text-center z-10 w-full md:w-1/6 mb-8 md:mb-0">
+                        <div class="w-20 h-20 rounded-full glass-card flex items-center justify-center text-3xl mb-4 border-2 border-white/10 text-white"><span class="material-symbols-outlined">speed</span></div>
+                        <h4 class="font-bold mb-2">Stress Test</h4>
+                        <p class="text-xs text-on-surface-variant px-2">Thermals & OS configured</p>
+                    </div>
+                    <div class="timeline-step relative flex flex-col items-center text-center z-10 w-full md:w-1/6">
+                        <div class="w-20 h-20 rounded-full glass-card flex items-center justify-center text-3xl mb-4 border-2 border-white/10 text-white"><span class="material-symbols-outlined">package</span></div>
+                        <h4 class="font-bold mb-2">Safe Delivery</h4>
+                        <p class="text-xs text-on-surface-variant px-2">Wooden crate packaging</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. AI Compatibility Engine (USP) -->
+        <section class="py-32 relative overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-electric-blue/10 via-surface-deep to-surface-deep z-0"></div>
+            <div class="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-electric-blue/10 border border-electric-blue/30 text-electric-blue text-xs font-mono uppercase mb-6">
+                        <span class="material-symbols-outlined text-sm">memory</span> Proprietary Tech
+                    </div>
+                    <h2 class="text-4xl md:text-6xl font-black mb-6">Zero Errors.<br/>Total Harmony.</h2>
+                    <p class="text-on-surface-variant text-lg mb-10">Our AI Compatibility Engine checks millions of data points in real-time. If it doesn't fit, bottleneck, or power up correctly, we won't let you build it.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 font-mono text-sm">
+                        <div class="glass-card p-3 rounded flex justify-between items-center bg-white/5 border-l-2 border-success"><span>CPU Socket</span><span class="material-symbols-outlined text-success">check</span></div>
+                        <div class="glass-card p-3 rounded flex justify-between items-center bg-white/5 border-l-2 border-success"><span>RAM Speed</span><span class="material-symbols-outlined text-success">check</span></div>
+                        <div class="glass-card p-3 rounded flex justify-between items-center bg-white/5 border-l-2 border-success"><span>PSU Wattage</span><span class="material-symbols-outlined text-success">check</span></div>
+                        <div class="glass-card p-3 rounded flex justify-between items-center bg-white/5 border-l-2 border-success"><span>BIOS Ver.</span><span class="material-symbols-outlined text-success">check</span></div>
+                        <div class="glass-card p-3 rounded flex justify-between items-center bg-white/5 border-l-2 border-success"><span>GPU Length</span><span class="material-symbols-outlined text-success">check</span></div>
+                        <div class="glass-card p-3 rounded flex justify-between items-center bg-white/5 border-l-2 border-success"><span>Cooler Hgt.</span><span class="material-symbols-outlined text-success">check</span></div>
+                        <div class="glass-card p-3 rounded flex justify-between items-center bg-white/5 border-l-2 border-success"><span>Cabinet Size</span><span class="material-symbols-outlined text-success">check</span></div>
+                        <div class="glass-card p-3 rounded flex justify-between items-center bg-white/5 border-l-2 border-success"><span>PCIe Lanes</span><span class="material-symbols-outlined text-success">check</span></div>
+                    </div>
+                </div>
+                <div class="relative flex justify-center items-center h-full min-h-[400px]">
+                    <!-- Glowing pulse bg -->
+                    <div class="absolute w-64 h-64 bg-electric-blue/30 rounded-full blur-[100px] animate-pulse-slow"></div>
+
+                    <!-- CPU Chip Visualization (pure CSS/HTML, no external image) -->
+                    <div class="relative w-80 h-80 flex items-center justify-center">
+
+                        <!-- Outer rotating ring -->
+                        <div class="absolute w-72 h-72 rounded-full border border-electric-blue/20"
+                             style="animation:spin 20s linear infinite;">
+                            <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-electric-blue shadow-[0_0_10px_#007AFF]"></div>
+                            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 rounded-full bg-cyber-teal shadow-[0_0_8px_#00A4A6]"></div>
+                        </div>
+
+                        <!-- Middle ring (counter-rotate) -->
+                        <div class="absolute w-56 h-56 rounded-full border border-cyber-teal/30"
+                             style="animation:spin 12s linear infinite reverse;">
+                            <div class="absolute top-0 right-0 translate-x-1/4 -translate-y-1/4 w-2 h-2 rounded-full bg-success shadow-[0_0_8px_#34d399]"></div>
+                            <div class="absolute bottom-0 left-0 -translate-x-1/4 translate-y-1/4 w-2 h-2 rounded-full bg-electric-blue/80"></div>
+                        </div>
+
+                        <!-- CPU Die (center chip) -->
+                        <div class="relative w-40 h-40 rounded-2xl flex items-center justify-center z-10"
+                             style="background:linear-gradient(135deg,#0d1b3e,#1a2d5a);border:1px solid rgba(0,122,255,0.5);box-shadow:0 0 40px rgba(0,122,255,0.3),inset 0 0 20px rgba(0,122,255,0.05);">
+
+                            <!-- Circuit grid lines -->
+                            <div class="absolute inset-2 opacity-30"
+                                 style="background-image:linear-gradient(rgba(0,122,255,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(0,122,255,0.5) 1px,transparent 1px);background-size:16px 16px;border-radius:12px;"></div>
+
+                            <!-- Core glow -->
+                            <div class="absolute w-16 h-16 rounded-full"
+                                 style="background:radial-gradient(circle,rgba(0,122,255,0.4) 0%,transparent 70%);animation:pulse 2s ease-in-out infinite;"></div>
+
+                            <!-- Center icon -->
+                            <span class="material-symbols-outlined z-10 text-5xl" style="color:#007AFF;filter:drop-shadow(0 0 12px #007AFF);">memory</span>
+
+                            <!-- Corner pads -->
+                            <div class="absolute top-2 left-2 w-3 h-3 rounded-sm bg-electric-blue/40 border border-electric-blue/60"></div>
+                            <div class="absolute top-2 right-2 w-3 h-3 rounded-sm bg-electric-blue/40 border border-electric-blue/60"></div>
+                            <div class="absolute bottom-2 left-2 w-3 h-3 rounded-sm bg-electric-blue/40 border border-electric-blue/60"></div>
+                            <div class="absolute bottom-2 right-2 w-3 h-3 rounded-sm bg-electric-blue/40 border border-electric-blue/60"></div>
+                        </div>
+
+                        <!-- Floating data nodes -->
+                        <div class="absolute top-8 right-8 px-2 py-1 rounded-lg text-xs font-bold z-20"
+                             style="background:rgba(0,164,166,0.15);border:1px solid rgba(0,164,166,0.4);color:#00A4A6;animation:float 3s ease-in-out infinite;">AI</div>
+                        <div class="absolute bottom-10 left-6 px-2 py-1 rounded-lg text-xs font-bold z-20"
+                             style="background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.4);color:#34d399;animation:float 4s ease-in-out infinite 0.5s;">CHECK OK</div>
+                        <div class="absolute top-12 left-4 px-2 py-1 rounded-lg text-xs font-bold z-20"
+                             style="background:rgba(0,122,255,0.15);border:1px solid rgba(0,122,255,0.4);color:#60a5fa;animation:float 3.5s ease-in-out infinite 1s;">PCIe</div>
+                        <div class="absolute bottom-8 right-4 px-2 py-1 rounded-lg text-xs font-bold z-20"
+                             style="background:rgba(167,139,250,0.15);border:1px solid rgba(167,139,250,0.4);color:#a78bfa;animation:float 5s ease-in-out infinite 0.8s;">DDR5</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Featured Components -->
+        <section class="py-24 border-t border-white/5">
+            <div class="max-w-7xl mx-auto px-6 mb-12 flex justify-between items-end">
+                <div>
+                    <h2 class="text-3xl font-black mb-2">Featured Hardware</h2>
+                    <p class="text-on-surface-variant">The latest tech in stock and ready to build.</p>
+                </div>
+                <a href="#" class="hidden md:flex items-center gap-2 text-electric-blue hover:text-white transition-colors font-mono text-sm">View All <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+            </div>
+            
+            <!-- Horizontal Carousel -->
+            <div class="w-full overflow-x-auto hide-scrollbar pb-10 px-6 max-w-[1400px] mx-auto">
+                <div class="flex gap-6 w-max">
+                    <!-- Component Card -->
+                    <div class="glass-card w-72 rounded-2xl overflow-hidden group">
+                        <div class="h-48 p-6 bg-white/5 relative flex justify-center items-center">
+                            <span class="absolute top-3 left-3 bg-red-500/20 text-red-400 text-[10px] font-bold px-2 py-1 rounded uppercase">Hot</span>
+                            <div class="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button class="w-8 h-8 rounded-full bg-surface-deep/80 text-white flex items-center justify-center hover:bg-electric-blue transition-colors"><span class="material-symbols-outlined text-[16px]">visibility</span></button>
+                                <button class="w-8 h-8 rounded-full bg-surface-deep/80 text-white flex items-center justify-center hover:bg-electric-blue transition-colors"><span class="material-symbols-outlined text-[16px]">favorite</span></button>
                             </div>
-</div>
-<div class="p-6 flex-grow">
-<div class="flex justify-between items-start mb-4">
-<div>
-<h4 class="font-headline-sm text-headline-sm text-on-surface">The Snowblind</h4>
-<p class="text-on-surface-variant text-body-sm font-body-sm">Created by @TechArtisan</p>
-</div>
-<div class="flex items-center text-cyber-teal">
-<span class="material-symbols-outlined text-sm mr-1" style="font-variation-settings: 'FILL' 1;">favorite</span>
-<span class="text-label-mono font-label-mono">1.2k</span>
-</div>
-</div>
-<div class="space-y-3 mb-8">
-<div class="flex items-center gap-3 text-on-surface-variant">
-<span class="material-symbols-outlined text-lg">memory</span>
-<span class="text-label-mono font-label-mono uppercase">Ryzen 9 7900X</span>
-</div>
-<div class="flex items-center gap-3 text-on-surface-variant">
-<span class="material-symbols-outlined text-lg">videogame_asset</span>
-<span class="text-label-mono font-label-mono uppercase">RTX 4080 White Edition</span>
-</div>
-<div class="flex items-center gap-3 text-on-surface-variant">
-<span class="material-symbols-outlined text-lg">data_usage</span>
-<span class="text-label-mono font-label-mono uppercase">64GB DDR5 6000MHz</span>
-</div>
-</div>
-<button class="w-full py-3 bg-white/5 border border-white/10 rounded-lg text-on-surface font-label-mono text-label-mono uppercase tracking-widest hover:bg-electric-blue hover:text-white transition-all flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-sm">content_copy</span>
-                                Clone Build
-                            </button>
-</div>
-</div>
-<!-- Build Card 2 -->
-<div class="glass-card rounded-2xl overflow-hidden flex flex-col hover:translate-y-[-8px] transition-all duration-500 group">
-<div class="relative h-64 overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A dramatic close-up of a high-performance gaming PC in a dark room. The build features aggressive red and purple RGB lighting, vertical GPU mounting, and custom sleeved cables in black and red. The side panel is removed to show the intricate details of the liquid cooling radiator and spinning fans. The atmosphere is intense and powerful, evoking a high-stakes competitive gaming mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaGEVhJb4qXhWFSHCPcOH3sXKZF5gdLJfLiShwpS1ryaSdctrI-hFQp6EikgyOuKAAwzkCwWUa6yAIsH9ESZum2wSh4c4-alo1W28TZ4PMIDxKpcuQ0HwEPpGjKziBupbxGomsFnoOCsQeipgZMouYVTLSiyVAKuva5vpPebEHEQeRaJCnBHe4obZgIfV_ANVMGO1PKF0mk0qgFOMF_WN_3Q3LeLpAu-1VYGJGxVFpY91HCSHodMFCZQnMNGHJijPAca4AxHV3j6nl"/>
-<div class="absolute top-4 right-4 bg-surface-deep/80 backdrop-blur-md px-3 py-1 rounded-full text-label-mono font-label-mono text-electric-blue border border-electric-blue/20">
-                                ₹4,150
+                            <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=300" class="w-32 object-contain group-hover:scale-110 transition-transform duration-500" alt="GPU"/>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="text-xs font-mono text-on-surface-variant">Graphics Card</div>
+                                <div class="flex items-center text-yellow-400 text-[10px]"><span class="material-symbols-outlined text-[14px]">star</span> 4.9</div>
                             </div>
-</div>
-<div class="p-6 flex-grow">
-<div class="flex justify-between items-start mb-4">
-<div>
-<h4 class="font-headline-sm text-headline-sm text-on-surface">Midnight Forge</h4>
-<p class="text-on-surface-variant text-body-sm font-body-sm">Created by @BuildMaster_X</p>
-</div>
-<div class="flex items-center text-cyber-teal">
-<span class="material-symbols-outlined text-sm mr-1" style="font-variation-settings: 'FILL' 1;">favorite</span>
-<span class="text-label-mono font-label-mono">2.8k</span>
-</div>
-</div>
-<div class="space-y-3 mb-8">
-<div class="flex items-center gap-3 text-on-surface-variant">
-<span class="material-symbols-outlined text-lg">memory</span>
-<span class="text-label-mono font-label-mono uppercase">Core i9-14900K</span>
-</div>
-<div class="flex items-center gap-3 text-on-surface-variant">
-<span class="material-symbols-outlined text-lg">videogame_asset</span>
-<span class="text-label-mono font-label-mono uppercase">RTX 4090 OC</span>
-</div>
-<div class="flex items-center gap-3 text-on-surface-variant">
-<span class="material-symbols-outlined text-lg">data_usage</span>
-<span class="text-label-mono font-label-mono uppercase">128GB DDR5</span>
-</div>
-</div>
-<button class="w-full py-3 bg-white/5 border border-white/10 rounded-lg text-on-surface font-label-mono text-label-mono uppercase tracking-widest hover:bg-electric-blue hover:text-white transition-all flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-sm">content_copy</span>
-                                Clone Build
-                            </button>
-</div>
-</div>
-<!-- Build Card 3 -->
-<div class="glass-card rounded-2xl overflow-hidden flex flex-col hover:translate-y-[-8px] transition-all duration-500 group">
-<div class="relative h-64 overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A clean, professional workstation build focused on productivity. The case is a sleek, windowless brushed aluminum Fractal Design chassis. The setup is presented in a bright, modern studio environment with soft natural lighting. The build emphasizes silence and efficiency, featuring high-end air cooling and professional-grade I/O. The style is sophisticated, adult, and performance-oriented." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAWJ_oQFP8r5oPyp-6SXVLsf2Ai5fDRSovmV6hULwbV4_Q2CpICDNRz6vAhBgzNMpbD6b_WjAKRnDFMnlMlVVAUhHysa6_dE2UuL1B0r1KCXJc5mTuGdWfhWm6EItAuze_zQXNX2uSHqmzc-EQPnJpuAhfei0ABA6rYm3EEDi1El50c04cBLZZ9EKA8cFxOsEC4ZjS30dwp-_838UrHDaNW2iWlYfrHm_13YBQszaXfhSRCFZfo-7O02JZOMxrxpi9YzDwXkgDrvib"/>
-<div class="absolute top-4 right-4 bg-surface-deep/80 backdrop-blur-md px-3 py-1 rounded-full text-label-mono font-label-mono text-electric-blue border border-electric-blue/20">
-                                ₹1,850
+                            <h4 class="font-bold text-lg mb-1 line-clamp-1">NVIDIA RTX 4090 OC</h4>
+                            <div class="flex items-end gap-2 mb-4">
+                                <span class="text-xl font-bold text-electric-blue">₹1,85,990</span>
+                                <span class="text-xs text-on-surface-variant line-through mb-1">₹2,05,000</span>
                             </div>
-</div>
-<div class="p-6 flex-grow">
-<div class="flex justify-between items-start mb-4">
-<div>
-<h4 class="font-headline-sm text-headline-sm text-on-surface">Quiet Creator</h4>
-<p class="text-on-surface-variant text-body-sm font-body-sm">Created by @StudioFlow</p>
-</div>
-<div class="flex items-center text-cyber-teal">
-<span class="material-symbols-outlined text-sm mr-1" style="font-variation-settings: 'FILL' 1;">favorite</span>
-<span class="text-label-mono font-label-mono">842</span>
-</div>
-</div>
-<div class="space-y-3 mb-8">
-<div class="flex items-center gap-3 text-on-surface-variant">
-<span class="material-symbols-outlined text-lg">memory</span>
-<span class="text-label-mono font-label-mono uppercase">Core i7-14700K</span>
-</div>
-<div class="flex items-center gap-3 text-on-surface-variant">
-<span class="material-symbols-outlined text-lg">videogame_asset</span>
-<span class="text-label-mono font-label-mono uppercase">RTX 4070 Ti Super</span>
-</div>
-<div class="flex items-center gap-3 text-on-surface-variant">
-<span class="material-symbols-outlined text-lg">data_usage</span>
-<span class="text-label-mono font-label-mono uppercase">32GB DDR5</span>
-</div>
-</div>
-<button class="w-full py-3 bg-white/5 border border-white/10 rounded-lg text-on-surface font-label-mono text-label-mono uppercase tracking-widest hover:bg-electric-blue hover:text-white transition-all flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-sm">content_copy</span>
-                                Clone Build
-                            </button>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Final CTA Banner -->
-<section class="py-32 overflow-hidden relative">
-<div class="max-w-container-max mx-auto px-margin-desktop">
-<div class="relative glass-card rounded-3xl p-12 md:p-24 overflow-hidden text-center border-electric-blue/20">
-<div class="absolute -top-24 -left-24 w-64 h-64 bg-electric-blue/20 rounded-full blur-3xl"></div>
-<div class="absolute -bottom-24 -right-24 w-64 h-64 bg-cyber-teal/20 rounded-full blur-3xl"></div>
-<div class="relative z-10">
-<h2 class="font-display-lg text-headline-lg md:text-display-lg text-on-surface mb-8">Ready to evolve your setup?</h2>
-<p class="text-on-surface-variant font-body-md text-body-md max-w-xl mx-auto mb-12">
-                            Our component inventory is updated daily. Start your custom PC journey today and get free shipping on your first masterpiece.
-                        </p>
-<button class="bg-electric-blue text-white px-12 py-5 rounded-lg font-headline-sm text-headline-sm hover:shadow-[0_0_30px_rgba(0,122,255,0.5)] transition-all active:scale-95 inline-flex items-center gap-3">
-                            Start Customizing <span class="material-symbols-outlined">rocket_launch</span>
-</button>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- Footer -->
+                            <button class="w-full py-2 bg-white/10 hover:bg-white/20 rounded font-bold text-sm transition-colors text-center border border-white/5">Add to Build</button>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card w-72 rounded-2xl overflow-hidden group">
+                        <div class="h-48 p-6 bg-white/5 relative flex justify-center items-center">
+                            <div class="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button class="w-8 h-8 rounded-full bg-surface-deep/80 text-white flex items-center justify-center hover:bg-electric-blue transition-colors"><span class="material-symbols-outlined text-[16px]">visibility</span></button>
+                                <button class="w-8 h-8 rounded-full bg-surface-deep/80 text-white flex items-center justify-center hover:bg-electric-blue transition-colors"><span class="material-symbols-outlined text-[16px]">favorite</span></button>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&q=80&w=300" class="w-32 object-contain group-hover:scale-110 transition-transform duration-500" alt="CPU"/>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="text-xs font-mono text-on-surface-variant">Processor</div>
+                                <div class="flex items-center text-yellow-400 text-[10px]"><span class="material-symbols-outlined text-[14px]">star</span> 4.8</div>
+                            </div>
+                            <h4 class="font-bold text-lg mb-1 line-clamp-1">AMD Ryzen 9 7950X3D</h4>
+                            <div class="flex items-end gap-2 mb-4">
+                                <span class="text-xl font-bold text-electric-blue">₹58,490</span>
+                            </div>
+                            <button class="w-full py-2 bg-white/10 hover:bg-white/20 rounded font-bold text-sm transition-colors text-center border border-white/5">Add to Build</button>
+                        </div>
+                    </div>
+
+                    <div class="glass-card w-72 rounded-2xl overflow-hidden group">
+                        <div class="h-48 p-6 bg-white/5 relative flex justify-center items-center">
+                            <div class="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button class="w-8 h-8 rounded-full bg-surface-deep/80 text-white flex items-center justify-center hover:bg-electric-blue transition-colors"><span class="material-symbols-outlined text-[16px]">visibility</span></button>
+                                <button class="w-8 h-8 rounded-full bg-surface-deep/80 text-white flex items-center justify-center hover:bg-electric-blue transition-colors"><span class="material-symbols-outlined text-[16px]">favorite</span></button>
+                            </div>
+                            <span class="material-symbols-outlined text-6xl text-white/50 group-hover:scale-110 transition-transform duration-500">memory</span>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="text-xs font-mono text-on-surface-variant">Motherboard</div>
+                            </div>
+                            <h4 class="font-bold text-lg mb-1 line-clamp-1">ASUS ROG Crosshair X670E</h4>
+                            <div class="flex items-end gap-2 mb-4">
+                                <span class="text-xl font-bold text-electric-blue">₹45,990</span>
+                            </div>
+                            <button class="w-full py-2 bg-white/10 hover:bg-white/20 rounded font-bold text-sm transition-colors text-center border border-white/5">Add to Build</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Featured Builds (3 Categories) -->
+        <section class="py-24 bg-surface-container/30">
+            <div class="max-w-7xl mx-auto px-6">
+                <h2 class="text-4xl font-black text-center mb-16">Curated For You</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Budget -->
+                    <div class="glass-card rounded-2xl p-1 relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent"></div>
+                        <div class="relative bg-surface-deep rounded-xl p-8 h-full flex flex-col">
+                            <h3 class="text-2xl font-black mb-1">Starter Core</h3>
+                            <p class="text-sm text-on-surface-variant mb-6">1080p Gaming & Daily Tasks</p>
+                            <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&q=80&w=400" class="h-48 w-full object-cover rounded-lg mb-6 group-hover:opacity-80 transition-opacity" alt="Budget PC"/>
+                            
+                            <div class="space-y-3 font-mono text-sm mb-8 flex-grow">
+                                <div class="flex justify-between border-b border-white/5 pb-2"><span>Core i5 13400F</span></div>
+                                <div class="flex justify-between border-b border-white/5 pb-2"><span>RTX 4060 8GB</span></div>
+                                <div class="flex justify-between border-b border-white/5 pb-2"><span>16GB DDR5 5200</span></div>
+                                <div class="flex justify-between pb-2 text-cyber-teal"><span>Avg FPS (1080p)</span><span>~120</span></div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between mt-auto">
+                                <div class="text-2xl font-bold">₹75,490</div>
+                                <button class="p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors"><span class="material-symbols-outlined">arrow_forward</span></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mid -->
+                    <div class="glass-card rounded-2xl p-1 relative overflow-hidden group transform lg:-translate-y-4">
+                        <div class="absolute inset-0 bg-gradient-to-b from-electric-blue/30 to-transparent"></div>
+                        <div class="relative bg-surface-deep rounded-xl p-8 h-full flex flex-col">
+                            <div class="absolute top-0 right-8 bg-electric-blue text-white text-xs font-bold px-3 py-1 rounded-b-lg">Most Popular</div>
+                            <h3 class="text-2xl font-black mb-1">Elite Performance</h3>
+                            <p class="text-sm text-on-surface-variant mb-6">1440p Gaming & Streaming</p>
+                            <img src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&q=80&w=400" class="h-48 w-full object-cover rounded-lg mb-6 group-hover:opacity-80 transition-opacity" alt="Mid PC"/>
+                            
+                            <div class="space-y-3 font-mono text-sm mb-8 flex-grow">
+                                <div class="flex justify-between border-b border-white/5 pb-2"><span>Ryzen 7 7800X3D</span></div>
+                                <div class="flex justify-between border-b border-white/5 pb-2"><span>RTX 4070 SUPER</span></div>
+                                <div class="flex justify-between border-b border-white/5 pb-2"><span>32GB DDR5 6000</span></div>
+                                <div class="flex justify-between pb-2 text-electric-blue"><span>Avg FPS (1440p)</span><span>~144</span></div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between mt-auto">
+                                <div class="text-2xl font-bold">₹1,45,990</div>
+                                <button class="px-6 py-3 bg-electric-blue text-white font-bold rounded-lg hover:bg-blue-600 transition-colors w-full ml-4 text-center">Customize</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- High End -->
+                    <div class="glass-card rounded-2xl p-1 relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-gradient-to-b from-purple-500/20 to-transparent"></div>
+                        <div class="relative bg-surface-deep rounded-xl p-8 h-full flex flex-col">
+                            <h3 class="text-2xl font-black mb-1">God Tier</h3>
+                            <p class="text-sm text-on-surface-variant mb-6">4K Extreme & Heavy Rendering</p>
+                            <img src="https://images.unsplash.com/photo-1624705002806-5d72df19c3ad?auto=format&fit=crop&q=80&w=400" class="h-48 w-full object-cover rounded-lg mb-6 group-hover:opacity-80 transition-opacity" alt="High End PC"/>
+                            
+                            <div class="space-y-3 font-mono text-sm mb-8 flex-grow">
+                                <div class="flex justify-between border-b border-white/5 pb-2"><span>Core i9 14900K</span></div>
+                                <div class="flex justify-between border-b border-white/5 pb-2"><span>RTX 4090 24GB</span></div>
+                                <div class="flex justify-between border-b border-white/5 pb-2"><span>64GB DDR5 6400</span></div>
+                                <div class="flex justify-between pb-2 text-purple-400"><span>Avg FPS (4K)</span><span>~120+</span></div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between mt-auto">
+                                <div class="text-2xl font-bold">₹3,85,000</div>
+                                <button class="p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors"><span class="material-symbols-outlined">arrow_forward</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Customer Reviews & 9. Gallery Masonry -->
+        <section class="py-24">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-black mb-4">The Community</h2>
+                    <p class="text-on-surface-variant max-w-2xl mx-auto">Real builds by real gamers across India.</p>
+                </div>
+                
+                <!-- Grid Gallery -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+                    
+                    <!-- Review Item 1 -->
+                    <div class="glass-card rounded-xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1593640495253-23196b27a87f?auto=format&fit=crop&q=80&w=600" class="w-full object-cover" alt="Customer Build"/>
+                        <div class="p-5 bg-surface-deep">
+                            <div class="flex items-center gap-2 text-yellow-400 text-sm mb-2">★★★★★ <span class="text-on-surface-variant text-xs ml-2">Verified Purchase</span></div>
+                            <p class="text-sm italic mb-4">"Absolutely flawless cable management. The AI compatibility engine caught my PSU mistake before I ordered. Masterpiece indeed!"</p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-electric-blue flex items-center justify-center font-bold text-xs">R</div>
+                                <div>
+                                    <div class="text-sm font-bold">Rahul Sharma</div>
+                                    <div class="text-xs text-on-surface-variant font-mono">RTX 4070 Build</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Middle Column for Masonry Effect -->
+                    <div class="flex flex-col gap-6">
+                        <!-- Gallery Item 2 -->
+                        <div class="glass-card rounded-xl overflow-hidden relative group cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1616588589676-62b3bd4ff6d2?auto=format&fit=crop&q=80&w=600" class="w-full object-cover" alt="Gallery Build"/>
+                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-center items-center backdrop-blur-sm">
+                                <button class="bg-white/20 hover:bg-white/40 border border-white/50 text-white px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-sm">content_copy</span> Clone Build</button>
+                                <div class="flex gap-4 text-xs font-mono">
+                                    <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">favorite</span> 1.2k</span>
+                                    <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> 4.5k</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review Item 3 -->
+                        <div class="glass-card rounded-xl overflow-hidden">
+                            <div class="p-5 bg-surface-deep">
+                                <div class="flex items-center gap-2 text-yellow-400 text-sm mb-2">★★★★★ <span class="text-on-surface-variant text-xs ml-2">Verified Purchase</span></div>
+                                <p class="text-sm italic mb-4">"The packaging was insanely secure. Wooden crate for the PC! It booted perfectly on first try. Highly recommend MakeMyPC."</p>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-cyber-teal flex items-center justify-center font-bold text-xs">A</div>
+                                    <div>
+                                        <div class="text-sm font-bold">Aditi Patel</div>
+                                        <div class="text-xs text-on-surface-variant font-mono">White Out Build</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 4 -->
+                    <div class="glass-card rounded-xl overflow-hidden relative group cursor-pointer h-full">
+                        <img src="https://images.unsplash.com/photo-1544652478-6653e09f18a2?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover" alt="Gallery Build"/>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-10">
+                    <button class="px-6 py-3 border border-white/20 rounded-full font-mono text-sm hover:bg-white/5 transition-colors">Load More Builds</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. Comparison Section -->
+        <section class="py-24 bg-surface-container/20 border-y border-white/5">
+            <div class="max-w-4xl mx-auto px-6">
+                <h2 class="text-3xl font-black text-center mb-12">The MakeMyPC Difference</h2>
+                <div class="glass-card rounded-2xl overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-white/10 bg-white/5">
+                                <th class="p-4 font-bold w-1/3">Feature</th>
+                                <th class="p-4 font-bold text-on-surface-variant w-1/3 text-center">Standard Stores</th>
+                                <th class="p-4 font-bold text-electric-blue w-1/3 text-center">MakeMyPC</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm font-mono">
+                            <tr class="border-b border-white/5">
+                                <td class="p-4">Compatibility Check</td>
+                                <td class="p-4 text-center text-on-surface-variant"><span class="material-symbols-outlined text-error">close</span> (Manual)</td>
+                                <td class="p-4 text-center"><span class="material-symbols-outlined text-success">check_circle</span> (Real-time AI)</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="p-4">Cable Management</td>
+                                <td class="p-4 text-center text-on-surface-variant"><span class="material-symbols-outlined text-error">close</span> (Basic zip ties)</td>
+                                <td class="p-4 text-center"><span class="material-symbols-outlined text-success">check_circle</span> (Premium Sleeved/Routed)</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="p-4">BIOS & OS Setup</td>
+                                <td class="p-4 text-center text-on-surface-variant"><span class="material-symbols-outlined text-error">close</span> (DIY)</td>
+                                <td class="p-4 text-center"><span class="material-symbols-outlined text-success">check_circle</span> (Plug & Play)</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="p-4">24hr Stress Testing</td>
+                                <td class="p-4 text-center text-on-surface-variant"><span class="material-symbols-outlined text-error">close</span></td>
+                                <td class="p-4 text-center"><span class="material-symbols-outlined text-success">check_circle</span> (Included)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4">Warranty</td>
+                                <td class="p-4 text-center text-on-surface-variant">Individual Parts</td>
+                                <td class="p-4 text-center text-electric-blue font-bold">3-Year Full System</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. FAQ -->
+        <section class="py-24 max-w-3xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-black mb-4">Frequently Asked Questions</h2>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="faq-card glass-card rounded-lg overflow-hidden cursor-pointer bg-white/5" onclick="this.classList.toggle('active')">
+                    <div class="p-5 flex justify-between items-center font-bold">
+                        <span>How long does it take to build and ship?</span>
+                        <span class="material-symbols-outlined faq-icon transition-transform">expand_more</span>
+                    </div>
+                    <div class="faq-content bg-surface-deep px-5 text-sm text-on-surface-variant">
+                        <div class="pb-5">Most standard builds take 3-5 business days for assembly, BIOS flashing, and 24-hour stress testing. Shipping anywhere in India takes an additional 2-4 days via our secure logistics partners.</div>
+                    </div>
+                </div>
+
+                <div class="faq-card glass-card rounded-lg overflow-hidden cursor-pointer bg-white/5" onclick="this.classList.toggle('active')">
+                    <div class="p-5 flex justify-between items-center font-bold">
+                        <span>What if a part arrives damaged?</span>
+                        <span class="material-symbols-outlined faq-icon transition-transform">expand_more</span>
+                    </div>
+                    <div class="faq-content bg-surface-deep px-5 text-sm text-on-surface-variant">
+                        <div class="pb-5">We use custom wooden crates and internal foam packaging for all fully built PCs. If damage occurs during transit, our 100% transit insurance covers it. Contact support within 24 hours of delivery.</div>
+                    </div>
+                </div>
+
+                <div class="faq-card glass-card rounded-lg overflow-hidden cursor-pointer bg-white/5" onclick="this.classList.toggle('active')">
+                    <div class="p-5 flex justify-between items-center font-bold">
+                        <span>Can I upgrade my PC later?</span>
+                        <span class="material-symbols-outlined faq-icon transition-transform">expand_more</span>
+                    </div>
+                    <div class="faq-content bg-surface-deep px-5 text-sm text-on-surface-variant">
+                        <div class="pb-5">Absolutely! We use standard non-proprietary parts. You can upgrade any component in the future without voiding our labor warranty on the original parts.</div>
+                    </div>
+                </div>
+                <div class="faq-card glass-card rounded-lg overflow-hidden cursor-pointer bg-white/5" onclick="this.classList.toggle('active')">
+                    <div class="p-5 flex justify-between items-center font-bold">
+                        <span>Do you provide a warranty for the PCs?</span>
+                        <span class="material-symbols-outlined faq-icon transition-transform">expand_more</span>
+                    </div>
+                    <div class="faq-content bg-surface-deep px-5 text-sm text-on-surface-variant">
+                        <div class="pb-5">Yes! All MakeMyPC builds come with a standard 3-year labor warranty. Individual components carry their own manufacturer warranties, which typically range from 3 to 10 years depending on the part.</div>
+                    </div>
+                </div>
+
+                <div class="faq-card glass-card rounded-lg overflow-hidden cursor-pointer bg-white/5" onclick="this.classList.toggle('active')">
+                    <div class="p-5 flex justify-between items-center font-bold">
+                        <span>Are the Windows OS and drivers pre-installed?</span>
+                        <span class="material-symbols-outlined faq-icon transition-transform">expand_more</span>
+                    </div>
+                    <div class="faq-content bg-surface-deep px-5 text-sm text-on-surface-variant">
+                        <div class="pb-5">Yes, if you select an OS during your build configuration, we will install it along with all the latest motherboard, GPU, and chipset drivers. Your PC arrives fully plug-and-play ready out of the box.</div>
+                    </div>
+                </div>
+
+                <div class="faq-card glass-card rounded-lg overflow-hidden cursor-pointer bg-white/5" onclick="this.classList.toggle('active')">
+                    <div class="p-5 flex justify-between items-center font-bold">
+                        <span>Do you offer financing or EMI options?</span>
+                        <span class="material-symbols-outlined faq-icon transition-transform">expand_more</span>
+                    </div>
+                    <div class="faq-content bg-surface-deep px-5 text-sm text-on-surface-variant">
+                        <div class="pb-5">Yes! We partner with major banks and finance providers to offer No-Cost EMIs on credit cards, as well as cardless EMI options through Bajaj Finserv and ZestMoney at checkout.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 14. Final CTA -->
+        <section class="py-24 relative bg-electric-blue/10 border-t border-white/5">
+            <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+                <h2 class="text-5xl font-black mb-6">Ready to Build Your Dream PC?</h2>
+                <p class="text-xl text-on-surface-variant mb-10">Start customizing with our AI Engine or talk to an expert for advice.</p>
+                
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+                    <button class="w-full sm:w-auto px-10 py-5 bg-electric-blue text-white rounded-lg font-bold text-lg hover:bg-blue-600 transition-colors shadow-[0_0_20px_rgba(0,122,255,0.4)]">Start Building</button>
+                    <span class="text-on-surface-variant font-mono">OR</span>
+                    <button class="w-full sm:w-auto px-10 py-5 glass-card text-white rounded-lg font-bold text-lg hover:bg-white/10 transition-colors flex items-center justify-center gap-2">Talk to an Expert <span class="material-symbols-outlined text-green-400">chat</span></button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 12. Premium Footer -->
+    <!-- Footer -->
 <footer class="bg-surface-deep border-t border-white/5 w-full">
     <div class="max-w-container-max mx-auto px-margin-desktop py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-gutter">
         <!-- 1. Company Details -->
@@ -581,41 +1014,97 @@
     </div>
 </footer>
 
-<!-- SideNavBar - Only visible in Build Mode (Contextual) -->
-<!-- Determined active navigation based on 'Shop' intent for homepage -->
-<script>
-        // Micro-interactions and subtle effects
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-            
-            // Subtle parallax for hero glows
-            const glows = document.querySelectorAll('.hero-glow');
-            glows.forEach((glow, index) => {
-                const multiplier = (index + 1) * 20;
-                glow.style.transform = `translate(₹{x * multiplier}px, ₹{y * multiplier}px)`;
-            });
-        });
 
-        // Intersection Observer for reveal animations
-        const observerOptions = {
-            threshold: 0.1
+
+    <!-- 13. Floating Sticky Build Summary (Desktop) -->
+    <a href="custom-pc-builder.html" class="hidden md:flex fixed bottom-8 right-8 bg-surface-container-high/90 backdrop-blur-2xl border border-white/10 hover:border-electric-blue/50 rounded-2xl p-4 shadow-2xl items-center gap-5 z-50 transform hover:-translate-y-1 transition-all cursor-pointer group">
+        <!-- Glow effect behind -->
+        <div class="absolute -inset-1 bg-gradient-to-r from-electric-blue to-cyber-teal rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+        
+        <div class="relative bg-electric-blue/10 border border-electric-blue/20 p-3 rounded-xl text-electric-blue group-hover:bg-electric-blue/20 transition-colors">
+            <span class="material-symbols-outlined animate-pulse-slow text-2xl">memory</span>
+        </div>
+        
+        <div class="relative">
+            <div class="flex items-center gap-2 mb-1">
+                <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+                <div class="text-xs font-mono text-success uppercase tracking-wider font-bold">Active Session</div>
+            </div>
+            <div class="font-bold text-white text-sm">Resume Your Custom PC</div>
+            <div class="text-xs text-on-surface-variant mt-0.5">8 Components Selected • <span class="text-success">Compatible</span></div>
+        </div>
+        
+        <div class="relative ml-6 text-right border-l border-white/10 pl-6">
+            <div class="text-xs font-mono text-on-surface-variant uppercase tracking-wider mb-1">Current Total</div>
+            <div class="text-xl font-black text-white">₹84,990</div>
+        </div>
+        
+        <div class="relative ml-2 bg-gradient-to-r from-electric-blue to-blue-600 text-white px-5 py-2.5 rounded-lg font-bold text-sm flex items-center gap-2 shadow-lg hover:shadow-electric-blue/30 transition-all">
+            Continue
+            <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+        </div>
+    </a>
+
+    <!-- 15. Mobile Sticky Bottom Navigation -->
+    <div class="md:hidden fixed bottom-0 w-full glass-card border-t border-white/10 bg-black/90 backdrop-blur-xl z-[100] pb-safe">
+        <div class="flex justify-around items-center p-2">
+            <a href="index.html" class="flex flex-col items-center gap-1 p-2 text-electric-blue">
+                <span class="material-symbols-outlined">home</span>
+                <span class="text-[10px] font-bold">Home</span>
+            </a>
+            <a href="shop.html" class="flex flex-col items-center gap-1 p-2 text-on-surface-variant hover:text-white transition-colors">
+                <span class="material-symbols-outlined">store</span>
+                <span class="text-[10px]">Shop</span>
+            </a>
+            <a href="builder-landing.html" class="flex flex-col items-center gap-1 p-2 -mt-6">
+                <div class="w-14 h-14 rounded-full bg-electric-blue text-white flex items-center justify-center shadow-[0_0_15px_rgba(0,122,255,0.5)] border-4 border-black">
+                    <span class="material-symbols-outlined">build</span>
+                </div>
+            </a>
+            <a href="shopping-cart.html" class="flex flex-col items-center gap-1 p-2 text-on-surface-variant hover:text-white transition-colors relative">
+                <span class="material-symbols-outlined">shopping_cart</span>
+                <span class="text-[10px]">Cart</span>
+                <span class="absolute top-1 right-2 w-2 h-2 bg-electric-blue rounded-full"></span>
+            </a>
+            <a href="login.html" class="flex flex-col items-center gap-1 p-2 text-on-surface-variant hover:text-white transition-colors">
+                <span class="material-symbols-outlined">account_circle</span>
+                <span class="text-[10px]">Profile</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Number Counter Animation for Trust Stats
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200; 
+
+        const animateCounters = (counter) => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const inc = target / speed;
+            if (count < target) {
+                counter.innerText = Math.ceil(count + inc);
+                setTimeout(() => animateCounters(counter), 10);
+            } else {
+                counter.innerText = target + (target > 1000 ? "+" : "");
+            }
         };
 
-        const revealObserver = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('opacity-100', 'translate-y-0');
-                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    const el = entry.target;
+                    animateCounters(el);
+                    observer.unobserve(el);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.5 });
 
-        document.querySelectorAll('.glass-card').forEach(card => {
-            card.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
-            revealObserver.observe(card);
+        counters.forEach(counter => {
+            observer.observe(counter);
         });
     </script>
-<script type="module" src="js/auth.js"></script>
-<script src="js/global.js"></script>
-</body></html>
+    <script type="module" src="js/auth.js"></script>
+    <script src="js/global.js"></script>
+</body>
+</html>

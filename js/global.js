@@ -13,30 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Update Nav Links
-    const navContainer = document.querySelector('nav .hidden.md\\:flex.gap-x-8.items-center');
-    if (navContainer) {
-        const navLinks = navContainer.querySelectorAll('a');
-        const path = window.location.pathname.toLowerCase();
-        navLinks.forEach(a => {
-            const text = a.textContent.toLowerCase();
-            
-            // Update hrefs
-            if (text.includes('shop')) a.href = 'prebuilt-pcs.html';
-            if (text.includes('builder')) a.href = 'builder-landing.html';
-            if (text.includes('resources')) a.href = 'support-faq.html';
-            
-            // Reset styles
-            a.className = 'text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-xs';
-            
-            // Apply active style
-            if ((path.includes('prebuilt') && text.includes('shop')) ||
-                (path.includes('builder') && text.includes('builder')) ||
-                (path.includes('support') && text.includes('resources'))) {
-                a.className = 'text-primary font-bold border-b-2 border-primary pb-1 font-label-mono text-xs';
-            }
-        });
-    }
+    // Nav links are already set correctly by apply_consistent_nav_v2.py injection.
+    // Do NOT override hrefs here — it causes the wrong page to open.
 
     // Update Header Icons
     window.updateCartBadge = function() {
@@ -49,9 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
         badges.forEach(badge => {
             if (cart.length > 0) {
                 badge.textContent = cart.length;
-                badge.classList.remove('hidden');
+                badge.style.display = 'flex';
             } else {
-                badge.classList.add('hidden');
+                badge.style.display = 'none';
             }
         });
     };
@@ -67,12 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const accountBtn = document.querySelector('header button[data-icon="account_circle"]');
-    if (accountBtn) {
-        accountBtn.addEventListener('click', () => {
-            window.location.href = 'account-settings.html';
-        });
-    }
+    // Account icon is now an <a> tag pointing to account-settings.html — no extra listener needed.
 
     // 2. Mock Form Handling
     

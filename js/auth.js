@@ -23,7 +23,7 @@ window.handleSignup = async function(e) {
     errorEl.classList.add('hidden');
     
     // Add loading state
-    const originalText = submitBtn.innerText;
+    const originalText = submitBtn.innerHTML;
     submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-xl">progress_activity</span>';
     submitBtn.disabled = true;
 
@@ -70,7 +70,7 @@ window.handleLogin = async function(e) {
     errorEl.classList.add('hidden');
     
     // Add loading state
-    const originalText = submitBtn.innerText;
+    const originalText = submitBtn.innerHTML;
     submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-xl">progress_activity</span>';
     submitBtn.disabled = true;
 
@@ -102,7 +102,23 @@ window.handleLogin = async function(e) {
     }
 };
 
-// Logout
+
+// Global Logout Function
+window.logoutUser = async function(e) {
+    if (e) e.preventDefault();
+    try {
+        await signOut(auth);
+        window.showToast('Logged out successfully', 'success');
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 1000);
+    } catch (error) {
+        console.error('Logout error', error);
+        if (window.showToast) window.showToast('Error logging out', 'error');
+    }
+};
+
+// Also attach to any existing #logout-btn for backward compatibility
 if (logoutBtn) {
     logoutBtn.addEventListener('click', async (e) => {
         e.preventDefault();
@@ -123,12 +139,17 @@ onAuthStateChanged(auth, async (user) => {
     const isProtected = window.location.pathname.includes('account-settings.html') || window.location.pathname.includes('my-builds.html');
     
     if (user) {
-        // Logged in
-        if (authLoginBtn) authLoginBtn.classList.add('hidden');
+        // Logged in — show avatar, hide login link
+        if (authLoginBtn) authLoginBtn.style.display = 'none';
         if (authAvatarBtn) {
-            authAvatarBtn.classList.remove('hidden');
+            authAvatarBtn.style.display = 'flex';
             if (avatarInitial) avatarInitial.textContent = user.email ? user.email.charAt(0).toUpperCase() : 'U';
         }
+        // Also update mobile auth
+        const mobileLogin = document.getElementById('mobile-auth-login');
+        const mobileAccount = document.getElementById('mobile-auth-account');
+        if (mobileLogin)  mobileLogin.style.display  = 'none';
+        if (mobileAccount) mobileAccount.style.display = 'flex';
         
         // Optional: redirect from login page if already logged in
         if (window.location.pathname.includes('login.html') || window.location.pathname.includes('signup.html')) {
@@ -142,9 +163,14 @@ onAuthStateChanged(auth, async (user) => {
              } catch(e){}
         }
     } else {
-        // Not logged in
-        if (authLoginBtn) authLoginBtn.classList.remove('hidden');
-        if (authAvatarBtn) authAvatarBtn.classList.add('hidden');
+        // Not logged in — show login link, hide avatar
+        if (authLoginBtn) authLoginBtn.style.display = 'flex';
+        if (authAvatarBtn) authAvatarBtn.style.display = 'none';
+        // Mobile auth
+        const mobileLogin = document.getElementById('mobile-auth-login');
+        const mobileAccount = document.getElementById('mobile-auth-account');
+        if (mobileLogin)  mobileLogin.style.display  = 'flex';
+        if (mobileAccount) mobileAccount.style.display = 'none';
         
         // Guard protected routes
         if (isProtected) {
@@ -197,3 +223,19 @@ if (googleLoginBtns.length > 0) {
         });
     });
 }
+
+
+// Auto-attach logout handler to any element containing 'Logout' text or logout icon
+document.addEventListener('DOMContentLoaded', () => {
+    // Find all links or buttons in the document
+    const elements = document.querySelectorAll('a, button, [role="button"]');
+    elements.forEach(el => {
+        // If the element has text "Logout" (case insensitive) and is not already wired
+        if (el.textContent.trim().toLowerCase() === 'logout' || 
+            el.innerHTML.includes('>Logout<') || 
+            el.innerHTML.includes('>logout<')) {
+            el.addEventListener('click', window.logoutUser);
+            el.style.cursor = 'pointer';
+        }
+    });
+});

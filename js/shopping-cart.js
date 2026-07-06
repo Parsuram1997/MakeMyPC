@@ -51,7 +51,8 @@ function renderCheckoutUI() {
     let buildsHtml = '';
     
     cartData.forEach((item, index) => {
-        if (item.type === 'component') {
+        // Single product items (component or prebuilt from shop)
+        if (item.type === 'component' || item.type === 'prebuilt' || item.type === 'laptop' || item.type === 'monitor') {
             overallPrice += item.price;
             
             buildsHtml += `
@@ -104,16 +105,18 @@ function renderCheckoutUI() {
         // Full Build Logic
         const build = item;
         const { parts, price, name, id } = build;
-        overallPrice += price;
+        overallPrice += (price || 0);
         
         let totalWattage = 0;
         let numComponents = 0;
-        Object.values(parts).forEach(p => {
-            if(p) {
-                if(p.power) totalWattage += p.power;
-                numComponents++;
-            }
-        });
+        if (parts && typeof parts === 'object') {
+            Object.values(parts).forEach(p => {
+                if(p) {
+                    if(p.power) totalWattage += p.power;
+                    numComponents++;
+                }
+            });
+        }
         
         // Mock delivery date
         const deliveryDate = new Date();

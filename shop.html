@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MakeMyPC Shop — India's AI-Powered PC Ecosystem</title>
+<meta name="description" content="Shop Custom PCs, Prebuilts, Components, Laptops, Monitors & Peripherals. India's only AI-compatible PC marketplace."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode:'class',
+  theme:{extend:{
+    colors:{
+      primary:'#adc6ff','electric-blue':'#007AFF','cyber-teal':'#00A4A6',
+      background:'#071327',surface:'#071327','surface-deep':'#00081C',
+      'surface-container-low':'#101b30','surface-container':'#142034',
+      'surface-container-high':'#1f2a3f','on-surface':'#d7e2ff',
+      'on-surface-variant':'#c1c6d7','outline-variant':'#414755',
+      error:'#ffb4ab',success:'#34d399'
+    },
+    spacing:{'margin-mobile':'20px','container-max':'1280px','margin-desktop':'64px'},
+    maxWidth:{'container-max':'1280px'},
+    fontFamily:{body:['Inter','sans-serif'],mono:['JetBrains Mono','monospace']},
+  }}
+}
+</script>
+<style>
+*{box-sizing:border-box;}
+body{background:#00081C;color:#d7e2ff;font-family:'Inter',sans-serif;overflow-x:hidden;}
+.ms{font-family:'Material Symbols Outlined';font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;vertical-align:middle;}
+.ms-fill{font-family:'Material Symbols Outlined';font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;vertical-align:middle;}
+.glass{background:rgba(255,255,255,0.03);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);}
+.glass-blue{background:rgba(0,122,255,0.08);border:1px solid rgba(0,122,255,0.25);}
+.grid-lines{background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:40px 40px;}
+.hide-scroll::-webkit-scrollbar{display:none;} .hide-scroll{-ms-overflow-style:none;scrollbar-width:none;}
+.card-hover{transition:transform 0.25s ease,box-shadow 0.25s ease;}
+.card-hover:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.4);}
+.pill-active{background:#007AFF!important;color:#fff!important;border-color:#007AFF!important;}
+.filter-active{background:rgba(0,122,255,0.2)!important;border-color:#007AFF!important;color:#adc6ff!important;}
+.tab-active{border-bottom:2px solid #007AFF;color:#adc6ff;}
+.faq-body{max-height:0;overflow:hidden;transition:max-height 0.35s ease;}
+.faq-open .faq-body{max-height:300px;}
+.faq-open .faq-chevron{transform:rotate(180deg);}
+.faq-chevron{transition:transform 0.3s;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes pulse-ring{0%,100%{opacity:0.4;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
+@keyframes slide-in-right{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+.float-1{animation:float 3s ease-in-out infinite;}
+.float-2{animation:float 4s ease-in-out infinite 0.5s;}
+.float-3{animation:float 3.5s ease-in-out infinite 1s;}
+.compare-tray{transition:transform 0.4s ease;}
+.compare-tray.hidden-tray{transform:translateY(120%);}
+.section-title{font-size:2rem;font-weight:900;letter-spacing:-0.02em;}
+.section-sub{color:#c1c6d7;margin-top:8px;}
+.price-tag{font-family:'JetBrains Mono',monospace;font-weight:600;}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:0.04em;}
+</style>
+</head>
+<body>
+<!-- ═══ NAVBAR START (auto-generated v2) ═══ -->
+<nav style="position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,0.03);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.1);box-shadow:0 8px 32px 0 rgba(0,0,0,0.3);" id="main-nav">
+  <div style="display:flex;justify-content:space-between;align-items:center;max-width:1280px;margin:0 auto;padding:0 64px;height:72px;">
+
+    <!-- Logo -->
+    <a href="index.html" style="font-size:24px;font-weight:900;color:#d7e2ff;text-decoration:none;letter-spacing:-0.03em;white-space:nowrap;flex-shrink:0;font-family:'Inter',sans-serif;">MakeMyPC</a>
+
+    <!-- Desktop Links -->
+    <div class="hidden md:flex" style="gap:32px;align-items:center;">
+      <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-mono"      href="shop.html"            style="text-decoration:none;font-size:12px;letter-spacing:0.05em;font-family:'JetBrains Mono','Inter',sans-serif;">Shop</a>
+      <a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-mono"   href="builder-landing.html" style="text-decoration:none;font-size:12px;letter-spacing:0.05em;font-family:'JetBrains Mono','Inter',sans-serif;">Builder</a>
+      <a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-mono" href="support-faq.html"     style="text-decoration:none;font-size:12px;letter-spacing:0.05em;font-family:'JetBrains Mono','Inter',sans-serif;">Resources</a>
+    </div>
+
+    <!-- Right Controls -->
+    <div style="display:flex;align-items:center;gap:16px;">
+
+      <!-- Search (lg+) -->
+      <div class="hidden lg:flex" style="position:relative;">
+        <span class="material-symbols-outlined" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#c1c6d7;font-size:18px;">search</span>
+        <input style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:7px 14px 7px 34px;font-size:13px;color:#d7e2ff;width:220px;outline:none;transition:border-color 0.2s;font-family:'Inter',sans-serif;" placeholder="Search Components" type="text"
+          onfocus="this.style.borderColor='#007AFF'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'"/>
+      </div>
+
+      <!-- Cart -->
+      <button onclick="window.location.href='shopping-cart.html'" style="background:none;border:none;cursor:pointer;color:#c1c6d7;position:relative;padding:4px;display:flex;align-items:center;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">
+        <span class="material-symbols-outlined" style="font-size:24px;" data-icon="shopping_cart">shopping_cart</span>
+        <span id="cart-badge" style="display:none;position:absolute;top:-4px;right:-4px;background:#ffb4ab;color:#690005;font-size:10px;font-weight:700;width:16px;height:16px;border-radius:50%;align-items:center;justify-content:center;font-family:'Inter',sans-serif;">0</span>
+      </button>
+
+      <!-- Login btn (logged out) -->
+      <a href="login.html" id="auth-login-btn" style="color:#c1c6d7;text-decoration:none;display:flex;align-items:center;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">
+        <span class="material-symbols-outlined" style="font-size:24px;" data-icon="account_circle">account_circle</span>
+      </a>
+
+      <!-- Avatar (logged in, hidden by default) -->
+      <a href="account-settings.html" id="auth-avatar-btn" style="display:none;width:36px;height:36px;border-radius:50%;background:#adc6ff;color:#002e69;align-items:center;justify-content:center;font-weight:700;font-size:14px;text-decoration:none;flex-shrink:0;transition:filter 0.2s;" onmouseover="this.style.filter='brightness(1.1)'" onmouseout="this.style.filter='none'">
+        <span id="avatar-initial">U</span>
+      </a>
+
+      <!-- Hamburger (mobile only) -->
+      <button id="mobile-menu-btn" style="display:none;background:none;border:none;cursor:pointer;color:#c1c6d7;align-items:center;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">
+        <span class="material-symbols-outlined" style="font-size:28px;">menu</span>
+      </button>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ═══ MOBILE MENU ═══ -->
+<div id="mobile-menu" style="position:fixed;inset:0;background:rgba(0,8,28,0.97);backdrop-filter:blur(20px);z-index:60;transform:translateX(100%);transition:transform 0.3s ease;display:none;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid rgba(255,255,255,0.1);">
+    <a href="index.html" style="font-size:20px;font-weight:900;color:#d7e2ff;text-decoration:none;letter-spacing:-0.03em;font-family:'Inter',sans-serif;">MakeMyPC</a>
+    <button id="mobile-menu-close" style="background:none;border:none;cursor:pointer;color:#c1c6d7;display:flex;align-items:center;">
+      <span class="material-symbols-outlined" style="font-size:28px;">close</span>
+    </button>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:24px;padding:24px;overflow-y:auto;flex:1;">
+    <!-- Mobile Search -->
+    <div style="position:relative;">
+      <span class="material-symbols-outlined" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#c1c6d7;">search</span>
+      <input style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px 12px 36px;font-size:14px;color:#d7e2ff;width:100%;outline:none;box-sizing:border-box;font-family:'Inter',sans-serif;" placeholder="Search Components" type="text"/>
+    </div>
+    <!-- Mobile Nav Links -->
+    <div style="display:flex;flex-direction:column;gap:16px;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:24px;">
+      <a href="shop.html" style="font-size:18px;font-weight:700;color:#d7e2ff;text-decoration:none;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;">
+        Shop <span class="material-symbols-outlined" style="font-size:18px;">chevron_right</span>
+      </a>
+      <a href="builder-landing.html" style="font-size:18px;font-weight:700;color:#d7e2ff;text-decoration:none;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;">
+        Builder <span class="material-symbols-outlined" style="font-size:18px;">chevron_right</span>
+      </a>
+      <a href="support-faq.html" style="font-size:18px;font-weight:700;color:#d7e2ff;text-decoration:none;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;">
+        Resources <span class="material-symbols-outlined" style="font-size:18px;">chevron_right</span>
+      </a>
+    </div>
+    <!-- Mobile Auth -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <a id="mobile-auth-login" href="login.html" style="display:flex;align-items:center;gap:12px;color:#c1c6d7;text-decoration:none;font-family:'Inter',sans-serif;">
+        <span class="material-symbols-outlined">account_circle</span> Log In
+      </a>
+      <a id="mobile-auth-account" href="account-settings.html" style="display:none;align-items:center;gap:12px;color:#c1c6d7;text-decoration:none;font-family:'Inter',sans-serif;">
+        <span class="material-symbols-outlined">manage_accounts</span> My Account
+      </a>
+      <a href="shopping-cart.html" style="display:flex;align-items:center;gap:12px;color:#c1c6d7;text-decoration:none;font-family:'Inter',sans-serif;">
+        <span class="material-symbols-outlined">shopping_cart</span> Cart
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Spacer so content doesn't hide under fixed nav -->
+<div style="height:72px;"></div>
+
+<!-- Mobile Menu JS -->
+<script>
+(function(){
+  var btn=document.getElementById('mobile-menu-btn');
+  var cls=document.getElementById('mobile-menu-close');
+  var mnu=document.getElementById('mobile-menu');
+
+  // Show hamburger only on mobile screens (no Tailwind dependency)
+  function updateHamburger(){
+    if(btn){
+      btn.style.display = window.innerWidth < 768 ? 'flex' : 'none';
+    }
+    // Close mobile menu if window resized to desktop
+    if(mnu && window.innerWidth >= 768){
+      mnu.style.display='none';
+      mnu.style.transform='translateX(100%)';
+    }
+  }
+  updateHamburger();
+  window.addEventListener('resize', updateHamburger);
+
+  if(btn && cls && mnu){
+    btn.addEventListener('click',function(){
+      mnu.style.display='flex';
+      // Small delay so display:flex kicks in before transform
+      setTimeout(function(){ mnu.style.transform='translateX(0)'; }, 10);
+    });
+    cls.addEventListener('click',function(){
+      mnu.style.transform='translateX(100%)';
+      setTimeout(function(){ mnu.style.display='none'; }, 310);
+    });
+  }
+})();
+</script>
+<!-- ═══ NAVBAR END ═══ -->
+
+<!-- NAVBAR injected by apply_consistent_nav_v2.py -->
+
+<!-- ████ S1: HERO ████ -->
+<section class="relative min-h-[520px] flex items-center overflow-hidden grid-lines" style="border-bottom:1px solid rgba(255,255,255,0.06);">
+  <!-- bg glows -->
+  <div class="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full" style="background:radial-gradient(circle,rgba(0,122,255,0.18) 0%,transparent 70%);filter:blur(60px);pointer-events:none;"></div>
+  <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full" style="background:radial-gradient(circle,rgba(0,164,166,0.12) 0%,transparent 70%);filter:blur(60px);pointer-events:none;"></div>
+
+  <div class="relative z-10 max-w-container-max mx-auto px-6 md:px-16 py-20 w-full">
+    <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
+      <!-- Left copy -->
+      <div class="flex-1">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-5" style="background:rgba(0,122,255,0.12);border:1px solid rgba(0,122,255,0.3);">
+          <span class="w-2 h-2 rounded-full bg-green-400" style="animation:pulse-ring 2s ease-in-out infinite;"></span>
+          <span style="font-size:12px;font-family:'JetBrains Mono',monospace;color:#60a5fa;">AI-POWERED PC ECOSYSTEM • INDIA</span>
+        </div>
+        <h1 style="font-size:clamp(2.2rem,5vw,3.5rem);font-weight:900;letter-spacing:-0.03em;line-height:1.1;color:#fff;">
+          Build. Buy. <span style="color:#007AFF;">Upgrade.</span><br/>Everything PC.
+        </h1>
+        <p class="section-sub mt-4 max-w-xl" style="font-size:1.1rem;">India's only marketplace where AI checks compatibility before you buy. From dream builds to gaming laptops — all under one roof.</p>
+
+        <!-- Search Bar -->
+        <div class="relative mt-8 max-w-2xl">
+          <span class="ms absolute left-4 top-1/2 -translate-y-1/2" style="color:#007AFF;font-size:22px;">search</span>
+          <input id="hero-search" type="text" placeholder="Search GPUs, CPUs, laptops, monitors..." autocomplete="off"
+            style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:16px 130px 16px 52px;font-size:15px;color:#d7e2ff;outline:none;transition:border-color 0.2s;"
+            onfocus="this.style.borderColor='#007AFF'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'"/>
+          <button onclick="handleSearch()" style="position:absolute;right:6px;top:50%;transform:translateY(-50%);background:#007AFF;color:#fff;border:none;border-radius:10px;padding:10px 20px;font-weight:700;cursor:pointer;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='#005ec4'" onmouseout="this.style.background='#007AFF'">Search</button>
+        </div>
+        <!-- Search suggestions -->
+        <div class="flex flex-wrap gap-2 mt-3">
+          <span style="font-size:12px;color:#c1c6d7;">Trending:</span>
+          <span onclick="quickSearch('RTX 5070')" class="cursor-pointer px-2 py-0.5 rounded-full text-xs" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#adc6ff;transition:background 0.2s;" onmouseover="this.style.background='rgba(0,122,255,0.15)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">RTX 5070</span>
+          <span onclick="quickSearch('Ryzen 9 9900X')" class="cursor-pointer px-2 py-0.5 rounded-full text-xs" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#adc6ff;transition:background 0.2s;" onmouseover="this.style.background='rgba(0,122,255,0.15)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">Ryzen 9 9900X</span>
+          <span onclick="quickSearch('Gaming PC under 50000')" class="cursor-pointer px-2 py-0.5 rounded-full text-xs" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#adc6ff;transition:background 0.2s;" onmouseover="this.style.background='rgba(0,122,255,0.15)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">Gaming PC ₹50K</span>
+          <span onclick="quickSearch('DDR5 RAM')" class="cursor-pointer px-2 py-0.5 rounded-full text-xs" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#adc6ff;transition:background 0.2s;" onmouseover="this.style.background='rgba(0,122,255,0.15)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">DDR5 RAM</span>
+        </div>
+      </div>
+
+      <!-- Right stats -->
+      <div class="grid grid-cols-2 gap-4">
+        <div class="glass rounded-2xl p-5 text-center card-hover" style="min-width:130px;">
+          <div style="font-size:2rem;font-weight:900;color:#007AFF;">500+</div>
+          <div style="font-size:12px;color:#c1c6d7;margin-top:2px;">Components</div>
+        </div>
+        <div class="glass rounded-2xl p-5 text-center card-hover" style="min-width:130px;">
+          <div style="font-size:2rem;font-weight:900;color:#00A4A6;">50+</div>
+          <div style="font-size:12px;color:#c1c6d7;margin-top:2px;">Prebuilt PCs</div>
+        </div>
+        <div class="glass rounded-2xl p-5 text-center card-hover">
+          <div style="font-size:2rem;font-weight:900;color:#34d399;">4.9★</div>
+          <div style="font-size:12px;color:#c1c6d7;margin-top:2px;">Rating</div>
+        </div>
+        <div class="glass rounded-2xl p-5 text-center card-hover">
+          <div style="font-size:2rem;font-weight:900;color:#fbbf24;">Free</div>
+          <div style="font-size:12px;color:#c1c6d7;margin-top:2px;">Assembly</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ S2: QUICK CATEGORY PILLS ████ -->
+<section style="background:#050f23;border-bottom:1px solid rgba(255,255,255,0.06);padding:16px 0;">
+  <div class="max-w-container-max mx-auto">
+    <!-- Moved px to the scroll container and added pseudo element spacer for edge padding on scroll -->
+    <div class="flex gap-3 overflow-x-auto hide-scroll pb-2 px-6 md:px-16 after:content-[''] after:w-4 after:flex-shrink-0">
+      <button onclick="scrollToSection('custom-builder')" class="flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap font-semibold transition-all" style="background:linear-gradient(135deg,#007AFF,#005ec4);color:#fff;border:none;cursor:pointer;flex-shrink:0;">
+        <span class="ms" style="font-size:18px;">build_circle</span> Build Your PC ⭐
+      </button>
+      <button onclick="scrollToSection('prebuilt-section')" class="flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap font-semibold category-pill transition-all" style="background:rgba(255,255,255,0.05);color:#c1c6d7;border:1px solid rgba(255,255,255,0.1);cursor:pointer;flex-shrink:0;" onmouseover="this.style.borderColor='#007AFF';this.style.color='#adc6ff'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='#c1c6d7'">
+        <span class="ms" style="font-size:18px;">computer</span> Prebuilt PCs
+      </button>
+      <button onclick="scrollToSection('components-section')" class="flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap font-semibold category-pill transition-all" style="background:rgba(255,255,255,0.05);color:#c1c6d7;border:1px solid rgba(255,255,255,0.1);cursor:pointer;flex-shrink:0;" onmouseover="this.style.borderColor='#007AFF';this.style.color='#adc6ff'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='#c1c6d7'">
+        <span class="ms" style="font-size:18px;">memory</span> Components
+      </button>
+      <button onclick="scrollToSection('laptops-section')" class="flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap font-semibold category-pill transition-all" style="background:rgba(255,255,255,0.05);color:#c1c6d7;border:1px solid rgba(255,255,255,0.1);cursor:pointer;flex-shrink:0;" onmouseover="this.style.borderColor='#007AFF';this.style.color='#adc6ff'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='#c1c6d7'">
+        <span class="ms" style="font-size:18px;">laptop</span> Laptops
+      </button>
+      <button onclick="scrollToSection('monitors-section')" class="flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap font-semibold category-pill transition-all" style="background:rgba(255,255,255,0.05);color:#c1c6d7;border:1px solid rgba(255,255,255,0.1);cursor:pointer;flex-shrink:0;" onmouseover="this.style.borderColor='#007AFF';this.style.color='#adc6ff'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='#c1c6d7'">
+        <span class="ms" style="font-size:18px;">monitor</span> Monitors
+      </button>
+      <button onclick="scrollToSection('peripherals-section')" class="flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap font-semibold category-pill transition-all" style="background:rgba(255,255,255,0.05);color:#c1c6d7;border:1px solid rgba(255,255,255,0.1);cursor:pointer;flex-shrink:0;" onmouseover="this.style.borderColor='#007AFF';this.style.color='#adc6ff'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='#c1c6d7'">
+        <span class="ms" style="font-size:18px;">keyboard</span> Peripherals
+      </button>
+      <button onclick="scrollToSection('deals-section')" class="flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap font-semibold category-pill transition-all" style="background:rgba(255,165,0,0.12);color:#fbbf24;border:1px solid rgba(251,191,36,0.3);cursor:pointer;flex-shrink:0;" onmouseover="this.style.background='rgba(251,191,36,0.2)'" onmouseout="this.style.background='rgba(255,165,0,0.12)'">
+        <span class="ms" style="font-size:18px;">local_offer</span> ⚡ Deals
+      </button>
+      <button onclick="scrollToSection('budget-section')" class="flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap font-semibold category-pill transition-all" style="background:rgba(52,211,153,0.1);color:#34d399;border:1px solid rgba(52,211,153,0.3);cursor:pointer;flex-shrink:0;" onmouseover="this.style.background='rgba(52,211,153,0.2)'" onmouseout="this.style.background='rgba(52,211,153,0.1)'">
+        <span class="ms" style="font-size:18px;">savings</span> By Budget
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ████ S3: FEATURED CATEGORIES ████ -->
+<section class="py-16 max-w-container-max mx-auto px-6 md:px-16">
+  <div class="flex items-center justify-between mb-8">
+    <div>
+      <h2 class="section-title">Featured Categories</h2>
+      <p class="section-sub">Find your perfect setup</p>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+    <!-- Custom Builder (large, full row on lg) -->
+    <div id="custom-builder" onclick="window.location.href='custom-pc-builder.html'" class="lg:col-span-2 rounded-3xl p-8 relative overflow-hidden cursor-pointer group card-hover" style="background:linear-gradient(135deg,#001a4d 0%,#003399 60%,#0055ff 100%);min-height:220px;">
+      <div class="absolute inset-0 grid-lines opacity-30"></div>
+      <div class="absolute right-0 bottom-0 w-64 h-64 opacity-20" style="background:radial-gradient(circle,#fff 0%,transparent 70%);"></div>
+      <div class="relative z-10">
+        <span class="badge mb-4" style="background:rgba(255,255,255,0.15);color:#fff;">⭐ MakeMyPC USP</span>
+        <div class="ms text-6xl mb-4" style="color:rgba(255,255,255,0.9);">build_circle</div>
+        <h3 style="font-size:1.75rem;font-weight:900;color:#fff;">Custom PC Builder</h3>
+        <p style="color:rgba(255,255,255,0.75);margin-top:6px;max-width:400px;">AI picks compatible parts. You pick your budget. We build it.</p>
+        <div class="flex items-center gap-2 mt-6 font-bold text-white group-hover:gap-4 transition-all">
+          Design Your Dream PC <span class="ms">arrow_forward</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gaming PCs -->
+    <div onclick="window.location.href='prebuilt-pcs.html'" class="rounded-3xl p-8 relative overflow-hidden cursor-pointer group card-hover" style="background:linear-gradient(135deg,#1a0030 0%,#3d0080 100%);min-height:220px;">
+      <div class="absolute inset-0 grid-lines opacity-20"></div>
+      <div class="ms text-5xl mb-4 relative z-10" style="color:#a78bfa;">sports_esports</div>
+      <h3 class="relative z-10" style="font-size:1.4rem;font-weight:800;color:#fff;">Gaming PCs</h3>
+      <p class="relative z-10 mt-2" style="color:rgba(255,255,255,0.6);font-size:14px;">RTX 40/50 series. FPS tested.</p>
+      <div class="flex items-center gap-2 mt-4 relative z-10 font-bold group-hover:gap-4 transition-all" style="color:#a78bfa;">Explore <span class="ms">arrow_forward</span></div>
+    </div>
+
+    <!-- Laptop Collection -->
+    <div onclick="scrollToSection('laptops-section')" class="rounded-3xl p-8 relative overflow-hidden cursor-pointer group card-hover" style="background:linear-gradient(135deg,#001a2d 0%,#003d66 100%);min-height:200px;">
+      <div class="ms text-5xl mb-4 relative z-10" style="color:#60a5fa;">laptop</div>
+      <h3 class="relative z-10" style="font-size:1.4rem;font-weight:800;color:#fff;">Laptop Collection</h3>
+      <p class="relative z-10 mt-2" style="color:rgba(255,255,255,0.6);font-size:14px;">Gaming, Creator, Office & more</p>
+      <div class="flex items-center gap-2 mt-4 relative z-10 font-bold group-hover:gap-4 transition-all" style="color:#60a5fa;">Explore <span class="ms">arrow_forward</span></div>
+    </div>
+
+    <!-- Components -->
+    <div onclick="scrollToSection('components-section')" class="rounded-3xl p-8 relative overflow-hidden cursor-pointer group card-hover" style="background:linear-gradient(135deg,#001f1f 0%,#004040 100%);min-height:200px;">
+      <div class="ms text-5xl mb-4 relative z-10" style="color:#34d399;">memory</div>
+      <h3 class="relative z-10" style="font-size:1.4rem;font-weight:800;color:#fff;">Components</h3>
+      <p class="relative z-10 mt-2" style="color:rgba(255,255,255,0.6);font-size:14px;">CPU, GPU, RAM, SSD & 17 more</p>
+      <div class="flex items-center gap-2 mt-4 relative z-10 font-bold group-hover:gap-4 transition-all" style="color:#34d399;">Explore <span class="ms">arrow_forward</span></div>
+    </div>
+
+    <!-- Gaming Setup -->
+    <div onclick="scrollToSection('peripherals-section')" class="rounded-3xl p-8 relative overflow-hidden cursor-pointer group card-hover" style="background:linear-gradient(135deg,#1a1000 0%,#3d2600 100%);min-height:200px;">
+      <div class="ms text-5xl mb-4 relative z-10" style="color:#fbbf24;">stadia_controller</div>
+      <h3 class="relative z-10" style="font-size:1.4rem;font-weight:800;color:#fff;">Gaming Setup</h3>
+      <p class="relative z-10 mt-2" style="color:rgba(255,255,255,0.6);font-size:14px;">Keyboard, mouse, headset & more</p>
+      <div class="flex items-center gap-2 mt-4 relative z-10 font-bold group-hover:gap-4 transition-all" style="color:#fbbf24;">Explore <span class="ms">arrow_forward</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ S4: PC COMPONENTS ████ -->
+<section id="components-section" class="py-16 border-t border-white/5" style="background:#050f23;">
+  <div class="max-w-container-max mx-auto px-6 md:px-16">
+    <div class="flex items-center justify-between mb-10">
+      <div>
+        <h2 class="section-title">PC Components</h2>
+        <p class="section-sub">AI-verified compatibility across all categories</p>
+      </div>
+      <a href="prebuilt-pcs.html" class="hidden md:flex items-center gap-1 text-sm font-semibold" style="color:#007AFF;">View All <span class="ms" style="font-size:18px;">arrow_forward</span></a>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4" id="components-grid">
+    </div>
+  </div>
+</section>
+
+<!-- ████ S5: PREBUILT PCs ████ -->
+<section id="prebuilt-section" class="py-16 border-t border-white/5">
+  <div class="max-w-container-max mx-auto px-6 md:px-16">
+    <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+      <div>
+        <h2 class="section-title">Prebuilt PCs</h2>
+        <p class="section-sub">Stress tested. Warranty included. Delivered pan-India.</p>
+      </div>
+      <a href="prebuilt-pcs.html" class="flex items-center gap-1 text-sm font-semibold" style="color:#007AFF;">View All Builds <span class="ms" style="font-size:18px;">arrow_forward</span></a>
+    </div>
+
+    <!-- Filter row -->
+    <div class="flex flex-wrap gap-2 mb-6">
+      <button onclick="filterPrebuilt('all')" class="prebuilt-filter filter-active px-4 py-2 rounded-full text-sm font-semibold border transition-all" style="border-color:#007AFF;cursor:pointer;" data-filter="all">All</button>
+      <button onclick="filterPrebuilt('gaming')" class="prebuilt-filter px-4 py-2 rounded-full text-sm font-semibold border transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;cursor:pointer;" data-filter="gaming">🎮 Gaming</button>
+      <button onclick="filterPrebuilt('editing')" class="prebuilt-filter px-4 py-2 rounded-full text-sm font-semibold border transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;cursor:pointer;" data-filter="editing">🎬 Editing</button>
+      <button onclick="filterPrebuilt('streaming')" class="prebuilt-filter px-4 py-2 rounded-full text-sm font-semibold border transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;cursor:pointer;" data-filter="streaming">📡 Streaming</button>
+      <button onclick="filterPrebuilt('office')" class="prebuilt-filter px-4 py-2 rounded-full text-sm font-semibold border transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;cursor:pointer;" data-filter="office">💼 Office</button>
+      <button onclick="filterPrebuilt('ai')" class="prebuilt-filter px-4 py-2 rounded-full text-sm font-semibold border transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;cursor:pointer;" data-filter="ai">🤖 AI Workstation</button>
+      <!-- Sort -->
+      <div class="ml-auto flex gap-2">
+        <select id="budget-sort" onchange="sortPrebuilt(this.value)" style="background:#101b30;border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:8px 16px;color:#d7e2ff;font-size:13px;cursor:pointer;outline:none;">
+          <option value="all">All Budgets</option>
+          <option value="budget">Budget (Under ₹60K)</option>
+          <option value="mid">Mid Range (₹60K–₹1.2L)</option>
+          <option value="high">High End (₹1.2L+)</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="prebuilt-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </div>
+</section>
+
+<!-- ████ S6: BUILD BY BUDGET ████ -->
+<section id="budget-section" class="py-16 border-t border-white/5" style="background:#050f23;">
+  <div class="max-w-container-max mx-auto px-6 md:px-16">
+    <div class="text-center mb-12">
+      <h2 class="section-title">Build by Budget</h2>
+      <p class="section-sub">We optimize every rupee. AI selects best parts at your price.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <div onclick="window.location.href='custom-pc-builder.html?budget=30000'" class="glass rounded-2xl p-6 text-center cursor-pointer card-hover group" style="border:1px solid rgba(255,255,255,0.08);">
+        <div class="ms text-4xl mb-3 group-hover:scale-110 transition-transform" style="color:#34d399;">savings</div>
+        <div class="price-tag text-xl font-bold" style="color:#34d399;">₹30K</div>
+        <div class="text-xs mt-1" style="color:#c1c6d7;">Entry Gaming</div>
+      </div>
+      <div onclick="window.location.href='custom-pc-builder.html?budget=50000'" class="glass rounded-2xl p-6 text-center cursor-pointer card-hover group" style="border:1px solid rgba(255,255,255,0.08);">
+        <div class="ms text-4xl mb-3 group-hover:scale-110 transition-transform" style="color:#60a5fa;">savings</div>
+        <div class="price-tag text-xl font-bold" style="color:#60a5fa;">₹50K</div>
+        <div class="text-xs mt-1" style="color:#c1c6d7;">Budget Gaming</div>
+      </div>
+      <div onclick="window.location.href='custom-pc-builder.html?budget=75000'" class="glass rounded-2xl p-6 text-center cursor-pointer card-hover group" style="border:1px solid rgba(0,122,255,0.3);">
+        <div class="ms text-4xl mb-3 group-hover:scale-110 transition-transform" style="color:#007AFF;">savings</div>
+        <div class="price-tag text-xl font-bold" style="color:#007AFF;">₹75K</div>
+        <div class="text-xs mt-1" style="color:#c1c6d7;">Mid Range</div>
+      </div>
+      <div onclick="window.location.href='custom-pc-builder.html?budget=100000'" class="glass rounded-2xl p-6 text-center cursor-pointer card-hover group" style="border:1px solid rgba(167,139,250,0.3);">
+        <div class="ms text-4xl mb-3 group-hover:scale-110 transition-transform" style="color:#a78bfa;">savings</div>
+        <div class="price-tag text-xl font-bold" style="color:#a78bfa;">₹1 Lakh</div>
+        <div class="text-xs mt-1" style="color:#c1c6d7;">High Performance</div>
+      </div>
+      <div onclick="window.location.href='custom-pc-builder.html?budget=150000'" class="glass rounded-2xl p-6 text-center cursor-pointer card-hover group" style="border:1px solid rgba(251,191,36,0.3);">
+        <div class="ms text-4xl mb-3 group-hover:scale-110 transition-transform" style="color:#fbbf24;">workspace_premium</div>
+        <div class="price-tag text-xl font-bold" style="color:#fbbf24;">₹1.5L</div>
+        <div class="text-xs mt-1" style="color:#c1c6d7;">Enthusiast</div>
+      </div>
+      <div onclick="window.location.href='custom-pc-builder.html?budget=200000'" class="rounded-2xl p-6 text-center cursor-pointer card-hover group" style="background:linear-gradient(135deg,#1a0d00,#3d2000);border:1px solid rgba(251,191,36,0.5);">
+        <div class="ms text-4xl mb-3 group-hover:scale-110 transition-transform" style="color:#fbbf24;">diamond</div>
+        <div class="price-tag text-xl font-bold" style="color:#fbbf24;">₹2L+</div>
+        <div class="text-xs mt-1" style="color:#fbbf24;">No Compromise</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ S7: LAPTOPS ████ -->
+<section id="laptops-section" class="py-16 border-t border-white/5">
+  <div class="max-w-container-max mx-auto px-6 md:px-16">
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <h2 class="section-title">Laptops</h2>
+        <p class="section-sub">Gaming, Creator, Business & Ultrabooks</p>
+      </div>
+    </div>
+    <!-- Category filter -->
+    <div class="flex gap-2 flex-wrap mb-4">
+      <button onclick="filterLaptop('all')" class="laptop-cat filter-active px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-all" style="border-color:#007AFF;">All</button>
+      <button onclick="filterLaptop('gaming')" class="laptop-cat px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;">Gaming</button>
+      <button onclick="filterLaptop('creator')" class="laptop-cat px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;">Creator</button>
+      <button onclick="filterLaptop('office')" class="laptop-cat px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;">Office</button>
+      <button onclick="filterLaptop('thin')" class="laptop-cat px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;">Thin &amp; Light</button>
+      <button onclick="filterLaptop('student')" class="laptop-cat px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;">Student</button>
+    </div>
+    <!-- Brand filter -->
+    <div class="flex gap-2 flex-wrap mb-6">
+      <button onclick="filterLaptopBrand('all')" class="laptop-brand filter-active px-3 py-1 rounded-full text-xs font-semibold border cursor-pointer transition-all" style="border-color:#007AFF;">All Brands</button>
+      <button onclick="filterLaptopBrand('asus')" class="laptop-brand px-3 py-1 rounded-full text-xs font-semibold border cursor-pointer transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;">ASUS</button>
+      <button onclick="filterLaptopBrand('msi')" class="laptop-brand px-3 py-1 rounded-full text-xs font-semibold border cursor-pointer transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;">MSI</button>
+      <button onclick="filterLaptopBrand('lenovo')" class="laptop-brand px-3 py-1 rounded-full text-xs font-semibold border cursor-pointer transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;">Lenovo</button>
+      <button onclick="filterLaptopBrand('hp')" class="laptop-brand px-3 py-1 rounded-full text-xs font-semibold border cursor-pointer transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;">HP</button>
+      <button onclick="filterLaptopBrand('dell')" class="laptop-brand px-3 py-1 rounded-full text-xs font-semibold border cursor-pointer transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;">Dell</button>
+      <button onclick="filterLaptopBrand('apple')" class="laptop-brand px-3 py-1 rounded-full text-xs font-semibold border cursor-pointer transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;">Apple</button>
+    </div>
+    <div id="laptops-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"></div>
+  </div>
+</section>
+
+<!-- ████ S8: MONITORS ████ -->
+<section id="monitors-section" class="py-16 border-t border-white/5" style="background:#050f23;">
+  <div class="max-w-container-max mx-auto px-6 md:px-16">
+    <h2 class="section-title mb-2">Monitors</h2>
+    <p class="section-sub mb-6">From 144Hz gaming to pro-grade 4K OLED</p>
+    <div class="flex gap-2 flex-wrap mb-6">
+      <button onclick="filterMonitor('all')" class="mon-filter filter-active px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-all" style="border-color:#007AFF;">All</button>
+      <button onclick="filterMonitor('gaming')" class="mon-filter px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;">Gaming</button>
+      <button onclick="filterMonitor('4k')" class="mon-filter px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;">4K</button>
+      <button onclick="filterMonitor('oled')" class="mon-filter px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;">OLED</button>
+      <button onclick="filterMonitor('ultrawide')" class="mon-filter px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;">UltraWide</button>
+      <button onclick="filterMonitor('curved')" class="mon-filter px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;">Curved</button>
+      <button onclick="filterMonitor('professional')" class="mon-filter px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;">Professional</button>
+    </div>
+    <div id="monitors-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"></div>
+  </div>
+</section>
+
+<!-- ████ S9: PERIPHERALS ████ -->
+<section id="peripherals-section" class="py-16 border-t border-white/5">
+  <div class="max-w-container-max mx-auto px-6 md:px-16">
+    <h2 class="section-title mb-2">Gaming Peripherals</h2>
+    <p class="section-sub mb-8">Complete your setup</p>
+    <div id="peripherals-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"></div>
+  </div>
+</section>
+
+<!-- ████ S10: NETWORKING + S11: STORAGE ████ -->
+<section class="py-16 border-t border-white/5" style="background:#050f23;">
+  <div class="max-w-container-max mx-auto px-6 md:px-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Networking -->
+      <div>
+        <h2 class="section-title mb-2">Networking</h2>
+        <p class="section-sub mb-6">Stay connected, zero lag</p>
+        <div id="networking-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
+      </div>
+      <!-- Storage -->
+      <div>
+        <h2 class="section-title mb-2">Storage Devices</h2>
+        <p class="section-sub mb-6">Portable & expandable storage</p>
+        <div id="storage-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ S12: SOFTWARE + S13: ACCESSORIES ████ -->
+<section class="py-16 border-t border-white/5">
+  <div class="max-w-container-max mx-auto px-6 md:px-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Software -->
+      <div>
+        <h2 class="section-title mb-2">Software &amp; OS</h2>
+        <p class="section-sub mb-6">Genuine licenses, instant delivery</p>
+        <div id="software-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
+      </div>
+      <!-- Accessories -->
+      <div>
+        <h2 class="section-title mb-2">Accessories</h2>
+        <p class="section-sub mb-6">Keep your setup clean &amp; fast</p>
+        <div id="accessories-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ S14: SHOP BY BRAND ████ -->
+<section class="py-16 border-t border-white/5" style="background:#050f23;">
+  <div class="max-w-container-max mx-auto px-6 md:px-16">
+    <h2 class="section-title mb-2 text-center">Shop by Brand</h2>
+    <p class="section-sub mb-10 text-center">All major brands. Genuine products. Authorized reseller.</p>
+    <div id="brands-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3"></div>
+  </div>
+</section>
+
+<!-- ████ S15: TRENDING PRODUCTS ████ -->
+<section id="deals-section" class="py-16 border-t border-white/5">
+  <div class="max-w-container-max mx-auto px-6 md:px-16">
+    <h2 class="section-title mb-2">Trending Products</h2>
+    <p class="section-sub mb-6">What India is buying right now</p>
+    <!-- Tabs -->
+    <div class="flex gap-0 mb-8 border-b border-white/10">
+      <button onclick="switchTrending('bestsellers')" class="trending-tab tab-active px-5 py-3 text-sm font-bold transition-colors" style="background:none;border:none;cursor:pointer;border-bottom:2px solid #007AFF;color:#adc6ff;" data-tab="bestsellers">🔥 Best Sellers</button>
+      <button onclick="switchTrending('deals')" class="trending-tab px-5 py-3 text-sm font-bold transition-colors" style="background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;color:#c1c6d7;" data-tab="deals">⚡ Today's Deals</button>
+      <button onclick="switchTrending('editor')" class="trending-tab px-5 py-3 text-sm font-bold transition-colors" style="background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;color:#c1c6d7;" data-tab="editor">⭐ Editor's Choice</button>
+      <button onclick="switchTrending('new')" class="trending-tab px-5 py-3 text-sm font-bold transition-colors" style="background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;color:#c1c6d7;" data-tab="new">🆕 New Launches</button>
+      <button onclick="switchTrending('premium')" class="trending-tab px-5 py-3 text-sm font-bold transition-colors" style="background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;color:#c1c6d7;" data-tab="premium">💎 Premium Picks</button>
+    </div>
+    <div id="trending-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"></div>
+  </div>
+</section>
+
+<!-- ████ S16: AI RECOMMENDATIONS ████ -->
+<section class="py-16 border-t border-white/5" style="background:linear-gradient(135deg,#00081C 0%,#001a4d 100%);">
+  <div class="max-w-container-max mx-auto px-6 md:px-16">
+    <div class="flex flex-col lg:flex-row gap-10 items-center">
+      <!-- Left: AI panel -->
+      <div class="flex-1">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4" style="background:rgba(0,122,255,0.12);border:1px solid rgba(0,122,255,0.3);">
+          <span class="ms" style="color:#007AFF;font-size:16px;">auto_awesome</span>
+          <span style="font-size:12px;font-family:'JetBrains Mono',monospace;color:#60a5fa;">AI COMPATIBILITY ENGINE</span>
+        </div>
+        <h2 class="section-title mb-3">Build Around<br/><span style="color:#007AFF;">Any Component</span></h2>
+        <p class="section-sub mb-8 max-w-lg">This feature is <strong style="color:#fff;">EXCLUSIVE to MakeMyPC</strong>. Not on Amazon, Flipkart, Vedant or MDComputers. Pick any GPU — our AI instantly shows what works with it.</p>
+
+        <!-- GPU selector -->
+        <div class="glass rounded-2xl p-5 mb-5" style="max-width:500px;">
+          <div class="text-sm font-semibold mb-3" style="color:#c1c6d7;">Select a GPU to see compatibility:</div>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="showAIPanel('RTX 5070 Ti')" class="ai-gpu-btn px-3 py-1.5 rounded-lg text-xs font-bold border cursor-pointer transition-all" style="background:rgba(0,122,255,0.1);border-color:rgba(0,122,255,0.4);color:#60a5fa;">RTX 5070 Ti</button>
+            <button onclick="showAIPanel('RTX 4090')" class="ai-gpu-btn px-3 py-1.5 rounded-lg text-xs font-bold border cursor-pointer transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;">RTX 4090</button>
+            <button onclick="showAIPanel('RTX 4070 Ti')" class="ai-gpu-btn px-3 py-1.5 rounded-lg text-xs font-bold border cursor-pointer transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;">RTX 4070 Ti</button>
+            <button onclick="showAIPanel('RX 7900 XTX')" class="ai-gpu-btn px-3 py-1.5 rounded-lg text-xs font-bold border cursor-pointer transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;">RX 7900 XTX</button>
+            <button onclick="showAIPanel('RTX 4060')" class="ai-gpu-btn px-3 py-1.5 rounded-lg text-xs font-bold border cursor-pointer transition-all" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:#c1c6d7;">RTX 4060</button>
+          </div>
+        </div>
+
+        <!-- AI Result panel -->
+        <div id="ai-panel" class="glass rounded-2xl p-5 border" style="display:none;max-width:500px;border-color:rgba(0,122,255,0.3);">
+          <div id="ai-panel-content"></div>
+          <a href="custom-pc-builder.html" class="flex items-center justify-center gap-2 w-full mt-4 py-3 rounded-xl font-bold text-white" style="background:#007AFF;">
+            <span class="ms">rocket_launch</span> Build a Full PC Around This GPU
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: floating visualization -->
+      <div class="hidden lg:flex flex-col items-center justify-center flex-1 w-full" style="min-width:320px;">
+        <div class="relative w-80 h-80">
+          <div class="absolute inset-0 rounded-full" style="border:1px solid rgba(0,122,255,0.2);animation:spin 15s linear infinite;"></div>
+          <div class="absolute inset-8 rounded-full" style="border:1px solid rgba(0,164,166,0.2);animation:spin 10s linear infinite reverse;"></div>
+          <div class="absolute inset-16 rounded-3xl flex items-center justify-center" style="background:linear-gradient(135deg,#001a4d,#003399);border:1px solid rgba(0,122,255,0.5);box-shadow:0 0 40px rgba(0,122,255,0.4);">
+            <span class="ms" style="font-size:64px;color:#007AFF;">auto_awesome</span>
+          </div>
+          <div class="absolute top-8 right-4 px-3 py-1.5 rounded-lg text-sm font-bold float-1" style="background:rgba(0,164,166,0.2);border:1px solid rgba(0,164,166,0.4);color:#00A4A6;">AI</div>
+          <div class="absolute bottom-10 left-2 px-3 py-1.5 rounded-lg text-sm font-bold float-2" style="background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.4);color:#34d399;">✓ FIT</div>
+          <div class="absolute top-1/2 -right-6 px-3 py-1.5 rounded-lg text-sm font-bold float-3" style="background:rgba(167,139,250,0.15);border:1px solid rgba(167,139,250,0.4);color:#a78bfa;">PCIe</div>
+        </div>
+        <div class="text-center mt-10">
+          <div style="font-size:18px;font-weight:700;color:#adc6ff;">AI Compatibility Engine</div>
+          <div style="font-size:14px;color:#c1c6d7;margin-top:6px;">Checks 50+ compatibility points in real-time</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ S17: BUNDLE DEALS ████ -->
+<section class="py-16 border-t border-white/5">
+  <div class="max-w-container-max mx-auto px-6 md:px-16">
+    <h2 class="section-title mb-2">Bundle Deals</h2>
+    <p class="section-sub mb-8">Buy together, save more</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Bundle 1 -->
+      <div class="glass rounded-2xl p-6 card-hover" style="border:1px solid rgba(255,165,0,0.2);">
+        <div class="flex items-center justify-between mb-4">
+          <span class="badge" style="background:rgba(251,191,36,0.15);color:#fbbf24;border:1px solid rgba(251,191,36,0.3);">🎮 Gaming Combo</span>
+          <span class="badge" style="background:rgba(52,211,153,0.15);color:#34d399;border:1px solid rgba(52,211,153,0.3);">Save ₹3,500</span>
+        </div>
+        <div class="flex flex-col gap-2 mb-4">
+          <div class="flex items-center gap-3"><span class="ms" style="color:#60a5fa;font-size:20px;">keyboard</span><span class="text-sm">Mechanical Gaming Keyboard</span></div>
+          <div class="flex items-center gap-3"><span class="ms" style="color:#60a5fa;font-size:20px;">mouse</span><span class="text-sm">Gaming Mouse 16000 DPI</span></div>
+          <div class="flex items-center gap-3"><span class="ms" style="color:#60a5fa;font-size:20px;">headphones</span><span class="text-sm">7.1 Surround Headset</span></div>
+          <div class="flex items-center gap-3"><span class="ms" style="color:#60a5fa;font-size:20px;">texture</span><span class="text-sm">XXL Gaming Mousepad</span></div>
+        </div>
+        <div class="flex items-center justify-between">
+          <div><span class="text-xs line-through" style="color:#8b90a0;">₹9,499</span><div class="price-tag text-xl font-bold" style="color:#fbbf24;">₹5,999</div></div>
+          <button class="px-4 py-2 rounded-xl font-bold text-sm" style="background:#007AFF;color:#fff;border:none;cursor:pointer;" onmouseover="this.style.background='#005ec4'" onmouseout="this.style.background='#007AFF'">Add Bundle</button>
+        </div>
+      </div>
+      <!-- Bundle 2 -->
+      <div class="glass rounded-2xl p-6 card-hover" style="border:1px solid rgba(139,92,246,0.2);">
+        <div class="flex items-center justify-between mb-4">
+          <span class="badge" style="background:rgba(139,92,246,0.15);color:#a78bfa;border:1px solid rgba(139,92,246,0.3);">🎬 Creator Combo</span>
+          <span class="badge" style="background:rgba(52,211,153,0.15);color:#34d399;border:1px solid rgba(52,211,153,0.3);">Save ₹5,000</span>
+        </div>
+        <div class="flex flex-col gap-2 mb-4">
+          <div class="flex items-center gap-3"><span class="ms" style="color:#a78bfa;font-size:20px;">mic</span><span class="text-sm">USB Condenser Microphone</span></div>
+          <div class="flex items-center gap-3"><span class="ms" style="color:#a78bfa;font-size:20px;">videocam</span><span class="text-sm">1080p Webcam</span></div>
+          <div class="flex items-center gap-3"><span class="ms" style="color:#a78bfa;font-size:20px;">speaker</span><span class="text-sm">Studio Monitor Speakers</span></div>
+          <div class="flex items-center gap-3"><span class="ms" style="color:#a78bfa;font-size:20px;">light_mode</span><span class="text-sm">Ring Light + Arm</span></div>
+        </div>
+        <div class="flex items-center justify-between">
+          <div><span class="text-xs line-through" style="color:#8b90a0;">₹18,499</span><div class="price-tag text-xl font-bold" style="color:#a78bfa;">₹13,499</div></div>
+          <button class="px-4 py-2 rounded-xl font-bold text-sm" style="background:#007AFF;color:#fff;border:none;cursor:pointer;" onmouseover="this.style.background='#005ec4'" onmouseout="this.style.background='#007AFF'">Add Bundle</button>
+        </div>
+      </div>
+      <!-- Bundle 3 -->
+      <div class="glass rounded-2xl p-6 card-hover" style="border:1px solid rgba(0,164,166,0.2);">
+        <div class="flex items-center justify-between mb-4">
+          <span class="badge" style="background:rgba(0,164,166,0.15);color:#00A4A6;border:1px solid rgba(0,164,166,0.3);">💼 WFH Combo</span>
+          <span class="badge" style="background:rgba(52,211,153,0.15);color:#34d399;border:1px solid rgba(52,211,153,0.3);">Save ₹2,000</span>
+        </div>
+        <div class="flex flex-col gap-2 mb-4">
+          <div class="flex items-center gap-3"><span class="ms" style="color:#00A4A6;font-size:20px;">keyboard</span><span class="text-sm">Silent Wireless Keyboard</span></div>
+          <div class="flex items-center gap-3"><span class="ms" style="color:#00A4A6;font-size:20px;">mouse</span><span class="text-sm">Ergonomic Wireless Mouse</span></div>
+          <div class="flex items-center gap-3"><span class="ms" style="color:#00A4A6;font-size:20px;">usb</span><span class="text-sm">7-Port USB Hub</span></div>
+          <div class="flex items-center gap-3"><span class="ms" style="color:#00A4A6;font-size:20px;">laptop_chromebook</span><span class="text-sm">Laptop Stand (Aluminium)</span></div>
+        </div>
+        <div class="flex items-center justify-between">
+          <div><span class="text-xs line-through" style="color:#8b90a0;">₹6,499</span><div class="price-tag text-xl font-bold" style="color:#00A4A6;">₹4,499</div></div>
+          <button class="px-4 py-2 rounded-xl font-bold text-sm" style="background:#007AFF;color:#fff;border:none;cursor:pointer;" onmouseover="this.style.background='#005ec4'" onmouseout="this.style.background='#007AFF'">Add Bundle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ S19: SERVICES ████ -->
+<section class="py-16 border-t border-white/5" style="background:#050f23;">
+  <div class="max-w-container-max mx-auto px-6 md:px-16">
+    <div class="text-center mb-10">
+      <h2 class="section-title">Professional Services</h2>
+      <p class="section-sub">Beyond just selling parts — we build, configure & support</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <div class="glass rounded-2xl p-5 text-center card-hover cursor-pointer">
+        <span class="ms text-3xl mb-3 block" style="color:#007AFF;">build</span>
+        <div class="font-bold text-sm mb-1">Assembly</div>
+        <div class="text-xs" style="color:#c1c6d7;">Free with any build</div>
+      </div>
+      <div class="glass rounded-2xl p-5 text-center card-hover cursor-pointer">
+        <span class="ms text-3xl mb-3 block" style="color:#00A4A6;">memory</span>
+        <div class="font-bold text-sm mb-1">BIOS Update</div>
+        <div class="text-xs" style="color:#c1c6d7;">Latest firmware</div>
+      </div>
+      <div class="glass rounded-2xl p-5 text-center card-hover cursor-pointer">
+        <span class="ms text-3xl mb-3 block" style="color:#a78bfa;">cable</span>
+        <div class="font-bold text-sm mb-1">Cable Mgmt</div>
+        <div class="text-xs" style="color:#c1c6d7;">Clean routing</div>
+      </div>
+      <div class="glass rounded-2xl p-5 text-center card-hover cursor-pointer">
+        <span class="ms text-3xl mb-3 block" style="color:#fbbf24;">install_desktop</span>
+        <div class="font-bold text-sm mb-1">Windows Install</div>
+        <div class="text-xs" style="color:#c1c6d7;">Genuine license</div>
+      </div>
+      <div class="glass rounded-2xl p-5 text-center card-hover cursor-pointer">
+        <span class="ms text-3xl mb-3 block" style="color:#34d399;">speed</span>
+        <div class="font-bold text-sm mb-1">Stress Testing</div>
+        <div class="text-xs" style="color:#c1c6d7;">24h prime95</div>
+      </div>
+      <div class="glass rounded-2xl p-5 text-center card-hover cursor-pointer">
+        <span class="ms text-3xl mb-3 block" style="color:#60a5fa;">shield</span>
+        <div class="font-bold text-sm mb-1">Ext. Warranty</div>
+        <div class="text-xs" style="color:#c1c6d7;">Up to 5 years</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ S20: WHY BUY ████ -->
+<section class="py-16 border-t border-white/5">
+  <div class="max-w-container-max mx-auto px-6 md:px-16">
+    <div class="text-center mb-10">
+      <h2 class="section-title">Why Buy From MakeMyPC?</h2>
+      <p class="section-sub">We're not just another store</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
+      <div class="glass-blue rounded-2xl p-6 flex gap-4 items-start">
+        <span class="ms text-3xl shrink-0" style="color:#007AFF;">auto_awesome</span>
+        <div><div class="font-bold mb-1">AI Compatibility</div><div class="text-sm" style="color:#c1c6d7;">No mismatched parts. Ever. Our AI verifies 50+ compatibility points before you buy.</div></div>
+      </div>
+      <div class="glass-blue rounded-2xl p-6 flex gap-4 items-start">
+        <span class="ms text-3xl shrink-0" style="color:#34d399;">verified</span>
+        <div><div class="font-bold mb-1">3-Year Warranty</div><div class="text-sm" style="color:#c1c6d7;">Industry-best warranty on all custom builds. Parts + labour covered.</div></div>
+      </div>
+      <div class="glass-blue rounded-2xl p-6 flex gap-4 items-start">
+        <span class="ms text-3xl shrink-0" style="color:#a78bfa;">cable</span>
+        <div><div class="font-bold mb-1">Free Cable Mgmt</div><div class="text-sm" style="color:#c1c6d7;">Every build gets professional cable routing at zero extra cost.</div></div>
+      </div>
+      <div class="glass-blue rounded-2xl p-6 flex gap-4 items-start">
+        <span class="ms text-3xl shrink-0" style="color:#fbbf24;">speed</span>
+        <div><div class="font-bold mb-1">Stress Tested</div><div class="text-sm" style="color:#c1c6d7;">24-hour burn-in test before dispatch. You get a pass certificate.</div></div>
+      </div>
+      <div class="glass-blue rounded-2xl p-6 flex gap-4 items-start">
+        <span class="ms text-3xl shrink-0" style="color:#00A4A6;">local_shipping</span>
+        <div><div class="font-bold mb-1">Pan-India Delivery</div><div class="text-sm" style="color:#c1c6d7;">Armored packaging. Delivered to your doorstep anywhere in India.</div></div>
+      </div>
+      <div class="glass-blue rounded-2xl p-6 flex gap-4 items-start">
+        <span class="ms text-3xl shrink-0" style="color:#60a5fa;">support_agent</span>
+        <div><div class="font-bold mb-1">Expert Support</div><div class="text-sm" style="color:#c1c6d7;">Chat directly with the engineers who built your PC. Not a bot.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ S22: BUYING GUIDES ████ -->
+<section class="py-16 border-t border-white/5" style="background:#050f23;">
+  <div class="max-w-container-max mx-auto px-6 md:px-16">
+    <h2 class="section-title mb-2">Buying Guides</h2>
+    <p class="section-sub mb-8">Expert advice before you spend</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <a href="support-faq.html" class="glass rounded-2xl p-5 card-hover flex gap-4 items-center no-underline" style="text-decoration:none;border:1px solid rgba(255,255,255,0.08);">
+        <span class="ms text-4xl shrink-0" style="color:#007AFF;">developer_board</span>
+        <div><div class="font-bold text-white">Best GPU Under ₹30,000</div><div class="text-sm mt-1" style="color:#c1c6d7;">RTX 4060 vs RX 7600 XT — which is right for you?</div></div>
+      </a>
+      <a href="support-faq.html" class="glass rounded-2xl p-5 card-hover flex gap-4 items-center no-underline" style="text-decoration:none;border:1px solid rgba(255,255,255,0.08);">
+        <span class="ms text-4xl shrink-0" style="color:#34d399;">memory</span>
+        <div><div class="font-bold text-white">DDR5 Buying Guide 2025</div><div class="text-sm mt-1" style="color:#c1c6d7;">Speed, timings, XMP — everything explained.</div></div>
+      </a>
+      <a href="support-faq.html" class="glass rounded-2xl p-5 card-hover flex gap-4 items-center no-underline" style="text-decoration:none;border:1px solid rgba(255,255,255,0.08);">
+        <span class="ms text-4xl shrink-0" style="color:#fbbf24;">electrical_services</span>
+        <div><div class="font-bold text-white">Best PSU for RTX 50 Series</div><div class="text-sm mt-1" style="color:#c1c6d7;">Don't cheap out on your power supply.</div></div>
+      </a>
+      <a href="support-faq.html" class="glass rounded-2xl p-5 card-hover flex gap-4 items-center no-underline" style="text-decoration:none;border:1px solid rgba(255,255,255,0.08);">
+        <span class="ms text-4xl shrink-0" style="color:#60a5fa;">laptop</span>
+        <div><div class="font-bold text-white">Laptop Buying Guide</div><div class="text-sm mt-1" style="color:#c1c6d7;">Gaming vs creator vs ultrabook — what you actually need.</div></div>
+      </a>
+      <a href="support-faq.html" class="glass rounded-2xl p-5 card-hover flex gap-4 items-center no-underline" style="text-decoration:none;border:1px solid rgba(255,255,255,0.08);">
+        <span class="ms text-4xl shrink-0" style="color:#a78bfa;">monitor</span>
+        <div><div class="font-bold text-white">Gaming Monitor Guide 2025</div><div class="text-sm mt-1" style="color:#c1c6d7;">IPS vs VA vs OLED. 144Hz vs 240Hz vs 360Hz.</div></div>
+      </a>
+      <a href="support-faq.html" class="glass rounded-2xl p-5 card-hover flex gap-4 items-center no-underline" style="text-decoration:none;border:1px solid rgba(255,255,255,0.08);">
+        <span class="ms text-4xl shrink-0" style="color:#00A4A6;">currency_rupee</span>
+        <div><div class="font-bold text-white">PC Build Under ₹50K Guide</div><div class="text-sm mt-1" style="color:#c1c6d7;">Best bang-for-buck gaming PC in India right now.</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ████ S23: FAQ ████ -->
+<section class="py-16 border-t border-white/5">
+  <div class="max-w-container-max mx-auto px-6 md:px-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div>
+        <h2 class="section-title mb-2">Frequently Asked</h2>
+        <p class="section-sub mb-8">Quick answers before you order</p>
+        <div class="flex flex-col gap-3" id="shop-faq"></div>
+      </div>
+      <!-- CTA panel -->
+      <div class="flex flex-col justify-center">
+        <div class="glass rounded-3xl p-8 text-center" style="border:1px solid rgba(0,122,255,0.2);">
+          <span class="ms text-5xl mb-4 block" style="color:#007AFF;">build_circle</span>
+          <h3 style="font-size:1.5rem;font-weight:800;color:#fff;">Ready to build?</h3>
+          <p style="color:#c1c6d7;margin:12px 0 24px;">Start with our AI builder — takes 3 minutes.</p>
+          <a href="custom-pc-builder.html" class="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-white" style="background:#007AFF;text-decoration:none;" onmouseover="this.style.background='#005ec4'" onmouseout="this.style.background='#007AFF'">
+            <span class="ms">rocket_launch</span> Build My PC
+          </a>
+          <div class="mt-4 text-xs" style="color:#c1c6d7;">No account needed · Free consultation · Cancel anytime</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ FOOTER ████ -->
+<footer style="background:#030e22;border-top:1px solid rgba(255,255,255,0.06);padding:60px 0 24px;">
+  <div class="max-w-container-max mx-auto px-6 md:px-16">
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-12">
+      <div class="col-span-2">
+        <a href="index.html" style="font-size:24px;font-weight:900;color:#d7e2ff;text-decoration:none;letter-spacing:-0.03em;">MakeMyPC</a>
+        <p class="text-sm mt-3 mb-4" style="color:#c1c6d7;max-width:250px;">India's AI-powered PC ecosystem. Build, buy and upgrade smarter.</p>
+        <div class="flex gap-3">
+          <div class="w-9 h-9 rounded-full flex items-center justify-center cursor-pointer" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);" onmouseover="this.style.background='rgba(0,122,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'"><span class="ms" style="font-size:18px;">chat</span></div>
+          <div class="w-9 h-9 rounded-full flex items-center justify-center cursor-pointer" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);" onmouseover="this.style.background='rgba(0,122,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'"><span class="ms" style="font-size:18px;">mail</span></div>
+          <div class="w-9 h-9 rounded-full flex items-center justify-center cursor-pointer" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);" onmouseover="this.style.background='rgba(0,122,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'"><span class="ms" style="font-size:18px;">phone</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="font-bold mb-4" style="color:#fff;">Shop</div>
+        <div class="flex flex-col gap-2 text-sm" style="color:#c1c6d7;">
+          <a href="custom-pc-builder.html" style="color:#c1c6d7;text-decoration:none;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">Custom Builder</a>
+          <a href="prebuilt-pcs.html" style="color:#c1c6d7;text-decoration:none;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">Prebuilt PCs</a>
+          <a href="shop.html#components-section" style="color:#c1c6d7;text-decoration:none;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">Components</a>
+          <a href="shop.html#laptops-section" style="color:#c1c6d7;text-decoration:none;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">Laptops</a>
+          <a href="shop.html#deals-section" style="color:#c1c6d7;text-decoration:none;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">Today's Deals</a>
+        </div>
+      </div>
+      <div>
+        <div class="font-bold mb-4" style="color:#fff;">Support</div>
+        <div class="flex flex-col gap-2 text-sm" style="color:#c1c6d7;">
+          <a href="support-faq.html" style="color:#c1c6d7;text-decoration:none;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">FAQ</a>
+          <a href="submit-ticket.html" style="color:#c1c6d7;text-decoration:none;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">Submit Ticket</a>
+          <a href="order-tracking.html" style="color:#c1c6d7;text-decoration:none;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">Track Order</a>
+          <a href="calculators-tools.html" style="color:#c1c6d7;text-decoration:none;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">Tools</a>
+        </div>
+      </div>
+      <div>
+        <div class="font-bold mb-4" style="color:#fff;">Company</div>
+        <div class="flex flex-col gap-2 text-sm" style="color:#c1c6d7;">
+          <a href="index.html" style="color:#c1c6d7;text-decoration:none;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">About Us</a>
+          <a href="#" style="color:#c1c6d7;text-decoration:none;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">Careers</a>
+          <a href="#" style="color:#c1c6d7;text-decoration:none;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">Privacy Policy</a>
+          <a href="#" style="color:#c1c6d7;text-decoration:none;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">Terms</a>
+        </div>
+      </div>
+      <div>
+        <div class="font-bold mb-4" style="color:#fff;">Contact</div>
+        <div class="flex flex-col gap-2 text-sm" style="color:#c1c6d7;">
+          <div class="flex items-center gap-2"><span class="ms" style="font-size:16px;color:#007AFF;">mail</span>support@makemypc.in</div>
+          <div class="flex items-center gap-2"><span class="ms" style="font-size:16px;color:#007AFF;">phone</span>+91 98765 43210</div>
+          <div class="flex items-center gap-2"><span class="ms" style="font-size:16px;color:#007AFF;">schedule</span>10AM - 7PM IST</div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/5 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="text-xs" style="color:#8b90a0;">© 2025 MakeMyPC. All rights reserved. Made in India 🇮🇳</div>
+      <div class="flex items-center gap-4 text-xs" style="color:#8b90a0;">
+        <span>GST: 07AABCU9603R1ZP</span>
+        <span>•</span>
+        <span>Authorized Reseller</span>
+        <span>•</span>
+        <span>Pan-India Shipping</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ████ COMPARE TRAY (floating) ████ -->
+<div id="compare-tray" class="compare-tray hidden-tray fixed bottom-0 left-0 right-0 z-50" style="background:rgba(3,14,34,0.98);border-top:1px solid rgba(0,122,255,0.3);backdrop-filter:blur(20px);">
+  <div class="max-w-container-max mx-auto px-6 py-4 flex items-center gap-4">
+    <div class="font-bold text-sm" style="color:#adc6ff;">Compare (<span id="compare-count">0</span>/4):</div>
+    <div id="compare-items" class="flex gap-3 flex-1"></div>
+    <button onclick="clearCompare()" class="text-xs px-3 py-1.5 rounded-lg" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#c1c6d7;cursor:pointer;">Clear All</button>
+    <a href="compare-products.html" class="text-xs px-4 py-2 rounded-lg font-bold" style="background:#007AFF;color:#fff;text-decoration:none;">Compare Now</a>
+  </div>
+</div>
+
+<!-- ████ AI PANEL MODAL ████ -->
+<div id="ai-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:100;backdrop-filter:blur(6px);" onclick="closeAIModal(event)">
+  <div style="position:absolute;right:0;top:0;bottom:0;width:min(500px,100vw);background:#060f25;border-left:1px solid rgba(0,122,255,0.3);overflow-y:auto;animation:slide-in-right 0.3s ease;" onclick="event.stopPropagation()">
+    <div style="padding:24px;">
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center gap-2"><span class="ms" style="color:#007AFF;">auto_awesome</span><span class="font-bold">AI Compatibility</span></div>
+        <button onclick="closeAIModal()" style="background:none;border:none;color:#c1c6d7;cursor:pointer;"><span class="ms">close</span></button>
+      </div>
+      <div id="ai-modal-content"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ████ JAVASCRIPT ████ -->
+<script>
+// ── DATA ────────────────────────────────────────────────────
+const COMPONENTS = [
+  {name:'Processors',icon:'memory',color:'#007AFF',from:'₹8,999',brands:'Intel · AMD'},
+  {name:'Graphics Cards',icon:'developer_board',color:'#a78bfa',from:'₹18,999',brands:'NVIDIA · AMD'},
+  {name:'Motherboards',icon:'circuit_board',color:'#00A4A6',from:'₹6,999',brands:'ASUS · MSI · Gigabyte'},
+  {name:'RAM / Memory',icon:'sd_card',color:'#34d399',from:'₹2,499',brands:'Corsair · Kingston · G.Skill'},
+  {name:'SSD',icon:'storage',color:'#60a5fa',from:'₹1,999',brands:'Samsung · WD · Crucial'},
+  {name:'HDD',icon:'hard_drive',color:'#c1c6d7',from:'₹3,299',brands:'WD · Seagate · Toshiba'},
+  {name:'Power Supply',icon:'electrical_services',color:'#fbbf24',from:'₹2,799',brands:'Corsair · Seasonic · Cooler Master'},
+  {name:'Cabinet / Case',icon:'computer',color:'#f87171',from:'₹3,499',brands:'NZXT · Lian Li · Phanteks'},
+  {name:'CPU Cooler',icon:'ac_unit',color:'#60a5fa',from:'₹1,299',brands:'Noctua · DeepCool · be quiet!'},
+  {name:'Case Fans',icon:'mode_fan',color:'#34d399',from:'₹599',brands:'Corsair · ARCTIC · Noctua'},
+  {name:'Thermal Paste',icon:'science',color:'#fbbf24',from:'₹149',brands:'Noctua · Thermal Grizzly · Arctic'},
+  {name:'Capture Cards',icon:'videocam',color:'#a78bfa',from:'₹3,999',brands:'Elgato · AVerMedia'},
+  {name:'Sound Cards',icon:'speaker',color:'#007AFF',from:'₹2,499',brands:'Creative · ASUS Xonar'},
+  {name:'RGB Accessories',icon:'light_mode',color:'#f43f5e',from:'₹899',brands:'Corsair · NZXT · Phanteks'},
+  {name:'UPS',icon:'battery_charging_full',color:'#34d399',from:'₹3,999',brands:'APC · Luminous · Microtek'},
+  {name:'WiFi Cards',icon:'wifi',color:'#60a5fa',from:'₹1,499',brands:'TP-Link · ASUS · Fenvi'},
+  {name:'Optical Drive',icon:'album',color:'#c1c6d7',from:'₹1,299',brands:'LG · Asus · Pioneer'},
+];
+
+const PREBUILTS = [
+  {id:'pb1',name:'Alpha X Gaming PC',tag:'gaming',price:149999,range:'high',cpu:'Intel i9-14900K',gpu:'RTX 4090 24GB',ram:'32GB DDR5',ssd:'2TB NVMe',fps:'240+ FPS @1440p',emi:'₹6,250/mo',warranty:'3 Years',rating:4.9,badge:'BESTSELLER',badgeColor:'#fbbf24',accent:'#007AFF'},
+  {id:'pb2',name:'Nexus Pro Builder',tag:'gaming',price:89999,range:'mid',cpu:'AMD Ryzen 7 7800X3D',gpu:'RTX 4070 Ti 12GB',ram:'32GB DDR5',ssd:'1TB NVMe',fps:'165+ FPS @1440p',emi:'₹3,750/mo',warranty:'3 Years',rating:4.8,badge:'TOP PICK',badgeColor:'#34d399',accent:'#a78bfa'},
+  {id:'pb3',name:'Storm Budget Gamer',tag:'gaming',price:54999,range:'budget',cpu:'Intel i5-14600K',gpu:'RTX 4060 Ti 16GB',ram:'16GB DDR5',ssd:'512GB NVMe',fps:'144+ FPS @1080p',emi:'₹2,300/mo',warranty:'2 Years',rating:4.7,badge:'GREAT VALUE',badgeColor:'#34d399',accent:'#34d399'},
+  {id:'pb4',name:'Creator Pro Studio',tag:'editing',price:179999,range:'high',cpu:'Intel i9-14900K',gpu:'RTX 4080 Super 16GB',ram:'64GB DDR5',ssd:'4TB NVMe',fps:'8K Editing Ready',emi:'₹7,500/mo',warranty:'3 Years',rating:4.9,badge:'EDITOR CHOICE',badgeColor:'#a78bfa',accent:'#a78bfa'},
+  {id:'pb5',name:'Stream Master Pro',tag:'streaming',price:114999,range:'mid',cpu:'AMD Ryzen 9 7950X',gpu:'RTX 4070 Super 12GB',ram:'32GB DDR5',ssd:'2TB NVMe',fps:'Stream + Game 1440p',emi:'₹4,800/mo',warranty:'3 Years',rating:4.8,badge:'STREAMER PICK',badgeColor:'#60a5fa',accent:'#60a5fa'},
+  {id:'pb6',name:'Office Titan Elite',tag:'office',price:38999,range:'budget',cpu:'Intel i5-13400',gpu:'Intel Arc A380',ram:'16GB DDR4',ssd:'512GB SSD',fps:'Office + Light Gaming',emi:'₹1,625/mo',warranty:'2 Years',rating:4.6,badge:'OFFICE BEST',badgeColor:'#00A4A6',accent:'#00A4A6'},
+  {id:'pb7',name:'AI Workstation Pro',tag:'ai',price:349999,range:'high',cpu:'AMD Threadripper 7970X',gpu:'RTX 4090 + NVLink',ram:'128GB DDR5',ssd:'8TB NVMe RAID',fps:'AI/ML Optimized',emi:'₹14,600/mo',warranty:'5 Years',rating:5.0,badge:'PRO GRADE',badgeColor:'#f43f5e',accent:'#f43f5e'},
+  {id:'pb8',name:'Vortex Mid Gamer',tag:'gaming',price:72999,range:'mid',cpu:'AMD Ryzen 5 7600X',gpu:'RX 7800 XT 16GB',ram:'16GB DDR5',ssd:'1TB NVMe',fps:'144+ FPS @1440p',emi:'₹3,050/mo',warranty:'2 Years',rating:4.7,badge:'AMD VALUE',badgeColor:'#f97316',accent:'#f97316'},
+  {id:'pb9',name:'Programming Beast',tag:'ai',price:94999,range:'mid',cpu:'AMD Ryzen 9 7900X',gpu:'RTX 4070 12GB',ram:'64GB DDR5',ssd:'2TB NVMe',fps:'Dev + VM Optimized',emi:'₹3,960/mo',warranty:'3 Years',rating:4.8,badge:'DEV PICK',badgeColor:'#34d399',accent:'#34d399'},
+];
+
+const LAPTOPS = [
+  {id:'l1',name:'ASUS ROG Strix G16',brand:'asus',cat:'gaming',cpu:'Intel i9-14900HX',gpu:'RTX 4080',ram:'32GB',display:'16" QHD 240Hz',price:189990,rating:4.8,badge:'TOP GAMING'},
+  {id:'l2',name:'MSI Titan GT77 HX',brand:'msi',cat:'gaming',cpu:'Intel i9-13980HX',gpu:'RTX 4090',ram:'64GB',display:'17.3" UHD 144Hz',price:349990,rating:4.9,badge:'FLAGSHIP'},
+  {id:'l3',name:'Lenovo ThinkPad X1 Carbon',brand:'lenovo',cat:'office',cpu:'Intel i7-1355U',gpu:'Iris Xe',ram:'32GB',display:'14" FHD IPS',price:149990,rating:4.7,badge:'BUSINESS BEST'},
+  {id:'l4',name:'HP Spectre x360 16',brand:'hp',cat:'creator',cpu:'Intel i7-1355U',gpu:'Arc A370M',ram:'16GB',display:'16" OLED Touch',price:139990,rating:4.7,badge:'CREATOR'},
+  {id:'l5',name:'Dell XPS 15',brand:'dell',cat:'creator',cpu:'Intel i9-13900H',gpu:'RTX 4070',ram:'32GB',display:'15.6" OLED 3.5K',price:199990,rating:4.8,badge:'PREMIUM'},
+  {id:'l6',name:'ASUS Zenbook 14 OLED',brand:'asus',cat:'thin',cpu:'AMD Ryzen 7 7745HX',gpu:'Radeon 780M',ram:'16GB',display:'14" 2.8K OLED',price:79990,rating:4.7,badge:'ULTRA SLIM'},
+  {id:'l7',name:'Apple MacBook Pro M4',brand:'apple',cat:'creator',cpu:'Apple M4 Pro',gpu:'M4 GPU 20-core',ram:'24GB Unified',display:'16" Liquid Retina XDR',price:249990,rating:4.9,badge:'APPLE BEST'},
+  {id:'l8',name:'Lenovo IdeaPad Gaming 3',brand:'lenovo',cat:'student',cpu:'AMD Ryzen 5 7535H',gpu:'RTX 4060',ram:'16GB',display:'15.6" FHD 144Hz',price:59990,rating:4.5,badge:'STUDENT PICK'},
+];
+
+const MONITORS = [
+  {id:'m1',name:'LG 27GR83Q',cat:'gaming',spec:'27" QHD 240Hz IPS',price:32990,badge:'BESTSELLER'},
+  {id:'m2',name:'Samsung Odyssey G9',cat:['ultrawide','curved','gaming'],spec:'49" DQHD 240Hz VA',price:99990,badge:'ULTRAWIDE KING'},
+  {id:'m3',name:'ASUS ProArt PA32UCX',cat:'professional',spec:'32" 4K Mini-LED IPS',price:159990,badge:'PRO GRADE'},
+  {id:'m4',name:'LG 27EP950-B OLED',cat:['oled','professional'],spec:'27" 4K OLED 60Hz',price:79990,badge:'OLED MASTER'},
+  {id:'m5',name:'Dell U2723D',cat:'professional',spec:'27" QHD IPS 60Hz',price:39990,badge:'OFFICE PRO'},
+  {id:'m6',name:'AOC Q27G3XMN',cat:['gaming','4k'],spec:'27" QHD 180Hz VA',price:22990,badge:'BUDGET KING'},
+  {id:'m7',name:'BenQ PD3220U',cat:'4k',spec:'32" 4K IPS 60Hz',price:54990,badge:'4K CREATOR'},
+  {id:'m8',name:'Samsung 32" M8',cat:'professional',spec:'32" 4K USB-C Smart',price:44990,badge:'SMART MONITOR'},
+];
+
+const PERIPHERALS = [
+  {name:'Keyboard',icon:'keyboard',color:'#007AFF',from:'₹899'},
+  {name:'Mouse',icon:'mouse',color:'#34d399',from:'₹599'},
+  {name:'Headset',icon:'headphones',color:'#a78bfa',from:'₹1,299'},
+  {name:'Mousepad',icon:'texture',color:'#60a5fa',from:'₹399'},
+  {name:'Webcam',icon:'videocam',color:'#00A4A6',from:'₹2,999'},
+  {name:'Microphone',icon:'mic',color:'#f43f5e',from:'₹1,999'},
+  {name:'Controller',icon:'stadia_controller',color:'#fbbf24',from:'₹3,499'},
+  {name:'Speakers',icon:'speaker',color:'#34d399',from:'₹1,499'},
+  {name:'Stream Deck',icon:'dashboard',color:'#a78bfa',from:'₹12,999'},
+  {name:'Gaming Chair',icon:'chair',color:'#f97316',from:'₹8,999'},
+  {name:'Desk',icon:'desk',color:'#60a5fa',from:'₹6,999'},
+  {name:'Monitor Arm',icon:'cast',color:'#00A4A6',from:'₹1,799'},
+];
+
+const NETWORKING = [
+  {name:'Wi-Fi Router',icon:'router',color:'#007AFF',from:'₹1,499'},
+  {name:'WiFi Adapter',icon:'wifi',color:'#34d399',from:'₹699'},
+  {name:'Network Switch',icon:'hub',color:'#60a5fa',from:'₹1,299'},
+  {name:'Access Point',icon:'cell_tower',color:'#a78bfa',from:'₹2,999'},
+  {name:'Mesh WiFi',icon:'lan',color:'#00A4A6',from:'₹4,999'},
+  {name:'LAN Cable',icon:'cable',color:'#fbbf24',from:'₹199'},
+];
+
+const STORAGE = [
+  {name:'External SSD',icon:'storage',color:'#007AFF',from:'₹3,999'},
+  {name:'External HDD',icon:'hard_drive',color:'#60a5fa',from:'₹2,999'},
+  {name:'Pendrive',icon:'usb',color:'#34d399',from:'₹299'},
+  {name:'NAS Drive',icon:'dns',color:'#a78bfa',from:'₹12,999'},
+  {name:'Memory Card',icon:'sd_card',color:'#fbbf24',from:'₹499'},
+  {name:'Card Reader',icon:'sim_card',color:'#00A4A6',from:'₹299'},
+];
+
+const SOFTWARE = [
+  {name:'Windows 11',icon:'window',color:'#007AFF',from:'₹6,999'},
+  {name:'MS Office',icon:'grid_view',color:'#34d399',from:'₹4,999'},
+  {name:'Antivirus',icon:'security',color:'#f43f5e',from:'₹999'},
+  {name:'Adobe Suite',icon:'palette',color:'#a78bfa',from:'₹1,675/mo'},
+  {name:'Xbox Game Pass',icon:'sports_esports',color:'#34d399',from:'₹489/mo'},
+  {name:'AutoCAD',icon:'architecture',color:'#fbbf24',from:'₹1,999/mo'},
+];
+
+const ACCESSORIES = [
+  {name:'Cleaning Kit',icon:'cleaning_services',color:'#34d399',from:'₹299'},
+  {name:'Cable Sleeves',icon:'cable',color:'#60a5fa',from:'₹199'},
+  {name:'RGB Strip',icon:'light_mode',color:'#f43f5e',from:'₹599'},
+  {name:'HDMI Cable',icon:'settings_input_hdmi',color:'#007AFF',from:'₹299'},
+  {name:'USB Hub',icon:'usb',color:'#a78bfa',from:'₹999'},
+  {name:'Laptop Stand',icon:'laptop_chromebook',color:'#fbbf24',from:'₹799'},
+  {name:'Cooling Pad',icon:'ac_unit',color:'#00A4A6',from:'₹899'},
+  {name:'UPS',icon:'battery_charging_full',color:'#34d399',from:'₹3,999'},
+  {name:'DisplayPort',icon:'cable',color:'#60a5fa',from:'₹499'},
+  {name:'Dock Station',icon:'dock',color:'#f97316',from:'₹4,999'},
+];
+
+const BRANDS = [
+  {name:'Intel',color:'#60a5fa'},{name:'AMD',color:'#f97316'},{name:'NVIDIA',color:'#34d399'},
+  {name:'ASUS',color:'#60a5fa'},{name:'MSI',color:'#f43f5e'},{name:'Gigabyte',color:'#fbbf24'},
+  {name:'Corsair',color:'#f43f5e'},{name:'NZXT',color:'#007AFF'},{name:'Samsung',color:'#007AFF'},
+  {name:'Kingston',color:'#f43f5e'},{name:'Crucial',color:'#34d399'},{name:'WD',color:'#f97316'},
+  {name:'Seagate',color:'#34d399'},{name:'Cooler Master',color:'#f43f5e'},{name:'DeepCool',color:'#007AFF'},
+  {name:'Lian Li',color:'#c1c6d7'},
+];
+
+const TRENDING_DATA = {
+  bestsellers:[
+    {name:'NVIDIA RTX 5070',cat:'GPU',price:'₹54,999',badge:'🔥 #1 Seller',color:'#34d399'},
+    {name:'AMD Ryzen 7 7800X3D',cat:'CPU',price:'₹29,999',badge:'🔥 #2 Seller',color:'#f97316'},
+    {name:'Samsung 990 Pro 2TB',cat:'SSD',price:'₹11,499',badge:'🔥 #3 Seller',color:'#007AFF'},
+    {name:'Corsair Vengeance 32GB DDR5',cat:'RAM',price:'₹8,999',badge:'🔥 #4 Seller',color:'#a78bfa'},
+  ],
+  deals:[
+    {name:'ASUS TUF Gaming B650',cat:'Motherboard',price:'₹12,999',badge:'⚡ 30% OFF',color:'#fbbf24'},
+    {name:'Seagate Barracuda 2TB',cat:'HDD',price:'₹3,299',badge:'⚡ 25% OFF',color:'#60a5fa'},
+    {name:'DeepCool AK500',cat:'CPU Cooler',price:'₹4,499',badge:'⚡ 20% OFF',color:'#34d399'},
+    {name:'Corsair SF750 Platinum',cat:'PSU',price:'₹12,499',badge:'⚡ 18% OFF',color:'#f43f5e'},
+  ],
+  editor:[
+    {name:'AMD Ryzen 9 9900X',cat:'CPU',price:'₹39,999',badge:'⭐ Editor Pick',color:'#f97316'},
+    {name:'NZXT H9 Elite',cat:'Case',price:'₹14,999',badge:'⭐ Editor Pick',color:'#007AFF'},
+    {name:'LG 27GR83Q 240Hz',cat:'Monitor',price:'₹32,990',badge:'⭐ Editor Pick',color:'#a78bfa'},
+    {name:'Noctua NH-D15',cat:'Cooler',price:'₹6,999',badge:'⭐ Editor Pick',color:'#fbbf24'},
+  ],
+  new:[
+    {name:'NVIDIA RTX 5090',cat:'GPU',price:'₹1,89,999',badge:'🆕 Just Launched',color:'#34d399'},
+    {name:'Intel Core Ultra 9 285K',cat:'CPU',price:'₹54,999',badge:'🆕 New Launch',color:'#60a5fa'},
+    {name:'Corsair Dominator Titanium',cat:'RAM',price:'₹14,999',badge:'🆕 New Arrival',color:'#a78bfa'},
+    {name:'WD Black SN850X 4TB',cat:'SSD',price:'₹18,999',badge:'🆕 Just Listed',color:'#fbbf24'},
+  ],
+  premium:[
+    {name:'ASUS ROG Maximus Z890',cat:'Motherboard',price:'₹89,999',badge:'💎 Premium',color:'#f43f5e'},
+    {name:'Corsair Dominator 128GB',cat:'RAM',price:'₹49,999',badge:'💎 Premium',color:'#a78bfa'},
+    {name:'Seasonic Prime TX-1600',cat:'PSU',price:'₹29,999',badge:'💎 Titanium',color:'#fbbf24'},
+    {name:'Lian Li O11 Dynamic EVO',cat:'Case',price:'₹19,999',badge:'💎 Premium',color:'#007AFF'},
+  ],
+};
+
+const AI_COMPAT = {
+  'RTX 5070 Ti':{
+    cpus:['Intel i7-14700K','AMD Ryzen 7 7800X3D','Intel i9-14900K'],
+    mobo:['ASUS ROG Strix Z790','MSI MPG B650E','Gigabyte Z790 Aorus'],
+    psu:'850W Gold (Corsair RMx)',
+    ram:'32GB DDR5-5600 (2×16GB)',
+    case:'Mid/Full Tower ATX',
+    cooler:'240mm AIO or Noctua NH-D15',
+    monitor:'27" QHD 165Hz+',
+  },
+  'RTX 4090':{
+    cpus:['Intel i9-14900K','AMD Ryzen 9 7950X','Intel i9-13900KS'],
+    mobo:['ASUS ROG Maximus Z790','MSI MEG Z790 ACE','Gigabyte Z790 Aorus Master'],
+    psu:'1000W Platinum (Seasonic Prime)',
+    ram:'64GB DDR5-6000 (2×32GB)',
+    case:'Full Tower ATX / E-ATX',
+    cooler:'360mm AIO mandatory',
+    monitor:'32" 4K 144Hz or 27" QHD 240Hz',
+  },
+  'RTX 4070 Ti':{
+    cpus:['Intel i7-13700K','AMD Ryzen 7 7700X','Intel i5-14600K'],
+    mobo:['ASUS TUF Gaming Z790','MSI MAG B650 Tomahawk','Gigabyte B760M DS3H'],
+    psu:'750W Gold (Corsair RM750x)',
+    ram:'32GB DDR5-5200',
+    case:'Mid Tower ATX',
+    cooler:'240mm AIO or Tower Cooler',
+    monitor:'27" QHD 165Hz',
+  },
+  'RX 7900 XTX':{
+    cpus:['AMD Ryzen 7 7800X3D','AMD Ryzen 9 7950X','Intel i9-14900K'],
+    mobo:['ASUS ROG Crosshair X670E','MSI MEG X670E ACE','Gigabyte X670E Aorus Master'],
+    psu:'1000W Gold',
+    ram:'32GB DDR5-6000',
+    case:'Full Tower ATX',
+    cooler:'360mm AIO',
+    monitor:'27" QHD 240Hz or 4K 144Hz',
+  },
+  'RTX 4060':{
+    cpus:['Intel i5-14600K','AMD Ryzen 5 7600X','Intel i5-13600K'],
+    mobo:['ASUS TUF Gaming B760M','MSI PRO B760M-A','Gigabyte B650M DS3H'],
+    psu:'650W Gold (Corsair RM650x)',
+    ram:'16GB DDR5-5200',
+    case:'Mid Tower / Micro-ATX',
+    cooler:'120mm AIO or Tower Cooler',
+    monitor:'24" FHD 165Hz',
+  },
+};
+
+const FAQS = [
+  {q:'PC assembly kitna charge hota hai?',a:'Custom builds ke saath assembly bilkul FREE hai. Humara expert team professionally build karta hai, cable management ke saath.'},
+  {q:'Kitne saal ki warranty milti hai?',a:'Custom PC builds par 3 saal warranty milti hai — parts + labour dono. AI Workstations par 5 saal.'},
+  {q:'EMI available hai kya?',a:'Haan! No-cost EMI available hai 3, 6, 9, aur 12 months ke liye. Minimum order ₹10,000.'},
+  {q:'Cash on Delivery available hai?',a:'COD available hai ₹20,000 tak ke orders ke liye. Usse upar online payment required hai.'},
+  {q:'Return policy kya hai?',a:'7 din ka hassle-free return policy hai components ke liye. Custom builds ke liye 3 din ki replacement warranty agar DOA ho.'},
+  {q:'Pan-India delivery hoti hai?',a:'Haan! Armored packaging mein deliver karte hain — from Jammu to Kanyakumari. Express delivery available.'},
+];
+
+// ── RENDER FUNCTIONS ────────────────────────────────────────
+function renderComponents(){
+  const g=document.getElementById('components-grid');
+  if(!g)return;
+  g.innerHTML=COMPONENTS.map(c=>`
+    <div class="glass rounded-2xl p-4 text-center cursor-pointer card-hover group" style="border:1px solid rgba(255,255,255,0.06);" onmouseover="this.style.borderColor='${c.color}40'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'">
+      <span class="ms text-4xl mb-3 block group-hover:scale-110 transition-transform duration-300" style="color:${c.color};">${c.icon}</span>
+      <div class="font-bold text-sm mb-1">${c.name}</div>
+      <div class="price-tag text-xs" style="color:${c.color};">From ${c.from}</div>
+      <div class="text-xs mt-1" style="color:#8b90a0;font-size:10px;">${c.brands}</div>
+    </div>`).join('');
+}
+
+function renderPrebuilts(filter='all',sort='all'){
+  const g=document.getElementById('prebuilt-grid');
+  if(!g)return;
+  let data=PREBUILTS.filter(p=>filter==='all'||p.tag===filter);
+  if(sort==='budget')data=data.filter(p=>p.price<60000);
+  if(sort==='mid')data=data.filter(p=>p.price>=60000&&p.price<=120000);
+  if(sort==='high')data=data.filter(p=>p.price>120000);
+  if(!data.length){g.innerHTML='<div class="col-span-3 text-center py-12" style="color:#c1c6d7;">No PCs found for this filter.</div>';return;}
+  g.innerHTML=data.map(p=>`
+    <div class="glass rounded-2xl overflow-hidden card-hover" style="border:1px solid rgba(255,255,255,0.08);">
+      <!-- Image area -->
+      <div class="relative h-40 flex items-center justify-center" style="background:linear-gradient(135deg,#0d1b3e,${p.accent}22);">
+        <div class="absolute inset-0 grid-lines opacity-30"></div>
+        <span class="ms text-6xl relative z-10" style="color:${p.accent};filter:drop-shadow(0 0 20px ${p.accent}80);">computer</span>
+        <span class="absolute top-3 left-3 badge" style="background:rgba(0,0,0,0.5);color:${p.badgeColor};border:1px solid ${p.badgeColor}40;">${p.badge}</span>
+        <div class="absolute top-3 right-3 flex items-center gap-1"><span class="ms-fill" style="color:#fbbf24;font-size:14px;">star</span><span style="font-size:12px;font-weight:700;">${p.rating}</span></div>
+      </div>
+      <!-- Info -->
+      <div class="p-5">
+        <h3 class="font-bold text-base mb-3">${p.name}</h3>
+        <div class="grid grid-cols-2 gap-1 mb-3 text-xs" style="color:#c1c6d7;font-family:'JetBrains Mono',monospace;">
+          <span>CPU: <span style="color:#d7e2ff;">${p.cpu}</span></span>
+          <span>GPU: <span style="color:#d7e2ff;">${p.gpu}</span></span>
+          <span>RAM: <span style="color:#d7e2ff;">${p.ram}</span></span>
+          <span>SSD: <span style="color:#d7e2ff;">${p.ssd}</span></span>
+        </div>
+        <div class="flex items-center gap-2 mb-4 px-3 py-2 rounded-lg" style="background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.2);">
+          <span class="ms" style="color:#34d399;font-size:16px;">speed</span>
+          <span class="text-xs font-bold" style="color:#34d399;">${p.fps}</span>
+        </div>
+        <div class="flex items-center justify-between mb-4">
+          <div><div class="price-tag text-xl font-bold" style="color:#fff;">₹${p.price.toLocaleString('en-IN')}</div><div class="text-xs" style="color:#c1c6d7;">${p.emi} · ${p.warranty}</div></div>
+        </div>
+        <div class="grid grid-cols-3 gap-2">
+          <button onclick="addToCompare('${p.id}','${p.name}')" class="py-2 rounded-lg text-xs font-semibold" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#c1c6d7;cursor:pointer;" onmouseover="this.style.borderColor='#007AFF'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'">Compare</button>
+          <button class="py-2 rounded-lg text-xs font-semibold" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#c1c6d7;cursor:pointer;" onmouseover="this.style.borderColor='#007AFF'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'">Quick View</button>
+          <button onclick="addToCartShop({id:'${p.id}',name:'${p.name}',price:${p.price},type:'prebuilt',image:'${p.img||''}',category:'Prebuilt PC',parts:null})" class="py-2 rounded-lg text-xs font-bold" style="background:#007AFF;color:#fff;border:none;cursor:pointer;" onmouseover="this.style.background='#005ec4'" onmouseout="this.style.background='#007AFF'">Add to Cart</button>
+        </div>
+        <a href="custom-pc-builder.html" class="flex items-center justify-center gap-1 mt-2 text-xs font-semibold" style="color:#60a5fa;text-decoration:none;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#60a5fa'"><span class="ms" style="font-size:14px;">build</span> Customize This Build</a>
+      </div>
+    </div>`).join('');
+}
+
+function renderLaptops(cat='all',brand='all'){
+  const g=document.getElementById('laptops-grid');
+  if(!g)return;
+  let data=LAPTOPS.filter(l=>{
+    const catOk=cat==='all'||l.cat===cat;
+    const brandOk=brand==='all'||l.brand===brand;
+    return catOk&&brandOk;
+  });
+  if(!data.length){g.innerHTML='<div class="col-span-4 text-center py-12" style="color:#c1c6d7;">No laptops found.</div>';return;}
+  const colors={'asus':'#007AFF','msi':'#f43f5e','lenovo':'#60a5fa','hp':'#60a5fa','dell':'#007AFF','apple':'#c1c6d7'};
+  g.innerHTML=data.map(l=>`
+    <div class="glass rounded-2xl overflow-hidden card-hover" style="border:1px solid rgba(255,255,255,0.08);">
+      <div class="h-36 flex items-center justify-center relative" style="background:linear-gradient(135deg,#0a1020,${colors[l.brand]||'#007AFF'}22);">
+        <div class="absolute inset-0 grid-lines opacity-20"></div>
+        <span class="ms text-5xl relative z-10" style="color:${colors[l.brand]||'#007AFF'};">laptop</span>
+        <span class="absolute top-3 left-3 badge" style="background:rgba(0,0,0,0.6);color:${colors[l.brand]||'#60a5fa'};border:1px solid ${colors[l.brand]||'#007AFF'}40;">${l.badge}</span>
+      </div>
+      <div class="p-4">
+        <div class="text-xs font-bold mb-1" style="color:${colors[l.brand]||'#60a5fa'};text-transform:uppercase;">${l.brand.toUpperCase()}</div>
+        <h3 class="font-bold text-sm mb-2 leading-tight">${l.name}</h3>
+        <div class="text-xs mb-3" style="color:#c1c6d7;font-family:'JetBrains Mono',monospace;">${l.display} · ${l.ram}</div>
+        <div class="text-xs mb-3" style="color:#c1c6d7;">${l.cpu} + ${l.gpu}</div>
+        <div class="flex items-center justify-between">
+          <div class="price-tag text-lg font-bold">₹${l.price.toLocaleString('en-IN')}</div>
+          <button class="px-3 py-1.5 rounded-lg text-xs font-bold" style="background:#007AFF;color:#fff;border:none;cursor:pointer;" onmouseover="this.style.background='#005ec4'" onmouseout="this.style.background='#007AFF'">Buy</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function renderMonitors(cat='all'){
+  const g=document.getElementById('monitors-grid');
+  if(!g)return;
+  const data=MONITORS.filter(m=>cat==='all'||(Array.isArray(m.cat)?m.cat.includes(cat):m.cat===cat));
+  if(!data.length){g.innerHTML='<div class="col-span-4 text-center py-12" style="color:#c1c6d7;">No monitors found.</div>';return;}
+  g.innerHTML=data.map(m=>`
+    <div class="glass rounded-2xl overflow-hidden card-hover" style="border:1px solid rgba(255,255,255,0.08);">
+      <div class="h-32 flex items-center justify-center relative" style="background:linear-gradient(135deg,#080f24,#003380);">
+        <div class="absolute inset-0 grid-lines opacity-20"></div>
+        <span class="ms text-5xl relative z-10" style="color:#007AFF;">monitor</span>
+        <span class="absolute top-3 left-3 badge text-xs" style="background:rgba(0,0,0,0.6);color:#fbbf24;border:1px solid rgba(251,191,36,0.3);">${m.badge}</span>
+      </div>
+      <div class="p-4">
+        <h3 class="font-bold text-sm mb-1">${m.name}</h3>
+        <div class="text-xs mb-3" style="color:#c1c6d7;font-family:'JetBrains Mono',monospace;">${m.spec}</div>
+        <div class="flex items-center justify-between">
+          <div class="price-tag text-lg font-bold">₹${m.price.toLocaleString('en-IN')}</div>
+          <button class="px-3 py-1.5 rounded-lg text-xs font-bold" style="background:#007AFF;color:#fff;border:none;cursor:pointer;" onmouseover="this.style.background='#005ec4'" onmouseout="this.style.background='#007AFF'">Buy</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function renderSimpleGrid(containerId, data){
+  const g=document.getElementById(containerId);
+  if(!g)return;
+  g.innerHTML=data.map(item=>`
+    <div class="glass rounded-xl p-4 text-center cursor-pointer card-hover group" style="border:1px solid rgba(255,255,255,0.06);" onmouseover="this.style.borderColor='${item.color}40'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'">
+      <span class="ms text-3xl mb-2 block group-hover:scale-110 transition-transform" style="color:${item.color};">${item.icon}</span>
+      <div class="font-bold text-xs">${item.name}</div>
+      <div class="text-xs mt-1" style="color:${item.color};font-family:'JetBrains Mono',monospace;">${item.from}</div>
+    </div>`).join('');
+}
+
+function renderBrands(){
+  const g=document.getElementById('brands-grid');
+  if(!g)return;
+  g.innerHTML=BRANDS.map(b=>`
+    <div class="glass rounded-xl p-3 text-center cursor-pointer card-hover group" style="border:1px solid rgba(255,255,255,0.06);" onmouseover="this.style.borderColor='${b.color}50'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'">
+      <div class="font-bold text-sm group-hover:scale-110 transition-transform inline-block" style="color:${b.color};">${b.name}</div>
+    </div>`).join('');
+}
+
+function renderTrending(tab='bestsellers'){
+  const g=document.getElementById('trending-grid');
+  if(!g)return;
+  const data=TRENDING_DATA[tab]||[];
+  g.innerHTML=data.map(p=>`
+    <div class="glass rounded-2xl overflow-hidden card-hover" style="border:1px solid rgba(255,255,255,0.08);">
+      <div class="h-28 flex items-center justify-center relative" style="background:linear-gradient(135deg,#080f24,${p.color}22);">
+        <div class="absolute inset-0 grid-lines opacity-20"></div>
+        <span class="ms text-4xl relative z-10" style="color:${p.color};">memory</span>
+        <span class="absolute top-3 left-3 badge" style="background:rgba(0,0,0,0.6);color:${p.color};border:1px solid ${p.color}40;font-size:10px;">${p.badge}</span>
+      </div>
+      <div class="p-4">
+        <div class="text-xs mb-1" style="color:#8b90a0;">${p.cat}</div>
+        <h3 class="font-bold text-sm mb-3">${p.name}</h3>
+        <div class="flex items-center justify-between">
+          <div class="price-tag text-lg font-bold" style="color:${p.color};">${p.price}</div>
+          <button onclick="openAIBuildModal('${p.name}')" class="px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1" style="background:rgba(0,122,255,0.15);color:#60a5fa;border:1px solid rgba(0,122,255,0.3);cursor:pointer;" title="Build around this component"><span class="ms" style="font-size:14px;">auto_awesome</span> AI Build</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function renderFAQ(){
+  const c=document.getElementById('shop-faq');
+  if(!c)return;
+  c.innerHTML=FAQS.map((f,i)=>`
+    <div class="glass rounded-xl cursor-pointer faq-item" style="border:1px solid rgba(255,255,255,0.08);" onclick="toggleFAQ(this)">
+      <div class="flex items-center justify-between p-4">
+        <span class="font-semibold text-sm">${f.q}</span>
+        <span class="ms faq-chevron" style="color:#007AFF;font-size:20px;flex-shrink:0;">expand_more</span>
+      </div>
+      <div class="faq-body px-4 pb-0"><p class="pb-4 text-sm" style="color:#c1c6d7;">${f.a}</p></div>
+    </div>`).join('');
+}
+
+// ── FILTER HANDLERS ──────────────────────────────────────────
+let currentPrebuiltFilter='all', currentSort='all';
+let currentLaptopCat='all', currentLaptopBrand='all';
+let currentMonitorCat='all';
+
+function filterPrebuilt(f){
+  currentPrebuiltFilter=f;
+  document.querySelectorAll('.prebuilt-filter').forEach(b=>{
+    const isActive=b.dataset.filter===f;
+    b.style.background=isActive?'rgba(0,122,255,0.2)':'rgba(255,255,255,0.04)';
+    b.style.borderColor=isActive?'#007AFF':'rgba(255,255,255,0.1)';
+    b.style.color=isActive?'#adc6ff':'#c1c6d7';
+  });
+  renderPrebuilts(currentPrebuiltFilter,currentSort);
+}
+function sortPrebuilt(v){currentSort=v;renderPrebuilts(currentPrebuiltFilter,currentSort);}
+
+function filterLaptop(cat){
+  currentLaptopCat=cat;
+  document.querySelectorAll('.laptop-cat').forEach(b=>{
+    const a=b.textContent.trim().toLowerCase().replace(/[^a-z]/g,'')===cat||(cat==='all'&&b.textContent.trim()==='All');
+    b.style.background=a?'rgba(0,122,255,0.2)':'rgba(255,255,255,0.04)';
+    b.style.borderColor=a?'#007AFF':'rgba(255,255,255,0.1)';
+    b.style.color=a?'#adc6ff':'#c1c6d7';
+  });
+  renderLaptops(currentLaptopCat,currentLaptopBrand);
+}
+function filterLaptopBrand(brand){
+  currentLaptopBrand=brand;
+  document.querySelectorAll('.laptop-brand').forEach(b=>{
+    const a=b.textContent.trim().toLowerCase()===brand||(brand==='all'&&b.textContent.includes('All'));
+    b.style.background=a?'rgba(0,122,255,0.2)':'rgba(255,255,255,0.04)';
+    b.style.borderColor=a?'#007AFF':'rgba(255,255,255,0.1)';
+    b.style.color=a?'#adc6ff':'#c1c6d7';
+  });
+  renderLaptops(currentLaptopCat,currentLaptopBrand);
+}
+function filterMonitor(cat){
+  currentMonitorCat=cat;
+  document.querySelectorAll('.mon-filter').forEach(b=>{
+    const txt=b.textContent.trim().toLowerCase().replace(/[^a-z]/g,'');
+    const a=txt===cat||(cat==='all'&&b.textContent.trim()==='All');
+    b.style.background=a?'rgba(0,122,255,0.2)':'rgba(255,255,255,0.04)';
+    b.style.borderColor=a?'#007AFF':'rgba(255,255,255,0.1)';
+    b.style.color=a?'#adc6ff':'#c1c6d7';
+  });
+  renderMonitors(cat);
+}
+
+function switchTrending(tab){
+  document.querySelectorAll('.trending-tab').forEach(b=>{
+    const a=b.dataset.tab===tab;
+    b.style.borderBottomColor=a?'#007AFF':'transparent';
+    b.style.color=a?'#adc6ff':'#c1c6d7';
+  });
+  renderTrending(tab);
+}
+
+// ── AI COMPATIBILITY ─────────────────────────────────────────
+function showAIPanel(gpu){
+  const compat=AI_COMPAT[gpu];
+  if(!compat)return;
+  const panel=document.getElementById('ai-panel');
+  const content=document.getElementById('ai-panel-content');
+  content.innerHTML=`
+    <div class="font-bold mb-1" style="color:#60a5fa;">You selected: <span style="color:#fff;">${gpu}</span></div>
+    <div class="text-xs mb-4" style="color:#c1c6d7;">AI-verified compatible components:</div>
+    <div class="flex flex-col gap-2">
+      <div class="flex gap-3 p-2 rounded-lg" style="background:rgba(52,211,153,0.08);"><span class="ms" style="color:#34d399;font-size:18px;">memory</span><div><div class="text-xs font-bold" style="color:#34d399;">✓ Compatible CPUs</div><div class="text-xs" style="color:#c1c6d7;">${compat.cpus.join(', ')}</div></div></div>
+      <div class="flex gap-3 p-2 rounded-lg" style="background:rgba(0,122,255,0.08);"><span class="ms" style="color:#60a5fa;font-size:18px;">developer_board</span><div><div class="text-xs font-bold" style="color:#60a5fa;">✓ Motherboards</div><div class="text-xs" style="color:#c1c6d7;">${compat.mobo.join(', ')}</div></div></div>
+      <div class="flex gap-3 p-2 rounded-lg" style="background:rgba(251,191,36,0.08);"><span class="ms" style="color:#fbbf24;font-size:18px;">electrical_services</span><div><div class="text-xs font-bold" style="color:#fbbf24;">✓ Recommended PSU</div><div class="text-xs" style="color:#c1c6d7;">${compat.psu}</div></div></div>
+      <div class="flex gap-3 p-2 rounded-lg" style="background:rgba(167,139,250,0.08);"><span class="ms" style="color:#a78bfa;font-size:18px;">sd_card</span><div><div class="text-xs font-bold" style="color:#a78bfa;">✓ RAM</div><div class="text-xs" style="color:#c1c6d7;">${compat.ram}</div></div></div>
+      <div class="flex gap-3 p-2 rounded-lg" style="background:rgba(0,164,166,0.08);"><span class="ms" style="color:#00A4A6;font-size:18px;">computer</span><div><div class="text-xs font-bold" style="color:#00A4A6;">✓ Case</div><div class="text-xs" style="color:#c1c6d7;">${compat.case}</div></div></div>
+      <div class="flex gap-3 p-2 rounded-lg" style="background:rgba(96,165,250,0.08);"><span class="ms" style="color:#60a5fa;font-size:18px;">monitor</span><div><div class="text-xs font-bold" style="color:#60a5fa;">✓ Suggested Monitor</div><div class="text-xs" style="color:#c1c6d7;">${compat.monitor}</div></div></div>
+    </div>`;
+  panel.style.display='block';
+  // Update button styles
+  document.querySelectorAll('.ai-gpu-btn').forEach(b=>{
+    const a=b.textContent.trim()===gpu;
+    b.style.background=a?'rgba(0,122,255,0.2)':'rgba(255,255,255,0.04)';
+    b.style.borderColor=a?'#007AFF':'rgba(255,255,255,0.1)';
+    b.style.color=a?'#adc6ff':'#c1c6d7';
+  });
+}
+
+function openAIBuildModal(product){
+  const modal=document.getElementById('ai-modal');
+  const content=document.getElementById('ai-modal-content');
+  // Try to find GPU compat
+  const gpuKey=Object.keys(AI_COMPAT).find(k=>product.includes(k.split(' ')[1]));
+  const compat=gpuKey?AI_COMPAT[gpuKey]:null;
+  content.innerHTML=`
+    <div class="badge mb-4" style="background:rgba(0,122,255,0.15);color:#60a5fa;border:1px solid rgba(0,122,255,0.3);font-size:12px;">AI COMPATIBILITY ENGINE</div>
+    <h3 class="text-lg font-bold mb-1" style="color:#fff;">Building around:</h3>
+    <div class="price-tag text-xl mb-5" style="color:#007AFF;">${product}</div>
+    ${compat?`
+    <div class="flex flex-col gap-3">
+      <div class="p-3 rounded-xl" style="background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.2);"><div class="text-xs font-bold mb-1" style="color:#34d399;">✓ Compatible CPUs</div><div class="text-sm" style="color:#d7e2ff;">${compat.cpus.slice(0,2).join(' or ')}</div></div>
+      <div class="p-3 rounded-xl" style="background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.2);"><div class="text-xs font-bold mb-1" style="color:#fbbf24;">✓ Recommended PSU</div><div class="text-sm" style="color:#d7e2ff;">${compat.psu}</div></div>
+      <div class="p-3 rounded-xl" style="background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.2);"><div class="text-xs font-bold mb-1" style="color:#a78bfa;">✓ RAM</div><div class="text-sm" style="color:#d7e2ff;">${compat.ram}</div></div>
+      <div class="p-3 rounded-xl" style="background:rgba(0,164,166,0.08);border:1px solid rgba(0,164,166,0.2);"><div class="text-xs font-bold mb-1" style="color:#00A4A6;">✓ Suggested Monitor</div><div class="text-sm" style="color:#d7e2ff;">${compat.monitor}</div></div>
+    </div>
+    <a href="custom-pc-builder.html" class="flex items-center justify-center gap-2 w-full mt-5 py-4 rounded-xl font-bold text-white" style="background:#007AFF;text-decoration:none;"><span class="ms">rocket_launch</span> Build Full PC Around This</a>`
+    :'<p style="color:#c1c6d7;">This component is compatible with most platforms. Use our builder for full recommendations.</p><a href="custom-pc-builder.html" class="flex items-center justify-center gap-2 w-full mt-5 py-4 rounded-xl font-bold text-white" style="background:#007AFF;text-decoration:none;"><span class="ms">rocket_launch</span> Open PC Builder</a>'}`;
+  modal.style.display='block';
+}
+function closeAIModal(e){
+  if(!e||e.target===document.getElementById('ai-modal'))document.getElementById('ai-modal').style.display='none';
+}
+
+// ── COMPARE TRAY ─────────────────────────────────────────────
+let compareItems=[];
+function addToCompare(id,name){
+  if(compareItems.find(i=>i.id===id)){alert('Already in compare!');return;}
+  if(compareItems.length>=4){alert('Max 4 items can be compared.');return;}
+  compareItems.push({id,name});
+  updateCompareTray();
+}
+function updateCompareTray(){
+  const tray=document.getElementById('compare-tray');
+  const count=document.getElementById('compare-count');
+  const items=document.getElementById('compare-items');
+  count.textContent=compareItems.length;
+  items.innerHTML=compareItems.map(i=>`
+    <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs" style="background:rgba(0,122,255,0.15);border:1px solid rgba(0,122,255,0.3);">
+      <span>${i.name}</span>
+      <button onclick="removeCompare('${i.id}')" style="background:none;border:none;color:#c1c6d7;cursor:pointer;font-size:16px;line-height:1;">×</button>
+    </div>`).join('');
+  if(compareItems.length>0){tray.classList.remove('hidden-tray');}
+  else{tray.classList.add('hidden-tray');}
+}
+function removeCompare(id){compareItems=compareItems.filter(i=>i.id!==id);updateCompareTray();}
+function clearCompare(){compareItems=[];updateCompareTray();}
+
+// ── UTILITY ──────────────────────────────────────────────────
+function scrollToSection(id){
+  const el=document.getElementById(id);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function toggleFAQ(el){el.classList.toggle('faq-open');}
+function handleSearch(){const q=document.getElementById('hero-search').value;if(q)alert('Searching for: '+q+'\n(Full search coming soon)');}
+function quickSearch(q){document.getElementById('hero-search').value=q;}
+
+// ── INIT ─────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded',function(){
+  renderComponents();
+  renderPrebuilts();
+  renderLaptops();
+  renderMonitors();
+  renderSimpleGrid('peripherals-grid',PERIPHERALS);
+  renderSimpleGrid('networking-grid',NETWORKING);
+  renderSimpleGrid('storage-grid',STORAGE);
+  renderSimpleGrid('software-grid',SOFTWARE);
+  renderSimpleGrid('accessories-grid',ACCESSORIES);
+  renderBrands();
+  renderTrending('bestsellers');
+  renderFAQ();
+  // Auto show AI panel with first GPU
+  showAIPanel('RTX 5070 Ti');
+});
+</script>
+<script src="js/global.js"></script>
+<script type="module" src="js/auth.js">
+
+// Global cart add function for shop page
+window.addToCartShop = function(item) {
+  try {
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    // Check if already in cart
+    const exists = cart.find(c => c.id === item.id);
+    if (exists) {
+      exists.qty = (exists.qty || 1) + 1;
+    } else {
+      cart.push({...item, qty: 1});
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    // Update badge using global function
+    if (window.updateCartBadge) {
+      window.updateCartBadge();
+    }
+    // Toast notification
+    const toast = document.createElement('div');
+    toast.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:9999;background:#00A4A6;color:#fff;padding:12px 20px;border-radius:12px;font-family:Inter,sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px;box-shadow:0 8px 30px rgba(0,0,0,0.4);transform:translateY(20px);opacity:0;transition:all 0.3s ease;';
+    toast.innerHTML = '<span style="font-size:18px">✓</span> Added to cart!';
+    document.body.appendChild(toast);
+    requestAnimationFrame(() => { toast.style.transform = 'translateY(0)'; toast.style.opacity = '1'; });
+    setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateY(20px)'; setTimeout(() => toast.remove(), 300); }, 2500);
+  } catch(e) {
+    console.error('addToCartShop error', e);
+    window.location.href = 'shopping-cart.html';
+  }
+};
+
+</script>
+</body>
+</html>

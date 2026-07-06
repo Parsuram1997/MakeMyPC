@@ -135,6 +135,139 @@ window.onerror = function(msg, url, lineNo, columnNo, error) {
     </style>
 </head>
     <body class="flex flex-col min-h-screen">
+<!-- ═══ NAVBAR START (auto-generated v2) ═══ -->
+<nav style="position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,0.03);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.1);box-shadow:0 8px 32px 0 rgba(0,0,0,0.3);" id="main-nav">
+  <div style="display:flex;justify-content:space-between;align-items:center;max-width:1280px;margin:0 auto;padding:0 64px;height:72px;">
+
+    <!-- Logo -->
+    <a href="index.html" style="font-size:24px;font-weight:900;color:#d7e2ff;text-decoration:none;letter-spacing:-0.03em;white-space:nowrap;flex-shrink:0;font-family:'Inter',sans-serif;">MakeMyPC</a>
+
+    <!-- Desktop Links -->
+    <div class="hidden md:flex" style="gap:32px;align-items:center;">
+      <a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-mono"      href="shop.html"            style="text-decoration:none;font-size:12px;letter-spacing:0.05em;font-family:'JetBrains Mono','Inter',sans-serif;">Shop</a>
+      <a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-mono"   href="builder-landing.html" style="text-decoration:none;font-size:12px;letter-spacing:0.05em;font-family:'JetBrains Mono','Inter',sans-serif;">Builder</a>
+      <a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-mono" href="support-faq.html"     style="text-decoration:none;font-size:12px;letter-spacing:0.05em;font-family:'JetBrains Mono','Inter',sans-serif;">Resources</a>
+    </div>
+
+    <!-- Right Controls -->
+    <div style="display:flex;align-items:center;gap:16px;">
+
+      <!-- Search (lg+) -->
+      <div class="hidden lg:flex" style="position:relative;">
+        <span class="material-symbols-outlined" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#c1c6d7;font-size:18px;">search</span>
+        <input style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:7px 14px 7px 34px;font-size:13px;color:#d7e2ff;width:220px;outline:none;transition:border-color 0.2s;font-family:'Inter',sans-serif;" placeholder="Search Components" type="text"
+          onfocus="this.style.borderColor='#007AFF'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'"/>
+      </div>
+
+      <!-- Cart -->
+      <button onclick="window.location.href='shopping-cart.html'" style="background:none;border:none;cursor:pointer;color:#c1c6d7;position:relative;padding:4px;display:flex;align-items:center;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">
+        <span class="material-symbols-outlined" style="font-size:24px;" data-icon="shopping_cart">shopping_cart</span>
+        <span id="cart-badge" style="display:none;position:absolute;top:-4px;right:-4px;background:#ffb4ab;color:#690005;font-size:10px;font-weight:700;width:16px;height:16px;border-radius:50%;align-items:center;justify-content:center;font-family:'Inter',sans-serif;">0</span>
+      </button>
+
+      <!-- Login btn (logged out) -->
+      <a href="login.html" id="auth-login-btn" style="color:#c1c6d7;text-decoration:none;display:flex;align-items:center;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">
+        <span class="material-symbols-outlined" style="font-size:24px;" data-icon="account_circle">account_circle</span>
+      </a>
+
+      <!-- Avatar (logged in, hidden by default) -->
+      <a href="account-settings.html" id="auth-avatar-btn" style="display:none;width:36px;height:36px;border-radius:50%;background:#adc6ff;color:#002e69;align-items:center;justify-content:center;font-weight:700;font-size:14px;text-decoration:none;flex-shrink:0;transition:filter 0.2s;" onmouseover="this.style.filter='brightness(1.1)'" onmouseout="this.style.filter='none'">
+        <span id="avatar-initial">U</span>
+      </a>
+
+      <!-- Hamburger (mobile only) -->
+      <button id="mobile-menu-btn" style="display:none;background:none;border:none;cursor:pointer;color:#c1c6d7;align-items:center;" onmouseover="this.style.color='#adc6ff'" onmouseout="this.style.color='#c1c6d7'">
+        <span class="material-symbols-outlined" style="font-size:28px;">menu</span>
+      </button>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ═══ MOBILE MENU ═══ -->
+<div id="mobile-menu" style="position:fixed;inset:0;background:rgba(0,8,28,0.97);backdrop-filter:blur(20px);z-index:60;transform:translateX(100%);transition:transform 0.3s ease;display:none;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid rgba(255,255,255,0.1);">
+    <a href="index.html" style="font-size:20px;font-weight:900;color:#d7e2ff;text-decoration:none;letter-spacing:-0.03em;font-family:'Inter',sans-serif;">MakeMyPC</a>
+    <button id="mobile-menu-close" style="background:none;border:none;cursor:pointer;color:#c1c6d7;display:flex;align-items:center;">
+      <span class="material-symbols-outlined" style="font-size:28px;">close</span>
+    </button>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:24px;padding:24px;overflow-y:auto;flex:1;">
+    <!-- Mobile Search -->
+    <div style="position:relative;">
+      <span class="material-symbols-outlined" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#c1c6d7;">search</span>
+      <input style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px 12px 36px;font-size:14px;color:#d7e2ff;width:100%;outline:none;box-sizing:border-box;font-family:'Inter',sans-serif;" placeholder="Search Components" type="text"/>
+    </div>
+    <!-- Mobile Nav Links -->
+    <div style="display:flex;flex-direction:column;gap:16px;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:24px;">
+      <a href="shop.html" style="font-size:18px;font-weight:700;color:#d7e2ff;text-decoration:none;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;">
+        Shop <span class="material-symbols-outlined" style="font-size:18px;">chevron_right</span>
+      </a>
+      <a href="builder-landing.html" style="font-size:18px;font-weight:700;color:#d7e2ff;text-decoration:none;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;">
+        Builder <span class="material-symbols-outlined" style="font-size:18px;">chevron_right</span>
+      </a>
+      <a href="support-faq.html" style="font-size:18px;font-weight:700;color:#d7e2ff;text-decoration:none;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;">
+        Resources <span class="material-symbols-outlined" style="font-size:18px;">chevron_right</span>
+      </a>
+    </div>
+    <!-- Mobile Auth -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <a id="mobile-auth-login" href="login.html" style="display:flex;align-items:center;gap:12px;color:#c1c6d7;text-decoration:none;font-family:'Inter',sans-serif;">
+        <span class="material-symbols-outlined">account_circle</span> Log In
+      </a>
+      <a id="mobile-auth-account" href="account-settings.html" style="display:none;align-items:center;gap:12px;color:#c1c6d7;text-decoration:none;font-family:'Inter',sans-serif;">
+        <span class="material-symbols-outlined">manage_accounts</span> My Account
+      </a>
+      <a href="shopping-cart.html" style="display:flex;align-items:center;gap:12px;color:#c1c6d7;text-decoration:none;font-family:'Inter',sans-serif;">
+        <span class="material-symbols-outlined">shopping_cart</span> Cart
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Spacer so content doesn't hide under fixed nav -->
+<div style="height:72px;"></div>
+
+<!-- Mobile Menu JS -->
+<script>
+(function(){
+  var btn=document.getElementById('mobile-menu-btn');
+  var cls=document.getElementById('mobile-menu-close');
+  var mnu=document.getElementById('mobile-menu');
+
+  // Show hamburger only on mobile screens (no Tailwind dependency)
+  function updateHamburger(){
+    if(btn){
+      btn.style.display = window.innerWidth < 768 ? 'flex' : 'none';
+    }
+    // Close mobile menu if window resized to desktop
+    if(mnu && window.innerWidth >= 768){
+      mnu.style.display='none';
+      mnu.style.transform='translateX(100%)';
+    }
+  }
+  updateHamburger();
+  window.addEventListener('resize', updateHamburger);
+
+  if(btn && cls && mnu){
+    btn.addEventListener('click',function(){
+      mnu.style.display='flex';
+      // Small delay so display:flex kicks in before transform
+      setTimeout(function(){ mnu.style.transform='translateX(0)'; }, 10);
+    });
+    cls.addEventListener('click',function(){
+      mnu.style.transform='translateX(100%)';
+      setTimeout(function(){ mnu.style.display='none'; }, 310);
+    });
+  }
+})();
+</script>
+<!-- ═══ NAVBAR END ═══ -->
+
+
+
+
+
 <!-- Background Layer -->
 <div class="fixed inset-0 technical-grid pointer-events-none z-0"></div>
 <div class="fixed top-[-10%] right-[-10%] w-[40%] h-[40%] bg-electric-blue/5 rounded-full blur-[120px] pointer-events-none"></div>
@@ -156,7 +289,7 @@ window.onerror = function(msg, url, lineNo, columnNo, error) {
                     <label class="block text-label-mono uppercase text-outline" for="email">Neural Link (Email)</label>
                     <div class="relative">
                         <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-xl">alternate_email</span>
-                        <input id="email" type="email" placeholder="identifier@neural.net" class="input-neural w-full pl-10 pr-4 py-3 rounded text-body-md text-on-surface placeholder:text-outline-variant">
+                        <input id="email" type="email" placeholder="identifier@neural.net" class="w-full bg-white/5 border border-white/10 focus:border-electric-blue focus:bg-white/10 outline-none pl-10 pr-4 py-3 rounded text-body-md text-on-surface placeholder:text-outline-variant transition-all">
                     </div>
                 </div>
 
@@ -167,7 +300,7 @@ window.onerror = function(msg, url, lineNo, columnNo, error) {
                     </div>
                     <div class="relative">
                         <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-xl">vpn_key</span>
-                        <input id="password" type="password" placeholder="••••••••••••" class="input-neural w-full pl-10 pr-4 py-3 rounded text-body-md text-on-surface placeholder:text-outline-variant">
+                        <input id="password" type="password" placeholder="••••••••••••" class="w-full bg-white/5 border border-white/10 focus:border-electric-blue focus:bg-white/10 outline-none pl-10 pr-4 py-3 rounded text-body-md text-on-surface placeholder:text-outline-variant transition-all">
                     </div>
                 </div>
 
@@ -289,6 +422,8 @@ window.onerror = function(msg, url, lineNo, columnNo, error) {
         </div>
     </div>
 </footer>
+
+
 <script src="js/global.js"></script>
 <script type="module" src="js/auth.js"></script>
 </body></html>
