@@ -159,7 +159,7 @@
             <span class="text-body-sm font-medium">Dashboard</span>
         </a>
 
-        <details class="group" open>
+        <details class="group">
             <summary class="flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary list-none [&::-webkit-details-marker]:hidden">
                 <div class="flex items-center gap-3">
                     <span class="material-symbols-outlined">inventory_2</span>
@@ -183,7 +183,7 @@
                 <a href="product-compatibility.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
                     Compatibility
                 </a>
-                <a href="#" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                <a href="product-reviews.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
                     Reviews
                 </a>
             </div>
@@ -224,10 +224,29 @@
             </div>
         </details>
 
-        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
-            <span class="material-symbols-outlined">group</span>
-            <span class="text-body-sm font-medium">Customers</span>
-        </a>
+                <details class="group">
+            <summary class="flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary list-none [&::-webkit-details-marker]:hidden">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">group</span>
+                    <span class="text-body-sm font-medium">Customers</span>
+                </div>
+                <span class="material-symbols-outlined text-[18px] transition-transform duration-300 group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="ml-6 pl-4 border-l border-white/10 flex flex-col space-y-1 mt-1 mb-2">
+                <a href="admin-customers.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    All Customers
+                </a>
+                <a href="#" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Customer Groups
+                </a>
+                <a href="#" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Saved Builds
+                </a>
+                <a href="#" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Addresses
+                </a>
+            </div>
+        </details>
         <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
             <span class="material-symbols-outlined">local_shipping</span>
             <span class="text-body-sm font-medium">Shipping</span>

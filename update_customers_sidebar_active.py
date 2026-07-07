@@ -7,8 +7,8 @@ for file in html_files:
     with open(file, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    # Find the products <details> block
-    pattern = r'(<details[^>]*>\s*<summary[^>]*>\s*<div[^>]*>\s*<span[^>]*>inventory_2</span>.*?<span[^>]*>Products</span>.*?</div>.*?</summary>).*?(</details>)'
+    # Find the customers <details> block
+    pattern = r'(<details class="group".*?>\s*<summary[^>]*>\s*<div[^>]*>\s*<span[^>]*>group</span>.*?<span[^>]*>Customers</span>.*?</div>.*?</summary>).*?(</details>)'
     match = re.search(pattern, content, flags=re.DOTALL)
     
     if not match:
@@ -17,19 +17,20 @@ for file in html_files:
     summary_part = match.group(1)
     
     items = [
-        ('product-add.html', 'Add Product'),
-        ('product-inventory.html', 'Inventory'),
-        ('product-categories.html', 'Categories'),
-        ('product-brands.html', 'Brands'),
-        ('product-compatibility.html', 'Compatibility'),
-        ('product-reviews.html', 'Reviews')
+        ('admin-customers.html', 'All Customers'),
+        ('#', 'Customer Groups'),
+        ('#', 'Saved Builds'),
+        ('#', 'Addresses')
     ]
     
     new_div = '            <div class="ml-6 pl-4 border-l border-white/10 flex flex-col space-y-1 mt-1 mb-2">\n'
     
+    is_customers_active = False
+    
     for href, text in items:
-        if file == href or (file == 'admin-dashboard.html' and href == 'product-inventory.html' and False): # Just match file
+        if file == href:
             is_active = True
+            is_customers_active = True
         else:
             is_active = False
             
@@ -45,11 +46,19 @@ for file in html_files:
                 
     new_div += '            </div>\n        '
     
+    # Adjust <details> and <summary> depending on if it's active
+    if is_customers_active:
+        summary_part = re.sub(r'<details class="group"([^>]*)>', r'<details class="group" open>', summary_part)
+        summary_part = re.sub(r'(<summary[^>]*?)text-on-surface-variant', r'\1text-primary bg-primary/10', summary_part)
+    else:
+        summary_part = re.sub(r'<details class="group"\s*open>', r'<details class="group">', summary_part)
+        summary_part = re.sub(r'(<summary[^>]*?)text-primary bg-primary/10', r'\1text-on-surface-variant', summary_part)
+    
     new_content = content[:match.start()] + summary_part + '\n' + new_div + '</details>' + content[match.end():]
     
     if new_content != content:
         with open(file, 'w', encoding='utf-8') as f:
             f.write(new_content)
-        print(f'Updated sidebar in {file}')
+        print(f'Updated customers sidebar in {file}')
 
-print('Sidebar update complete.')
+print('Customers sidebar active state update complete.')
