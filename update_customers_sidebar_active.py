@@ -19,7 +19,7 @@ for file in html_files:
     items = [
         ('admin-customers.html', 'All Customers'),
         ('admin-customer-groups.html', 'Customer Groups'),
-        ('#', 'Saved Builds'),
+        ('admin-saved-builds.html', 'Saved Builds'),
         ('#', 'Addresses')
     ]
     

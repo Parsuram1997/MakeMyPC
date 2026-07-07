@@ -15,9 +15,9 @@ for file in html_files:
             is_active = True
         elif '>computer<' in details_content and False:
             is_active = True
-        elif ('>shopping_cart<' in details_content or '>receipt_long<' in details_content) and file.startswith('orders-'):
+        elif '>shopping_cart<' in details_content and file.startswith('orders-'):
             is_active = True
-        elif '>group<' in details_content and file in ['admin-customers.html', 'admin-customer-groups.html']:
+        elif '>group<' in details_content and file in ['admin-customers.html', 'admin-customer-groups.html', 'admin-saved-builds.html']:
             is_active = True
             
         # Fix the details tag
