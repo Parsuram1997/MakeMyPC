@@ -154,7 +154,7 @@
     </div>
 
     <nav class="flex flex-col gap-2 px-4 flex-1 overflow-y-auto custom-scrollbar pb-6">
-        <a href="admin-dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-primary bg-primary/10 hover:bg-white/5 hover:text-primary">
+        <a href="admin-dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
             <span class="material-symbols-outlined">dashboard</span>
             <span class="text-body-sm font-medium">Dashboard</span>
         </a>
@@ -319,7 +319,7 @@
     </nav>
 
     <div class="mt-auto px-4 shrink-0 border-t border-white/5 pt-4 pb-4">
-        <details class="group" name="sidebar-profile-menu">
+        <details class="group" open name="sidebar-profile-menu">
             <summary class="list-none outline-none">
                 <div class="flex items-center justify-between p-3 rounded-t-xl group-open:bg-white/[0.02] bg-surface-container border border-white/5 group-open:border-b-0 hover:bg-white/5 transition-colors cursor-pointer group-open:rounded-b-none rounded-b-xl">
                     <div class="flex items-center gap-3">
@@ -338,7 +338,7 @@
             </summary>
             
             <div class="bg-surface-container/50 border border-white/5 border-t-0 rounded-b-xl p-2 flex flex-col gap-0.5">
-                <a href="admin-profile.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[11px] font-medium text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors">
+                <a href="admin-profile.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[11px] font-medium text-white bg-white/5 transition-colors">
                     <span class="material-symbols-outlined text-[16px]">person</span>
                     Profile Settings
                 </a>
@@ -360,235 +360,256 @@
     </div>
 </aside>
 <!-- Main Content -->
-<main class="ml-64 relative">
+        <!-- Main Content -->
+        <main class="ml-64 overflow-y-auto h-screen p-6 custom-scrollbar relative z-10">
+            <!-- Header -->
+            <header class="flex items-center justify-between mb-8">
+                <div>
+                    <h1 class="text-2xl font-bold text-white mb-1">Admin Profile</h1>
+                    <div class="flex items-center gap-2 text-xs text-on-surface-variant">
+                        <a href="admin-dashboard.html" class="hover:text-primary transition-colors">Dashboard</a>
+                        <span class="material-symbols-outlined text-[12px]">chevron_right</span>
+                        <span class="text-white">Admin Profile</span>
+                    </div>
+                </div>
+            </header>
 
-<!-- Scrollable Content -->
-<div class="p-gutter space-y-gutter pb-24">
-<!-- KPI Grid -->
-<section class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
-<!-- Revenue Card -->
-<div class="glass-card p-5 rounded-xl group hover:border-primary/50 transition-all">
-<div class="flex justify-between items-start mb-4">
-<span class="material-symbols-outlined text-electric-blue bg-electric-blue/10 p-2 rounded-lg">payments</span>
-<span class="text-cyber-teal text-[10px] font-bold">+12%</span>
-</div>
-<p class="text-on-surface-variant text-[11px] font-medium uppercase tracking-wider">Total Revenue</p>
-<h3 class="text-headline-sm font-bold text-on-surface mt-1">₹1.2Cr</h3>
-</div>
-<div class="glass-card p-5 rounded-xl group hover:border-primary/50 transition-all">
-<div class="flex justify-between items-start mb-4">
-<span class="material-symbols-outlined text-cyber-teal bg-cyber-teal/10 p-2 rounded-lg">shopping_basket</span>
-<span class="text-cyber-teal text-[10px] font-bold">+8</span>
-</div>
-<p class="text-on-surface-variant text-[11px] font-medium uppercase tracking-wider">Today's Orders</p>
-<h3 class="text-headline-sm font-bold text-on-surface mt-1">42</h3>
-</div>
-<div class="glass-card p-5 rounded-xl group hover:border-primary/50 transition-all">
-<div class="flex justify-between items-start mb-4">
-<span class="material-symbols-outlined text-tertiary bg-tertiary/10 p-2 rounded-lg">pending_actions</span>
-</div>
-<p class="text-on-surface-variant text-[11px] font-medium uppercase tracking-wider">Pending Orders</p>
-<h3 class="text-headline-sm font-bold text-on-surface mt-1">12</h3>
-</div>
-<div class="glass-card p-5 rounded-xl group hover:border-primary/50 transition-all">
-<div class="flex justify-between items-start mb-4">
-<span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">task_alt</span>
-</div>
-<p class="text-on-surface-variant text-[11px] font-medium uppercase tracking-wider">Completed</p>
-<h3 class="text-headline-sm font-bold text-on-surface mt-1">28</h3>
-</div>
-<div class="glass-card p-5 rounded-xl group hover:border-primary/50 transition-all">
-<div class="flex justify-between items-start mb-4">
-<span class="material-symbols-outlined text-secondary bg-secondary/10 p-2 rounded-lg">groups</span>
-</div>
-<p class="text-on-surface-variant text-[11px] font-medium uppercase tracking-wider">Active Customers</p>
-<h3 class="text-headline-sm font-bold text-on-surface mt-1">1.4k</h3>
-</div>
-<div class="glass-card p-5 rounded-xl group hover:border-primary/50 transition-all">
-<div class="flex justify-between items-start mb-4">
-<span class="material-symbols-outlined text-on-surface-variant bg-white/10 p-2 rounded-lg">inventory</span>
-</div>
-<p class="text-on-surface-variant text-[11px] font-medium uppercase tracking-wider">Total Products</p>
-<h3 class="text-headline-sm font-bold text-on-surface mt-1">2.5k</h3>
-</div>
-</section>
-<!-- Charts & Visuals -->
-<section class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
-<div class="lg:col-span-2 glass-card rounded-2xl p-6 relative overflow-hidden">
-<div class="flex justify-between items-center mb-8 relative z-10">
-<div>
-<h2 class="text-headline-sm font-bold text-on-surface">Monthly Sales Trend</h2>
-<p class="text-body-sm text-on-surface-variant">Performance overview for the current fiscal year</p>
-</div>
-<select class="bg-surface-deep border border-white/10 rounded-lg px-4 py-2 text-body-sm text-on-surface focus:ring-primary">
-<option>Last 6 Months</option>
-<option>Last 12 Months</option>
-</select>
-</div>
-<div class="h-64 flex items-end justify-between gap-2 relative z-10">
-<!-- Simulated Area Chart Bars -->
-<div class="flex-1 group relative flex flex-col justify-end items-center h-full">
-<div class="w-full bg-gradient-to-t from-electric-blue/5 to-electric-blue/40 rounded-t-lg transition-all group-hover:from-electric-blue/20" style="height: 45%;"></div>
-<span class="text-[10px] text-on-surface-variant mt-3">JAN</span>
-</div>
-<div class="flex-1 group relative flex flex-col justify-end items-center h-full">
-<div class="w-full bg-gradient-to-t from-electric-blue/5 to-electric-blue/40 rounded-t-lg transition-all group-hover:from-electric-blue/20" style="height: 55%;"></div>
-<span class="text-[10px] text-on-surface-variant mt-3">FEB</span>
-</div>
-<div class="flex-1 group relative flex flex-col justify-end items-center h-full">
-<div class="w-full bg-gradient-to-t from-electric-blue/5 to-cyber-teal/60 rounded-t-lg transition-all group-hover:from-electric-blue/20" style="height: 75%;"></div>
-<span class="text-[10px] text-on-surface-variant mt-3">MAR</span>
-</div>
-<div class="flex-1 group relative flex flex-col justify-end items-center h-full">
-<div class="w-full bg-gradient-to-t from-electric-blue/5 to-electric-blue/40 rounded-t-lg transition-all group-hover:from-electric-blue/20" style="height: 60%;"></div>
-<span class="text-[10px] text-on-surface-variant mt-3">APR</span>
-</div>
-<div class="flex-1 group relative flex flex-col justify-end items-center h-full">
-<div class="w-full bg-gradient-to-t from-electric-blue/5 to-cyber-teal/60 rounded-t-lg transition-all group-hover:from-electric-blue/20" style="height: 90%;"></div>
-<div class="absolute top-0 text-[10px] font-bold text-cyber-teal -mt-4 opacity-0 group-hover:opacity-100 transition-opacity">₹28L</div>
-<span class="text-[10px] text-on-surface-variant mt-3">MAY</span>
-</div>
-<div class="flex-1 group relative flex flex-col justify-end items-center h-full">
-<div class="w-full bg-gradient-to-t from-electric-blue/5 to-electric-blue/40 rounded-t-lg transition-all group-hover:from-electric-blue/20" style="height: 85%;"></div>
-<span class="text-[10px] text-on-surface-variant mt-3">JUN</span>
-</div>
-</div>
-<!-- Decorative Glow -->
-<div class="absolute -bottom-24 -right-24 w-64 h-64 bg-electric-blue/10 rounded-full blur-[100px]"></div>
-</div>
-<div class="glass-card rounded-2xl p-6 flex flex-col">
-<h2 class="text-headline-sm font-bold text-on-surface mb-6">Build Status</h2>
-<div class="space-y-6 flex-1">
-<div class="space-y-2">
-<div class="flex justify-between items-center text-body-sm">
-<span class="text-on-surface-variant flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-electric-blue"></span> Assembly
-                </span>
-<span class="font-bold text-on-surface">18 Units</span>
-</div>
-<div class="h-2 w-full bg-white/5 rounded-full overflow-hidden">
-<div class="h-full bg-electric-blue rounded-full" style="width: 65%;"></div>
-</div>
-</div>
-<div class="space-y-2">
-<div class="flex justify-between items-center text-body-sm">
-<span class="text-on-surface-variant flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-cyber-teal"></span> Quality Check
-                </span>
-<span class="font-bold text-on-surface">8 Units</span>
-</div>
-<div class="h-2 w-full bg-white/5 rounded-full overflow-hidden">
-<div class="h-full bg-cyber-teal rounded-full" style="width: 30%;"></div>
-</div>
-</div>
-<div class="space-y-2">
-<div class="flex justify-between items-center text-body-sm">
-<span class="text-on-surface-variant flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-tertiary"></span> Ready for Pickup
-                </span>
-<span class="font-bold text-on-surface">12 Units</span>
-</div>
-<div class="h-2 w-full bg-white/5 rounded-full overflow-hidden">
-<div class="h-full bg-tertiary rounded-full" style="width: 45%;"></div>
-</div>
-</div>
-</div>
-<button class="mt-8 text-electric-blue text-body-sm font-bold flex items-center gap-2 hover:translate-x-2 transition-transform">
-            View Logistics Pipeline <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
-</div>
-</section>
-<!-- Recent Orders Table -->
-<section class="glass-card rounded-2xl overflow-hidden">
-<div class="px-6 py-5 border-b border-white/5 flex justify-between items-center bg-surface-container-low/50">
-<h2 class="text-headline-sm font-bold text-on-surface">Recent High-Value Orders</h2>
-<button class="text-body-sm text-primary hover:underline">View All Orders</button>
-</div>
-<div class="overflow-x-auto">
-<table class="w-full text-left">
-<thead>
-<tr class="text-[11px] uppercase tracking-wider text-on-surface-variant bg-surface-deep/50">
-<th class="px-6 py-4 font-semibold">Order ID</th>
-<th class="px-6 py-4 font-semibold">Customer</th>
-<th class="px-6 py-4 font-semibold">Items</th>
-<th class="px-6 py-4 font-semibold">Status</th>
-<th class="px-6 py-4 font-semibold text-right">Amount</th>
-<th class="px-6 py-4 font-semibold text-center">Actions</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-white/5">
-<tr class="hover:bg-white/5 transition-colors group">
-<td class="px-6 py-4 font-label-mono text-label-mono text-primary">#MPC-99420</td>
-<td class="px-6 py-4">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-full bg-gradient-to-br from-electric-blue to-cyber-teal flex items-center justify-center text-[10px] font-bold">AS</div>
-<span class="text-body-sm font-medium text-on-surface">Arjun Singh</span>
-</div>
-</td>
-<td class="px-6 py-4">
-<div class="flex flex-col">
-<span class="text-body-sm text-on-surface">i9-14900K + RTX 4090 Build</span>
-<span class="text-[10px] text-on-surface-variant italic">Custom Loop Watercooled</span>
-</div>
-</td>
-<td class="px-6 py-4">
-<span class="px-3 py-1 rounded-full text-[10px] font-bold bg-electric-blue/10 text-electric-blue border border-electric-blue/20">Assembling</span>
-</td>
-<td class="px-6 py-4 text-right font-label-mono text-on-surface font-bold">₹4,20,000</td>
-<td class="px-6 py-4 text-center">
-<button class="material-symbols-outlined text-on-surface-variant hover:text-on-surface">more_vert</button>
-</td>
-</tr>
-<tr class="hover:bg-white/5 transition-colors group">
-<td class="px-6 py-4 font-label-mono text-label-mono text-primary">#MPC-99418</td>
-<td class="px-6 py-4">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-full bg-gradient-to-br from-tertiary to-error flex items-center justify-center text-[10px] font-bold">MP</div>
-<span class="text-body-sm font-medium text-on-surface">Meera Patel</span>
-</div>
-</td>
-<td class="px-6 py-4">
-<div class="flex flex-col">
-<span class="text-body-sm text-on-surface">Ryzen 7 7800X3D Gaming Rig</span>
-<span class="text-[10px] text-on-surface-variant italic">Lian Li O11 Vision</span>
-</div>
-</td>
-<td class="px-6 py-4">
-<span class="px-3 py-1 rounded-full text-[10px] font-bold bg-cyber-teal/10 text-cyber-teal border border-cyber-teal/20">Processing</span>
-</td>
-<td class="px-6 py-4 text-right font-label-mono text-on-surface font-bold">₹2,85,500</td>
-<td class="px-6 py-4 text-center">
-<button class="material-symbols-outlined text-on-surface-variant hover:text-on-surface">more_vert</button>
-</td>
-</tr>
-<tr class="hover:bg-white/5 transition-colors group">
-<td class="px-6 py-4 font-label-mono text-label-mono text-primary">#MPC-99415</td>
-<td class="px-6 py-4">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-inverse-primary flex items-center justify-center text-[10px] font-bold">KD</div>
-<span class="text-body-sm font-medium text-on-surface">Karan Deshmukh</span>
-</div>
-</td>
-<td class="px-6 py-4">
-<div class="flex flex-col">
-<span class="text-body-sm text-on-surface">Threadripper 7995WX Workstation</span>
-<span class="text-[10px] text-on-surface-variant italic">Enterprise-grade server chassis</span>
-</div>
-</td>
-<td class="px-6 py-4">
-<span class="px-3 py-1 rounded-full text-[10px] font-bold bg-tertiary/10 text-tertiary border border-tertiary/20">Pending Parts</span>
-</td>
-<td class="px-6 py-4 text-right font-label-mono text-on-surface font-bold">₹12,40,000</td>
-<td class="px-6 py-4 text-center">
-<button class="material-symbols-outlined text-on-surface-variant hover:text-on-surface">more_vert</button>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</div>
-</main>
+            <!-- Profile Content -->
+            <div class="flex flex-col gap-6 w-full">
+                
+                <!-- Top Row: Profile Card & Personal Info -->
+                <div class="grid grid-cols-[1fr_2fr] gap-6 items-stretch">
+                    
+                    <!-- Left Card: Profile Overview -->
+                    <div class="bg-surface-container border border-white/5 rounded-2xl p-8 flex flex-col items-center relative overflow-hidden">
+                        <!-- Background Glow -->
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+                        
+                        <div class="relative mb-6">
+                            <div class="w-24 h-24 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-3xl border-[3px] border-surface-container shadow-[0_0_20px_rgba(0,122,255,0.2)]">
+                                AD
+                            </div>
+                            <button class="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-surface-deep border border-white/10 flex items-center justify-center text-white hover:bg-white/10 transition-colors">
+                                <span class="material-symbols-outlined text-[14px]">photo_camera</span>
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center gap-2 mb-2">
+                            <h2 class="text-lg font-bold text-white tracking-wide">Admin User</h2>
+                            <span class="text-[9px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">Super Admin</span>
+                        </div>
+                        
+                        <p class="text-xs text-on-surface-variant mb-4">admin@makemypc.com</p>
+                        
+                        <div class="flex items-center gap-1.5 mb-8">
+                            <span class="w-2 h-2 rounded-full bg-[#00D084] shadow-[0_0_8px_rgba(0,208,132,0.5)]"></span>
+                            <span class="text-[11px] text-white tracking-wider">Online</span>
+                        </div>
+                        
+                        <div class="w-full space-y-4 mt-auto">
+                            <div class="flex justify-between items-center pb-3 border-b border-white/5">
+                                <div class="flex items-center gap-2 text-on-surface-variant">
+                                    <span class="material-symbols-outlined text-[14px]">calendar_today</span>
+                                    <span class="text-[11px]">Joined on</span>
+                                </div>
+                                <span class="text-[11px] text-white font-medium">12 May 2024</span>
+                            </div>
+                            <div class="flex justify-between items-center pb-3 border-b border-white/5">
+                                <div class="flex items-center gap-2 text-on-surface-variant">
+                                    <span class="material-symbols-outlined text-[14px]">schedule</span>
+                                    <span class="text-[11px]">Last Login</span>
+                                </div>
+                                <span class="text-[11px] text-white font-medium">20 May 2024, 10:30 AM</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center gap-2 text-on-surface-variant">
+                                    <span class="material-symbols-outlined text-[14px]">monitor</span>
+                                    <span class="text-[11px]">IP Address</span>
+                                </div>
+                                <span class="text-[11px] text-white font-medium">192.168.1.24</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Card: Personal Information -->
+                    <div class="bg-surface-container border border-white/5 rounded-2xl p-8 flex flex-col">
+                        <div class="flex items-center justify-between mb-8">
+                            <h3 class="text-sm font-bold text-white tracking-wider">Personal Information</h3>
+                            <button class="flex items-center gap-1.5 text-[11px] font-medium text-white bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-lg border border-white/5 transition-all">
+                                <span class="material-symbols-outlined text-[12px]">edit</span> Edit
+                            </button>
+                        </div>
+                        
+                        <div class="grid grid-cols-[160px_1fr] gap-y-6 gap-x-4">
+                            <div class="flex items-center gap-3 text-on-surface-variant">
+                                <span class="material-symbols-outlined text-[16px]">person</span>
+                                <span class="text-xs">Full Name</span>
+                            </div>
+                            <div class="text-xs text-white">Admin User</div>
+                            
+                            <div class="flex items-center gap-3 text-on-surface-variant">
+                                <span class="material-symbols-outlined text-[16px]">mail</span>
+                                <span class="text-xs">Email Address</span>
+                            </div>
+                            <div class="text-xs text-white">admin@makemypc.com</div>
+                            
+                            <div class="flex items-center gap-3 text-on-surface-variant">
+                                <span class="material-symbols-outlined text-[16px]">call</span>
+                                <span class="text-xs">Phone Number</span>
+                            </div>
+                            <div class="text-xs text-white">+91 98765 43210</div>
+                            
+                            <div class="flex items-center gap-3 text-on-surface-variant">
+                                <span class="material-symbols-outlined text-[16px]">admin_panel_settings</span>
+                                <span class="text-xs">Role</span>
+                            </div>
+                            <div class="text-xs text-white">Super Administrator</div>
+                            
+                            <div class="flex items-center gap-3 text-on-surface-variant">
+                                <span class="material-symbols-outlined text-[16px]">language</span>
+                                <span class="text-xs">Language</span>
+                            </div>
+                            <div class="text-xs text-white">English</div>
+                            
+                            <div class="flex items-center gap-3 text-on-surface-variant">
+                                <span class="material-symbols-outlined text-[16px]">schedule</span>
+                                <span class="text-xs">Time Zone</span>
+                            </div>
+                            <div class="text-xs text-white">(GMT+5:30) Asia/Kolkata</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Middle Row: Security & 2FA -->
+                <div class="grid grid-cols-2 gap-6">
+                    
+                    <!-- Account Security -->
+                    <div class="bg-surface-container border border-white/5 rounded-2xl p-6">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 border border-primary/20">
+                                <span class="material-symbols-outlined text-[20px]">shield_person</span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white mb-1">Account Security</h3>
+                                <p class="text-[11px] text-on-surface-variant">Manage your password and security settings</p>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full flex items-center justify-between p-4 rounded-xl bg-surface-deep border border-white/5 hover:bg-white/5 transition-colors group">
+                            <div class="flex items-center gap-3 text-sm text-white font-medium">
+                                <span class="material-symbols-outlined text-[18px] text-on-surface-variant">lock</span>
+                                Change Password
+                            </div>
+                            <span class="material-symbols-outlined text-[16px] text-on-surface-variant group-hover:text-white transition-colors">chevron_right</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Two Factor Auth -->
+                    <div class="bg-surface-container border border-white/5 rounded-2xl p-6">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="w-10 h-10 rounded-xl bg-[#00D084]/10 text-[#00D084] flex items-center justify-center shrink-0 border border-[#00D084]/20">
+                                <span class="material-symbols-outlined text-[20px]">lock_clock</span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white mb-1">Two Factor Authentication</h3>
+                                <p class="text-[11px] text-on-surface-variant">Add an extra layer of security to your account</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between bg-surface-deep border border-white/5 rounded-xl p-4">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-[14px] text-[#00D084]">check_circle</span>
+                                <span class="text-xs font-bold text-[#00D084] tracking-wider">Enabled</span>
+                            </div>
+                            
+                            <button class="flex items-center gap-2 text-[11px] font-medium text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg border border-white/5 transition-all group">
+                                Manage 2FA <span class="material-symbols-outlined text-[14px] text-on-surface-variant group-hover:text-white transition-colors">chevron_right</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bottom Row: Sessions & Activity -->
+                <div class="grid grid-cols-2 gap-6">
+                    
+                    <!-- Login Sessions -->
+                    <div class="bg-surface-container border border-white/5 rounded-2xl p-6 flex flex-col">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 border border-primary/20">
+                                <span class="material-symbols-outlined text-[20px]">devices</span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white mb-1">Login Sessions</h3>
+                                <p class="text-[11px] text-on-surface-variant">Manage your active sessions across devices</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mt-auto">
+                            <button class="text-xs font-medium text-white bg-surface-deep border border-white/5 hover:bg-white/10 px-5 py-2.5 rounded-xl transition-all">
+                                View Active Sessions
+                            </button>
+                            <span class="text-[10px] font-bold text-[#B14EEF] bg-[#B14EEF]/10 px-3 py-1.5 rounded-lg border border-[#B14EEF]/20">3 Active</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Activity Summary -->
+                    <div class="bg-surface-container border border-white/5 rounded-2xl p-6">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="w-10 h-10 rounded-xl bg-yellow-500/10 text-yellow-500 flex items-center justify-center shrink-0 border border-yellow-500/20">
+                                <span class="material-symbols-outlined text-[20px]">show_chart</span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white mb-1">Activity Summary</h3>
+                                <p class="text-[11px] text-on-surface-variant">Your account activity overview</p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-3 gap-4">
+                            <div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="material-symbols-outlined text-[14px] text-yellow-500">login</span>
+                                    <span class="text-lg font-bold text-white">142</span>
+                                </div>
+                                <p class="text-[10px] text-on-surface-variant">Logins</p>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="material-symbols-outlined text-[14px] text-yellow-500">touch_app</span>
+                                    <span class="text-lg font-bold text-white">28</span>
+                                </div>
+                                <p class="text-[10px] text-on-surface-variant">Actions</p>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="material-symbols-outlined text-[14px] text-primary">swap_horiz</span>
+                                    <span class="text-lg font-bold text-white">12</span>
+                                </div>
+                                <p class="text-[10px] text-on-surface-variant">IP Changes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Danger Zone -->
+                <div class="bg-surface-container border border-white/5 rounded-2xl p-6 flex items-center justify-between mb-8">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-red-500/10 text-red-500 flex items-center justify-center shrink-0 border border-red-500/20">
+                            <span class="material-symbols-outlined text-[20px]">warning</span>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-bold text-red-500 mb-1">Danger Zone</h3>
+                            <p class="text-[11px] text-on-surface-variant">Permanently delete your account and all related data</p>
+                        </div>
+                    </div>
+                    
+                    <button class="flex items-center gap-2 text-[11px] font-bold text-red-500 bg-transparent border border-red-500/30 hover:bg-red-500/10 px-5 py-2.5 rounded-xl transition-all">
+                        <span class="material-symbols-outlined text-[16px]">delete</span> Delete Account
+                    </button>
+                </div>
+                
+            </div>
+        </main>
+
 <script>
     // Subtle interaction logic
     document.querySelectorAll('.glass-card').forEach(card => {
