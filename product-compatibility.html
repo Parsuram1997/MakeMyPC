@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MakeMyPC Admin - Products Inventory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        /* Custom Scrollbar for Glassmorphism */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 40px 40px -20px rgba(0, 0, 0, 0.15);
+        }
+        .glass-card:hover {
+            border-color: #adc6ff;
+            box-shadow: 0 0 20px rgba(0, 122, 255, 0.1);
+        }
+        .hardware-gradient {
+            background: linear-gradient(135deg, #101b30 0%, #071327 100%);
+        }
+        .active-glow {
+            box-shadow: inset 0 0 10px rgba(0, 122, 255, 0.2);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#adc6ff",
+                    "on-tertiary-container": "#4c1a00",
+                    "inverse-on-surface": "#263046",
+                    "secondary-fixed-dim": "#5cd8da",
+                    "surface-container-low": "#101b30",
+                    "surface-container": "#142034",
+                    "primary-fixed-dim": "#adc6ff",
+                    "outline-variant": "#414755",
+                    "electric-blue": "#007AFF",
+                    "background": "#071327",
+                    "surface-bright": "#2e394f",
+                    "secondary": "#5cd8da",
+                    "surface": "#071327",
+                    "on-primary-container": "#00285c",
+                    "tertiary-container": "#ef6719",
+                    "hardware-gray": "#111111",
+                    "on-background": "#d7e2ff",
+                    "on-tertiary-fixed": "#351000",
+                    "tertiary": "#ffb595",
+                    "primary-container": "#4b8eff",
+                    "surface-tint": "#adc6ff",
+                    "surface-container-lowest": "#030e22",
+                    "primary-fixed": "#d8e2ff",
+                    "on-primary": "#002e69",
+                    "on-secondary-fixed": "#002020",
+                    "surface-deep": "#00081C",
+                    "secondary-container": "#00a4a6",
+                    "on-secondary-fixed-variant": "#004f50",
+                    "cyber-teal": "#00A4A6",
+                    "on-surface": "#d7e2ff",
+                    "tertiary-fixed": "#ffdbcc",
+                    "error": "#ffb4ab",
+                    "on-surface-variant": "#c1c6d7",
+                    "on-tertiary-fixed-variant": "#7c2e00",
+                    "outline": "#8b90a0",
+                    "surface-dim": "#071327",
+                    "on-error": "#690005",
+                    "on-primary-fixed": "#001a41",
+                    "surface-container-highest": "#2a354a",
+                    "inverse-primary": "#005bc1",
+                    "on-primary-fixed-variant": "#004493",
+                    "secondary-fixed": "#7cf5f7",
+                    "surface-variant": "#2a354a",
+                    "inverse-surface": "#d7e2ff",
+                    "on-tertiary": "#571e00",
+                    "on-error-container": "#ffdad6",
+                    "surface-glass": "rgba(255, 255, 255, 0.03)",
+                    "error-container": "#93000a",
+                    "on-secondary": "#003738",
+                    "on-secondary-container": "#003233",
+                    "tertiary-fixed-dim": "#ffb595",
+                    "surface-container-high": "#1f2a3f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "base": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-mono": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface-deep text-on-surface font-body-md overflow-x-hidden">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r border-white/10 bg-surface-deep z-50 flex flex-col py-6">
+    <div class="px-6 mb-8 shrink-0">
+        <h1 class="font-headline-sm text-headline-sm font-bold text-electric-blue dark:text-primary">MakeMyPC</h1>
+        <p class="text-[10px] uppercase tracking-widest text-on-surface-variant/50 mt-1">Enterprise Admin</p>
+    </div>
+
+    <nav class="flex flex-col gap-2 px-4 flex-1 overflow-y-auto custom-scrollbar pb-6">
+        <a href="admin-dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="text-body-sm font-medium">Dashboard</span>
+        </a>
+
+        <details class="group" open>
+            <summary class="flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 text-primary bg-primary/10 hover:bg-white/5 hover:text-primary list-none [&::-webkit-details-marker]:hidden">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">inventory_2</span>
+                    <span class="text-body-sm font-medium">Products</span>
+                </div>
+                <span class="material-symbols-outlined text-sm transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="ml-6 pl-4 border-l border-white/10 flex flex-col space-y-1 mt-1 mb-2">
+                <a href="product-add.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Add Product
+                </a>
+                <a href="product-inventory.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Inventory
+                </a>
+                <a href="product-categories.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Categories
+                </a>
+                <a href="product-brands.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Brands
+                </a>
+                <a href="product-compatibility.html" class="text-sm text-primary font-medium bg-primary/10 px-4 py-2 rounded-lg relative block">
+                    <div class="absolute -left-[17px] top-0 bottom-0 w-[2px] bg-primary"></div>
+                    Compatibility
+                </a>
+                <a href="#" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Reviews
+                </a>
+            </div>
+        </details>
+
+        <details class="group">
+            <summary class="flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary list-none [&::-webkit-details-marker]:hidden">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">computer</span>
+                    <span class="text-body-sm font-medium">PC Builder</span>
+                </div>
+                <span class="material-symbols-outlined text-sm transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="flex flex-col gap-1 pl-12 pr-4 pt-1 pb-2">
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Custom Builds</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Saved Builds</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Compatibility Engine</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Featured Builds</a>
+            </div>
+        </details>
+
+        <details class="group">
+            <summary class="flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary list-none [&::-webkit-details-marker]:hidden">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span class="text-body-sm font-medium">Orders</span>
+                </div>
+                <span class="material-symbols-outlined text-sm transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="flex flex-col gap-1 pl-12 pr-4 pt-1 pb-2">
+                <a href="orders-management.html" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">All Orders</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Custom PC</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Components</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Ready PCs</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Laptops</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Returns</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Refunds</a>
+            </div>
+        </details>
+
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">group</span>
+            <span class="text-body-sm font-medium">Customers</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">local_shipping</span>
+            <span class="text-body-sm font-medium">Shipping</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">build</span>
+            <span class="text-body-sm font-medium">Assembly</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">payments</span>
+            <span class="text-body-sm font-medium">Payments</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">local_offer</span>
+            <span class="text-body-sm font-medium">Coupons</span>
+        </a>
+        <a href="admin-dashboard-overview.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">analytics</span>
+            <span class="text-body-sm font-medium">Analytics</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">support_agent</span>
+            <span class="text-body-sm font-medium">Support</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">campaign</span>
+            <span class="text-body-sm font-medium">Marketing</span>
+        </a>
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">language</span>
+            <span class="text-body-sm font-medium">Website</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">summarize</span>
+            <span class="text-body-sm font-medium">Reports</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">notifications</span>
+            <span class="text-body-sm font-medium">Notifications</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">admin_panel_settings</span>
+            <span class="text-body-sm font-medium">Admin Users</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary mt-auto mb-4">
+            <span class="material-symbols-outlined">settings</span>
+            <span class="text-body-sm font-medium">Settings</span>
+        </a>
+    </nav>
+
+    <div class="mt-auto px-4 shrink-0 border-t border-white/5 pt-4">
+        <div class="flex items-center gap-3 p-3 rounded-lg bg-surface-glass border border-white/5 hover:bg-white/5 transition-colors cursor-pointer">
+            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold text-xs">AD</div>
+            <div class="overflow-hidden">
+                <p class="text-xs font-bold text-on-surface truncate">Admin Profile</p>
+                <p class="text-[10px] text-on-surface-variant truncate">Sign out</p>
+            </div>
+        </div>
+    </div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 relative">
+<div class="flex-1 overflow-y-auto h-screen flex flex-col custom-scrollbar">
+    <div class="p-gutter flex items-end justify-between border-b border-white/5 pb-6 shrink-0 mt-6">
+        <div>
+            <div class="flex items-center gap-3 mb-2">
+                <span class="px-2 py-1 rounded bg-electric-blue text-white text-[10px] font-bold tracking-widest uppercase shadow-[0_0_10px_#007AFF]">Core Engine</span>
+            </div>
+            <h2 class="font-headline-lg text-headline-lg text-on-surface">Compatibility Matrix</h2>
+            <p class="text-on-surface-variant text-body-sm mt-1">Define hardware relationships for the PC Builder engine.</p>
+        </div>
+    </div>
+
+    <div class="p-gutter grid grid-cols-12 gap-6 h-[calc(100vh-180px)]">
+        <!-- Left Panel: Source Component -->
+        <div class="col-span-4 flex flex-col gap-4">
+            <div class="glass-card rounded-2xl p-4 flex flex-col h-full border-primary/20">
+                <h3 class="text-label-mono text-primary uppercase tracking-widest mb-4">Select Component</h3>
+                
+                <div class="relative w-full mb-4">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+                    <input type="text" placeholder="Search CPU, Motherboard..." class="w-full bg-surface-container border border-outline-variant/30 rounded-lg py-2 pl-10 pr-4 text-sm focus:ring-1 focus:ring-primary outline-none transition-all">
+                </div>
+
+                <div class="flex-1 overflow-y-auto custom-scrollbar flex flex-col gap-2">
+                    <!-- Selected Item -->
+                    <div class="p-3 rounded-xl bg-primary/10 border border-primary text-on-surface flex items-center justify-between cursor-pointer">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary">memory</span>
+                            <div>
+                                <p class="font-bold text-sm">Ryzen 7 9700X</p>
+                                <p class="text-[10px] text-primary">CPU • AMD</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Unselected Items -->
+                    <div class="p-3 rounded-xl hover:bg-white/5 border border-transparent text-on-surface-variant flex items-center justify-between cursor-pointer transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined">memory</span>
+                            <div>
+                                <p class="font-bold text-sm">Core i9-14900K</p>
+                                <p class="text-[10px] opacity-60">CPU • Intel</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3 rounded-xl hover:bg-white/5 border border-transparent text-on-surface-variant flex items-center justify-between cursor-pointer transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined">sd_card</span>
+                            <div>
+                                <p class="font-bold text-sm">Vengeance DDR5 32GB</p>
+                                <p class="text-[10px] opacity-60">RAM • Corsair</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel: Targets -->
+        <div class="col-span-8 flex flex-col gap-4">
+            <div class="glass-card rounded-2xl p-6 flex flex-col h-full border-white/5">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h3 class="text-label-mono text-on-surface-variant uppercase tracking-widest mb-1">Compatible With</h3>
+                        <p class="text-xl font-bold text-on-surface flex items-center gap-2">Ryzen 7 9700X <span class="px-2 py-0.5 rounded-full bg-white/10 text-xs font-normal">AM5 Socket</span></p>
+                    </div>
+                    
+                    <select class="bg-surface-container border border-outline-variant/30 rounded-lg py-2 px-3 text-sm text-on-surface focus:ring-1 focus:ring-primary outline-none transition-all appearance-none custom-select">
+                        <option>Target: Motherboards</option>
+                        <option>Target: RAM</option>
+                        <option>Target: Coolers</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 flex-1 overflow-y-auto custom-scrollbar content-start">
+                    
+                    <!-- Compatible Toggle -->
+                    <div class="p-4 rounded-xl border border-white/5 bg-white/5 flex items-center justify-between">
+                        <div>
+                            <p class="font-bold text-on-surface text-sm">B650 Chipset Motherboards</p>
+                            <p class="text-xs text-on-surface-variant mt-1">Native Support</p>
+                        </div>
+                        <button class="w-12 h-6 rounded-full bg-cyber-teal flex items-center px-1 shadow-[0_0_10px_rgba(0,164,166,0.3)] transition-all">
+                            <div class="w-4 h-4 rounded-full bg-white ml-auto shadow-sm"></div>
+                        </button>
+                    </div>
+
+                    <div class="p-4 rounded-xl border border-white/5 bg-white/5 flex items-center justify-between">
+                        <div>
+                            <p class="font-bold text-on-surface text-sm">X670 Chipset Motherboards</p>
+                            <p class="text-xs text-on-surface-variant mt-1">Native Support</p>
+                        </div>
+                        <button class="w-12 h-6 rounded-full bg-cyber-teal flex items-center px-1 shadow-[0_0_10px_rgba(0,164,166,0.3)] transition-all">
+                            <div class="w-4 h-4 rounded-full bg-white ml-auto shadow-sm"></div>
+                        </button>
+                    </div>
+
+                    <!-- Incompatible Toggle -->
+                    <div class="p-4 rounded-xl border border-white/5 bg-surface-deep flex items-center justify-between opacity-60">
+                        <div>
+                            <p class="font-bold text-on-surface text-sm">H610 Chipset Motherboards</p>
+                            <p class="text-xs text-error mt-1">Incompatible Socket</p>
+                        </div>
+                        <button class="w-12 h-6 rounded-full bg-surface-container border border-white/20 flex items-center px-1 transition-all">
+                            <div class="w-4 h-4 rounded-full bg-white/50 shadow-sm"></div>
+                        </button>
+                    </div>
+
+                    <div class="p-4 rounded-xl border border-white/5 bg-surface-deep flex items-center justify-between opacity-60">
+                        <div>
+                            <p class="font-bold text-on-surface text-sm">Z790 Chipset Motherboards</p>
+                            <p class="text-xs text-error mt-1">Incompatible Socket</p>
+                        </div>
+                        <button class="w-12 h-6 rounded-full bg-surface-container border border-white/20 flex items-center px-1 transition-all">
+                            <div class="w-4 h-4 rounded-full bg-white/50 shadow-sm"></div>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+<script src="js/global.js"></script>
+</body>
+</html>

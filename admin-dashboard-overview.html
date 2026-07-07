@@ -103,6 +103,29 @@
       }
     </script>
 <style>
+        /* Custom Scrollbar for Glassmorphism */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
       body {
         background-color: #071327;
         color: #d7e2ff;
@@ -114,16 +137,6 @@
         border: 1px solid rgba(255, 255, 255, 0.1);
         box-shadow: 0 40px 40px -20px rgba(0, 0, 0, 0.15);
       }
-      .custom-scrollbar::-webkit-scrollbar {
-        width: 6px;
-      }
-      .custom-scrollbar::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-      }
       .active-glow {
         box-shadow: 0 0 15px rgba(0, 122, 255, 0.3);
       }
@@ -132,152 +145,154 @@
       }
     </style>
 </head>
-<body class="overflow-hidden">
+<body class="bg-surface-deep text-on-surface font-body-md overflow-x-hidden">
 <!-- Sidebar -->
 <aside class="h-screen w-64 fixed left-0 top-0 border-r border-white/10 bg-surface-deep z-50 flex flex-col py-6">
-<div class="px-6 mb-10">
-<h1 class="font-headline-sm text-headline-sm font-bold text-electric-blue">MakeMyPC</h1>
-<p class="text-[10px] uppercase tracking-widest text-on-surface-variant/50 mt-1">Enterprise Admin</p>
-</div>
-<nav class="fixed top-0 w-full z-50 bg-surface-glass backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
-<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-desktop h-20">
-<a href="index.html" class="text-headline-lg font-headline-lg font-black text-on-surface tracking-tighter">MakeMyPC</a>
-<div class="hidden md:flex gap-x-8 items-center">
-<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="shop.html">Shop</a>
-<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="custom-pc-builder.html">Builder</a>
-<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-mono text-label-mono" href="support-faq.html">Resources</a>
-</div>
-<div class="flex items-center gap-x-6">
-<div class="relative hidden lg:block">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-<input class="bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-body-sm font-body-sm focus:outline-none focus:border-electric-blue w-64 transition-all" placeholder="Search Components" type="text"/>
-</div>
-<div class="flex gap-x-4">
-<button class="text-on-surface-variant hover:text-primary transition-colors duration-100 relative" onclick="window.location.href='shopping-cart.html'">
-<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
-<span id="cart-badge" class="absolute -top-1 -right-1 bg-error text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
-</button>
-<a href="login.html" id="auth-login-btn" class="text-on-surface-variant hover:text-primary transition-colors duration-100 flex items-center">
-<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
-</a>
-<a href="account-settings.html" id="auth-avatar-btn" class="hidden w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm hover:brightness-110 transition-all">
-<span id="avatar-initial">U</span>
-</a>
-</div>
-</div>
-</div>
-</nav>
-
-<!-- Mobile Menu Overlay -->
-<div id="mobile-menu" class="fixed inset-0 bg-[#00081C]/95 backdrop-blur-xl z-[60] transform translate-x-full transition-transform duration-300 md:hidden flex flex-col">
-    <div class="flex justify-between items-center p-6 border-b border-white/10">
-        <span class="text-xl font-black text-white tracking-tighter">Menu</span>
-        <button id="mobile-menu-close" class="text-on-surface-variant hover:text-white transition-colors">
-            <span class="material-symbols-outlined text-3xl">close</span>
-        </button>
+    <div class="px-6 mb-8 shrink-0">
+        <h1 class="font-headline-sm text-headline-sm font-bold text-electric-blue dark:text-primary">MakeMyPC</h1>
+        <p class="text-[10px] uppercase tracking-widest text-on-surface-variant/50 mt-1">Enterprise Admin</p>
     </div>
-    <div class="flex flex-col gap-6 p-6 overflow-y-auto">
-        <!-- Search -->
-        <div class="relative w-full">
-            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-            <input class="bg-surface-container-low border border-white/10 rounded-lg pl-10 pr-4 py-3 text-body-sm focus:outline-none focus:border-primary w-full transition-all text-white placeholder:text-on-surface-variant/50" placeholder="Search Components" type="text"/>
-        </div>
-        
-        <div class="flex flex-col gap-4 border-b border-white/10 pb-6">
-            <a href="shop.html" class="text-lg font-bold text-white hover:text-primary flex justify-between items-center">
-        Shop <span class="material-symbols-outlined text-sm">chevron_right</span>
-            </a>
-            <a href="builder-landing.html" class="text-lg font-bold text-white hover:text-primary flex justify-between items-center">
-                Builder <span class="material-symbols-outlined text-sm">chevron_right</span>
-            </a>
-            <a href="support-faq.html" class="text-lg font-bold text-white hover:text-primary flex justify-between items-center">
-                Resources <span class="material-symbols-outlined text-sm">chevron_right</span>
-            </a>
+
+    <nav class="flex flex-col gap-2 px-4 flex-1 overflow-y-auto custom-scrollbar pb-6">
+        <a href="admin-dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-primary bg-primary/10 hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="text-body-sm font-medium">Dashboard</span>
+        </a>
+
+        <details class="group" open>
+            <summary class="flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary list-none [&::-webkit-details-marker]:hidden">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">inventory_2</span>
+                    <span class="text-body-sm font-medium">Products</span>
+                </div>
+                <span class="material-symbols-outlined text-sm transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="ml-6 pl-4 border-l border-white/10 flex flex-col space-y-1 mt-1 mb-2">
+                <a href="product-add.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Add Product
+                </a>
+                <a href="product-inventory.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Inventory
+                </a>
+                <a href="product-categories.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Categories
+                </a>
+                <a href="product-brands.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Brands
+                </a>
+                <a href="product-compatibility.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Compatibility
+                </a>
+                <a href="#" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Reviews
+                </a>
+            </div>
+        </details>
+
+        <details class="group">
+            <summary class="flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary list-none [&::-webkit-details-marker]:hidden">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">computer</span>
+                    <span class="text-body-sm font-medium">PC Builder</span>
+                </div>
+                <span class="material-symbols-outlined text-sm transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="flex flex-col gap-1 pl-12 pr-4 pt-1 pb-2">
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Custom Builds</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Saved Builds</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Compatibility Engine</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Featured Builds</a>
+            </div>
+        </details>
+
+        <details class="group">
+            <summary class="flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary list-none [&::-webkit-details-marker]:hidden">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span class="text-body-sm font-medium">Orders</span>
+                </div>
+                <span class="material-symbols-outlined text-sm transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="flex flex-col gap-1 pl-12 pr-4 pt-1 pb-2">
+                <a href="orders-management.html" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">All Orders</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Custom PC</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Components</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Ready PCs</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Laptops</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Returns</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Refunds</a>
+            </div>
+        </details>
+
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">group</span>
+            <span class="text-body-sm font-medium">Customers</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">local_shipping</span>
+            <span class="text-body-sm font-medium">Shipping</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">build</span>
+            <span class="text-body-sm font-medium">Assembly</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">payments</span>
+            <span class="text-body-sm font-medium">Payments</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">local_offer</span>
+            <span class="text-body-sm font-medium">Coupons</span>
+        </a>
+        <a href="admin-dashboard-overview.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">analytics</span>
+            <span class="text-body-sm font-medium">Analytics</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">support_agent</span>
+            <span class="text-body-sm font-medium">Support</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">campaign</span>
+            <span class="text-body-sm font-medium">Marketing</span>
+        </a>
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">language</span>
+            <span class="text-body-sm font-medium">Website</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">summarize</span>
+            <span class="text-body-sm font-medium">Reports</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">notifications</span>
+            <span class="text-body-sm font-medium">Notifications</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">admin_panel_settings</span>
+            <span class="text-body-sm font-medium">Admin Users</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary mt-auto mb-4">
+            <span class="material-symbols-outlined">settings</span>
+            <span class="text-body-sm font-medium">Settings</span>
+        </a>
+    </nav>
+
+    <div class="mt-auto px-4 shrink-0 border-t border-white/5 pt-4">
+        <div class="flex items-center gap-3 p-3 rounded-lg bg-surface-glass border border-white/5 hover:bg-white/5 transition-colors cursor-pointer">
+            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold text-xs">AD</div>
+            <div class="overflow-hidden">
+                <p class="text-xs font-bold text-on-surface truncate">Admin Profile</p>
+                <p class="text-[10px] text-on-surface-variant truncate">Sign out</p>
+            </div>
         </div>
     </div>
-</div>
-
-<script>
-    // Mobile Menu Logic
-    document.addEventListener('DOMContentLoaded', () => {
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const closeBtn = document.getElementById('mobile-menu-close');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (menuBtn && closeBtn && mobileMenu) {
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.remove('translate-x-full');
-            });
-            closeBtn.addEventListener('click', () => {
-                mobileMenu.classList.add('translate-x-full');
-            });
-        }
-    });
-</script>
-
-<!-- Sidebar Widgets -->
-<div class="px-4 mt-8 space-y-6">
-<div class="glass-card p-4 rounded-xl">
-<div class="flex items-center gap-2 mb-3">
-<span class="material-symbols-outlined text-tertiary text-sm">warning</span>
-<span class="font-label-mono text-label-mono text-on-tertiary-fixed-variant">LOW STOCK ALERTS</span>
-</div>
-<div class="space-y-2">
-<div class="flex justify-between items-center text-[11px]">
-<span class="text-on-surface-variant">RTX 4090 OC</span>
-<span class="text-error font-bold">2 units</span>
-</div>
-<div class="w-full bg-white/5 h-1 rounded-full">
-<div class="bg-error h-full rounded-full w-[20%]"></div>
-</div>
-<div class="flex justify-between items-center text-[11px] pt-1">
-<span class="text-on-surface-variant">i9-14900KS</span>
-<span class="text-error font-bold">5 units</span>
-</div>
-</div>
-</div>
-<div class="space-y-2">
-<button class="w-full py-2 bg-electric-blue text-white rounded-lg font-body-sm text-body-sm font-bold flex items-center justify-center gap-2 active-glow transition-all active:scale-95">
-<span class="material-symbols-outlined text-sm">add</span> Add Product
-        </button>
-<button class="w-full py-2 bg-surface-container-highest text-primary rounded-lg font-body-sm text-body-sm font-bold flex items-center justify-center gap-2 transition-all active:scale-95 border border-white/5">
-<span class="material-symbols-outlined text-sm">construction</span> New Build
-        </button>
-</div>
-</div>
 </aside>
 <!-- Main Content -->
-<main class="ml-64 h-screen flex flex-col relative">
-<!-- Header -->
-<header class="sticky top-0 z-40 w-full bg-surface-container/80 backdrop-blur-md border-b border-white/5 px-gutter h-16 flex justify-between items-center">
-<div class="flex items-center gap-4 flex-1">
-<div class="relative w-full max-w-md group">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg transition-colors group-focus-within:text-primary">search</span>
-<input class="w-full bg-surface-deep border border-white/10 rounded-lg pl-10 pr-4 py-2 text-body-sm font-body-sm focus:ring-1 focus:ring-primary focus:outline-none transition-all" placeholder="Search orders, parts, or builds..." type="text"/>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<button class="text-on-surface-variant hover:text-primary transition-all relative">
-<span class="material-symbols-outlined">notifications</span>
-<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
-</button>
-<button class="text-on-surface-variant hover:text-primary transition-all">
-<span class="material-symbols-outlined">help</span>
-</button>
-<div class="h-8 w-px bg-white/10 mx-2"></div>
-<div class="flex items-center gap-3">
-<div class="text-right hidden sm:block">
-<p class="text-body-sm font-bold text-on-surface">Rajesh Kumar</p>
-<p class="text-[10px] text-on-surface-variant">Fleet Manager</p>
-</div>
-<div class="w-10 h-10 rounded-full border border-primary/30 p-0.5">
-<img class="w-full h-full rounded-full object-cover" data-alt="A professional headshot of a middle-aged South Asian male manager in a modern tech office setting, with soft focus on a background of high-end PC hardware components. He has a friendly yet authoritative expression, wearing a sleek black polo shirt with a subtle tech company logo. The lighting is premium and cinematic with cool blue and teal highlights characteristic of a professional dark-themed UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdTor56lGNMQqNJnvgjTZXH6ygomWZcH278TTnPvcT8AIR6fgkaDMk5OeydtdxxCUOqu7xXiYKEMyAi_r0enyiwfJ-60BcxuLHiygwquTzsVGXGQpmu_RZ3JdiJ2LsTBAU_w6eTndRdHHTu7_YPyBF9S4mlDqFxyIGLCTUZyZhUcrkBMDmHQJsDfC6UV8UtnoUHDiQpgmMklZkhSOfBVV-iWAVnf4fP3P-lLa4-XrUdFJApo0FPVrZZA"/>
-</div>
-</div>
-</div>
-</header>
+<main class="ml-64 relative">
+
 <!-- Scrollable Content -->
-<div class="flex-1 overflow-y-auto custom-scrollbar p-gutter space-y-gutter pb-24">
+<div class="p-gutter space-y-gutter pb-24">
 <!-- KPI Grid -->
 <section class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
 <!-- Revenue Card -->
@@ -529,109 +544,7 @@
     });
   </script>
 <script src="js/global.js"></script>
-<!-- Footer -->
-<footer class="bg-surface-deep border-t border-white/5 w-full">
-    <div class="max-w-container-max mx-auto px-margin-desktop py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-gutter">
-        <!-- 1. Company Details -->
-        <div class="lg:col-span-2">
-            <div class="font-headline-sm text-headline-sm text-on-surface mb-6">MakeMyPC</div>
-            <p class="text-on-surface-variant font-body-sm text-body-sm leading-relaxed mb-6">
-                India's most trusted Custom PC Builder. We don't just sell parts; we build your dream setup with surgical precision, premium quality, and 100% compatibility guarantee.
-            </p>
-            <div class="flex items-center gap-4 mb-8">
-                <!-- Trust Badges (Images or Icons) -->
-                <div class="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-lg border border-white/10">
-                    <span class="material-symbols-outlined text-electric-blue">verified</span>
-                    <span class="text-label-mono text-xs text-on-surface">100% Genuine</span>
-                </div>
-                <div class="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-lg border border-white/10">
-                    <span class="material-symbols-outlined text-cyber-teal">shield</span>
-                    <span class="text-label-mono text-xs text-on-surface">Secure Checkout</span>
-                </div>
-            </div>
-        </div>
 
-        <!-- 2. Explore / Quick Links -->
-        <div>
-            <h5 class="font-label-mono text-label-mono text-on-surface uppercase tracking-widest mb-6">Explore</h5>
-            <ul class="space-y-4">
-                <li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all flex items-center gap-2" href="builder-landing.html"><span class="material-symbols-outlined text-[16px]">build</span> Custom PC Builder</a></li>
-                <li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all flex items-center gap-2" href="prebuilt-pcs.html"><span class="material-symbols-outlined text-[16px]">desktop_windows</span> Prebuilt PCs</a></li>
-                <li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all flex items-center gap-2" href="order-tracking.html"><span class="material-symbols-outlined text-[16px]">local_shipping</span> Track Order</a></li>
-                <li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all flex items-center gap-2" href="#"><span class="material-symbols-outlined text-[16px]">info</span> About Us</a></li>
-            </ul>
-        </div>
-
-        <!-- 3. Policies & Support -->
-        <div>
-            <h5 class="font-label-mono text-label-mono text-on-surface uppercase tracking-widest mb-6">Policies & Support</h5>
-            <ul class="space-y-4">
-                <li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all" href="support-faq.html">FAQ & Support</a></li>
-                <li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all" href="#">Return & Cancellation</a></li>
-                <li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all" href="#">Shipping Policy</a></li>
-                <li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all" href="#">Privacy Policy</a></li>
-                <li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all" href="#">Terms of Service</a></li>
-            </ul>
-        </div>
-
-        <!-- 4. Contact -->
-        <div>
-            <h5 class="font-label-mono text-label-mono text-on-surface uppercase tracking-widest mb-6">Contact Us</h5>
-            <ul class="space-y-4 mb-6">
-                <li class="flex items-start gap-3">
-                    <span class="material-symbols-outlined text-on-surface-variant mt-0.5">call</span>
-                    <div>
-                        <p class="text-on-surface font-body-sm text-body-sm">+91 1800-123-4567</p>
-                        <p class="text-on-surface-variant text-xs mt-1">Mon - Sat, 10 AM - 7 PM</p>
-                    </div>
-                </li>
-                <li class="flex items-start gap-3">
-                    <span class="material-symbols-outlined text-on-surface-variant mt-0.5">mail</span>
-                    <div>
-                        <p class="text-on-surface font-body-sm text-body-sm">support@makemypc.in</p>
-                        <p class="text-on-surface-variant text-xs mt-1">We reply within 24 hours</p>
-                    </div>
-                </li>
-            </ul>
-            <!-- Social Links -->
-            <div class="flex gap-4">
-                <a href="#" class="w-10 h-10 rounded-lg glass-card flex items-center justify-center hover:bg-white/10 transition-all group">
-                    <img src="https://cdn.simpleicons.org/facebook/1877F2" alt="Facebook" class="h-5 opacity-70 group-hover:opacity-100 transition-opacity">
-                </a>
-                <a href="#" class="w-10 h-10 rounded-lg glass-card flex items-center justify-center hover:bg-white/10 transition-all group">
-                    <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram" class="h-5 opacity-70 group-hover:opacity-100 transition-opacity">
-                </a>
-                <a href="#" class="w-10 h-10 rounded-lg glass-card flex items-center justify-center hover:bg-white/10 transition-all group">
-                    <img src="https://cdn.simpleicons.org/x/FFFFFF" alt="X (Twitter)" class="h-4 opacity-70 group-hover:opacity-100 transition-opacity">
-                </a>
-                <a href="#" class="w-10 h-10 rounded-lg glass-card flex items-center justify-center hover:bg-white/10 transition-all group">
-                    <img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube" class="h-5 opacity-70 group-hover:opacity-100 transition-opacity">
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="max-w-container-max mx-auto px-margin-desktop py-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-on-surface-variant font-label-mono text-label-mono text-xs">© 2024 MakeMyPC. All Rights Reserved. GSTIN: 27AAAAA0000A1Z5</p>
-        <div class="flex gap-x-6 items-center">
-            <!-- Payment Badges placeholder -->
-            <div class="flex gap-2 items-center">
-                <div class="bg-white px-2 py-1 rounded flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
-                    <img src="https://cdn.simpleicons.org/visa/1434CB" alt="VISA" class="h-3 object-contain">
-                </div>
-                <div class="bg-white px-2 py-1 rounded flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="MasterCard" class="h-3 object-contain">
-                </div>
-                <div class="bg-white px-2 py-1 rounded flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" alt="UPI" class="h-3 object-contain">
-                </div>
-            </div>
-            <span class="text-on-surface-variant font-label-mono text-label-mono text-xs hover:text-on-surface cursor-pointer flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-cyber-teal animate-pulse"></span>
-                System Status: <span class="text-cyber-teal">ONLINE</span>
-            </span>
-        </div>
-    </div>
-</footer>
 
 
 

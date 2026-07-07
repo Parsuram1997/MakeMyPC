@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MakeMyPC Admin - Products Inventory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        /* Custom Scrollbar for Glassmorphism */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 40px 40px -20px rgba(0, 0, 0, 0.15);
+        }
+        .glass-card:hover {
+            border-color: #adc6ff;
+            box-shadow: 0 0 20px rgba(0, 122, 255, 0.1);
+        }
+        .hardware-gradient {
+            background: linear-gradient(135deg, #101b30 0%, #071327 100%);
+        }
+        .active-glow {
+            box-shadow: inset 0 0 10px rgba(0, 122, 255, 0.2);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#adc6ff",
+                    "on-tertiary-container": "#4c1a00",
+                    "inverse-on-surface": "#263046",
+                    "secondary-fixed-dim": "#5cd8da",
+                    "surface-container-low": "#101b30",
+                    "surface-container": "#142034",
+                    "primary-fixed-dim": "#adc6ff",
+                    "outline-variant": "#414755",
+                    "electric-blue": "#007AFF",
+                    "background": "#071327",
+                    "surface-bright": "#2e394f",
+                    "secondary": "#5cd8da",
+                    "surface": "#071327",
+                    "on-primary-container": "#00285c",
+                    "tertiary-container": "#ef6719",
+                    "hardware-gray": "#111111",
+                    "on-background": "#d7e2ff",
+                    "on-tertiary-fixed": "#351000",
+                    "tertiary": "#ffb595",
+                    "primary-container": "#4b8eff",
+                    "surface-tint": "#adc6ff",
+                    "surface-container-lowest": "#030e22",
+                    "primary-fixed": "#d8e2ff",
+                    "on-primary": "#002e69",
+                    "on-secondary-fixed": "#002020",
+                    "surface-deep": "#00081C",
+                    "secondary-container": "#00a4a6",
+                    "on-secondary-fixed-variant": "#004f50",
+                    "cyber-teal": "#00A4A6",
+                    "on-surface": "#d7e2ff",
+                    "tertiary-fixed": "#ffdbcc",
+                    "error": "#ffb4ab",
+                    "on-surface-variant": "#c1c6d7",
+                    "on-tertiary-fixed-variant": "#7c2e00",
+                    "outline": "#8b90a0",
+                    "surface-dim": "#071327",
+                    "on-error": "#690005",
+                    "on-primary-fixed": "#001a41",
+                    "surface-container-highest": "#2a354a",
+                    "inverse-primary": "#005bc1",
+                    "on-primary-fixed-variant": "#004493",
+                    "secondary-fixed": "#7cf5f7",
+                    "surface-variant": "#2a354a",
+                    "inverse-surface": "#d7e2ff",
+                    "on-tertiary": "#571e00",
+                    "on-error-container": "#ffdad6",
+                    "surface-glass": "rgba(255, 255, 255, 0.03)",
+                    "error-container": "#93000a",
+                    "on-secondary": "#003738",
+                    "on-secondary-container": "#003233",
+                    "tertiary-fixed-dim": "#ffb595",
+                    "surface-container-high": "#1f2a3f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "base": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-mono": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface-deep text-on-surface font-body-md overflow-x-hidden">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r border-white/10 bg-surface-deep z-50 flex flex-col py-6">
+    <div class="px-6 mb-8 shrink-0">
+        <h1 class="font-headline-sm text-headline-sm font-bold text-electric-blue dark:text-primary">MakeMyPC</h1>
+        <p class="text-[10px] uppercase tracking-widest text-on-surface-variant/50 mt-1">Enterprise Admin</p>
+    </div>
+
+    <nav class="flex flex-col gap-2 px-4 flex-1 overflow-y-auto custom-scrollbar pb-6">
+        <a href="admin-dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="text-body-sm font-medium">Dashboard</span>
+        </a>
+
+        <details class="group" open>
+            <summary class="flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 text-primary bg-primary/10 hover:bg-white/5 hover:text-primary list-none [&::-webkit-details-marker]:hidden">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">inventory_2</span>
+                    <span class="text-body-sm font-medium">Products</span>
+                </div>
+                <span class="material-symbols-outlined text-sm transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="ml-6 pl-4 border-l border-white/10 flex flex-col space-y-1 mt-1 mb-2">
+                <a href="product-add.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Add Product
+                </a>
+                <a href="product-inventory.html" class="text-sm text-primary font-medium bg-primary/10 px-4 py-2 rounded-lg relative block">
+                    <div class="absolute -left-[17px] top-0 bottom-0 w-[2px] bg-primary"></div>
+                    Inventory
+                </a>
+                <a href="product-categories.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Categories
+                </a>
+                <a href="product-brands.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Brands
+                </a>
+                <a href="product-compatibility.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Compatibility
+                </a>
+                <a href="#" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Reviews
+                </a>
+            </div>
+        </details>
+
+        <details class="group">
+            <summary class="flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary list-none [&::-webkit-details-marker]:hidden">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">computer</span>
+                    <span class="text-body-sm font-medium">PC Builder</span>
+                </div>
+                <span class="material-symbols-outlined text-sm transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="flex flex-col gap-1 pl-12 pr-4 pt-1 pb-2">
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Custom Builds</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Saved Builds</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Compatibility Engine</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Featured Builds</a>
+            </div>
+        </details>
+
+        <details class="group">
+            <summary class="flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary list-none [&::-webkit-details-marker]:hidden">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span class="text-body-sm font-medium">Orders</span>
+                </div>
+                <span class="material-symbols-outlined text-sm transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="flex flex-col gap-1 pl-12 pr-4 pt-1 pb-2">
+                <a href="orders-management.html" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">All Orders</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Custom PC</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Components</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Ready PCs</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Laptops</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Returns</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Refunds</a>
+            </div>
+        </details>
+
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">group</span>
+            <span class="text-body-sm font-medium">Customers</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">local_shipping</span>
+            <span class="text-body-sm font-medium">Shipping</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">build</span>
+            <span class="text-body-sm font-medium">Assembly</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">payments</span>
+            <span class="text-body-sm font-medium">Payments</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">local_offer</span>
+            <span class="text-body-sm font-medium">Coupons</span>
+        </a>
+        <a href="admin-dashboard-overview.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">analytics</span>
+            <span class="text-body-sm font-medium">Analytics</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">support_agent</span>
+            <span class="text-body-sm font-medium">Support</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">campaign</span>
+            <span class="text-body-sm font-medium">Marketing</span>
+        </a>
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">language</span>
+            <span class="text-body-sm font-medium">Website</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">summarize</span>
+            <span class="text-body-sm font-medium">Reports</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">notifications</span>
+            <span class="text-body-sm font-medium">Notifications</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">admin_panel_settings</span>
+            <span class="text-body-sm font-medium">Admin Users</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary mt-auto mb-4">
+            <span class="material-symbols-outlined">settings</span>
+            <span class="text-body-sm font-medium">Settings</span>
+        </a>
+    </nav>
+
+    <div class="mt-auto px-4 shrink-0 border-t border-white/5 pt-4">
+        <div class="flex items-center gap-3 p-3 rounded-lg bg-surface-glass border border-white/5 hover:bg-white/5 transition-colors cursor-pointer">
+            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold text-xs">AD</div>
+            <div class="overflow-hidden">
+                <p class="text-xs font-bold text-on-surface truncate">Admin Profile</p>
+                <p class="text-[10px] text-on-surface-variant truncate">Sign out</p>
+            </div>
+        </div>
+    </div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 relative">
+<!-- Content Area -->
+<div class="flex-1 overflow-y-auto h-screen flex flex-col custom-scrollbar bg-surface-deep">
+    
+    <!-- Header -->
+    <div class="p-gutter border-b border-white/5 pb-6 shrink-0 mt-6 bg-surface-deep">
+        <div class="flex items-end justify-between">
+            <div>
+                <h2 class="font-headline-lg text-headline-lg text-white font-bold tracking-tight">Products Inventory</h2>
+                <p class="text-on-surface-variant text-sm mt-1">Manage and track all your products and stock in real-time.</p>
+            </div>
+            <div class="flex gap-3">
+                <button class="px-5 py-2.5 rounded-lg border border-white/10 text-on-surface hover:bg-white/5 transition-all flex items-center gap-2 font-medium text-sm">
+                    <span class="material-symbols-outlined text-lg">cloud_upload</span> Bulk Import
+                </button>
+                <button class="px-5 py-2.5 rounded-lg bg-primary text-white shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-2 font-bold text-sm">
+                    <span class="material-symbols-outlined text-lg">add</span> Add Product
+                </button>
+            </div>
+        </div>
+
+        <!-- 5 KPI Cards -->
+        <div class="grid grid-cols-5 gap-4 mt-6">
+            <div class="bg-surface-container rounded-xl p-4 border border-white/5 flex items-center gap-4">
+                <div class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-blue-500 text-2xl">inventory_2</span>
+                </div>
+                <div>
+                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Total Products</p>
+                    <p class="text-2xl font-bold text-white">1,248</p>
+                    <p class="text-[10px] text-on-surface-variant mt-1">Active SKUs</p>
+                </div>
+            </div>
+            <div class="bg-surface-container rounded-xl p-4 border border-white/5 flex items-center gap-4">
+                <div class="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-green-500 text-2xl">check_circle</span>
+                </div>
+                <div>
+                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">In Stock</p>
+                    <p class="text-2xl font-bold text-white">986</p>
+                    <p class="text-[10px] text-on-surface-variant mt-1">79.0% of total</p>
+                </div>
+            </div>
+            <div class="bg-surface-container rounded-xl p-4 border border-white/5 flex items-center gap-4">
+                <div class="w-12 h-12 rounded-lg bg-yellow-500/10 flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-yellow-500 text-2xl">warning</span>
+                </div>
+                <div>
+                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Low Stock</p>
+                    <p class="text-2xl font-bold text-white">156</p>
+                    <p class="text-[10px] text-on-surface-variant mt-1">12.5% of total</p>
+                </div>
+            </div>
+            <div class="bg-surface-container rounded-xl p-4 border border-white/5 flex items-center gap-4">
+                <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-red-500 text-2xl">cancel</span>
+                </div>
+                <div>
+                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Out of Stock</p>
+                    <p class="text-2xl font-bold text-white">106</p>
+                    <p class="text-[10px] text-on-surface-variant mt-1">8.5% of total</p>
+                </div>
+            </div>
+            <div class="bg-surface-container rounded-xl p-4 border border-white/5 flex items-center gap-4">
+                <div class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-purple-500 text-2xl">currency_rupee</span>
+                </div>
+                <div>
+                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Total Value</p>
+                    <p class="text-2xl font-bold text-white">₹ 72,45,890</p>
+                    <p class="text-[10px] text-on-surface-variant mt-1">Inventory Value</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="flex items-center gap-3 mt-6">
+            <div class="relative w-full max-w-sm group flex-1">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm group-focus-within:text-primary transition-colors">search</span>
+                <input class="w-full bg-surface-container border border-white/5 rounded-lg py-2 pl-9 pr-4 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all text-on-surface" placeholder="Search products, SKU, name..." type="text">
+            </div>
+            
+            <button class="bg-surface-container border border-white/5 rounded-lg py-2 px-3 text-xs text-on-surface-variant hover:text-white hover:bg-white/5 transition-all flex items-center gap-2">
+                <span class="material-symbols-outlined text-sm">category</span> All Categories <span class="material-symbols-outlined text-sm ml-2">expand_more</span>
+            </button>
+            <button class="bg-surface-container border border-white/5 rounded-lg py-2 px-3 text-xs text-on-surface-variant hover:text-white hover:bg-white/5 transition-all flex items-center gap-2">
+                <span class="material-symbols-outlined text-sm">sell</span> All Brands <span class="material-symbols-outlined text-sm ml-2">expand_more</span>
+            </button>
+            <button class="bg-surface-container border border-white/5 rounded-lg py-2 px-3 text-xs text-on-surface-variant hover:text-white hover:bg-white/5 transition-all flex items-center gap-2">
+                <span class="material-symbols-outlined text-sm">inventory</span> Stock Status <span class="material-symbols-outlined text-sm ml-2">expand_more</span>
+            </button>
+            <button class="bg-surface-container border border-white/5 rounded-lg py-2 px-3 text-xs text-on-surface-variant hover:text-white hover:bg-white/5 transition-all flex items-center gap-2 ml-auto">
+                Sort By: Latest <span class="material-symbols-outlined text-sm ml-2">expand_more</span>
+            </button>
+            <div class="flex bg-surface-container border border-white/5 rounded-lg p-0.5">
+                <button class="p-1.5 rounded bg-primary text-white shadow"><span class="material-symbols-outlined text-sm block">grid_view</span></button>
+                <button class="p-1.5 rounded text-on-surface-variant hover:text-white transition-colors"><span class="material-symbols-outlined text-sm block">format_list_bulleted</span></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area (Dual Column) -->
+    <div class="p-gutter flex-1 pb-20 flex gap-6">
+        
+        <!-- Left Sidebar (Filters) -->
+        <div class="w-64 shrink-0 flex flex-col gap-6">
+            
+            <!-- Categories Box -->
+            <div class="bg-surface-container rounded-xl border border-white/5 overflow-hidden">
+                <h3 class="text-[10px] text-on-surface-variant font-bold tracking-widest uppercase px-4 pt-4 pb-2">Categories</h3>
+                <div class="flex flex-col">
+                    <button class="flex items-center justify-between px-4 py-2.5 bg-primary/10 border-l-2 border-primary text-primary hover:bg-primary/20 transition-colors text-sm">
+                        <div class="flex items-center gap-2 font-medium"><span class="material-symbols-outlined text-sm">apps</span> All Categories</div>
+                        <div class="flex items-center gap-1"><span class="text-xs">1,248</span><span class="material-symbols-outlined text-sm">chevron_right</span></div>
+                    </button>
+                    <button class="flex items-center justify-between px-4 py-2.5 text-on-surface-variant hover:bg-white/5 transition-colors text-sm border-l-2 border-transparent">
+                        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">memory</span> CPU</div>
+                        <span class="text-xs">142</span>
+                    </button>
+                    <button class="flex items-center justify-between px-4 py-2.5 text-on-surface-variant hover:bg-white/5 transition-colors text-sm border-l-2 border-transparent">
+                        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">videogame_asset</span> GPU</div>
+                        <span class="text-xs">84</span>
+                    </button>
+                    <button class="flex items-center justify-between px-4 py-2.5 text-on-surface-variant hover:bg-white/5 transition-colors text-sm border-l-2 border-transparent">
+                        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">developer_board</span> Motherboard</div>
+                        <span class="text-xs">112</span>
+                    </button>
+                    <button class="flex items-center justify-between px-4 py-2.5 text-on-surface-variant hover:bg-white/5 transition-colors text-sm border-l-2 border-transparent">
+                        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">memory_alt</span> RAM</div>
+                        <span class="text-xs">216</span>
+                    </button>
+                    <button class="flex items-center justify-between px-4 py-2.5 text-on-surface-variant hover:bg-white/5 transition-colors text-sm border-l-2 border-transparent">
+                        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">save</span> SSD</div>
+                        <span class="text-xs">156</span>
+                    </button>
+                    <button class="flex items-center justify-between px-4 py-2.5 text-on-surface-variant hover:bg-white/5 transition-colors text-sm border-l-2 border-transparent">
+                        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">hard_drive</span> HDD</div>
+                        <span class="text-xs">42</span>
+                    </button>
+                    <button class="flex items-center justify-between px-4 py-2.5 text-on-surface-variant hover:bg-white/5 transition-colors text-sm border-l-2 border-transparent">
+                        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">power</span> PSU</div>
+                        <span class="text-xs">98</span>
+                    </button>
+                    <button class="flex items-center justify-between px-4 py-2.5 text-on-surface-variant hover:bg-white/5 transition-colors text-sm border-l-2 border-transparent">
+                        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">dns</span> Cabinet</div>
+                        <span class="text-xs">75</span>
+                    </button>
+                    <button class="flex items-center justify-between px-4 py-2.5 text-on-surface-variant hover:bg-white/5 transition-colors text-sm border-l-2 border-transparent">
+                        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">ac_unit</span> Cooler</div>
+                        <span class="text-xs">89</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stock Status Box -->
+            <div class="bg-surface-container rounded-xl border border-white/5 overflow-hidden pb-2">
+                <h3 class="text-[10px] text-on-surface-variant font-bold tracking-widest uppercase px-4 pt-4 pb-2">Stock Status</h3>
+                <div class="flex flex-col">
+                    <button class="flex items-center justify-between px-4 py-2 text-on-surface-variant hover:bg-white/5 transition-colors text-sm">
+                        <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_5px_#22c55e]"></span> In Stock</div>
+                        <span class="text-xs">986</span>
+                    </button>
+                    <button class="flex items-center justify-between px-4 py-2 text-on-surface-variant hover:bg-white/5 transition-colors text-sm">
+                        <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-yellow-500 shadow-[0_0_5px_#eab308]"></span> Low Stock</div>
+                        <span class="text-xs">156</span>
+                    </button>
+                    <button class="flex items-center justify-between px-4 py-2 text-on-surface-variant hover:bg-white/5 transition-colors text-sm">
+                        <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_5px_#ef4444]"></span> Out of Stock</div>
+                        <span class="text-xs">106</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Grid Area (Products) -->
+        <div class="flex-1 grid grid-cols-2 lg:grid-cols-3 gap-4 content-start">
+            
+            <!-- Product Card 1 -->
+            <div class="bg-surface-container rounded-xl border border-white/5 p-4 flex gap-4 hover:border-white/10 transition-colors group relative">
+                <button class="absolute top-3 right-3 text-on-surface-variant hover:text-white opacity-0 group-hover:opacity-100 transition-opacity p-1 bg-white/5 rounded"><span class="material-symbols-outlined text-sm block">more_vert</span></button>
+                
+                <div class="w-24 h-24 shrink-0 bg-white/5 rounded-lg flex items-center justify-center p-2">
+                    <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=200&q=80" alt="CPU" class="max-w-full max-h-full object-contain mix-blend-screen opacity-80" />
+                </div>
+                
+                <div class="flex-1 min-w-0 flex flex-col">
+                    <p class="text-[9px] text-primary font-bold tracking-widest uppercase mb-1 truncate">CPU • INTEL</p>
+                    <h4 class="text-sm font-bold text-white leading-tight mb-2 truncate">Intel Core<br>i9-14900K</h4>
+                    <div class="flex flex-wrap gap-1 mb-auto">
+                        <span class="px-1.5 py-0.5 rounded bg-white/5 text-[9px] text-on-surface-variant border border-white/10">LGA 1700</span>
+                        <span class="px-1.5 py-0.5 rounded bg-white/5 text-[9px] text-on-surface-variant border border-white/10">DDR5</span>
+                    </div>
+                    <div class="flex items-end justify-between mt-3">
+                        <div>
+                            <p class="text-[9px] text-on-surface-variant uppercase mb-0.5">Price</p>
+                            <p class="text-sm font-bold text-white">₹52,000</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[9px] text-on-surface-variant uppercase mb-0.5">Stock</p>
+                            <p class="text-xs font-bold text-white flex items-center gap-1.5 justify-end">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_5px_#22c55e]"></span> 15 <span class="text-[9px] text-on-surface-variant font-normal">units</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="bg-surface-container rounded-xl border border-white/5 p-4 flex gap-4 hover:border-white/10 transition-colors group relative">
+                <button class="absolute top-3 right-3 text-on-surface-variant hover:text-white opacity-0 group-hover:opacity-100 transition-opacity p-1 bg-white/5 rounded"><span class="material-symbols-outlined text-sm block">more_vert</span></button>
+                
+                <div class="w-24 h-24 shrink-0 bg-white/5 rounded-lg flex items-center justify-center p-2">
+                    <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=200&q=80" alt="GPU" class="max-w-full max-h-full object-contain mix-blend-screen opacity-80" />
+                </div>
+                
+                <div class="flex-1 min-w-0 flex flex-col">
+                    <p class="text-[9px] text-primary font-bold tracking-widest uppercase mb-1 truncate">GPU • NVIDIA</p>
+                    <h4 class="text-sm font-bold text-white leading-tight mb-2 truncate">ASUS ROG Strix<br>RTX 4090</h4>
+                    <div class="flex flex-wrap gap-1 mb-auto">
+                        <span class="px-1.5 py-0.5 rounded bg-white/5 text-[9px] text-on-surface-variant border border-white/10">24GB GDDR6X</span>
+                        <span class="px-1.5 py-0.5 rounded bg-white/5 text-[9px] text-on-surface-variant border border-white/10">PCIe 5.0</span>
+                    </div>
+                    <div class="flex items-end justify-between mt-3">
+                        <div>
+                            <p class="text-[9px] text-on-surface-variant uppercase mb-0.5">Price</p>
+                            <p class="text-sm font-bold text-white">₹1,85,990</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[9px] text-on-surface-variant uppercase mb-0.5">Stock</p>
+                            <p class="text-xs font-bold text-white flex items-center gap-1.5 justify-end">
+                                <span class="w-1.5 h-1.5 rounded-full bg-yellow-500 shadow-[0_0_5px_#eab308]"></span> 3 <span class="text-[9px] text-on-surface-variant font-normal">units</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="bg-surface-container rounded-xl border border-white/5 p-4 flex gap-4 hover:border-white/10 transition-colors group relative">
+                <button class="absolute top-3 right-3 text-on-surface-variant hover:text-white opacity-0 group-hover:opacity-100 transition-opacity p-1 bg-white/5 rounded"><span class="material-symbols-outlined text-sm block">more_vert</span></button>
+                
+                <div class="w-24 h-24 shrink-0 bg-white/5 rounded-lg flex items-center justify-center p-2">
+                    <img src="https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&w=200&q=80" alt="RAM" class="max-w-full max-h-full object-contain mix-blend-screen opacity-80" />
+                </div>
+                
+                <div class="flex-1 min-w-0 flex flex-col">
+                    <p class="text-[9px] text-primary font-bold tracking-widest uppercase mb-1 truncate">RAM • CORSAIR</p>
+                    <h4 class="text-sm font-bold text-white leading-tight mb-2 truncate">Vengeance RGB<br>32GB DDR5</h4>
+                    <div class="flex flex-wrap gap-1 mb-auto">
+                        <span class="px-1.5 py-0.5 rounded bg-white/5 text-[9px] text-on-surface-variant border border-white/10">6000MT/s</span>
+                        <span class="px-1.5 py-0.5 rounded bg-white/5 text-[9px] text-on-surface-variant border border-white/10">XMP 3.0</span>
+                    </div>
+                    <div class="flex items-end justify-between mt-3">
+                        <div>
+                            <p class="text-[9px] text-on-surface-variant uppercase mb-0.5">Price</p>
+                            <p class="text-sm font-bold text-white">₹14,500</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[9px] text-on-surface-variant uppercase mb-0.5">Stock</p>
+                            <p class="text-xs font-bold text-white flex items-center gap-1.5 justify-end">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_5px_#22c55e]"></span> 42 <span class="text-[9px] text-on-surface-variant font-normal">units</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="bg-surface-container rounded-xl border border-white/5 p-4 flex gap-4 hover:border-white/10 transition-colors group relative">
+                <button class="absolute top-3 right-3 text-on-surface-variant hover:text-white opacity-0 group-hover:opacity-100 transition-opacity p-1 bg-white/5 rounded"><span class="material-symbols-outlined text-sm block">more_vert</span></button>
+                
+                <div class="w-24 h-24 shrink-0 bg-white/5 rounded-lg flex items-center justify-center p-2">
+                    <span class="material-symbols-outlined text-4xl text-on-surface-variant/50">power</span>
+                </div>
+                
+                <div class="flex-1 min-w-0 flex flex-col">
+                    <p class="text-[9px] text-primary font-bold tracking-widest uppercase mb-1 truncate">PSU • SEASONIC</p>
+                    <h4 class="text-sm font-bold text-white leading-tight mb-2 truncate">Prime TX-1000<br>1000W</h4>
+                    <div class="flex flex-wrap gap-1 mb-auto">
+                        <span class="px-1.5 py-0.5 rounded bg-white/5 text-[9px] text-on-surface-variant border border-white/10">ATX 3.0</span>
+                        <span class="px-1.5 py-0.5 rounded bg-white/5 text-[9px] text-on-surface-variant border border-white/10">80+ Platinum</span>
+                    </div>
+                    <div class="flex items-end justify-between mt-3">
+                        <div>
+                            <p class="text-[9px] text-on-surface-variant uppercase mb-0.5">Price</p>
+                            <p class="text-sm font-bold text-white">₹28,200</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[9px] text-on-surface-variant uppercase mb-0.5">Stock</p>
+                            <p class="text-xs font-bold text-white flex items-center gap-1.5 justify-end">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_5px_#22c55e]"></span> 12 <span class="text-[9px] text-on-surface-variant font-normal">units</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 5 -->
+            <div class="bg-surface-container rounded-xl border border-white/5 p-4 flex gap-4 hover:border-white/10 transition-colors group relative">
+                <button class="absolute top-3 right-3 text-on-surface-variant hover:text-white opacity-0 group-hover:opacity-100 transition-opacity p-1 bg-white/5 rounded"><span class="material-symbols-outlined text-sm block">more_vert</span></button>
+                
+                <div class="w-24 h-24 shrink-0 bg-white/5 rounded-lg flex items-center justify-center p-2">
+                    <span class="material-symbols-outlined text-4xl text-on-surface-variant/50">developer_board</span>
+                </div>
+                
+                <div class="flex-1 min-w-0 flex flex-col">
+                    <p class="text-[9px] text-primary font-bold tracking-widest uppercase mb-1 truncate">MOTHERBOARD • MSI</p>
+                    <h4 class="text-sm font-bold text-white leading-tight mb-2 truncate">MPG Z790<br>Carbon WiFi</h4>
+                    <div class="flex flex-wrap gap-1 mb-auto">
+                        <span class="px-1.5 py-0.5 rounded bg-white/5 text-[9px] text-on-surface-variant border border-white/10">LGA 1700</span>
+                        <span class="px-1.5 py-0.5 rounded bg-white/5 text-[9px] text-on-surface-variant border border-white/10">WiFi 6E</span>
+                    </div>
+                    <div class="flex items-end justify-between mt-3">
+                        <div>
+                            <p class="text-[9px] text-on-surface-variant uppercase mb-0.5">Price</p>
+                            <p class="text-sm font-bold text-white">₹46,800</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[9px] text-on-surface-variant uppercase mb-0.5">Stock</p>
+                            <p class="text-xs font-bold text-white flex items-center gap-1.5 justify-end">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_5px_#22c55e]"></span> 22 <span class="text-[9px] text-on-surface-variant font-normal">units</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 6 -->
+            <div class="bg-surface-container rounded-xl border border-white/5 p-4 flex gap-4 hover:border-white/10 transition-colors group relative">
+                <button class="absolute top-3 right-3 text-on-surface-variant hover:text-white opacity-0 group-hover:opacity-100 transition-opacity p-1 bg-white/5 rounded"><span class="material-symbols-outlined text-sm block">more_vert</span></button>
+                
+                <div class="w-24 h-24 shrink-0 bg-white/5 rounded-lg flex items-center justify-center p-2">
+                    <span class="material-symbols-outlined text-4xl text-on-surface-variant/50">save</span>
+                </div>
+                
+                <div class="flex-1 min-w-0 flex flex-col">
+                    <p class="text-[9px] text-primary font-bold tracking-widest uppercase mb-1 truncate">SSD • SAMSUNG</p>
+                    <h4 class="text-sm font-bold text-white leading-tight mb-2 truncate">Samsung 990<br>Pro 1TB</h4>
+                    <div class="flex flex-wrap gap-1 mb-auto">
+                        <span class="px-1.5 py-0.5 rounded bg-white/5 text-[9px] text-on-surface-variant border border-white/10">NVMe PCIe 4.0</span>
+                        <span class="px-1.5 py-0.5 rounded bg-white/5 text-[9px] text-on-surface-variant border border-white/10">M.2</span>
+                    </div>
+                    <div class="flex items-end justify-between mt-3">
+                        <div>
+                            <p class="text-[9px] text-on-surface-variant uppercase mb-0.5">Price</p>
+                            <p class="text-sm font-bold text-white">₹11,900</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[9px] text-on-surface-variant uppercase mb-0.5">Stock</p>
+                            <p class="text-xs font-bold text-white flex items-center gap-1.5 justify-end">
+                                <span class="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_5px_#ef4444]"></span> 0 <span class="text-[9px] text-on-surface-variant font-normal">units</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Bottom Pagination -->
+    <div class="bg-surface-container border-t border-white/5 px-6 pt-4 pb-10 flex items-center justify-between mt-auto">
+        <p class="text-xs text-on-surface-variant">Showing 1 to 6 of 1,248 products</p>
+        <div class="flex items-center gap-2">
+            <button class="w-7 h-7 flex items-center justify-center rounded border border-white/10 text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors opacity-50 cursor-not-allowed"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+            <button class="w-7 h-7 rounded bg-primary text-white font-bold text-xs flex items-center justify-center">1</button>
+            <button class="w-7 h-7 rounded border border-transparent hover:bg-white/5 text-on-surface-variant hover:text-white font-medium text-xs flex items-center justify-center transition-colors">2</button>
+            <button class="w-7 h-7 rounded border border-transparent hover:bg-white/5 text-on-surface-variant hover:text-white font-medium text-xs flex items-center justify-center transition-colors">3</button>
+            <span class="text-on-surface-variant text-xs px-1">...</span>
+            <button class="w-7 h-7 rounded border border-transparent hover:bg-white/5 text-on-surface-variant hover:text-white font-medium text-xs flex items-center justify-center transition-colors">104</button>
+            <button class="w-7 h-7 flex items-center justify-center rounded border border-white/10 text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+            
+            <div class="ml-4 pl-4 border-l border-white/10 flex items-center gap-2">
+                <span class="text-xs text-on-surface-variant">12 / page</span>
+                <span class="material-symbols-outlined text-sm text-on-surface-variant">expand_more</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+</main>
+<script src="js/global.js"></script>
+</body>
+</html>
