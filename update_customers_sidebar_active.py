@@ -19,8 +19,15 @@ for file in html_files:
     items = [
         ('admin-customers.html', 'All Customers'),
         ('admin-customer-groups.html', 'Customer Groups'),
-        ('admin-saved-builds.html', 'Saved Builds'),
-        ('admin-addresses.html', 'Addresses')
+        ('admin-saved-builds.html', 'Saved Builds ⭐'),
+        ('admin-addresses.html', 'Addresses'),
+        ('#', 'Wishlist ❤️'),
+        ('#', 'Order History 📦'),
+        ('#', 'Support Tickets 🎫'),
+        ('#', 'Loyalty & Rewards 🎁'),
+        ('#', 'Activity Logs 📊'),
+        ('#', 'Email & Notifications ✉️'),
+        ('#', 'Blocked Customers 🚫')
     ]
     
     new_div = '            <div class="ml-6 pl-4 border-l border-white/10 flex flex-col space-y-1 mt-1 mb-2">\n'

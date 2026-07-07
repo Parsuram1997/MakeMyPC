@@ -26,8 +26,9 @@ for file in html_files:
         new_details_tag = re.sub(r'\s*open\b', '', details_tag)
         
         if is_active:
-            # add open before the closing bracket
-            new_details_tag = new_details_tag.replace('>', ' open>')
+            # add open before the closing bracket if not already there
+            if 'open' not in new_details_tag:
+                new_details_tag = new_details_tag.replace('>', ' open>')
             
         # Fix the summary tag classes
         summary_match = re.search(r'<summary[^>]*>', details_content)
