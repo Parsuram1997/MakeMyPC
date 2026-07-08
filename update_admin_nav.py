@@ -105,6 +105,10 @@ aside_content = """<aside class="h-screen w-64 fixed left-0 top-0 border-r borde
             <span class="material-symbols-outlined">summarize</span>
             <span class="text-body-sm font-medium">Reports</span>
         </a>
+        <a href="admin-shipping.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">local_shipping</span>
+            <span class="text-body-sm font-medium">Shipping</span>
+        </a>
         <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
             <span class="material-symbols-outlined">notifications</span>
             <span class="text-body-sm font-medium">Notifications</span>
