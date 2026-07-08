@@ -1,0 +1,817 @@
+import os
+import re
+
+def generate_admin_coupons():
+    with open('admin-dashboard.html', 'r', encoding='utf-8') as f:
+        base_html = f.read()
+
+    main_pattern = re.compile(r'(<main[^>]*>)(.*?)(</main>)', re.DOTALL)
+    
+    coupons_content = """
+        <div class="flex flex-col relative w-full">
+            
+            <!-- Header -->
+            <div class="flex justify-between items-end mb-8 relative z-10">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-3xl text-on-surface-variant">local_offer</span>
+                    <div>
+                        <h1 class="text-3xl font-bold text-white mb-2 tracking-tight">Coupons</h1>
+                        <p class="text-on-surface-variant text-sm">Create, manage and track discount coupons and promo codes.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="px-5 py-2.5 rounded-xl bg-[#2563eb] hover:bg-[#2563eb]/90 text-white font-medium transition-all duration-300 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[20px]">add</span>
+                        Create Coupon
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Grid (5 Cards) -->
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8 relative z-10">
+                <!-- Total Coupons -->
+                <div class="glass-card rounded-xl border border-white/5 bg-surface-container/30 p-5 relative overflow-hidden group">
+                    <div class="flex items-start gap-3 mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-[#2563eb]/10 border border-[#2563eb]/20 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[#2563eb] text-[20px]">local_offer</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-medium text-on-surface-variant mb-1 uppercase tracking-wider">Total Coupons</p>
+                            <h3 class="text-xl font-bold text-white tracking-tight">32</h3>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1 mt-3">
+                        <span class="material-symbols-outlined text-[12px] text-[#10b981]">arrow_upward</span>
+                        <span class="text-[10px] font-medium text-[#10b981]">14.3%</span>
+                        <span class="text-[10px] text-on-surface-variant ml-1">vs last month</span>
+                    </div>
+                </div>
+
+                <!-- Active Coupons -->
+                <div class="glass-card rounded-xl border border-white/5 bg-surface-container/30 p-5 relative overflow-hidden group">
+                    <div class="flex items-start gap-3 mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-[#10b981]/10 border border-[#10b981]/20 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[#10b981] text-[20px]">sell</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-medium text-on-surface-variant mb-1 uppercase tracking-wider">Active Coupons</p>
+                            <h3 class="text-xl font-bold text-white tracking-tight">18</h3>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1 mt-3">
+                        <span class="material-symbols-outlined text-[12px] text-[#10b981]">arrow_upward</span>
+                        <span class="text-[10px] font-medium text-[#10b981]">9.5%</span>
+                        <span class="text-[10px] text-on-surface-variant ml-1">vs last month</span>
+                    </div>
+                </div>
+
+                <!-- Total Redemptions -->
+                <div class="glass-card rounded-xl border border-white/5 bg-surface-container/30 p-5 relative overflow-hidden group">
+                    <div class="flex items-start gap-3 mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[#8b5cf6] text-[20px]">event</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-medium text-on-surface-variant mb-1 uppercase tracking-wider">Total Redemptions</p>
+                            <h3 class="text-xl font-bold text-white tracking-tight">2,458</h3>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1 mt-3">
+                        <span class="material-symbols-outlined text-[12px] text-[#10b981]">arrow_upward</span>
+                        <span class="text-[10px] font-medium text-[#10b981]">18.6%</span>
+                        <span class="text-[10px] text-on-surface-variant ml-1">vs last month</span>
+                    </div>
+                </div>
+
+                <!-- Discount Given -->
+                <div class="glass-card rounded-xl border border-white/5 bg-surface-container/30 p-5 relative overflow-hidden group">
+                    <div class="flex items-start gap-3 mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-[#f59e0b]/10 border border-[#f59e0b]/20 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[#f59e0b] text-[20px]">currency_rupee</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-medium text-on-surface-variant mb-1 uppercase tracking-wider">Discount Given</p>
+                            <h3 class="text-xl font-bold text-white tracking-tight">₹1,25,430</h3>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1 mt-3">
+                        <span class="material-symbols-outlined text-[12px] text-[#10b981]">arrow_upward</span>
+                        <span class="text-[10px] font-medium text-[#10b981]">16.8%</span>
+                        <span class="text-[10px] text-on-surface-variant ml-1">vs last month</span>
+                    </div>
+                </div>
+
+                <!-- Revenue Impact -->
+                <div class="glass-card rounded-xl border border-white/5 bg-surface-container/30 p-5 relative overflow-hidden group">
+                    <div class="flex items-start gap-3 mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-[#ef4444]/10 border border-[#ef4444]/20 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[#ef4444] text-[20px]">receipt</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-medium text-on-surface-variant mb-1 uppercase tracking-wider">Revenue Impact</p>
+                            <h3 class="text-xl font-bold text-white tracking-tight">₹8,45,230</h3>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1 mt-3">
+                        <span class="material-symbols-outlined text-[12px] text-[#10b981]">arrow_upward</span>
+                        <span class="text-[10px] font-medium text-[#10b981]">22.1%</span>
+                        <span class="text-[10px] text-on-surface-variant ml-1">vs last month</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two Column Layout -->
+            <div class="flex gap-6 relative z-10">
+                
+                <!-- Left Column (Table) -->
+                <div class="flex-[3] flex flex-col gap-6">
+                    
+                    <!-- Filters Bar -->
+                    <div class="flex items-center gap-4">
+                        <!-- Search -->
+                        <div class="relative flex-1 max-w-[280px]">
+                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px] pointer-events-none">search</span>
+                            <input type="text" placeholder="Search coupons by name or code..." class="w-full h-10 bg-black/20 border border-white/10 rounded-lg pl-10 pr-4 text-[13px] text-white placeholder-on-surface-variant focus:outline-none focus:border-primary/50 transition-colors" />
+                        </div>
+
+                        <!-- Dropdowns -->
+                        <div class="relative flex-1 max-w-[140px]">
+                            <select class="w-full h-10 bg-black/20 border border-white/10 rounded-lg px-3 pr-8 text-[13px] text-white appearance-none focus:outline-none focus:border-primary/50 transition-colors cursor-pointer">
+                                <option value="all">All Status</option>
+                            </select>
+                            <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+                        </div>
+                        
+                        <div class="relative flex-1 max-w-[140px]">
+                            <select class="w-full h-10 bg-black/20 border border-white/10 rounded-lg px-3 pr-8 text-[13px] text-white appearance-none focus:outline-none focus:border-primary/50 transition-colors cursor-pointer">
+                                <option value="all">All Types</option>
+                            </select>
+                            <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+                        </div>
+
+                        <div class="relative flex-1 max-w-[160px]">
+                            <select class="w-full h-10 bg-black/20 border border-white/10 rounded-lg px-3 pr-8 text-[13px] text-white appearance-none focus:outline-none focus:border-primary/50 transition-colors cursor-pointer">
+                                <option value="all">All Coupon For</option>
+                            </select>
+                            <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+                        </div>
+
+                        <button class="px-3 py-2 rounded-lg border border-white/10 hover:border-white/20 bg-surface-container/50 text-white font-medium transition-all duration-300 flex items-center gap-1.5 text-[13px]">
+                            <span class="material-symbols-outlined text-[16px]">filter_list</span>
+                            Filters
+                        </button>
+                        <a href="#" class="text-[#2563eb] hover:text-[#2563eb]/80 text-[13px] font-medium transition-colors">Reset</a>
+                    </div>
+                    
+                    <!-- Table -->
+                    <div class="glass-card rounded-xl border border-white/5 bg-surface-container/30 overflow-hidden flex flex-col">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="border-b border-white/5">
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider">Coupon Code</th>
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider">Coupon Name</th>
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider text-center">Type</th>
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider">Discount</th>
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider">Applicable For</th>
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider text-center">Status</th>
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider">Usage</th>
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider">Validity</th>
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-white/5">
+                                    <!-- Row 1 -->
+                                    <tr class="hover:bg-white/5 transition-colors group">
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-2">
+                                                <span class="px-2 py-1 rounded bg-[#2563eb]/10 border border-[#2563eb]/20 text-[#2563eb] font-bold text-[11px] tracking-wide">SUMMER10</span>
+                                                <span class="material-symbols-outlined text-[14px] text-[#2563eb] cursor-pointer hover:text-white transition-colors">content_copy</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] font-medium text-white group-hover:text-primary transition-colors cursor-pointer">Summer Sale 10% OFF</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">Extra 10% off on all PCs</p>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="text-[11px] font-medium text-[#2563eb]">Percentage</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] font-medium text-white">10%</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">Max ₹1,000</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <span class="text-[12px] text-white">All Products</span>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[11px] font-medium text-[#10b981]">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+                                                Active
+                                            </span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex flex-col gap-1 w-[80px]">
+                                                <div class="flex justify-between items-end text-[10px]">
+                                                    <span class="text-white font-medium">320</span>
+                                                    <span class="text-on-surface-variant">/ 1000</span>
+                                                </div>
+                                                <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                                                    <div class="h-full bg-[#2563eb]" style="width: 32%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[11px] text-white">10 May 2024</p>
+                                            <p class="text-[11px] text-on-surface-variant mt-0.5">- 31 May 2024</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center justify-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <button class="w-7 h-7 rounded border border-white/10 hover:border-white/20 hover:bg-white/5 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[14px]">edit</span>
+                                                </button>
+                                                <button class="w-7 h-7 rounded border border-white/10 hover:border-white/20 hover:bg-white/5 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[14px]">more_horiz</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <!-- Row 2 -->
+                                    <tr class="hover:bg-white/5 transition-colors group">
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-2">
+                                                <span class="px-2 py-1 rounded bg-[#10b981]/10 border border-[#10b981]/20 text-[#10b981] font-bold text-[11px] tracking-wide">PCBUILDER5</span>
+                                                <span class="material-symbols-outlined text-[14px] text-[#10b981] cursor-pointer hover:text-white transition-colors">content_copy</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] font-medium text-white group-hover:text-primary transition-colors cursor-pointer">PC Builder 5% OFF</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">5% off on PC Builder</p>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="text-[11px] font-medium text-[#2563eb]">Percentage</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] font-medium text-white">5%</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">Max ₹750</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <span class="text-[12px] text-white">PC Builder</span>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[11px] font-medium text-[#10b981]">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+                                                Active
+                                            </span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex flex-col gap-1 w-[80px]">
+                                                <div class="flex justify-between items-end text-[10px]">
+                                                    <span class="text-white font-medium">150</span>
+                                                    <span class="text-on-surface-variant">/ 500</span>
+                                                </div>
+                                                <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                                                    <div class="h-full bg-[#2563eb]" style="width: 30%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[11px] text-white">01 May 2024</p>
+                                            <p class="text-[11px] text-on-surface-variant mt-0.5">- 31 May 2024</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center justify-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <button class="w-7 h-7 rounded border border-white/10 hover:border-white/20 hover:bg-white/5 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[14px]">edit</span>
+                                                </button>
+                                                <button class="w-7 h-7 rounded border border-white/10 hover:border-white/20 hover:bg-white/5 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[14px]">more_horiz</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 3 -->
+                                    <tr class="hover:bg-white/5 transition-colors group">
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-2">
+                                                <span class="px-2 py-1 rounded bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 text-[#8b5cf6] font-bold text-[11px] tracking-wide">WELCOME500</span>
+                                                <span class="material-symbols-outlined text-[14px] text-[#8b5cf6] cursor-pointer hover:text-white transition-colors">content_copy</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] font-medium text-white group-hover:text-primary transition-colors cursor-pointer">Welcome Offer</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">Flat ₹500 off on orders above ₹15,000</p>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="text-[11px] font-medium text-[#8b5cf6]">Fixed</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] font-medium text-white">₹500</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">Min. Order ₹15,000</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <span class="text-[12px] text-white">All Products</span>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[11px] font-medium text-[#10b981]">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+                                                Active
+                                            </span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex flex-col gap-1 w-[80px]">
+                                                <div class="flex justify-between items-end text-[10px]">
+                                                    <span class="text-white font-medium">85</span>
+                                                    <span class="text-on-surface-variant">/ 250</span>
+                                                </div>
+                                                <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                                                    <div class="h-full bg-[#2563eb]" style="width: 34%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[11px] text-white">01 May 2024</p>
+                                            <p class="text-[11px] text-on-surface-variant mt-0.5">- 30 Jun 2024</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center justify-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <button class="w-7 h-7 rounded border border-white/10 hover:border-white/20 hover:bg-white/5 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[14px]">edit</span>
+                                                </button>
+                                                <button class="w-7 h-7 rounded border border-white/10 hover:border-white/20 hover:bg-white/5 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[14px]">more_horiz</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 4 -->
+                                    <tr class="hover:bg-white/5 transition-colors group">
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-2">
+                                                <span class="px-2 py-1 rounded bg-[#f59e0b]/10 border border-[#f59e0b]/20 text-[#f59e0b] font-bold text-[11px] tracking-wide">FREESHIP</span>
+                                                <span class="material-symbols-outlined text-[14px] text-[#f59e0b] cursor-pointer hover:text-white transition-colors">content_copy</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] font-medium text-white group-hover:text-primary transition-colors cursor-pointer">Free Shipping</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">Free shipping on all orders</p>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="text-[11px] font-medium text-[#f59e0b]">Free Shipping</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] font-medium text-white">Free Shipping</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">-</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <span class="text-[12px] text-white">All Products</span>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[11px] font-medium text-[#10b981]">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+                                                Active
+                                            </span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex flex-col gap-1 w-[80px]">
+                                                <div class="flex justify-between items-end text-[10px]">
+                                                    <span class="text-white font-medium">410</span>
+                                                    <span class="text-on-surface-variant">/ ∞</span>
+                                                </div>
+                                                <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                                                    <div class="h-full bg-[#2563eb]" style="width: 100%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[11px] text-white">01 Apr 2024</p>
+                                            <p class="text-[11px] text-on-surface-variant mt-0.5">- 31 Dec 2024</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center justify-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <button class="w-7 h-7 rounded border border-white/10 hover:border-white/20 hover:bg-white/5 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[14px]">edit</span>
+                                                </button>
+                                                <button class="w-7 h-7 rounded border border-white/10 hover:border-white/20 hover:bg-white/5 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[14px]">more_horiz</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 5 -->
+                                    <tr class="hover:bg-white/5 transition-colors group">
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-2">
+                                                <span class="px-2 py-1 rounded bg-[#ef4444]/10 border border-[#ef4444]/20 text-[#ef4444] font-bold text-[11px] tracking-wide">NEWUSER100</span>
+                                                <span class="material-symbols-outlined text-[14px] text-[#ef4444] cursor-pointer hover:text-white transition-colors">content_copy</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] font-medium text-white group-hover:text-primary transition-colors cursor-pointer">New User Offer</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">Flat ₹100 off for new users</p>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="text-[11px] font-medium text-[#8b5cf6]">Fixed</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] font-medium text-white">₹100</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">Min. Order ₹2,000</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <span class="text-[12px] text-white">All Products</span>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[11px] font-medium text-[#ef4444]">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-[#ef4444]"></span>
+                                                Inactive
+                                            </span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex flex-col gap-1 w-[80px]">
+                                                <div class="flex justify-between items-end text-[10px]">
+                                                    <span class="text-white font-medium">0</span>
+                                                    <span class="text-on-surface-variant">/ 200</span>
+                                                </div>
+                                                <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                                                    <div class="h-full bg-[#2563eb]" style="width: 0%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[11px] text-white">01 Apr 2024</p>
+                                            <p class="text-[11px] text-on-surface-variant mt-0.5">- 30 Apr 2024</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center justify-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <button class="w-7 h-7 rounded border border-white/10 hover:border-white/20 hover:bg-white/5 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[14px]">edit</span>
+                                                </button>
+                                                <button class="w-7 h-7 rounded border border-white/10 hover:border-white/20 hover:bg-white/5 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[14px]">more_horiz</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 6 -->
+                                    <tr class="hover:bg-white/5 transition-colors group">
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-2">
+                                                <span class="px-2 py-1 rounded bg-[#f59e0b]/10 border border-[#f59e0b]/20 text-[#f59e0b] font-bold text-[11px] tracking-wide">GAMING8</span>
+                                                <span class="material-symbols-outlined text-[14px] text-[#f59e0b] cursor-pointer hover:text-white transition-colors">content_copy</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] font-medium text-white group-hover:text-primary transition-colors cursor-pointer">Gaming Build 8% OFF</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">8% off on Gaming PCs</p>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="text-[11px] font-medium text-[#2563eb]">Percentage</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] font-medium text-white">8%</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">Max ₹1,200</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <span class="text-[12px] text-white">Category: Gaming PC</span>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[11px] font-medium text-[#94a3b8]">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-[#94a3b8]"></span>
+                                                Expired
+                                            </span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex flex-col gap-1 w-[80px]">
+                                                <div class="flex justify-between items-end text-[10px]">
+                                                    <span class="text-white font-medium">210</span>
+                                                    <span class="text-on-surface-variant">/ 300</span>
+                                                </div>
+                                                <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                                                    <div class="h-full bg-[#2563eb]" style="width: 70%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[11px] text-white">01 Apr 2024</p>
+                                            <p class="text-[11px] text-on-surface-variant mt-0.5">- 15 May 2024</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center justify-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <button class="w-7 h-7 rounded border border-white/10 hover:border-white/20 hover:bg-white/5 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[14px]">edit</span>
+                                                </button>
+                                                <button class="w-7 h-7 rounded border border-white/10 hover:border-white/20 hover:bg-white/5 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[14px]">more_horiz</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 7 -->
+                                    <tr class="hover:bg-white/5 transition-colors group">
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-2">
+                                                <span class="px-2 py-1 rounded bg-[#14b8a6]/10 border border-[#14b8a6]/20 text-[#14b8a6] font-bold text-[11px] tracking-wide">STUDENT7</span>
+                                                <span class="material-symbols-outlined text-[14px] text-[#14b8a6] cursor-pointer hover:text-white transition-colors">content_copy</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] font-medium text-white group-hover:text-primary transition-colors cursor-pointer">Student Discount 7%</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">Extra 7% off for students</p>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="text-[11px] font-medium text-[#2563eb]">Percentage</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] font-medium text-white">7%</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">Max ₹800</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <span class="text-[12px] text-white">All Products</span>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[11px] font-medium text-[#f59e0b]">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-[#f59e0b]"></span>
+                                                Scheduled
+                                            </span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex flex-col gap-1 w-[80px]">
+                                                <div class="flex justify-between items-end text-[10px]">
+                                                    <span class="text-white font-medium">0</span>
+                                                    <span class="text-on-surface-variant">/ 100</span>
+                                                </div>
+                                                <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                                                    <div class="h-full bg-[#2563eb]" style="width: 0%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[11px] text-white">20 May 2024</p>
+                                            <p class="text-[11px] text-on-surface-variant mt-0.5">- 30 Jun 2024</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center justify-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <button class="w-7 h-7 rounded border border-white/10 hover:border-white/20 hover:bg-white/5 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[14px]">edit</span>
+                                                </button>
+                                                <button class="w-7 h-7 rounded border border-white/10 hover:border-white/20 hover:bg-white/5 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[14px]">more_horiz</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Pagination -->
+                        <div class="p-3 border-t border-white/5 flex items-center justify-between">
+                            <p class="text-[12px] text-on-surface-variant">Showing 1 to 7 of 32 coupons</p>
+                            <div class="flex items-center gap-1">
+                                <button class="w-7 h-7 rounded border border-white/10 bg-transparent flex items-center justify-center text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors disabled:opacity-50">
+                                    <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+                                </button>
+                                <button class="w-7 h-7 rounded bg-[#2563eb] text-white flex items-center justify-center text-[12px] font-medium">1</button>
+                                <button class="w-7 h-7 rounded border border-white/10 bg-transparent flex items-center justify-center text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors text-[12px] font-medium">2</button>
+                                <button class="w-7 h-7 rounded border border-white/10 bg-transparent flex items-center justify-center text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors text-[12px] font-medium">3</button>
+                                <button class="w-7 h-7 rounded border border-white/10 bg-transparent flex items-center justify-center text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors text-[12px] font-medium">4</button>
+                                <button class="w-7 h-7 rounded border border-white/10 bg-transparent flex items-center justify-center text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors">
+                                    <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                                </button>
+                                
+                                <div class="relative ml-2">
+                                    <select class="h-7 bg-transparent border border-white/10 rounded px-2 pr-5 text-[12px] text-white appearance-none focus:outline-none focus:border-primary/50 transition-colors cursor-pointer">
+                                        <option value="10">10 / page</option>
+                                    </select>
+                                    <span class="material-symbols-outlined absolute right-1 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[14px]">expand_more</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="flex-1 flex flex-col gap-6">
+                    
+                    <!-- Coupon Summary -->
+                    <div class="glass-card rounded-xl border border-white/5 bg-surface-container/30 overflow-hidden flex flex-col">
+                        <div class="p-4 border-b border-white/5">
+                            <h3 class="text-sm font-bold text-white tracking-wider">Coupon Summary</h3>
+                        </div>
+                        <div class="p-4 flex items-center gap-6">
+                            <!-- Donut Chart -->
+                            <div class="relative w-[110px] h-[110px] shrink-0">
+                                <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                                    <!-- Base Circle -->
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="12"></circle>
+                                    <!-- Active (Green) ~56.3% -->
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="#10b981" stroke-width="12" stroke-dasharray="251.2" stroke-dashoffset="109.8"></circle>
+                                    <!-- Inactive (Red) ~15.6% -->
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="#ef4444" stroke-width="12" stroke-dasharray="251.2" stroke-dashoffset="212" transform="rotate(202 50 50)"></circle>
+                                    <!-- Expired (Grey) ~18.7% -->
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="#94a3b8" stroke-width="12" stroke-dasharray="251.2" stroke-dashoffset="204.2" transform="rotate(258 50 50)"></circle>
+                                    <!-- Scheduled (Yellow) ~9.4% -->
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="#f59e0b" stroke-width="12" stroke-dasharray="251.2" stroke-dashoffset="227.6" transform="rotate(325 50 50)"></circle>
+                                </svg>
+                                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                    <span class="text-xl font-bold text-white leading-tight">32</span>
+                                    <span class="text-[10px] text-on-surface-variant">Total</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Legend -->
+                            <div class="flex-1 flex flex-col gap-3 text-[11px]">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-[#10b981]"></div>
+                                        <span class="text-on-surface-variant">Active</span>
+                                    </div>
+                                    <span class="text-white">18 <span class="text-on-surface-variant">(56.3%)</span></span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-[#ef4444]"></div>
+                                        <span class="text-on-surface-variant">Inactive</span>
+                                    </div>
+                                    <span class="text-white">5 <span class="text-on-surface-variant">(15.6%)</span></span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-[#94a3b8]"></div>
+                                        <span class="text-on-surface-variant">Expired</span>
+                                    </div>
+                                    <span class="text-white">6 <span class="text-on-surface-variant">(18.7%)</span></span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-[#f59e0b]"></div>
+                                        <span class="text-on-surface-variant">Scheduled</span>
+                                    </div>
+                                    <span class="text-white">3 <span class="text-on-surface-variant">(9.4%)</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Top Performing Coupons -->
+                    <div class="glass-card rounded-xl border border-white/5 bg-surface-container/30 overflow-hidden flex flex-col">
+                        <div class="p-4 border-b border-white/5 flex justify-between items-center">
+                            <h3 class="text-sm font-bold text-white tracking-wider">Top Performing Coupons</h3>
+                            <a href="#" class="text-[#2563eb] hover:text-[#2563eb]/80 text-[11px] font-medium transition-colors">View All</a>
+                        </div>
+                        <div class="p-4 flex flex-col gap-5 text-[12px]">
+                            <!-- 1 -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-on-surface-variant text-[11px]">1</span>
+                                    <span class="text-white font-medium">SUMMER10</span>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-white font-medium">320</p>
+                                    <p class="text-[9px] text-on-surface-variant">Usage</p>
+                                </div>
+                            </div>
+                            
+                            <!-- 2 -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-on-surface-variant text-[11px]">2</span>
+                                    <span class="text-white font-medium">FREESHIP</span>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-white font-medium">410</p>
+                                    <p class="text-[9px] text-on-surface-variant">Usage</p>
+                                </div>
+                            </div>
+
+                            <!-- 3 -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-on-surface-variant text-[11px]">3</span>
+                                    <span class="text-white font-medium">PCBUILDER5</span>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-white font-medium">150</p>
+                                    <p class="text-[9px] text-on-surface-variant">Usage</p>
+                                </div>
+                            </div>
+
+                            <!-- 4 -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-on-surface-variant text-[11px]">4</span>
+                                    <span class="text-white font-medium">WELCOME500</span>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-white font-medium">85</p>
+                                    <p class="text-[9px] text-on-surface-variant">Usage</p>
+                                </div>
+                            </div>
+
+                            <!-- 5 -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-on-surface-variant text-[11px]">5</span>
+                                    <span class="text-white font-medium">GAMING8</span>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-white font-medium">210</p>
+                                    <p class="text-[9px] text-on-surface-variant">Usage</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Actions Menu -->
+                    <div class="flex flex-col gap-1 text-[13px]">
+                        <h3 class="text-sm font-bold text-white mb-2">Quick Actions</h3>
+                        
+                        <a href="#" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/5 group">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-on-surface-variant group-hover:text-white transition-colors">
+                                    <span class="material-symbols-outlined text-[16px]">add</span>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-white group-hover:text-primary transition-colors">Create New Coupon</p>
+                                    <p class="text-[10px] text-on-surface-variant">Add a new discount or promo code</p>
+                                </div>
+                            </div>
+                            <span class="material-symbols-outlined text-[16px] text-on-surface-variant">chevron_right</span>
+                        </a>
+
+                        <a href="#" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/5 group">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-on-surface-variant group-hover:text-white transition-colors">
+                                    <span class="material-symbols-outlined text-[16px]">upload_file</span>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-white group-hover:text-primary transition-colors">Bulk Upload Coupons</p>
+                                    <p class="text-[10px] text-on-surface-variant">Upload multiple coupons via CSV</p>
+                                </div>
+                            </div>
+                            <span class="material-symbols-outlined text-[16px] text-on-surface-variant">chevron_right</span>
+                        </a>
+
+                        <a href="#" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/5 group">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-on-surface-variant group-hover:text-white transition-colors">
+                                    <span class="material-symbols-outlined text-[16px]">assessment</span>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-white group-hover:text-primary transition-colors">Coupon Usage Report</p>
+                                    <p class="text-[10px] text-on-surface-variant">Download detailed usage report</p>
+                                </div>
+                            </div>
+                            <span class="material-symbols-outlined text-[16px] text-on-surface-variant">chevron_right</span>
+                        </a>
+                        
+                        <a href="#" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/5 group">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-on-surface-variant group-hover:text-white transition-colors">
+                                    <span class="material-symbols-outlined text-[16px]">history</span>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-white group-hover:text-primary transition-colors">Expired Coupons</p>
+                                    <p class="text-[10px] text-on-surface-variant">View all expired coupons</p>
+                                </div>
+                            </div>
+                            <span class="material-symbols-outlined text-[16px] text-on-surface-variant">chevron_right</span>
+                        </a>
+                    </div>
+
+                    <!-- Help Card -->
+                    <div class="glass-card rounded-xl border border-[#2563eb]/20 bg-[#2563eb]/5 p-4 flex justify-between items-center group cursor-pointer hover:bg-[#2563eb]/10 transition-colors">
+                        <div>
+                            <h3 class="text-sm font-bold text-white mb-1">Need Help?</h3>
+                            <p class="text-[11px] text-on-surface-variant mb-2">Learn how to create and manage coupons</p>
+                            <a href="#" class="text-[#2563eb] hover:text-[#2563eb]/80 text-[11px] font-medium transition-colors flex items-center gap-1">View Documentation <span class="material-symbols-outlined text-[12px]">arrow_forward</span></a>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-[#2563eb]/20 flex items-center justify-center group-hover:bg-[#2563eb] transition-colors">
+                            <span class="material-symbols-outlined text-[#2563eb] group-hover:text-white transition-colors text-[20px]">help_outline</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+"""
+    
+    new_html = main_pattern.sub(f'<main class="ml-64 flex-1 p-6 h-screen overflow-y-auto custom-scrollbar bg-surface-deep flex flex-col pb-24">{coupons_content}</main>', base_html)
+    
+    # Update active state in sidebar
+    new_html = new_html.replace('href="admin-coupons.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary"', 
+                                'href="admin-coupons.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 bg-primary/10 text-primary"')
+    
+
+    with open('admin-coupons.html', 'w', encoding='utf-8') as f:
+        f.write(new_html)
+        
+    print("Successfully generated admin-coupons.html")
+
+if __name__ == '__main__':
+    generate_admin_coupons()

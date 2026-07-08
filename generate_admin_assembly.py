@@ -1,0 +1,478 @@
+import os
+import re
+
+def generate_admin_assembly():
+    with open('admin-dashboard.html', 'r', encoding='utf-8') as f:
+        base_html = f.read()
+
+    main_pattern = re.compile(r'(<main[^>]*>)(.*?)(</main>)', re.DOTALL)
+    
+    assembly_content = """
+        <div class="flex flex-col relative w-full">
+            
+            <!-- Header -->
+            <div class="flex justify-between items-end mb-8 relative z-10">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-3xl text-on-surface-variant">build</span>
+                    <div>
+                        <h1 class="text-3xl font-bold text-white mb-2 tracking-tight">Assembly Queue</h1>
+                        <p class="text-on-surface-variant text-sm">Track custom PC builds, manage technicians, and monitor progress.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="px-5 py-2.5 rounded-xl bg-primary text-on-primary font-medium hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[20px]">qr_code_scanner</span>
+                        Scan Barcode
+                    </button>
+                    <button class="px-5 py-2.5 rounded-xl border border-white/10 hover:border-white/20 bg-surface-container/50 text-white font-medium transition-all duration-300 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[20px]">assessment</span>
+                        Generate Report
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Grid (4 Cards) -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8 relative z-10">
+                <!-- Pending Builds -->
+                <div class="glass-card rounded-xl border border-white/5 bg-surface-container/30 p-5 relative overflow-hidden group">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-[#f59e0b]/10 border border-[#f59e0b]/20 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[#f59e0b] text-[20px]">list_alt</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-[11px] font-medium text-on-surface-variant mb-1 uppercase tracking-wider">Pending Builds</p>
+                        <h3 class="text-2xl font-bold text-white tracking-tight">24</h3>
+                    </div>
+                </div>
+
+                <!-- In Progress -->
+                <div class="glass-card rounded-xl border border-white/5 bg-surface-container/30 p-5 relative overflow-hidden group">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-[#2563eb]/10 border border-[#2563eb]/20 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[#2563eb] text-[20px]">engineering</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-[11px] font-medium text-on-surface-variant mb-1 uppercase tracking-wider">In Progress</p>
+                        <h3 class="text-2xl font-bold text-white tracking-tight">12</h3>
+                    </div>
+                </div>
+
+                <!-- Completed Today -->
+                <div class="glass-card rounded-xl border border-white/5 bg-surface-container/30 p-5 relative overflow-hidden group">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-[#10b981]/10 border border-[#10b981]/20 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[#10b981] text-[20px]">check_circle</span>
+                        </div>
+                        <div class="flex items-center gap-1 bg-[#10b981]/10 border border-[#10b981]/20 px-2 py-1 rounded text-[#10b981]">
+                            <span class="material-symbols-outlined text-[12px]">arrow_upward</span>
+                            <span class="text-[10px] font-bold">4</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-[11px] font-medium text-on-surface-variant mb-1 uppercase tracking-wider">Completed Today</p>
+                        <h3 class="text-2xl font-bold text-white tracking-tight">18</h3>
+                    </div>
+                </div>
+
+                <!-- Avg Build Time -->
+                <div class="glass-card rounded-xl border border-white/5 bg-surface-container/30 p-5 relative overflow-hidden group">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[#8b5cf6] text-[20px]">timer</span>
+                        </div>
+                        <div class="flex items-center gap-1 bg-[#10b981]/10 border border-[#10b981]/20 px-2 py-1 rounded text-[#10b981]">
+                            <span class="material-symbols-outlined text-[12px]">arrow_downward</span>
+                            <span class="text-[10px] font-bold">15m</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-[11px] font-medium text-on-surface-variant mb-1 uppercase tracking-wider">Avg Build Time</p>
+                        <h3 class="text-2xl font-bold text-white tracking-tight">2h 15m</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two Column Layout -->
+            <div class="flex gap-6 relative z-10">
+                
+                <!-- Left Column (Table) -->
+                <div class="flex-[3] flex flex-col gap-6">
+                    
+                    <!-- Filters Bar -->
+                    <div class="flex items-center gap-4">
+                        <!-- Search -->
+                        <div class="relative flex-1 max-w-[280px]">
+                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px] pointer-events-none">search</span>
+                            <input type="text" placeholder="Search Order ID or Specs..." class="w-full h-10 bg-black/20 border border-white/10 rounded-lg pl-10 pr-4 text-[13px] text-white placeholder-on-surface-variant focus:outline-none focus:border-primary/50 transition-colors" />
+                        </div>
+
+                        <!-- Dropdowns -->
+                        <div class="relative flex-1 max-w-[150px]">
+                            <select class="w-full h-10 bg-black/20 border border-white/10 rounded-lg px-3 pr-8 text-[13px] text-white appearance-none focus:outline-none focus:border-primary/50 transition-colors cursor-pointer">
+                                <option value="all">All Technicians</option>
+                            </select>
+                            <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+                        </div>
+                        
+                        <div class="relative flex-1 max-w-[150px]">
+                            <select class="w-full h-10 bg-black/20 border border-white/10 rounded-lg px-3 pr-8 text-[13px] text-white appearance-none focus:outline-none focus:border-primary/50 transition-colors cursor-pointer">
+                                <option value="all">Any Status</option>
+                            </select>
+                            <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+                        </div>
+
+                        <button class="px-3 py-2 rounded-lg border border-white/10 hover:border-white/20 bg-surface-container/50 text-white font-medium transition-all duration-300 flex items-center gap-1.5 text-[13px]">
+                            <span class="material-symbols-outlined text-[16px]">filter_list</span>
+                            Filters
+                        </button>
+                    </div>
+                    
+                    <!-- Table -->
+                    <div class="glass-card rounded-xl border border-white/5 bg-surface-container/30 overflow-hidden flex flex-col">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="border-b border-white/5 bg-black/20">
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider">Build ID</th>
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider">Customer</th>
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider">Key Specs</th>
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider">Technician</th>
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider min-w-[200px]">Build Progress</th>
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-white/5">
+                                    
+                                    <!-- Row 1: Testing -->
+                                    <tr class="hover:bg-white/5 transition-colors group">
+                                        <td class="py-4 px-4">
+                                            <a href="#" class="font-bold text-[#3b82f6] text-[13px] hover:underline">BLD-9021</a>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">ORD-9021</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-7 h-7 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-[12px] font-bold shrink-0">VK</div>
+                                                <div>
+                                                    <p class="text-[12px] font-medium text-white">Vikram Kumar</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] text-white font-medium">i9-14900K • RTX 4090</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">64GB DDR5 • 2TB Gen4</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-2">
+                                                <img src="https://i.pravatar.cc/150?img=11" alt="Avatar" class="w-6 h-6 rounded-full object-cover">
+                                                <span class="text-[12px] text-white">Rahul S.</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <!-- Progress Stepper -->
+                                            <div class="flex flex-col gap-1.5 w-full">
+                                                <div class="flex justify-between text-[9px] font-bold text-on-surface-variant uppercase">
+                                                    <span class="text-primary">Pick</span>
+                                                    <span class="text-primary">Build</span>
+                                                    <span class="text-[#f59e0b]">Test</span>
+                                                    <span>QC</span>
+                                                </div>
+                                                <div class="w-full h-1.5 bg-black/40 rounded-full overflow-hidden flex">
+                                                    <div class="h-full bg-primary" style="width: 25%"></div>
+                                                    <div class="h-full bg-primary" style="width: 25%"></div>
+                                                    <div class="h-full bg-[#f59e0b] relative overflow-hidden" style="width: 25%">
+                                                        <div class="absolute inset-0 bg-white/20 animate-pulse"></div>
+                                                    </div>
+                                                    <div class="h-full bg-transparent" style="width: 25%"></div>
+                                                </div>
+                                                <p class="text-[10px] text-[#f59e0b] text-center font-medium">Stress Testing (30m left)</p>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <button class="w-8 h-8 rounded bg-surface-container hover:bg-white/10 inline-flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">more_vert</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 2: Assembly -->
+                                    <tr class="hover:bg-white/5 transition-colors group">
+                                        <td class="py-4 px-4">
+                                            <a href="#" class="font-bold text-[#3b82f6] text-[13px] hover:underline">BLD-9022</a>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">ORD-9025</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-7 h-7 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center text-[12px] font-bold shrink-0">AS</div>
+                                                <div>
+                                                    <p class="text-[12px] font-medium text-white">Ananya Singh</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] text-white font-medium">R7 7800X3D • RX 7900 XTX</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">32GB DDR5 • 1TB Gen4</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-2">
+                                                <img src="https://i.pravatar.cc/150?img=33" alt="Avatar" class="w-6 h-6 rounded-full object-cover">
+                                                <span class="text-[12px] text-white">Amit P.</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <!-- Progress Stepper -->
+                                            <div class="flex flex-col gap-1.5 w-full">
+                                                <div class="flex justify-between text-[9px] font-bold text-on-surface-variant uppercase">
+                                                    <span class="text-primary">Pick</span>
+                                                    <span class="text-[#2563eb]">Build</span>
+                                                    <span>Test</span>
+                                                    <span>QC</span>
+                                                </div>
+                                                <div class="w-full h-1.5 bg-black/40 rounded-full overflow-hidden flex">
+                                                    <div class="h-full bg-primary" style="width: 25%"></div>
+                                                    <div class="h-full bg-[#2563eb] relative overflow-hidden" style="width: 25%">
+                                                        <div class="absolute inset-0 bg-white/20 animate-pulse"></div>
+                                                    </div>
+                                                    <div class="h-full bg-transparent" style="width: 25%"></div>
+                                                    <div class="h-full bg-transparent" style="width: 25%"></div>
+                                                </div>
+                                                <p class="text-[10px] text-[#2563eb] text-center font-medium">Installing Cooler</p>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <button class="w-8 h-8 rounded bg-surface-container hover:bg-white/10 inline-flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">more_vert</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 3: QC Pending -->
+                                    <tr class="hover:bg-white/5 transition-colors group">
+                                        <td class="py-4 px-4">
+                                            <a href="#" class="font-bold text-[#3b82f6] text-[13px] hover:underline">BLD-9018</a>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">ORD-9018</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-7 h-7 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center text-[12px] font-bold shrink-0">NK</div>
+                                                <div>
+                                                    <p class="text-[12px] font-medium text-white">Nikhil Kapoor</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] text-white font-medium">i5-13600K • RTX 4070 Ti</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">32GB DDR5 • 1TB Gen4</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-2">
+                                                <img src="https://i.pravatar.cc/150?img=47" alt="Avatar" class="w-6 h-6 rounded-full object-cover">
+                                                <span class="text-[12px] text-white">Pooja M.</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <!-- Progress Stepper -->
+                                            <div class="flex flex-col gap-1.5 w-full">
+                                                <div class="flex justify-between text-[9px] font-bold text-on-surface-variant uppercase">
+                                                    <span class="text-primary">Pick</span>
+                                                    <span class="text-primary">Build</span>
+                                                    <span class="text-primary">Test</span>
+                                                    <span class="text-[#8b5cf6]">QC</span>
+                                                </div>
+                                                <div class="w-full h-1.5 bg-black/40 rounded-full overflow-hidden flex">
+                                                    <div class="h-full bg-primary" style="width: 25%"></div>
+                                                    <div class="h-full bg-primary" style="width: 25%"></div>
+                                                    <div class="h-full bg-primary" style="width: 25%"></div>
+                                                    <div class="h-full bg-[#8b5cf6] relative overflow-hidden" style="width: 25%">
+                                                        <div class="absolute inset-0 bg-white/20 animate-pulse"></div>
+                                                    </div>
+                                                </div>
+                                                <p class="text-[10px] text-[#8b5cf6] text-center font-medium">Awaiting Inspection</p>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <button class="w-8 h-8 rounded bg-surface-container hover:bg-white/10 inline-flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">more_vert</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 4: Picking -->
+                                    <tr class="hover:bg-white/5 transition-colors group">
+                                        <td class="py-4 px-4">
+                                            <a href="#" class="font-bold text-[#3b82f6] text-[13px] hover:underline">BLD-9024</a>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">ORD-9029</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-7 h-7 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center text-[12px] font-bold shrink-0">RV</div>
+                                                <div>
+                                                    <p class="text-[12px] font-medium text-white">Riya Varma</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] text-white font-medium">i7-14700K • RTX 4080 S</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">32GB DDR5 • 2TB Gen4</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <span class="text-[12px] text-on-surface-variant italic">Unassigned</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <!-- Progress Stepper -->
+                                            <div class="flex flex-col gap-1.5 w-full">
+                                                <div class="flex justify-between text-[9px] font-bold text-on-surface-variant uppercase">
+                                                    <span class="text-[#10b981]">Pick</span>
+                                                    <span>Build</span>
+                                                    <span>Test</span>
+                                                    <span>QC</span>
+                                                </div>
+                                                <div class="w-full h-1.5 bg-black/40 rounded-full overflow-hidden flex">
+                                                    <div class="h-full bg-[#10b981] relative overflow-hidden" style="width: 25%">
+                                                        <div class="absolute inset-0 bg-white/20 animate-pulse"></div>
+                                                    </div>
+                                                    <div class="h-full bg-transparent" style="width: 25%"></div>
+                                                    <div class="h-full bg-transparent" style="width: 25%"></div>
+                                                    <div class="h-full bg-transparent" style="width: 25%"></div>
+                                                </div>
+                                                <p class="text-[10px] text-[#10b981] text-center font-medium">Collecting Parts</p>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <button class="w-8 h-8 rounded bg-surface-container hover:bg-white/10 inline-flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">more_vert</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Pagination -->
+                        <div class="p-3 border-t border-white/5 flex items-center justify-between">
+                            <p class="text-[12px] text-on-surface-variant">Showing 1 to 4 of 36 builds</p>
+                            <div class="flex items-center gap-1">
+                                <button class="w-7 h-7 rounded border border-white/10 bg-transparent flex items-center justify-center text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors disabled:opacity-50">
+                                    <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+                                </button>
+                                <button class="w-7 h-7 rounded bg-[#2563eb] text-white flex items-center justify-center text-[12px] font-medium">1</button>
+                                <button class="w-7 h-7 rounded border border-white/10 bg-transparent flex items-center justify-center text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors text-[12px] font-medium">2</button>
+                                <button class="w-7 h-7 rounded border border-white/10 bg-transparent flex items-center justify-center text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors">
+                                    <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="flex-1 flex flex-col gap-6">
+                    
+                    <!-- Technician Leaderboard -->
+                    <div class="glass-card rounded-xl border border-white/5 bg-surface-container/30 overflow-hidden flex flex-col">
+                        <div class="p-4 border-b border-white/5 flex justify-between items-center">
+                            <h3 class="text-sm font-bold text-white tracking-wider">Top Technicians (Today)</h3>
+                        </div>
+                        <div class="p-2 flex flex-col gap-1 text-[12px]">
+                            <div class="flex items-center justify-between p-2 rounded hover:bg-white/5 transition-colors">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-6 h-6 rounded bg-[#f59e0b]/20 text-[#f59e0b] flex items-center justify-center text-[12px] font-bold">1</div>
+                                    <div class="flex items-center gap-2">
+                                        <img src="https://i.pravatar.cc/150?img=11" alt="Avatar" class="w-6 h-6 rounded-full object-cover">
+                                        <span class="text-white font-medium">Rahul S.</span>
+                                    </div>
+                                </div>
+                                <span class="font-bold text-white">5 Builds</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2 rounded hover:bg-white/5 transition-colors">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-6 h-6 rounded bg-zinc-400/20 text-zinc-400 flex items-center justify-center text-[12px] font-bold">2</div>
+                                    <div class="flex items-center gap-2">
+                                        <img src="https://i.pravatar.cc/150?img=47" alt="Avatar" class="w-6 h-6 rounded-full object-cover">
+                                        <span class="text-white font-medium">Pooja M.</span>
+                                    </div>
+                                </div>
+                                <span class="font-bold text-white">4 Builds</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2 rounded hover:bg-white/5 transition-colors">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-6 h-6 rounded bg-[#d97706]/20 text-[#d97706] flex items-center justify-center text-[12px] font-bold">3</div>
+                                    <div class="flex items-center gap-2">
+                                        <img src="https://i.pravatar.cc/150?img=33" alt="Avatar" class="w-6 h-6 rounded-full object-cover">
+                                        <span class="text-white font-medium">Amit P.</span>
+                                    </div>
+                                </div>
+                                <span class="font-bold text-white">3 Builds</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shortage Alerts -->
+                    <div class="glass-card rounded-xl border border-red-500/20 bg-red-500/5 overflow-hidden flex flex-col relative">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-red-500/10 blur-3xl -z-10 rounded-full"></div>
+                        <div class="p-4 border-b border-red-500/10 flex justify-between items-center">
+                            <div class="flex items-center gap-2 text-red-500">
+                                <span class="material-symbols-outlined text-[18px]">warning</span>
+                                <h3 class="text-sm font-bold tracking-wider">Parts Shortage Alerts</h3>
+                            </div>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-red-500/20 text-red-500">2 Alerts</span>
+                        </div>
+                        <div class="p-4 flex flex-col gap-3">
+                            <div class="bg-red-500/10 border border-red-500/20 rounded p-3 text-[12px]">
+                                <p class="text-white font-medium mb-1">ASUS ROG RTX 4090 OC</p>
+                                <p class="text-red-400 mb-2">Out of stock. Impacting 1 pending build.</p>
+                                <a href="#" class="text-red-300 font-medium hover:underline text-[11px]">View Order #ORD-9031</a>
+                            </div>
+                            <div class="bg-orange-500/10 border border-orange-500/20 rounded p-3 text-[12px]">
+                                <p class="text-white font-medium mb-1">Corsair RM1000x Shift</p>
+                                <p class="text-orange-400 mb-2">Low stock (2 remaining). 4 builds require this.</p>
+                                <a href="#" class="text-orange-300 font-medium hover:underline text-[11px]">View Affected Orders</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QC Pass Rate -->
+                    <div class="glass-card rounded-xl border border-white/5 bg-surface-container/30 overflow-hidden flex flex-col">
+                        <div class="p-4 border-b border-white/5 flex justify-between items-center">
+                            <h3 class="text-sm font-bold text-white tracking-wider">QC Pass Rate</h3>
+                            <span class="text-[10px] text-on-surface-variant">Last 30 Days</span>
+                        </div>
+                        <div class="p-4 flex flex-col items-center">
+                            <!-- Donut Chart -->
+                            <div class="relative w-[120px] h-[120px] shrink-0 mb-4">
+                                <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="12"></circle>
+                                    <!-- Passed ~94% -->
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="#10b981" stroke-width="12" stroke-dasharray="251.2" stroke-dashoffset="15"></circle>
+                                </svg>
+                                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                    <span class="text-2xl font-bold text-white leading-tight">94%</span>
+                                </div>
+                            </div>
+                            <p class="text-[11px] text-on-surface-variant text-center px-4">
+                                94% of builds passed Quality Control on the first attempt without rework.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+"""
+    
+    new_html = main_pattern.sub(f'<main class="ml-64 flex-1 p-6 h-screen overflow-y-auto custom-scrollbar bg-surface-deep flex flex-col pb-24">{assembly_content}</main>', base_html)
+    
+    # Update active state in sidebar
+    new_html = new_html.replace('href="admin-assembly.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary"', 
+                                'href="admin-assembly.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 bg-primary/10 text-primary"')
+    
+
+    with open('admin-assembly.html', 'w', encoding='utf-8') as f:
+        f.write(new_html)
+        
+    print("Successfully generated admin-assembly.html")
+
+if __name__ == '__main__':
+    generate_admin_assembly()

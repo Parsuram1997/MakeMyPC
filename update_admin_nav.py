@@ -76,15 +76,15 @@ aside_content = """<aside class="h-screen w-64 fixed left-0 top-0 border-r borde
             <span class="material-symbols-outlined">local_shipping</span>
             <span class="text-body-sm font-medium">Shipping</span>
         </a>
-        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+        <a href="admin-assembly.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
             <span class="material-symbols-outlined">build</span>
             <span class="text-body-sm font-medium">Assembly</span>
         </a>
-        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+        <a href="admin-payments.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
             <span class="material-symbols-outlined">payments</span>
             <span class="text-body-sm font-medium">Payments</span>
         </a>
-        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+        <a href="admin-coupons.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
             <span class="material-symbols-outlined">local_offer</span>
             <span class="text-body-sm font-medium">Coupons</span>
         </a>
@@ -113,7 +113,7 @@ aside_content = """<aside class="h-screen w-64 fixed left-0 top-0 border-r borde
             <span class="material-symbols-outlined">notifications</span>
             <span class="text-body-sm font-medium">Notifications</span>
         </a>
-        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+        <a href="admin-users.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
             <span class="material-symbols-outlined">admin_panel_settings</span>
             <span class="text-body-sm font-medium">Admin Users</span>
         </a>
