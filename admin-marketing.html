@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MakeMyPC | Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#adc6ff",
+                    "on-tertiary-container": "#4c1a00",
+                    "inverse-on-surface": "#263046",
+                    "secondary-fixed-dim": "#5cd8da",
+                    "surface-container-low": "#101b30",
+                    "surface-container": "#142034",
+                    "primary-fixed-dim": "#adc6ff",
+                    "outline-variant": "#414755",
+                    "electric-blue": "#007AFF",
+                    "background": "#071327",
+                    "surface-bright": "#2e394f",
+                    "secondary": "#5cd8da",
+                    "surface": "#071327",
+                    "on-primary-container": "#00285c",
+                    "tertiary-container": "#ef6719",
+                    "hardware-gray": "#111111",
+                    "on-background": "#d7e2ff",
+                    "on-tertiary-fixed": "#351000",
+                    "tertiary": "#ffb595",
+                    "primary-container": "#4b8eff",
+                    "surface-tint": "#adc6ff",
+                    "surface-container-lowest": "#030e22",
+                    "primary-fixed": "#d8e2ff",
+                    "on-primary": "#002e69",
+                    "on-secondary-fixed": "#002020",
+                    "surface-deep": "#00081C",
+                    "secondary-container": "#00a4a6",
+                    "on-secondary-fixed-variant": "#004f50",
+                    "cyber-teal": "#00A4A6",
+                    "on-surface": "#d7e2ff",
+                    "tertiary-fixed": "#ffdbcc",
+                    "error": "#ffb4ab",
+                    "on-surface-variant": "#c1c6d7",
+                    "on-tertiary-fixed-variant": "#7c2e00",
+                    "outline": "#8b90a0",
+                    "surface-dim": "#071327",
+                    "on-error": "#690005",
+                    "on-primary-fixed": "#001a41",
+                    "surface-container-highest": "#2a354a",
+                    "inverse-primary": "#005bc1",
+                    "on-primary-fixed-variant": "#004493",
+                    "secondary-fixed": "#7cf5f7",
+                    "surface-variant": "#2a354a",
+                    "inverse-surface": "#d7e2ff",
+                    "on-tertiary": "#571e00",
+                    "on-error-container": "#ffdad6",
+                    "surface-glass": "rgba(255, 255, 255, 0.03)",
+                    "error-container": "#93000a",
+                    "on-secondary": "#003738",
+                    "on-secondary-container": "#003233",
+                    "tertiary-fixed-dim": "#ffb595",
+                    "surface-container-high": "#1f2a3f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "base": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-mono": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom Scrollbar for Glassmorphism */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        body {
+            background-color: #071327;
+            color: #d7e2ff;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 40px 40px rgba(0,0,0,0.15);
+        }
+        .glass-card:hover {
+            border-color: rgba(0, 122, 255, 0.4);
+            box-shadow: 0 0 20px rgba(0, 122, 255, 0.1);
+        }
+        .status-badge {
+            font-family: 'JetBrains Mono', monospace;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+        .scrollbar-hide
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+
+
+<script>
+    // Mobile Menu Logic
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const closeBtn = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (menuBtn && closeBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('translate-x-full');
+            });
+            closeBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+            });
+        }
+    });
+</script>
+
+<div class="flex">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r border-white/10 bg-surface-deep z-50 flex flex-col py-6">
+    <div class="px-6 mb-8 shrink-0">
+        <h1 class="font-headline-sm text-headline-sm font-bold text-electric-blue dark:text-primary">MakeMyPC</h1>
+        <p class="text-[10px] uppercase tracking-widest text-on-surface-variant/50 mt-1">Enterprise Admin</p>
+    </div>
+
+    <nav class="flex flex-col gap-2 px-4 flex-1 overflow-y-auto custom-scrollbar pb-6">
+        <a href="admin-dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="text-body-sm font-medium">Dashboard</span>
+        </a>
+
+        <details class="group">
+            <summary class="flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary list-none [&::-webkit-details-marker]:hidden">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">inventory_2</span>
+                    <span class="text-body-sm font-medium">Products</span>
+                </div>
+                <span class="material-symbols-outlined text-sm transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="flex flex-col gap-1 pl-12 pr-4 pt-1 pb-2">
+                <a href="product-management.html" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">All Products</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Categories</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Brands</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Inventory</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Compatibility</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Reviews</a>
+            </div>
+        </details>
+
+        <details class="group">
+            <summary class="flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary list-none [&::-webkit-details-marker]:hidden">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">computer</span>
+                    <span class="text-body-sm font-medium">PC Builder</span>
+                </div>
+                <span class="material-symbols-outlined text-sm transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="flex flex-col gap-1 pl-12 pr-4 pt-1 pb-2">
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Custom Builds</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Saved Builds</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Compatibility Engine</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Featured Builds</a>
+            </div>
+        </details>
+
+        <details class="group">
+            <summary class="flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary list-none [&::-webkit-details-marker]:hidden">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span class="text-body-sm font-medium">Orders</span>
+                </div>
+                <span class="material-symbols-outlined text-sm transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="flex flex-col gap-1 pl-12 pr-4 pt-1 pb-2">
+                <a href="orders-management.html" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">All Orders</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Custom PC</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Components</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Ready PCs</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Laptops</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Returns</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Refunds</a>
+            </div>
+        </details>
+
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">group</span>
+            <span class="text-body-sm font-medium">Customers</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">local_shipping</span>
+            <span class="text-body-sm font-medium">Shipping</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">build</span>
+            <span class="text-body-sm font-medium">Assembly</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">payments</span>
+            <span class="text-body-sm font-medium">Payments</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">local_offer</span>
+            <span class="text-body-sm font-medium">Coupons</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">analytics</span>
+            <span class="text-body-sm font-medium">Analytics</span>
+        </a>
+
+        <a href="admin-marketing.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 bg-primary/10 text-primary">
+            <span class="material-symbols-outlined">campaign</span>
+            <span class="text-body-sm font-medium">Marketing</span>
+        </a>
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">language</span>
+            <span class="text-body-sm font-medium">Website</span>
+        </a>
+        <a href="admin-reports.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">summarize</span>
+            <span class="text-body-sm font-medium">Reports</span>
+        </a>
+        <a href="admin-shipping.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">local_shipping</span>
+            <span class="text-body-sm font-medium">Shipping</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">notifications</span>
+            <span class="text-body-sm font-medium">Notifications</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">admin_panel_settings</span>
+            <span class="text-body-sm font-medium">Admin Users</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary mt-auto mb-4">
+            <span class="material-symbols-outlined">settings</span>
+            <span class="text-body-sm font-medium">Settings</span>
+        </a>
+    </nav>
+
+    <div class="mt-auto px-4 shrink-0 border-t border-white/5 pt-4">
+        <div class="flex items-center gap-3 p-3 rounded-lg bg-surface-glass border border-white/5 hover:bg-white/5 transition-colors cursor-pointer">
+            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold text-xs">AD</div>
+            <div class="overflow-hidden">
+                <p class="text-xs font-bold text-on-surface truncate">Admin Profile</p>
+                <p class="text-[10px] text-on-surface-variant truncate">Sign out</p>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 p-6 h-screen overflow-y-auto custom-scrollbar bg-surface-deep flex flex-col pb-24">
+        <div class="flex flex-col relative w-full">
+            
+            <!-- Header -->
+            <div class="flex justify-between items-end mb-8 relative z-10">
+                <div>
+                    <h1 class="text-3xl font-bold text-white mb-2 tracking-tight">Marketing</h1>
+                    <p class="text-on-surface-variant text-sm">Manage campaigns, promotions, emails and grow your business.</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px] pointer-events-none">calendar_month</span>
+                        <input type="text" value="12 May 2024 - 18 May 2024" readonly class="h-10 bg-black/20 border border-white/10 rounded-lg pl-10 pr-10 text-sm text-white focus:outline-none focus:border-primary/50 transition-colors cursor-pointer min-w-[220px]" />
+                        <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px] pointer-events-none">expand_more</span>
+                    </div>
+                    <button class="px-5 py-2.5 rounded-xl bg-primary hover:bg-primary/90 text-on-primary font-medium transition-all duration-300 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[20px]">add</span>
+                        Create Campaign
+                        <span class="material-symbols-outlined text-[18px] ml-1">expand_more</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Grid (6 Cards) -->
+            <div class="grid grid-cols-1 md:grid-cols-6 gap-4 mb-8 relative z-10">
+                <!-- Total Campaigns -->
+                <div class="glass-card rounded-2xl border border-white/5 bg-surface-container/30 p-5 relative overflow-hidden group">
+                    <div class="flex items-start gap-3 mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-[#3b82f6]/10 border border-[#3b82f6]/20 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[#3b82f6] text-[20px]">send</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-medium text-on-surface-variant mb-1 uppercase tracking-wider">Total Campaigns</p>
+                            <h3 class="text-xl font-bold text-white tracking-tight">24</h3>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1 mt-3">
+                        <span class="material-symbols-outlined text-[12px] text-green-400">arrow_upward</span>
+                        <span class="text-[10px] font-medium text-green-400">20%</span>
+                        <span class="text-[10px] text-on-surface-variant ml-1">vs last 7 days</span>
+                    </div>
+                </div>
+
+                <!-- Emails Sent -->
+                <div class="glass-card rounded-2xl border border-white/5 bg-surface-container/30 p-5 relative overflow-hidden group">
+                    <div class="flex items-start gap-3 mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[#8b5cf6] text-[20px]">mail</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-medium text-on-surface-variant mb-1 uppercase tracking-wider">Emails Sent</p>
+                            <h3 class="text-xl font-bold text-white tracking-tight">18,532</h3>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1 mt-3">
+                        <span class="material-symbols-outlined text-[12px] text-green-400">arrow_upward</span>
+                        <span class="text-[10px] font-medium text-green-400">16.3%</span>
+                        <span class="text-[10px] text-on-surface-variant ml-1">vs last 7 days</span>
+                    </div>
+                </div>
+
+                <!-- Open Rate -->
+                <div class="glass-card rounded-2xl border border-white/5 bg-surface-container/30 p-5 relative overflow-hidden group">
+                    <div class="flex items-start gap-3 mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-[#10b981]/10 border border-[#10b981]/20 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[#10b981] text-[20px]">visibility</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-medium text-on-surface-variant mb-1 uppercase tracking-wider">Open Rate</p>
+                            <h3 class="text-xl font-bold text-white tracking-tight">26.8%</h3>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1 mt-3">
+                        <span class="material-symbols-outlined text-[12px] text-green-400">arrow_upward</span>
+                        <span class="text-[10px] font-medium text-green-400">4.2%</span>
+                        <span class="text-[10px] text-on-surface-variant ml-1">vs last 7 days</span>
+                    </div>
+                </div>
+
+                <!-- Click Rate -->
+                <div class="glass-card rounded-2xl border border-white/5 bg-surface-container/30 p-5 relative overflow-hidden group">
+                    <div class="flex items-start gap-3 mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-[#f59e0b]/10 border border-[#f59e0b]/20 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[#f59e0b] text-[20px]">touch_app</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-medium text-on-surface-variant mb-1 uppercase tracking-wider">Click Rate</p>
+                            <h3 class="text-xl font-bold text-white tracking-tight">8.7%</h3>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1 mt-3">
+                        <span class="material-symbols-outlined text-[12px] text-green-400">arrow_upward</span>
+                        <span class="text-[10px] font-medium text-green-400">2.1%</span>
+                        <span class="text-[10px] text-on-surface-variant ml-1">vs last 7 days</span>
+                    </div>
+                </div>
+
+                <!-- Conversions -->
+                <div class="glass-card rounded-2xl border border-white/5 bg-surface-container/30 p-5 relative overflow-hidden group">
+                    <div class="flex items-start gap-3 mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-[#ef4444]/10 border border-[#ef4444]/20 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[#ef4444] text-[20px]">shopping_cart</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-medium text-on-surface-variant mb-1 uppercase tracking-wider">Conversions</p>
+                            <h3 class="text-xl font-bold text-white tracking-tight">452</h3>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1 mt-3">
+                        <span class="material-symbols-outlined text-[12px] text-green-400">arrow_upward</span>
+                        <span class="text-[10px] font-medium text-green-400">18.6%</span>
+                        <span class="text-[10px] text-on-surface-variant ml-1">vs last 7 days</span>
+                    </div>
+                </div>
+
+                <!-- Revenue Generated -->
+                <div class="glass-card rounded-2xl border border-white/5 bg-surface-container/30 p-5 relative overflow-hidden group">
+                    <div class="flex items-start gap-3 mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-[#14b8a6]/10 border border-[#14b8a6]/20 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[#14b8a6] text-[20px]">currency_rupee</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-medium text-on-surface-variant mb-1 uppercase tracking-wider">Revenue Generated</p>
+                            <h3 class="text-xl font-bold text-white tracking-tight">₹3,45,230</h3>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1 mt-3">
+                        <span class="material-symbols-outlined text-[12px] text-green-400">arrow_upward</span>
+                        <span class="text-[10px] font-medium text-green-400">22.8%</span>
+                        <span class="text-[10px] text-on-surface-variant ml-1">vs last 7 days</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two Column Layout -->
+            <div class="flex gap-6 relative z-10">
+                
+                <!-- Left Column -->
+                <div class="w-[70%] flex flex-col gap-6">
+                    
+                    <!-- Campaigns Table Card -->
+                    <div class="glass-card rounded-xl border border-white/5 bg-surface-container/30 overflow-hidden flex flex-col">
+                        
+                        <!-- Tabs -->
+                        <div class="flex items-center px-4 pt-2 border-b border-white/5 overflow-x-auto custom-scrollbar gap-2">
+                            <button class="px-3 py-3 text-[13px] font-medium text-primary border-b-2 border-primary whitespace-nowrap">Campaigns</button>
+                            <button class="px-3 py-3 text-[13px] font-medium text-on-surface-variant hover:text-white transition-colors whitespace-nowrap border-b-2 border-transparent">Email Marketing</button>
+                            <button class="px-3 py-3 text-[13px] font-medium text-on-surface-variant hover:text-white transition-colors whitespace-nowrap border-b-2 border-transparent">SMS Marketing</button>
+                            <button class="px-3 py-3 text-[13px] font-medium text-on-surface-variant hover:text-white transition-colors whitespace-nowrap border-b-2 border-transparent">Push Notifications</button>
+                            <button class="px-3 py-3 text-[13px] font-medium text-on-surface-variant hover:text-white transition-colors whitespace-nowrap border-b-2 border-transparent">Social Media</button>
+                            <button class="px-3 py-3 text-[13px] font-medium text-on-surface-variant hover:text-white transition-colors whitespace-nowrap border-b-2 border-transparent">Audience</button>
+                        </div>
+
+                        <!-- Filters Bar -->
+                        <div class="p-4 border-b border-white/5 flex items-center gap-4">
+                            <!-- Search -->
+                            <div class="relative flex-1 max-w-[280px]">
+                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px] pointer-events-none">search</span>
+                                <input type="text" placeholder="Search campaigns by name..." class="w-full h-10 bg-black/20 border border-white/10 rounded-lg pl-10 pr-4 text-[13px] text-white placeholder-on-surface-variant focus:outline-none focus:border-primary/50 transition-colors" />
+                            </div>
+
+                            <!-- Dropdowns -->
+                            <div class="relative flex-1 max-w-[140px]">
+                                <select class="w-full h-10 bg-black/20 border border-white/10 rounded-lg px-3 pr-8 text-[13px] text-white appearance-none focus:outline-none focus:border-primary/50 transition-colors cursor-pointer">
+                                    <option value="all">All Status</option>
+                                </select>
+                                <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+                            </div>
+                            
+                            <div class="relative flex-1 max-w-[140px]">
+                                <select class="w-full h-10 bg-black/20 border border-white/10 rounded-lg px-3 pr-8 text-[13px] text-white appearance-none focus:outline-none focus:border-primary/50 transition-colors cursor-pointer">
+                                    <option value="all">All Channels</option>
+                                </select>
+                                <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+                            </div>
+
+                            <div class="relative flex-1 max-w-[160px]">
+                                <select class="w-full h-10 bg-black/20 border border-white/10 rounded-lg px-3 pr-8 text-[13px] text-white appearance-none focus:outline-none focus:border-primary/50 transition-colors cursor-pointer">
+                                    <option value="all">All Campaign Types</option>
+                                </select>
+                                <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+                            </div>
+
+                            <button class="px-3 py-2 rounded-lg border border-white/10 hover:border-white/20 bg-surface-container/50 text-white font-medium transition-all duration-300 flex items-center gap-1.5 text-[13px]">
+                                <span class="material-symbols-outlined text-[16px]">filter_list</span>
+                                Filters
+                            </button>
+                            <a href="#" class="text-primary hover:text-primary/80 text-[13px] font-medium transition-colors">Reset</a>
+                        </div>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="border-b border-white/5 bg-black/20">
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider">Campaign</th>
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider text-center">Type</th>
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider text-center">Channel</th>
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider text-center">Status</th>
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider text-center">Performance</th>
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider">Date</th>
+                                        <th class="py-3 px-4 text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-white/5">
+                                    <!-- Summer Sale -->
+                                    <tr class="hover:bg-white/5 transition-colors group">
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-12 h-8 rounded bg-[#f59e0b] shrink-0 flex items-center justify-center overflow-hidden">
+                                                    <span class="text-[8px] font-black text-black leading-tight text-center">SUMMER<br>SALE 2024</span>
+                                                </div>
+                                                <div>
+                                                    <p class="text-[13px] font-medium text-white group-hover:text-primary transition-colors cursor-pointer">Summer Sale 2024</p>
+                                                    <p class="text-[10px] text-on-surface-variant mt-0.5">Big savings on PC Components</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="text-[12px] font-medium text-[#3b82f6]">Promotional</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center justify-center gap-1.5">
+                                                <span class="material-symbols-outlined text-[14px] text-on-surface-variant bg-surface-container rounded-sm p-0.5 border border-white/5">mail</span>
+                                                <span class="material-symbols-outlined text-[14px] text-[#ec4899] bg-[#ec4899]/10 rounded-sm p-0.5 border border-[#ec4899]/20">chat</span>
+                                                <span class="material-symbols-outlined text-[14px] text-[#10b981] bg-[#10b981]/10 rounded-sm p-0.5 border border-[#10b981]/20">notifications_active</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[11px] font-medium text-[#10b981]">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+                                                Active
+                                            </span>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <div class="flex items-center justify-center gap-3">
+                                                <div class="text-center">
+                                                    <p class="text-[9px] text-on-surface-variant uppercase mb-0.5">Open Rate</p>
+                                                    <p class="text-[12px] font-medium text-white">28.6%</p>
+                                                </div>
+                                                <div class="text-center">
+                                                    <p class="text-[9px] text-on-surface-variant uppercase mb-0.5">Clicks</p>
+                                                    <p class="text-[12px] font-medium text-white">9.3%</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] text-white">18 May 2024</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">10:30 AM</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center justify-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <button class="w-7 h-7 rounded bg-surface-container hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[16px]">insert_chart</span>
+                                                </button>
+                                                <button class="w-7 h-7 rounded bg-surface-container hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[16px]">more_horiz</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Build Your Dream PC -->
+                                    <tr class="hover:bg-white/5 transition-colors group">
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-12 h-8 rounded bg-[#2563eb] shrink-0 flex items-center justify-center overflow-hidden">
+                                                    <span class="text-[8px] font-black text-white leading-tight text-center">BUILD YOUR<br>DREAM PC</span>
+                                                </div>
+                                                <div>
+                                                    <p class="text-[13px] font-medium text-white group-hover:text-primary transition-colors cursor-pointer">Build Your Dream PC</p>
+                                                    <p class="text-[10px] text-on-surface-variant mt-0.5">Promote PC Builder feature</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="text-[12px] font-medium text-[#3b82f6]">Promotional</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center justify-center gap-1.5">
+                                                <span class="material-symbols-outlined text-[14px] text-on-surface-variant bg-surface-container rounded-sm p-0.5 border border-white/5">mail</span>
+                                                <span class="material-symbols-outlined text-[14px] text-[#8b5cf6] bg-[#8b5cf6]/10 rounded-sm p-0.5 border border-[#8b5cf6]/20">notifications_active</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[11px] font-medium text-[#3b82f6]">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-[#3b82f6]"></span>
+                                                Completed
+                                            </span>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <div class="flex items-center justify-center gap-3">
+                                                <div class="text-center">
+                                                    <p class="text-[9px] text-on-surface-variant uppercase mb-0.5">Open Rate</p>
+                                                    <p class="text-[12px] font-medium text-white">24.1%</p>
+                                                </div>
+                                                <div class="text-center">
+                                                    <p class="text-[9px] text-on-surface-variant uppercase mb-0.5">Clicks</p>
+                                                    <p class="text-[12px] font-medium text-white">7.6%</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] text-white">16 May 2024</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">09:15 AM</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center justify-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <button class="w-7 h-7 rounded bg-surface-container hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[16px]">insert_chart</span>
+                                                </button>
+                                                <button class="w-7 h-7 rounded bg-surface-container hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[16px]">more_horiz</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Free Shipping Offer -->
+                                    <tr class="hover:bg-white/5 transition-colors group">
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-12 h-8 rounded bg-[#8b5cf6] shrink-0 flex items-center justify-center overflow-hidden">
+                                                    <span class="text-[8px] font-black text-white leading-tight text-center tracking-tight">FREE SHIPPING</span>
+                                                </div>
+                                                <div>
+                                                    <p class="text-[13px] font-medium text-white group-hover:text-primary transition-colors cursor-pointer">Free Shipping Offer</p>
+                                                    <p class="text-[10px] text-on-surface-variant mt-0.5">Free shipping on orders above ₹10,000</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="text-[12px] font-medium text-[#10b981]">Offer</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center justify-center gap-1.5">
+                                                <span class="material-symbols-outlined text-[14px] text-on-surface-variant bg-surface-container rounded-sm p-0.5 border border-white/5">mail</span>
+                                                <span class="material-symbols-outlined text-[14px] text-[#0ea5e9] bg-[#0ea5e9]/10 rounded-sm p-0.5 border border-[#0ea5e9]/20">chat</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[11px] font-medium text-[#3b82f6]">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-[#3b82f6]"></span>
+                                                Completed
+                                            </span>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <div class="flex items-center justify-center gap-3">
+                                                <div class="text-center">
+                                                    <p class="text-[9px] text-on-surface-variant uppercase mb-0.5">Open Rate</p>
+                                                    <p class="text-[12px] font-medium text-white">31.2%</p>
+                                                </div>
+                                                <div class="text-center">
+                                                    <p class="text-[9px] text-on-surface-variant uppercase mb-0.5">Clicks</p>
+                                                    <p class="text-[12px] font-medium text-white">10.8%</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] text-white">14 May 2024</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">08:30 AM</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center justify-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <button class="w-7 h-7 rounded bg-surface-container hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[16px]">insert_chart</span>
+                                                </button>
+                                                <button class="w-7 h-7 rounded bg-surface-container hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[16px]">more_horiz</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- New Arrivals Alert -->
+                                    <tr class="hover:bg-white/5 transition-colors group">
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-12 h-8 rounded bg-[#fcd34d] shrink-0 flex items-center justify-center overflow-hidden">
+                                                    <span class="text-[8px] font-black text-black leading-tight text-center">NEW<br>ARRIVALS</span>
+                                                </div>
+                                                <div>
+                                                    <p class="text-[13px] font-medium text-white group-hover:text-primary transition-colors cursor-pointer">New Arrivals Alert</p>
+                                                    <p class="text-[10px] text-on-surface-variant mt-0.5">Check out latest components</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="text-[12px] font-medium text-[#8b5cf6]">Informational</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center justify-center gap-1.5">
+                                                <span class="material-symbols-outlined text-[14px] text-on-surface-variant bg-surface-container rounded-sm p-0.5 border border-white/5">mail</span>
+                                                <span class="material-symbols-outlined text-[14px] text-[#8b5cf6] bg-[#8b5cf6]/10 rounded-sm p-0.5 border border-[#8b5cf6]/20">notifications_active</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[11px] font-medium text-[#10b981]">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+                                                Active
+                                            </span>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <div class="flex items-center justify-center gap-3">
+                                                <div class="text-center">
+                                                    <p class="text-[9px] text-on-surface-variant uppercase mb-0.5">Open Rate</p>
+                                                    <p class="text-[12px] font-medium text-white">22.7%</p>
+                                                </div>
+                                                <div class="text-center">
+                                                    <p class="text-[9px] text-on-surface-variant uppercase mb-0.5">Clicks</p>
+                                                    <p class="text-[12px] font-medium text-white">6.4%</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] text-white">12 May 2024</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">11:00 AM</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center justify-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <button class="w-7 h-7 rounded bg-surface-container hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[16px]">insert_chart</span>
+                                                </button>
+                                                <button class="w-7 h-7 rounded bg-surface-container hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[16px]">more_horiz</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Weekend Deals -->
+                                    <tr class="hover:bg-white/5 transition-colors group">
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-12 h-8 rounded bg-black shrink-0 flex items-center justify-center overflow-hidden border border-white/20">
+                                                    <span class="text-[8px] font-black text-white leading-tight text-center">WEEKEND<br><span class="text-[#f59e0b]">DEALS</span></span>
+                                                </div>
+                                                <div>
+                                                    <p class="text-[13px] font-medium text-white group-hover:text-primary transition-colors cursor-pointer">Weekend Deals</p>
+                                                    <p class="text-[10px] text-on-surface-variant mt-0.5">Exclusive deals for this weekend</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="text-[12px] font-medium text-[#3b82f6]">Promotional</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center justify-center gap-1.5">
+                                                <span class="material-symbols-outlined text-[14px] text-on-surface-variant bg-surface-container rounded-sm p-0.5 border border-white/5">mail</span>
+                                                <span class="material-symbols-outlined text-[14px] text-[#0ea5e9] bg-[#0ea5e9]/10 rounded-sm p-0.5 border border-[#0ea5e9]/20">chat</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[11px] font-medium text-[#f59e0b]">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-[#f59e0b]"></span>
+                                                Scheduled
+                                            </span>
+                                        </td>
+                                        <td class="py-4 px-4 text-center">
+                                            <div class="flex items-center justify-center gap-3">
+                                                <span class="text-[12px] text-on-surface-variant">-</span>
+                                                <span class="text-[12px] text-on-surface-variant">-</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <p class="text-[12px] text-white">20 May 2024</p>
+                                            <p class="text-[10px] text-on-surface-variant mt-0.5">10:00 AM</p>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center justify-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <button class="w-7 h-7 rounded bg-surface-container hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[16px]">insert_chart</span>
+                                                </button>
+                                                <button class="w-7 h-7 rounded bg-surface-container hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-[16px]">more_horiz</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Pagination -->
+                        <div class="p-3 border-t border-white/5 flex items-center justify-between">
+                            <p class="text-[12px] text-on-surface-variant">Showing 1 to 5 of 24 campaigns</p>
+                            <div class="flex items-center gap-1">
+                                <button class="w-7 h-7 rounded border border-white/10 bg-transparent flex items-center justify-center text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors disabled:opacity-50">
+                                    <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+                                </button>
+                                <button class="w-7 h-7 rounded bg-primary text-on-primary flex items-center justify-center text-[12px] font-medium">1</button>
+                                <button class="w-7 h-7 rounded border border-white/10 bg-transparent flex items-center justify-center text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors text-[12px] font-medium">2</button>
+                                <button class="w-7 h-7 rounded border border-white/10 bg-transparent flex items-center justify-center text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors text-[12px] font-medium">3</button>
+                                <span class="text-on-surface-variant text-[12px] px-1">...</span>
+                                <button class="w-7 h-7 rounded border border-white/10 bg-transparent flex items-center justify-center text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors text-[12px] font-medium">5</button>
+                                <button class="w-7 h-7 rounded border border-white/10 bg-transparent flex items-center justify-center text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors">
+                                    <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                                </button>
+                                
+                                <div class="relative ml-2">
+                                    <select class="h-7 bg-transparent border border-white/10 rounded px-2 pr-5 text-[12px] text-white appearance-none focus:outline-none focus:border-primary/50 transition-colors cursor-pointer">
+                                        <option value="10">10 / page</option>
+                                    </select>
+                                    <span class="material-symbols-outlined absolute right-1 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[14px]">expand_more</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions Row -->
+                    <div class="grid grid-cols-5 gap-4 mt-2">
+                        <a href="#" class="glass-card rounded-xl border border-white/5 bg-surface-container/30 p-4 hover:bg-white/5 transition-colors flex flex-col justify-between group">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:text-primary transition-colors">send</span>
+                                <p class="text-[12px] font-medium text-white group-hover:text-primary transition-colors">Create Campaign</p>
+                            </div>
+                            <p class="text-[10px] text-on-surface-variant leading-snug">Launch a new marketing campaign</p>
+                        </a>
+                        <a href="#" class="glass-card rounded-xl border border-white/5 bg-surface-container/30 p-4 hover:bg-white/5 transition-colors flex flex-col justify-between group">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="material-symbols-outlined text-[18px] text-[#8b5cf6] group-hover:text-primary transition-colors">mail</span>
+                                <p class="text-[12px] font-medium text-white group-hover:text-primary transition-colors">Email Campaign</p>
+                            </div>
+                            <p class="text-[10px] text-on-surface-variant leading-snug">Create and send email campaign</p>
+                        </a>
+                        <a href="#" class="glass-card rounded-xl border border-white/5 bg-surface-container/30 p-4 hover:bg-white/5 transition-colors flex flex-col justify-between group">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="material-symbols-outlined text-[18px] text-[#0ea5e9] group-hover:text-primary transition-colors">chat</span>
+                                <p class="text-[12px] font-medium text-white group-hover:text-primary transition-colors">SMS Campaign</p>
+                            </div>
+                            <p class="text-[10px] text-on-surface-variant leading-snug">Send SMS to your audience</p>
+                        </a>
+                        <a href="#" class="glass-card rounded-xl border border-white/5 bg-surface-container/30 p-4 hover:bg-white/5 transition-colors flex flex-col justify-between group">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="material-symbols-outlined text-[18px] text-[#f59e0b] group-hover:text-primary transition-colors">notifications_active</span>
+                                <p class="text-[12px] font-medium text-white group-hover:text-primary transition-colors leading-tight">Push Notification</p>
+                            </div>
+                            <p class="text-[10px] text-on-surface-variant leading-snug">Send push notification</p>
+                        </a>
+                        <a href="#" class="glass-card rounded-xl border border-white/5 bg-surface-container/30 p-4 hover:bg-white/5 transition-colors flex flex-col justify-between group">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="material-symbols-outlined text-[18px] text-[#ec4899] group-hover:text-primary transition-colors">local_offer</span>
+                                <p class="text-[12px] font-medium text-white group-hover:text-primary transition-colors">Manage Coupons</p>
+                            </div>
+                            <p class="text-[10px] text-on-surface-variant leading-snug">Create and manage coupons</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="w-[30%] flex flex-col gap-6">
+                    
+                    <!-- Channel Performance -->
+                    <div class="glass-card rounded-xl border border-white/5 bg-surface-container/30 overflow-hidden flex flex-col">
+                        <div class="p-4 border-b border-white/5">
+                            <h3 class="text-sm font-bold text-white tracking-wider">Channel Performance</h3>
+                        </div>
+                        <div class="p-4 flex items-center gap-6">
+                            <!-- Donut Chart -->
+                            <div class="relative w-[110px] h-[110px] shrink-0">
+                                <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                                    <!-- Base Circle -->
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="12"></circle>
+                                    <!-- Email (Blue) ~67% -->
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="#2563eb" stroke-width="12" stroke-dasharray="251.2" stroke-dashoffset="82.8"></circle>
+                                    <!-- SMS (Green) ~17.5% -->
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="#10b981" stroke-width="12" stroke-dasharray="251.2" stroke-dashoffset="207.2" transform="rotate(242 50 50)"></circle>
+                                    <!-- Push (Yellow) ~11.6% -->
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="#f59e0b" stroke-width="12" stroke-dasharray="251.2" stroke-dashoffset="222" transform="rotate(305 50 50)"></circle>
+                                    <!-- Social (Red) ~3.5% -->
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="#ef4444" stroke-width="12" stroke-dasharray="251.2" stroke-dashoffset="242.4" transform="rotate(347 50 50)"></circle>
+                                </svg>
+                                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                    <span class="text-[10px] text-on-surface-variant">Total</span>
+                                    <span class="text-lg font-bold text-white leading-tight">18,532</span>
+                                    <span class="text-[9px] text-on-surface-variant">Sent</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Legend -->
+                            <div class="flex-1 flex flex-col gap-3 text-[11px]">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-[#2563eb]"></div>
+                                        <span class="text-on-surface-variant">Email</span>
+                                    </div>
+                                    <span class="text-white">12,458 <span class="text-on-surface-variant">(67.2%)</span></span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-[#10b981]"></div>
+                                        <span class="text-on-surface-variant">SMS</span>
+                                    </div>
+                                    <span class="text-white">3,245 <span class="text-on-surface-variant">(17.5%)</span></span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-[#f59e0b]"></div>
+                                        <span class="text-on-surface-variant">Push Notification</span>
+                                    </div>
+                                    <span class="text-white">2,189 <span class="text-on-surface-variant">(11.6%)</span></span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-[#ef4444]"></div>
+                                        <span class="text-on-surface-variant">Social Media</span>
+                                    </div>
+                                    <span class="text-white">640 <span class="text-on-surface-variant">(3.5%)</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="px-4 pb-4">
+                            <a href="#" class="text-primary hover:text-primary/80 text-[11px] font-medium transition-colors flex items-center gap-1">View detailed analytics <span class="material-symbols-outlined text-[12px]">arrow_forward</span></a>
+                        </div>
+                    </div>
+
+                    <!-- Top Performing Campaigns -->
+                    <div class="glass-card rounded-xl border border-white/5 bg-surface-container/30 overflow-hidden flex flex-col">
+                        <div class="p-4 border-b border-white/5 flex justify-between items-center">
+                            <h3 class="text-sm font-bold text-white tracking-wider">Top Performing Campaigns</h3>
+                            <a href="#" class="text-primary hover:text-primary/80 text-[11px] font-medium transition-colors">View All</a>
+                        </div>
+                        <div class="p-4 flex flex-col gap-4 text-[12px]">
+                            <!-- 1 -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-on-surface-variant text-[11px]">1</span>
+                                    <div class="w-8 h-5 rounded bg-[#f59e0b] shrink-0 overflow-hidden"></div>
+                                    <span class="text-white font-medium truncate max-w-[90px]">Summer Sale 2024</span>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-[9px] text-on-surface-variant">Revenue</p>
+                                    <p class="text-white font-medium">₹1,25,430</p>
+                                </div>
+                                <div class="text-right pl-2">
+                                    <p class="text-[9px] text-on-surface-variant">ROI</p>
+                                    <p class="text-[#10b981] font-bold">320%</p>
+                                </div>
+                            </div>
+                            
+                            <!-- 2 -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-on-surface-variant text-[11px]">2</span>
+                                    <div class="w-8 h-5 rounded bg-[#8b5cf6] shrink-0 overflow-hidden"></div>
+                                    <span class="text-white font-medium truncate max-w-[90px]">Free Shipping Offer</span>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-[9px] text-on-surface-variant">Revenue</p>
+                                    <p class="text-white font-medium">₹85,230</p>
+                                </div>
+                                <div class="text-right pl-2">
+                                    <p class="text-[9px] text-on-surface-variant">ROI</p>
+                                    <p class="text-[#10b981] font-bold">280%</p>
+                                </div>
+                            </div>
+
+                            <!-- 3 -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-on-surface-variant text-[11px]">3</span>
+                                    <div class="w-8 h-5 rounded bg-[#2563eb] shrink-0 overflow-hidden"></div>
+                                    <span class="text-white font-medium truncate max-w-[90px]">Build Your Dream PC</span>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-[9px] text-on-surface-variant">Revenue</p>
+                                    <p class="text-white font-medium">₹75,120</p>
+                                </div>
+                                <div class="text-right pl-2">
+                                    <p class="text-[9px] text-on-surface-variant">ROI</p>
+                                    <p class="text-[#10b981] font-bold">245%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Marketing Overview -->
+                    <div class="glass-card rounded-xl border border-white/5 bg-surface-container/30 overflow-hidden flex flex-col flex-1">
+                        <div class="p-4 flex flex-col gap-4">
+                            <h3 class="text-sm font-bold text-white tracking-wider">Marketing Overview</h3>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex bg-black/30 rounded-lg p-0.5">
+                                    <button class="px-3 py-1 text-[11px] font-medium rounded-md bg-primary text-on-primary">Revenue</button>
+                                    <button class="px-3 py-1 text-[11px] font-medium rounded-md text-on-surface-variant hover:text-white transition-colors">Conversions</button>
+                                </div>
+                                <div class="relative">
+                                    <select class="text-[11px] text-on-surface-variant bg-transparent border-none appearance-none cursor-pointer pr-4 focus:outline-none hover:text-white transition-colors">
+                                        <option>This Week</option>
+                                    </select>
+                                    <span class="material-symbols-outlined absolute right-0 top-1/2 -translate-y-1/2 text-[12px] pointer-events-none text-on-surface-variant">expand_more</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Chart Area -->
+                            <div class="relative flex-1 min-h-[140px] mt-2 flex flex-col text-[10px] text-on-surface-variant">
+                                <!-- Y Axis -->
+                                <div class="absolute left-0 top-0 bottom-6 flex flex-col justify-between items-end w-8">
+                                    <span>₹1.5L</span>
+                                    <span>₹1.0L</span>
+                                    <span>₹50K</span>
+                                    <span>₹0</span>
+                                </div>
+                                
+                                <!-- Graph Space -->
+                                <div class="absolute left-10 right-2 top-2 bottom-6 border-l border-b border-white/10 relative">
+                                    <!-- Grid lines -->
+                                    <div class="absolute inset-x-0 top-0 border-b border-white/5 border-dashed"></div>
+                                    <div class="absolute inset-x-0 top-1/3 border-b border-white/5 border-dashed"></div>
+                                    <div class="absolute inset-x-0 top-2/3 border-b border-white/5 border-dashed"></div>
+                                    
+                                    <!-- SVG Line Graph -->
+                                    <svg class="absolute inset-0 w-full h-full overflow-visible" preserveAspectRatio="none">
+                                        <path d="M 0,90 L 40,70 L 80,60 L 120,40 L 160,50 L 200,20 L 240,60 L 280,75" fill="none" stroke="#3b82f6" stroke-width="2" class="drop-shadow-[0_2px_4px_rgba(59,130,246,0.5)]"></path>
+                                        <!-- Data Points -->
+                                        <circle cx="0" cy="90" r="3" fill="#3b82f6" stroke="#1e293b" stroke-width="1.5"></circle>
+                                        <circle cx="40" cy="70" r="3" fill="#3b82f6" stroke="#1e293b" stroke-width="1.5"></circle>
+                                        <circle cx="80" cy="60" r="3" fill="#3b82f6" stroke="#1e293b" stroke-width="1.5"></circle>
+                                        <circle cx="120" cy="40" r="3" fill="#3b82f6" stroke="#1e293b" stroke-width="1.5"></circle>
+                                        <circle cx="160" cy="50" r="3" fill="#3b82f6" stroke="#1e293b" stroke-width="1.5"></circle>
+                                        <circle cx="200" cy="20" r="3" fill="#3b82f6" stroke="#1e293b" stroke-width="1.5"></circle>
+                                        <circle cx="240" cy="60" r="3" fill="#3b82f6" stroke="#1e293b" stroke-width="1.5"></circle>
+                                        <circle cx="280" cy="75" r="3" fill="#3b82f6" stroke="#1e293b" stroke-width="1.5"></circle>
+                                    </svg>
+                                </div>
+                                
+                                <!-- X Axis -->
+                                <div class="absolute left-10 right-2 bottom-0 flex justify-between pt-2">
+                                    <span>12 May</span>
+                                    <span>13 May</span>
+                                    <span>14 May</span>
+                                    <span>15 May</span>
+                                    <span>16 May</span>
+                                    <span>17 May</span>
+                                    <span>18 May</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+</main>
+</div>
+<!-- Micro-interaction Scripts -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Simulated RGB lighting effect on cards
+            const cards = document.querySelectorAll('.glass-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `₹{x}px`);
+                    card.style.setProperty('--mouse-y', `₹{y}px`);
+                });
+            });
+        });
+    </script>
+<script type="module" src="js/auth.js"></script>
+<script src="js/global.js"></script>
+</body></html>
