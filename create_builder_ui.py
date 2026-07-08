@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+import os
+
+html_content = """<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -164,25 +166,8 @@
                     <div class="w-8 h-8 rounded-full bg-[#0F172A] border border-white/10 flex items-center justify-center text-on-surface-variant text-xs font-semibold">8</div>
                     <span class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider">PSU</span>
                 </div>
-                <div class="relative z-10 flex flex-col items-center gap-2">
-                    <div class="w-8 h-8 rounded-full bg-[#0F172A] border border-white/10 flex items-center justify-center text-on-surface-variant text-xs font-semibold">9</div>
-                    <span class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider">GPU</span>
-                </div>
-                <div class="relative z-10 flex flex-col items-center gap-2">
-                    <div class="w-8 h-8 rounded-full bg-[#0F172A] border border-white/10 flex items-center justify-center text-on-surface-variant text-xs font-semibold">10</div>
-                    <span class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider">Case</span>
-                </div>
-                <div class="relative z-10 flex flex-col items-center gap-2">
-                    <div class="w-8 h-8 rounded-full bg-[#0F172A] border border-white/10 flex items-center justify-center text-on-surface-variant text-xs font-semibold">11</div>
-                    <span class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider">Fans</span>
-                </div>
-                <div class="relative z-10 flex flex-col items-center gap-2">
-                    <div class="w-8 h-8 rounded-full bg-[#0F172A] border border-white/10 flex items-center justify-center text-on-surface-variant text-xs font-semibold">12</div>
-                    <span class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider">RGB</span>
-                </div>
-                <div class="relative z-10 flex flex-col items-center gap-2">
-                    <div class="w-8 h-8 rounded-full bg-[#0F172A] border border-white/10 flex items-center justify-center text-on-surface-variant text-xs font-semibold">13</div>
-                    <span class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider">Extras</span>
+                <div class="relative z-10 flex flex-col items-center gap-2 opacity-50">
+                    <div class="w-8 h-8 rounded-full bg-transparent text-on-surface-variant text-xs font-semibold">...</div>
                 </div>
                 <div class="relative z-10 flex flex-col items-center gap-2">
                     <div class="w-8 h-8 rounded-full bg-[#0F172A] border border-white/10 flex items-center justify-center text-on-surface-variant text-xs font-semibold">14</div>
@@ -484,108 +469,14 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-[#0B1120] border-t border-white/5 w-full overflow-hidden mt-8">
-    <div class="max-w-[1280px] mx-auto px-6 md:px-16 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-        <!-- 1. Company Details -->
-        <div class="lg:col-span-2">
-            <div class="text-xl font-semibold text-white mb-6">MakeMyPC</div>
-            <p class="text-white-variant text-sm font-normal leading-relaxed mb-6">
-                India's most trusted Custom PC Builder. We don't just sell parts; we build your dream setup with surgical precision, premium quality, and 100% compatibility guarantee.
-            </p>
-            <div class="flex items-center gap-4 mb-8">
-                <!-- Trust Badges (Images or Icons) -->
-                <div class="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-lg border border-white/10">
-                    <span class="material-symbols-outlined text-primary">verified</span>
-                    <span class="text-label-mono text-xs text-white">100% Genuine</span>
-                </div>
-                <div class="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-lg border border-white/10">
-                    <span class="material-symbols-outlined text-[#10B981]">shield</span>
-                    <span class="text-label-mono text-xs text-white">Secure Checkout</span>
-                </div>
-            </div>
+    <footer class="bg-surface border-t border-white/5 mt-auto">
+        <div class="max-w-[1400px] mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4 text-xs text-on-surface-variant">
+            <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">gpp_good</span> 100% Secure Checkout<br><span class="text-[10px] opacity-70">Safe and encrypted payments</span></div>
+            <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">replay</span> Easy Returns<br><span class="text-[10px] opacity-70">Hassle free returns</span></div>
+            <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">local_shipping</span> Fast Delivery<br><span class="text-[10px] opacity-70">Pan India delivery</span></div>
+            <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">support_agent</span> Expert Support<br><span class="text-[10px] opacity-70">We're here to help</span></div>
         </div>
-
-        <!-- 2. Explore / Quick Links -->
-        <div>
-            <h5 class="font-mono text-xs font-medium uppercase tracking-widest text-white mb-6">Explore</h5>
-            <ul class="space-y-4">
-                <li><a class="text-white-variant text-sm font-normal hover:text-primary transition-all flex items-center gap-2" href="builder-landing.html"><span class="material-symbols-outlined text-[16px]">build</span> Custom PC Builder</a></li>
-                <li><a class="text-white-variant text-sm font-normal hover:text-primary transition-all flex items-center gap-2" href="prebuilt-pcs.html"><span class="material-symbols-outlined text-[16px]">desktop_windows</span> Prebuilt PCs</a></li>
-                <li><a class="text-white-variant text-sm font-normal hover:text-primary transition-all flex items-center gap-2" href="order-tracking.html"><span class="material-symbols-outlined text-[16px]">local_shipping</span> Track Order</a></li>
-                <li><a class="text-white-variant text-sm font-normal hover:text-primary transition-all flex items-center gap-2" href="#"><span class="material-symbols-outlined text-[16px]">info</span> About Us</a></li>
-            </ul>
-        </div>
-
-        <!-- 3. Policies & Support -->
-        <div>
-            <h5 class="font-mono text-xs font-medium uppercase tracking-widest text-white mb-6">Policies & Support</h5>
-            <ul class="space-y-4">
-                <li><a class="text-white-variant text-sm font-normal hover:text-primary transition-all" href="support-faq.html">FAQ & Support</a></li>
-                <li><a class="text-white-variant text-sm font-normal hover:text-primary transition-all" href="#">Return & Cancellation</a></li>
-                <li><a class="text-white-variant text-sm font-normal hover:text-primary transition-all" href="#">Shipping Policy</a></li>
-                <li><a class="text-white-variant text-sm font-normal hover:text-primary transition-all" href="#">Privacy Policy</a></li>
-                <li><a class="text-white-variant text-sm font-normal hover:text-primary transition-all" href="#">Terms of Service</a></li>
-            </ul>
-        </div>
-
-        <!-- 4. Contact -->
-        <div>
-            <h5 class="font-mono text-xs font-medium uppercase tracking-widest text-white mb-6">Contact Us</h5>
-            <ul class="space-y-4 mb-6">
-                <li class="flex items-start gap-3">
-                    <span class="material-symbols-outlined text-white-variant mt-0.5">call</span>
-                    <div>
-                        <p class="text-white text-sm font-normal">+91 1800-123-4567</p>
-                        <p class="text-white-variant text-xs mt-1">Mon - Sat, 10 AM - 7 PM</p>
-                    </div>
-                </li>
-                <li class="flex items-start gap-3">
-                    <span class="material-symbols-outlined text-white-variant mt-0.5">mail</span>
-                    <div>
-                        <p class="text-white text-sm font-normal">support@makemypc.in</p>
-                        <p class="text-white-variant text-xs mt-1">We reply within 24 hours</p>
-                    </div>
-                </li>
-            </ul>
-            <!-- Social Links -->
-            <div class="flex gap-4">
-                <a href="#" class="w-10 h-10 rounded-lg glass-card flex items-center justify-center hover:bg-white/10 transition-all group">
-                    <img src="https://cdn.simpleicons.org/facebook/1877F2" alt="Facebook" class="h-5 opacity-70 group-hover:opacity-100 transition-opacity">
-                </a>
-                <a href="#" class="w-10 h-10 rounded-lg glass-card flex items-center justify-center hover:bg-white/10 transition-all group">
-                    <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram" class="h-5 opacity-70 group-hover:opacity-100 transition-opacity">
-                </a>
-                <a href="#" class="w-10 h-10 rounded-lg glass-card flex items-center justify-center hover:bg-white/10 transition-all group">
-                    <img src="https://cdn.simpleicons.org/x/FFFFFF" alt="X (Twitter)" class="h-4 opacity-70 group-hover:opacity-100 transition-opacity">
-                </a>
-                <a href="#" class="w-10 h-10 rounded-lg glass-card flex items-center justify-center hover:bg-white/10 transition-all group">
-                    <img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube" class="h-5 opacity-70 group-hover:opacity-100 transition-opacity">
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="max-w-[1280px] mx-auto px-6 md:px-16 py-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-white-variant font-mono text-xs font-medium uppercase tracking-widest">© 2024 MakeMyPC. All Rights Reserved. GSTIN: 27AAAAA0000A1Z5</p>
-        <div class="flex gap-x-6 items-center">
-            <!-- Payment Badges placeholder -->
-            <div class="flex gap-2 items-center">
-                <div class="bg-white px-2 py-1 rounded flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
-                    <img src="https://cdn.simpleicons.org/visa/1434CB" alt="VISA" class="h-3 object-contain">
-                </div>
-                <div class="bg-white px-2 py-1 rounded flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="MasterCard" class="h-3 object-contain">
-                </div>
-                <div class="bg-white px-2 py-1 rounded flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" alt="UPI" class="h-3 object-contain">
-                </div>
-            </div>
-            <span class="text-white-variant font-mono text-xs font-medium uppercase tracking-widest hover:text-white cursor-pointer flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-cyber-teal animate-pulse"></span>
-                System Status: <span class="text-[#10B981]">ONLINE</span>
-            </span>
-        </div>
-    </div>
-</footer>
+    </footer>
     
     <!-- Retaining original JS includes just in case -->
     <script src="js/global.js"></script>
@@ -595,3 +486,9 @@
     <script type="module" src="js/auth.js"></script>
 </body>
 </html>
+"""
+
+with open('custom-pc-builder.html', 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+print("custom-pc-builder.html updated successfully!")
