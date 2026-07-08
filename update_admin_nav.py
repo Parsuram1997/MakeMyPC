@@ -92,10 +92,7 @@ aside_content = """<aside class="h-screen w-64 fixed left-0 top-0 border-r borde
             <span class="material-symbols-outlined">analytics</span>
             <span class="text-body-sm font-medium">Analytics</span>
         </a>
-        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
-            <span class="material-symbols-outlined">support_agent</span>
-            <span class="text-body-sm font-medium">Support</span>
-        </a>
+
         <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
             <span class="material-symbols-outlined">campaign</span>
             <span class="text-body-sm font-medium">Marketing</span>

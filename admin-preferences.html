@@ -343,7 +343,7 @@
             </summary>
             
             <div class="bg-surface-container/50 border border-white/5 border-t-0 rounded-b-xl p-2 flex flex-col gap-0.5">
-                <a href="admin-profile.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[11px] font-medium text-white bg-white/5 transition-colors">
+                <a href="admin-profile.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[11px] font-medium text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors">
                     <span class="material-symbols-outlined text-[16px]">person</span>
                     Profile Settings
                 </a>
@@ -351,7 +351,7 @@
                     <span class="material-symbols-outlined text-[16px]">lock</span>
                     Security
                 </a>
-                <a href="admin-preferences.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[11px] font-medium text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors">
+                <a href="admin-preferences.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[11px] font-medium text-white bg-white/5 transition-colors">
                     <span class="material-symbols-outlined text-[16px]">settings</span>
                     Preferences
                 </a>
@@ -366,254 +366,257 @@
 </aside>
 <!-- Main Content -->
         <!-- Main Content -->
-        <main class="ml-64 overflow-y-auto h-screen p-6 custom-scrollbar relative z-10">
+        <main class="ml-64 flex-1 p-6 h-screen overflow-y-auto custom-scrollbar bg-surface-deep flex flex-col pb-24">
+        <div class="flex flex-col relative w-full">
+            
             <!-- Header -->
-            <header class="flex items-center justify-between mb-8">
+            <div class="flex justify-between items-end mb-8 relative z-10">
                 <div>
-                    <h1 class="text-2xl font-bold text-white mb-1">Admin Profile</h1>
-                    <div class="flex items-center gap-2 text-xs text-on-surface-variant">
-                        <a href="admin-dashboard.html" class="hover:text-primary transition-colors">Dashboard</a>
-                        <span class="material-symbols-outlined text-[12px]">chevron_right</span>
-                        <span class="text-white">Admin Profile</span>
-                    </div>
+                    <h2 class="text-2xl font-bold text-white mb-1">Preferences</h2>
+                    <p class="text-on-surface-variant text-sm">Manage your account preferences and application settings.</p>
                 </div>
-            </header>
-
-            <!-- Profile Content -->
-            <div class="flex flex-col gap-6 w-full">
-                
-                <!-- Top Row: Profile Card & Personal Info -->
-                <div class="grid grid-cols-[1fr_2fr] gap-6 items-stretch">
-                    
-                    <!-- Left Card: Profile Overview -->
-                    <div class="bg-surface-container border border-white/5 rounded-2xl p-8 flex flex-col items-center relative overflow-hidden">
-                        <!-- Background Glow -->
-                        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
-                        
-                        <div class="relative mb-6">
-                            <div class="w-24 h-24 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-3xl border-[3px] border-surface-container shadow-[0_0_20px_rgba(0,122,255,0.2)]">
-                                AD
-                            </div>
-                            <button class="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-surface-deep border border-white/10 flex items-center justify-center text-white hover:bg-white/10 transition-colors">
-                                <span class="material-symbols-outlined text-[14px]">photo_camera</span>
-                            </button>
-                        </div>
-                        
-                        <div class="flex items-center gap-2 mb-2">
-                            <h2 class="text-lg font-bold text-white tracking-wide">Admin User</h2>
-                            <span class="text-[9px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">Super Admin</span>
-                        </div>
-                        
-                        <p class="text-xs text-on-surface-variant mb-4">admin@makemypc.com</p>
-                        
-                        <div class="flex items-center gap-1.5 mb-8">
-                            <span class="w-2 h-2 rounded-full bg-[#00D084] shadow-[0_0_8px_rgba(0,208,132,0.5)]"></span>
-                            <span class="text-[11px] text-white tracking-wider">Online</span>
-                        </div>
-                        
-                        <div class="w-full space-y-4 mt-auto">
-                            <div class="flex justify-between items-center pb-3 border-b border-white/5">
-                                <div class="flex items-center gap-2 text-on-surface-variant">
-                                    <span class="material-symbols-outlined text-[14px]">calendar_today</span>
-                                    <span class="text-[11px]">Joined on</span>
-                                </div>
-                                <span class="text-[11px] text-white font-medium">12 May 2024</span>
-                            </div>
-                            <div class="flex justify-between items-center pb-3 border-b border-white/5">
-                                <div class="flex items-center gap-2 text-on-surface-variant">
-                                    <span class="material-symbols-outlined text-[14px]">schedule</span>
-                                    <span class="text-[11px]">Last Login</span>
-                                </div>
-                                <span class="text-[11px] text-white font-medium">20 May 2024, 10:30 AM</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <div class="flex items-center gap-2 text-on-surface-variant">
-                                    <span class="material-symbols-outlined text-[14px]">monitor</span>
-                                    <span class="text-[11px]">IP Address</span>
-                                </div>
-                                <span class="text-[11px] text-white font-medium">192.168.1.24</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Right Card: Personal Information -->
-                    <div class="bg-surface-container border border-white/5 rounded-2xl p-8 flex flex-col">
-                        <div class="flex items-center justify-between mb-8">
-                            <h3 class="text-sm font-bold text-white tracking-wider">Personal Information</h3>
-                            <button class="flex items-center gap-1.5 text-[11px] font-medium text-white bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-lg border border-white/5 transition-all">
-                                <span class="material-symbols-outlined text-[12px]">edit</span> Edit
-                            </button>
-                        </div>
-                        
-                        <div class="grid grid-cols-[160px_1fr] gap-y-6 gap-x-4">
-                            <div class="flex items-center gap-3 text-on-surface-variant">
-                                <span class="material-symbols-outlined text-[16px]">person</span>
-                                <span class="text-xs">Full Name</span>
-                            </div>
-                            <div class="text-xs text-white">Admin User</div>
-                            
-                            <div class="flex items-center gap-3 text-on-surface-variant">
-                                <span class="material-symbols-outlined text-[16px]">mail</span>
-                                <span class="text-xs">Email Address</span>
-                            </div>
-                            <div class="text-xs text-white">admin@makemypc.com</div>
-                            
-                            <div class="flex items-center gap-3 text-on-surface-variant">
-                                <span class="material-symbols-outlined text-[16px]">call</span>
-                                <span class="text-xs">Phone Number</span>
-                            </div>
-                            <div class="text-xs text-white">+91 98765 43210</div>
-                            
-                            <div class="flex items-center gap-3 text-on-surface-variant">
-                                <span class="material-symbols-outlined text-[16px]">admin_panel_settings</span>
-                                <span class="text-xs">Role</span>
-                            </div>
-                            <div class="text-xs text-white">Super Administrator</div>
-                            
-                            <div class="flex items-center gap-3 text-on-surface-variant">
-                                <span class="material-symbols-outlined text-[16px]">language</span>
-                                <span class="text-xs">Language</span>
-                            </div>
-                            <div class="text-xs text-white">English</div>
-                            
-                            <div class="flex items-center gap-3 text-on-surface-variant">
-                                <span class="material-symbols-outlined text-[16px]">schedule</span>
-                                <span class="text-xs">Time Zone</span>
-                            </div>
-                            <div class="text-xs text-white">(GMT+5:30) Asia/Kolkata</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Middle Row: Security & 2FA -->
-                <div class="grid grid-cols-2 gap-6">
-                    
-                    <!-- Account Security -->
-                    <div class="bg-surface-container border border-white/5 rounded-2xl p-6">
-                        <div class="flex items-start gap-4 mb-6">
-                            <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 border border-primary/20">
-                                <span class="material-symbols-outlined text-[20px]">shield_person</span>
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-bold text-white mb-1">Account Security</h3>
-                                <p class="text-[11px] text-on-surface-variant">Manage your password and security settings</p>
-                            </div>
-                        </div>
-                        
-                        <button class="w-full flex items-center justify-between p-4 rounded-xl bg-surface-deep border border-white/5 hover:bg-white/5 transition-colors group">
-                            <div class="flex items-center gap-3 text-sm text-white font-medium">
-                                <span class="material-symbols-outlined text-[18px] text-on-surface-variant">lock</span>
-                                Change Password
-                            </div>
-                            <span class="material-symbols-outlined text-[16px] text-on-surface-variant group-hover:text-white transition-colors">chevron_right</span>
-                        </button>
-                    </div>
-                    
-                    <!-- Two Factor Auth -->
-                    <div class="bg-surface-container border border-white/5 rounded-2xl p-6">
-                        <div class="flex items-start gap-4 mb-6">
-                            <div class="w-10 h-10 rounded-xl bg-[#00D084]/10 text-[#00D084] flex items-center justify-center shrink-0 border border-[#00D084]/20">
-                                <span class="material-symbols-outlined text-[20px]">lock_clock</span>
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-bold text-white mb-1">Two Factor Authentication</h3>
-                                <p class="text-[11px] text-on-surface-variant">Add an extra layer of security to your account</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center justify-between bg-surface-deep border border-white/5 rounded-xl p-4">
-                            <div class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-[14px] text-[#00D084]">check_circle</span>
-                                <span class="text-xs font-bold text-[#00D084] tracking-wider">Enabled</span>
-                            </div>
-                            
-                            <button class="flex items-center gap-2 text-[11px] font-medium text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg border border-white/5 transition-all group">
-                                Manage 2FA <span class="material-symbols-outlined text-[14px] text-on-surface-variant group-hover:text-white transition-colors">chevron_right</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Bottom Row: Sessions & Activity -->
-                <div class="grid grid-cols-2 gap-6">
-                    
-                    <!-- Login Sessions -->
-                    <div class="bg-surface-container border border-white/5 rounded-2xl p-6 flex flex-col">
-                        <div class="flex items-start gap-4 mb-6">
-                            <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 border border-primary/20">
-                                <span class="material-symbols-outlined text-[20px]">devices</span>
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-bold text-white mb-1">Login Sessions</h3>
-                                <p class="text-[11px] text-on-surface-variant">Manage your active sessions across devices</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center justify-between mt-auto">
-                            <button class="text-xs font-medium text-white bg-surface-deep border border-white/5 hover:bg-white/10 px-5 py-2.5 rounded-xl transition-all">
-                                View Active Sessions
-                            </button>
-                            <span class="text-[10px] font-bold text-[#B14EEF] bg-[#B14EEF]/10 px-3 py-1.5 rounded-lg border border-[#B14EEF]/20">3 Active</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Activity Summary -->
-                    <div class="bg-surface-container border border-white/5 rounded-2xl p-6">
-                        <div class="flex items-start gap-4 mb-6">
-                            <div class="w-10 h-10 rounded-xl bg-yellow-500/10 text-yellow-500 flex items-center justify-center shrink-0 border border-yellow-500/20">
-                                <span class="material-symbols-outlined text-[20px]">show_chart</span>
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-bold text-white mb-1">Activity Summary</h3>
-                                <p class="text-[11px] text-on-surface-variant">Your account activity overview</p>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-3 gap-4">
-                            <div>
-                                <div class="flex items-center gap-2 mb-1">
-                                    <span class="material-symbols-outlined text-[14px] text-yellow-500">login</span>
-                                    <span class="text-lg font-bold text-white">142</span>
-                                </div>
-                                <p class="text-[10px] text-on-surface-variant">Logins</p>
-                            </div>
-                            <div>
-                                <div class="flex items-center gap-2 mb-1">
-                                    <span class="material-symbols-outlined text-[14px] text-yellow-500">touch_app</span>
-                                    <span class="text-lg font-bold text-white">28</span>
-                                </div>
-                                <p class="text-[10px] text-on-surface-variant">Actions</p>
-                            </div>
-                            <div>
-                                <div class="flex items-center gap-2 mb-1">
-                                    <span class="material-symbols-outlined text-[14px] text-primary">swap_horiz</span>
-                                    <span class="text-lg font-bold text-white">12</span>
-                                </div>
-                                <p class="text-[10px] text-on-surface-variant">IP Changes</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Danger Zone -->
-                <div class="bg-surface-container border border-white/5 rounded-2xl p-6 flex items-center justify-between mb-8">
-                    <div class="flex items-start gap-4">
-                        <div class="w-10 h-10 rounded-xl bg-red-500/10 text-red-500 flex items-center justify-center shrink-0 border border-red-500/20">
-                            <span class="material-symbols-outlined text-[20px]">warning</span>
-                        </div>
-                        <div>
-                            <h3 class="text-sm font-bold text-red-500 mb-1">Danger Zone</h3>
-                            <p class="text-[11px] text-on-surface-variant">Permanently delete your account and all related data</p>
-                        </div>
-                    </div>
-                    
-                    <button class="flex items-center gap-2 text-[11px] font-bold text-red-500 bg-transparent border border-red-500/30 hover:bg-red-500/10 px-5 py-2.5 rounded-xl transition-all">
-                        <span class="material-symbols-outlined text-[16px]">delete</span> Delete Account
+                <div>
+                    <button class="bg-primary hover:bg-primary-hover text-on-primary px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]">check</span>
+                        Save Changes
                     </button>
                 </div>
-                
             </div>
-        </main>
+
+            <!-- Two Column Layout -->
+            <div class="grid grid-cols-[280px_1fr] gap-6 relative z-10">
+                
+                <!-- Left Column: Preferences Navigation -->
+                <div class="flex flex-col gap-2">
+                    <button class="flex items-start gap-4 p-4 rounded-xl bg-primary-container/10 border-l-2 border-primary text-left transition-colors">
+                        <span class="material-symbols-outlined text-[20px] text-primary mt-0.5">settings</span>
+                        <div>
+                            <p class="text-[13px] font-medium text-primary">General</p>
+                            <p class="text-[11px] text-on-surface-variant mt-0.5">Basic app preferences</p>
+                        </div>
+                    </button>
+                    
+                    <button class="flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 border-l-2 border-transparent text-left transition-colors group">
+                        <span class="material-symbols-outlined text-[20px] text-on-surface-variant group-hover:text-white mt-0.5">palette</span>
+                        <div>
+                            <p class="text-[13px] font-medium text-white">Appearance</p>
+                            <p class="text-[11px] text-on-surface-variant mt-0.5">Theme and display</p>
+                        </div>
+                    </button>
+                    
+                    <button class="flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 border-l-2 border-transparent text-left transition-colors group">
+                        <span class="material-symbols-outlined text-[20px] text-on-surface-variant group-hover:text-white mt-0.5">notifications</span>
+                        <div>
+                            <p class="text-[13px] font-medium text-white">Notifications</p>
+                            <p class="text-[11px] text-on-surface-variant mt-0.5">Email and in-app alerts</p>
+                        </div>
+                    </button>
+                    
+                    <button class="flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 border-l-2 border-transparent text-left transition-colors group">
+                        <span class="material-symbols-outlined text-[20px] text-on-surface-variant group-hover:text-white mt-0.5">language</span>
+                        <div>
+                            <p class="text-[13px] font-medium text-white">Language & Region</p>
+                            <p class="text-[11px] text-on-surface-variant mt-0.5">Language and timezone</p>
+                        </div>
+                    </button>
+                    
+                    <button class="flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 border-l-2 border-transparent text-left transition-colors group">
+                        <span class="material-symbols-outlined text-[20px] text-on-surface-variant group-hover:text-white mt-0.5">dashboard</span>
+                        <div>
+                            <p class="text-[13px] font-medium text-white">Dashboard</p>
+                            <p class="text-[11px] text-on-surface-variant mt-0.5">Dashboard preferences</p>
+                        </div>
+                    </button>
+                    
+                    <button class="flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 border-l-2 border-transparent text-left transition-colors group">
+                        <span class="material-symbols-outlined text-[20px] text-on-surface-variant group-hover:text-white mt-0.5">shield</span>
+                        <div>
+                            <p class="text-[13px] font-medium text-white">Privacy</p>
+                            <p class="text-[11px] text-on-surface-variant mt-0.5">Privacy and data</p>
+                        </div>
+                    </button>
+                    
+                    <button class="flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 border-l-2 border-transparent text-left transition-colors group">
+                        <span class="material-symbols-outlined text-[20px] text-on-surface-variant group-hover:text-white mt-0.5">tune</span>
+                        <div>
+                            <p class="text-[13px] font-medium text-white">Advanced</p>
+                            <p class="text-[11px] text-on-surface-variant mt-0.5">Advanced preferences</p>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Right Column: Settings Content -->
+                <div class="flex flex-col gap-6">
+                    
+                    <!-- General Preferences -->
+                    <div class="glass-card rounded-xl border border-white/5 bg-surface-container/30">
+                        <div class="p-6 border-b border-white/5">
+                            <h3 class="text-sm font-medium text-white">General Preferences</h3>
+                            <p class="text-[11px] text-on-surface-variant mt-0.5">Configure general settings for your account and application.</p>
+                        </div>
+                        
+                        <div class="p-6 flex flex-col gap-6">
+                            <div class="flex items-center justify-between gap-8 pb-6 border-b border-white/5">
+                                <div class="flex-1">
+                                    <h4 class="text-[12px] font-medium text-white mb-1">Default Dashboard</h4>
+                                    <p class="text-[10px] text-on-surface-variant">Choose your default landing page after login.</p>
+                                </div>
+                                <div class="w-64 relative">
+                                    <select class="w-full bg-surface-deep/50 border border-white/5 rounded-lg px-4 py-2.5 text-[12px] text-white appearance-none focus:outline-none focus:border-primary/50 cursor-pointer">
+                                        <option>Dashboard</option>
+                                        <option>Products</option>
+                                        <option>Orders</option>
+                                    </select>
+                                    <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant pointer-events-none">expand_more</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between gap-8 pb-6 border-b border-white/5">
+                                <div class="flex-1">
+                                    <h4 class="text-[12px] font-medium text-white mb-1">Items Per Page</h4>
+                                    <p class="text-[10px] text-on-surface-variant">Select how many items to display in lists.</p>
+                                </div>
+                                <div class="w-64 relative">
+                                    <select class="w-full bg-surface-deep/50 border border-white/5 rounded-lg px-4 py-2.5 text-[12px] text-white appearance-none focus:outline-none focus:border-primary/50 cursor-pointer">
+                                        <option>10</option>
+                                        <option>25</option>
+                                        <option>50</option>
+                                        <option>100</option>
+                                    </select>
+                                    <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant pointer-events-none">expand_more</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between gap-8 pb-6 border-b border-white/5">
+                                <div class="flex-1">
+                                    <h4 class="text-[12px] font-medium text-white mb-1">Date Format</h4>
+                                    <p class="text-[10px] text-on-surface-variant">Choose your preferred date format.</p>
+                                </div>
+                                <div class="w-64 relative">
+                                    <select class="w-full bg-surface-deep/50 border border-white/5 rounded-lg px-4 py-2.5 text-[12px] text-white appearance-none focus:outline-none focus:border-primary/50 cursor-pointer">
+                                        <option>12 May 2024 (DD MMM YYYY)</option>
+                                        <option>05/12/2024 (MM/DD/YYYY)</option>
+                                        <option>2024-05-12 (YYYY-MM-DD)</option>
+                                    </select>
+                                    <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant pointer-events-none">expand_more</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between gap-8 pb-6 border-b border-white/5">
+                                <div class="flex-1">
+                                    <h4 class="text-[12px] font-medium text-white mb-1">Time Format</h4>
+                                    <p class="text-[10px] text-on-surface-variant">Choose your preferred time format.</p>
+                                </div>
+                                <div class="w-64 flex items-center gap-6">
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="radio" name="time_format" checked class="w-4 h-4 text-primary bg-surface-deep/50 border-white/20 focus:ring-primary focus:ring-offset-surface-deep focus:ring-offset-2">
+                                        <span class="text-[12px] text-white">12 Hour (AM/PM)</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="radio" name="time_format" class="w-4 h-4 text-primary bg-surface-deep/50 border-white/20 focus:ring-primary focus:ring-offset-surface-deep focus:ring-offset-2">
+                                        <span class="text-[12px] text-white">24 Hour</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between gap-8 pb-6 border-b border-white/5">
+                                <div class="flex-1">
+                                    <h4 class="text-[12px] font-medium text-white mb-1">Timezone</h4>
+                                    <p class="text-[10px] text-on-surface-variant">Select your timezone.</p>
+                                </div>
+                                <div class="w-64 relative">
+                                    <select class="w-full bg-surface-deep/50 border border-white/5 rounded-lg px-4 py-2.5 text-[12px] text-white appearance-none focus:outline-none focus:border-primary/50 cursor-pointer">
+                                        <option>(GMT+05:30) Asia/Kolkata</option>
+                                        <option>(GMT+00:00) UTC</option>
+                                        <option>(GMT-05:00) Eastern Time</option>
+                                    </select>
+                                    <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant pointer-events-none">expand_more</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between gap-8">
+                                <div class="flex-1">
+                                    <h4 class="text-[12px] font-medium text-white mb-1">Default Currency</h4>
+                                    <p class="text-[10px] text-on-surface-variant">Select your default currency.</p>
+                                </div>
+                                <div class="w-64 relative">
+                                    <select class="w-full bg-surface-deep/50 border border-white/5 rounded-lg px-4 py-2.5 text-[12px] text-white appearance-none focus:outline-none focus:border-primary/50 cursor-pointer">
+                                        <option>INR (₹)</option>
+                                        <option>USD ($)</option>
+                                        <option>EUR (€)</option>
+                                    </select>
+                                    <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant pointer-events-none">expand_more</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Other Preferences -->
+                    <div class="glass-card rounded-xl border border-white/5 bg-surface-container/30">
+                        <div class="p-6 border-b border-white/5">
+                            <h3 class="text-sm font-medium text-white">Other Preferences</h3>
+                        </div>
+                        
+                        <div class="p-6 flex flex-col gap-6">
+                            <div class="flex items-center justify-between gap-8">
+                                <div class="flex items-center gap-4 flex-1">
+                                    <div class="w-10 h-10 rounded-lg bg-white/5 text-on-surface-variant border border-white/5 flex items-center justify-center shrink-0">
+                                        <span class="material-symbols-outlined text-[20px]">aspect_ratio</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-[12px] font-medium text-white mb-0.5">Enable Compact Mode</h4>
+                                        <p class="text-[10px] text-on-surface-variant">Reduce spacing for more content on screen.</p>
+                                    </div>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" value="" class="sr-only peer">
+                                    <div class="w-11 h-6 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                </label>
+                            </div>
+                            
+                            <div class="flex items-center justify-between gap-8">
+                                <div class="flex items-center gap-4 flex-1">
+                                    <div class="w-10 h-10 rounded-lg bg-white/5 text-on-surface-variant border border-white/5 flex items-center justify-center shrink-0">
+                                        <span class="material-symbols-outlined text-[20px]">animation</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-[12px] font-medium text-white mb-0.5">Enable Animations</h4>
+                                        <p class="text-[10px] text-on-surface-variant">Show UI animations and transitions.</p>
+                                    </div>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" value="" class="sr-only peer" checked>
+                                    <div class="w-11 h-6 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                </label>
+                            </div>
+                            
+                            <div class="flex items-center justify-between gap-8">
+                                <div class="flex items-center gap-4 flex-1">
+                                    <div class="w-10 h-10 rounded-lg bg-white/5 text-on-surface-variant border border-white/5 flex items-center justify-center shrink-0">
+                                        <span class="material-symbols-outlined text-[20px]">lightbulb</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-[12px] font-medium text-white mb-0.5">Show Hints & Tips</h4>
+                                        <p class="text-[10px] text-on-surface-variant">Display helpful tips and suggestions.</p>
+                                    </div>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" value="" class="sr-only peer" checked>
+                                    <div class="w-11 h-6 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="p-4 border-t border-white/5 bg-primary-container/5 m-4 rounded-lg flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary text-[18px]">info</span>
+                            <span class="text-[11px] text-primary font-medium">These preferences are only applied to your account and device.</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+</main>
 
 <script>
     // Subtle interaction logic

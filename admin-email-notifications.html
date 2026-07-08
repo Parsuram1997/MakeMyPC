@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MakeMyPC Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#adc6ff",
+                    "on-tertiary-container": "#4c1a00",
+                    "inverse-on-surface": "#263046",
+                    "secondary-fixed-dim": "#5cd8da",
+                    "surface-container-low": "#101b30",
+                    "surface-container": "#142034",
+                    "primary-fixed-dim": "#adc6ff",
+                    "outline-variant": "#414755",
+                    "electric-blue": "#007AFF",
+                    "background": "#071327",
+                    "surface-bright": "#2e394f",
+                    "secondary": "#5cd8da",
+                    "surface": "#071327",
+                    "on-primary-container": "#00285c",
+                    "tertiary-container": "#ef6719",
+                    "hardware-gray": "#111111",
+                    "on-background": "#d7e2ff",
+                    "on-tertiary-fixed": "#351000",
+                    "tertiary": "#ffb595",
+                    "primary-container": "#4b8eff",
+                    "surface-tint": "#adc6ff",
+                    "surface-container-lowest": "#030e22",
+                    "primary-fixed": "#d8e2ff",
+                    "on-primary": "#002e69",
+                    "on-secondary-fixed": "#002020",
+                    "surface-deep": "#00081C",
+                    "secondary-container": "#00a4a6",
+                    "on-secondary-fixed-variant": "#004f50",
+                    "cyber-teal": "#00A4A6",
+                    "on-surface": "#d7e2ff",
+                    "tertiary-fixed": "#ffdbcc",
+                    "error": "#ffb4ab",
+                    "on-surface-variant": "#c1c6d7",
+                    "on-tertiary-fixed-variant": "#7c2e00",
+                    "outline": "#8b90a0",
+                    "surface-dim": "#071327",
+                    "on-error": "#690005",
+                    "on-primary-fixed": "#001a41",
+                    "surface-container-highest": "#2a354a",
+                    "inverse-primary": "#005bc1",
+                    "on-primary-fixed-variant": "#004493",
+                    "secondary-fixed": "#7cf5f7",
+                    "surface-variant": "#2a354a",
+                    "inverse-surface": "#d7e2ff",
+                    "on-tertiary": "#571e00",
+                    "on-error-container": "#ffdad6",
+                    "surface-glass": "rgba(255, 255, 255, 0.03)",
+                    "error-container": "#93000a",
+                    "on-secondary": "#003738",
+                    "on-secondary-container": "#003233",
+                    "tertiary-fixed-dim": "#ffb595",
+                    "surface-container-high": "#1f2a3f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "base": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-mono": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom Scrollbar for Glassmorphism */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+      body {
+        background-color: #071327;
+        color: #d7e2ff;
+        font-family: 'Inter', sans-serif;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 40px 40px -20px rgba(0, 0, 0, 0.15);
+      }
+      .active-glow {
+        box-shadow: 0 0 15px rgba(0, 122, 255, 0.3);
+      }
+      .cyber-glow {
+        box-shadow: 0 0 15px rgba(0, 164, 166, 0.2);
+      }
+    </style>
+</head>
+<body class="bg-surface-deep text-on-surface font-body-md overflow-x-hidden">
+<!-- Sidebar -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r border-white/10 bg-surface-deep z-50 flex flex-col py-6">
+    <div class="px-6 mb-8 shrink-0">
+        <h1 class="font-headline-sm text-headline-sm font-bold text-electric-blue dark:text-primary">MakeMyPC</h1>
+        <p class="text-[10px] uppercase tracking-widest text-on-surface-variant/50 mt-1">Enterprise Admin</p>
+    </div>
+
+    <nav class="flex flex-col gap-2 px-4 flex-1 overflow-y-auto custom-scrollbar pb-6">
+        <a href="admin-dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="text-body-sm font-medium">Dashboard</span>
+        </a>
+
+        <details class="group" name="sidebar-menu">
+            <summary class="flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary list-none [&::-webkit-details-marker]:hidden">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">inventory_2</span>
+                    <span class="text-body-sm font-medium">Products</span>
+                </div>
+                <span class="material-symbols-outlined text-sm transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="ml-6 pl-4 border-l border-white/10 flex flex-col space-y-1 mt-1 mb-2">
+                <a href="product-add.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Add Product
+                </a>
+                <a href="product-inventory.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Inventory
+                </a>
+                <a href="product-categories.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Categories
+                </a>
+                <a href="product-brands.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Brands
+                </a>
+                <a href="product-compatibility.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Compatibility
+                </a>
+                <a href="product-reviews.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Reviews
+                </a>
+            </div>
+        </details>
+
+        <details class="group" name="sidebar-menu">
+            <summary class="flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary list-none [&::-webkit-details-marker]:hidden">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">computer</span>
+                    <span class="text-body-sm font-medium">PC Builder</span>
+                </div>
+                <span class="material-symbols-outlined text-sm transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="flex flex-col gap-1 pl-12 pr-4 pt-1 pb-2">
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Custom Builds</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Saved Builds</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Compatibility Engine</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Featured Builds</a>
+            </div>
+        </details>
+
+        <details class="group" name="sidebar-menu">
+            <summary class="flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary list-none [&::-webkit-details-marker]:hidden">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span class="text-body-sm font-medium">Orders</span>
+                </div>
+                <span class="material-symbols-outlined text-sm transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="flex flex-col gap-1 pl-12 pr-4 pt-1 pb-2">
+                <a href="orders-management.html" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">All Orders</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Custom PC</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Components</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Ready PCs</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Laptops</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Returns</a>
+                <a href="#" class="text-body-sm text-on-surface-variant hover:text-primary py-1.5 transition-colors">Refunds</a>
+            </div>
+        </details>
+
+                <details class="group" name="sidebar-menu" open>
+            <summary class="flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 text-primary bg-primary/10 hover:bg-white/5 hover:text-primary list-none [&::-webkit-details-marker]:hidden">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">group</span>
+                    <span class="text-body-sm font-medium">Customers</span>
+                </div>
+                <span class="material-symbols-outlined text-[18px] transition-transform duration-300 group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="ml-6 pl-4 border-l border-white/10 flex flex-col space-y-1 mt-1 mb-2">
+                <a href="admin-customers.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    All Customers
+                </a>
+                <a href="admin-customer-groups.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Customer Groups
+                </a>
+                <a href="admin-saved-builds.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Saved Builds
+                </a>
+                <a href="admin-addresses.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Addresses
+                </a>
+                <a href="admin-wishlist.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Wishlist
+                </a>
+                <a href="admin-order-history.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Order History
+                </a>
+                <a href="admin-support-tickets.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Support Tickets
+                </a>
+                <a href="admin-loyalty-rewards.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Loyalty & Rewards
+                </a>
+                <a href="admin-activity-logs.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Activity Logs
+                </a>
+                <a href="admin-email-notifications.html" class="text-sm text-primary font-medium bg-primary/10 px-4 py-2 rounded-lg relative block">
+                    <div class="absolute -left-[17px] top-0 bottom-0 w-[2px] bg-primary"></div>
+                    Email &amp; Notifications
+                </a>
+                <a href="admin-blocked-customers.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-2 rounded-lg transition-colors block">
+                    Blocked Customers
+                </a>
+            </div>
+        </details>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">local_shipping</span>
+            <span class="text-body-sm font-medium">Shipping</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">build</span>
+            <span class="text-body-sm font-medium">Assembly</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">payments</span>
+            <span class="text-body-sm font-medium">Payments</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">local_offer</span>
+            <span class="text-body-sm font-medium">Coupons</span>
+        </a>
+        <a href="admin-dashboard-overview.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">analytics</span>
+            <span class="text-body-sm font-medium">Analytics</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">campaign</span>
+            <span class="text-body-sm font-medium">Marketing</span>
+        </a>
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">language</span>
+            <span class="text-body-sm font-medium">Website</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">summarize</span>
+            <span class="text-body-sm font-medium">Reports</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">notifications</span>
+            <span class="text-body-sm font-medium">Notifications</span>
+        </a>
+        
+        <div class="px-4 mt-6 mb-2">
+            <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">User Management</p>
+        </div>
+        <a href="admin-users.html" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">manage_accounts</span>
+            <span class="text-body-sm font-medium">Admin Users</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">shield_person</span>
+            <span class="text-body-sm font-medium">Roles & Permissions</span>
+        </a>
+
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary mt-auto mb-4">
+            <span class="material-symbols-outlined">settings</span>
+            <span class="text-body-sm font-medium">Settings</span>
+        </a>
+    </nav>
+
+    <div class="mt-auto px-4 shrink-0 border-t border-white/5 pt-4 pb-4">
+        <details class="group" name="sidebar-profile-menu">
+            <summary class="list-none outline-none">
+                <div class="flex items-center justify-between p-3 rounded-t-xl group-open:bg-white/[0.02] bg-surface-container border border-white/5 group-open:border-b-0 hover:bg-white/5 transition-colors cursor-pointer group-open:rounded-b-none rounded-b-xl">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-[#B3D4FF] text-[#0A1929] flex items-center justify-center font-bold text-sm">AD</div>
+                        <div class="overflow-hidden">
+                            <p class="text-xs font-bold text-white truncate mb-0.5">Admin Profile</p>
+                            <p class="text-[10px] text-on-surface-variant truncate mb-1">Super Admin</p>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#00D084]"></span>
+                                <span class="text-[9px] text-[#00D084]/70">Online</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-[18px] text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+                </div>
+            </summary>
+            
+            <div class="bg-surface-container/50 border border-white/5 border-t-0 rounded-b-xl p-2 flex flex-col gap-0.5">
+                <a href="admin-profile.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[11px] font-medium text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors">
+                    <span class="material-symbols-outlined text-[16px]">person</span>
+                    Profile Settings
+                </a>
+                <a href="admin-security.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[11px] font-medium text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors">
+                    <span class="material-symbols-outlined text-[16px]">lock</span>
+                    Security
+                </a>
+                <a href="admin-preferences.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[11px] font-medium text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors">
+                    <span class="material-symbols-outlined text-[16px]">settings</span>
+                    Preferences
+                </a>
+                <div class="h-[1px] bg-white/5 my-1 mx-2"></div>
+                <a href="add_global_logout.py" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[11px] font-medium text-[#F87171] hover:bg-[#F87171]/10 transition-colors">
+                    <span class="material-symbols-outlined text-[16px]">logout</span>
+                    Sign out
+                </a>
+            </div>
+        </details>
+    </div>
+</aside>
+<!-- Main Content -->
+<main class="ml-64 flex-1 p-6 h-screen overflow-hidden bg-surface-deep flex flex-col">
+        <div class="flex flex-col h-full relative">
+            <div class="absolute inset-0 bg-blue-500/5 blur-[120px] rounded-full pointer-events-none"></div>
+            
+            <div class="flex justify-between items-end mb-6 relative z-10">
+                <div>
+                    <h2 class="text-headline-lg font-bold text-white mb-1">Email & Notifications</h2>
+                    <p class="text-on-surface-variant text-sm">Manage all email communications and notification settings.</p>
+                </div>
+                <div class="flex gap-3">
+                    <button class="px-4 py-2 rounded-lg border border-white/10 hover:bg-white/5 transition-colors text-sm flex items-center gap-2 text-white">
+                        <span class="material-symbols-outlined text-sm">send</span>
+                        Send Email
+                    </button>
+                    <button class="px-4 py-2 rounded-lg border border-white/10 hover:bg-white/5 transition-colors text-sm flex items-center gap-2 text-white">
+                        <span class="material-symbols-outlined text-sm">add_box</span>
+                        Create Template
+                    </button>
+                    <button class="px-4 py-2 rounded-lg bg-primary hover:bg-primary-hover text-on-primary font-medium transition-colors text-sm flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">settings</span>
+                        Settings
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-5 gap-4 mb-6 relative z-10">
+                <div class="glass-card p-4 rounded-xl border border-white/5 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-[#1A4B8C]/30 text-[#63B3ED] flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[24px]">mail</span>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-on-surface-variant uppercase tracking-wider mb-1 font-semibold">TOTAL SENT</p>
+                        <h3 class="text-xl font-bold text-white leading-tight">1,25,680</h3>
+                        <p class="text-[11px] text-on-surface-variant mt-1">All time emails</p>
+                    </div>
+                </div>
+                <div class="glass-card p-4 rounded-xl border border-white/5 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-[#1B5038]/30 text-[#68D391] flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[24px]">send</span>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-on-surface-variant uppercase tracking-wider mb-1 font-semibold">DELIVERED</p>
+                        <h3 class="text-xl font-bold text-white leading-tight">1,18,560</h3>
+                        <p class="text-[11px] text-on-surface-variant mt-1">94.3% delivered</p>
+                    </div>
+                </div>
+                <div class="glass-card p-4 rounded-xl border border-white/5 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-[#52358C]/30 text-[#B794F6] flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[24px]">drafts</span>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-on-surface-variant uppercase tracking-wider mb-1 font-semibold">OPENED</p>
+                        <h3 class="text-xl font-bold text-white leading-tight">68,450</h3>
+                        <p class="text-[11px] text-on-surface-variant mt-1">54.6% open rate</p>
+                    </div>
+                </div>
+                <div class="glass-card p-4 rounded-xl border border-white/5 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-[#7C4A15]/30 text-[#F6AD55] flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[24px]">ads_click</span>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-on-surface-variant uppercase tracking-wider mb-1 font-semibold">CLICKED</p>
+                        <h3 class="text-xl font-bold text-white leading-tight">21,340</h3>
+                        <p class="text-[11px] text-on-surface-variant mt-1">17.1% click rate</p>
+                    </div>
+                </div>
+                <div class="glass-card p-4 rounded-xl border border-white/5 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-[#1A4B8C]/30 text-[#63B3ED] flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[24px]">reply</span>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-on-surface-variant uppercase tracking-wider mb-1 font-semibold">BOUNCED</p>
+                        <h3 class="text-xl font-bold text-white leading-tight">7,120</h3>
+                        <p class="text-[11px] text-on-surface-variant mt-1">5.7% bounce rate</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex gap-6 border-b border-white/10 mb-5 relative z-10 text-sm">
+                <a href="#" class="text-primary font-medium border-b-2 border-primary pb-3 px-1">Email Campaigns</a>
+                <a href="#" class="text-on-surface-variant hover:text-white pb-3 px-1 transition-colors">Templates</a>
+                <a href="#" class="text-on-surface-variant hover:text-white pb-3 px-1 transition-colors">Notification Settings</a>
+                <a href="#" class="text-on-surface-variant hover:text-white pb-3 px-1 transition-colors">Subscribers</a>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex justify-between items-center mb-4 relative z-10">
+                <div class="flex gap-3 flex-1 max-w-4xl">
+                    <div class="relative flex-1 max-w-[280px]">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+                        <input type="text" placeholder="Search by campaign name, subject..." class="w-full bg-surface-container-highest/50 border border-white/5 rounded-lg pl-9 pr-3 py-2 text-[13px] focus:outline-none focus:border-primary/50 transition-colors text-white placeholder-on-surface-variant/50">
+                    </div>
+                    <select class="bg-surface-container-highest/50 border border-white/5 rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:border-primary/50 transition-colors text-white appearance-none w-36">
+                        <option>All Campaigns</option>
+                    </select>
+                    <select class="bg-surface-container-highest/50 border border-white/5 rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:border-primary/50 transition-colors text-white appearance-none w-32">
+                        <option>All Status</option>
+                    </select>
+                    <select class="bg-surface-container-highest/50 border border-white/5 rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:border-primary/50 transition-colors text-white appearance-none w-32">
+                        <option>All Channels</option>
+                    </select>
+                    <select class="bg-surface-container-highest/50 border border-white/5 rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:border-primary/50 transition-colors text-white appearance-none w-28">
+                        <option>All Time</option>
+                    </select>
+                    <button class="px-4 py-2 rounded-lg border border-white/10 hover:bg-white/5 transition-colors text-sm flex items-center gap-2 text-white">
+                        <span class="material-symbols-outlined text-[16px]">filter_list</span>
+                        Filters
+                    </button>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button class="w-9 h-9 rounded-lg bg-primary/20 text-primary flex items-center justify-center border border-primary/30">
+                        <span class="material-symbols-outlined text-[18px]">view_list</span>
+                    </button>
+                    <button class="w-9 h-9 rounded-lg bg-surface-container-highest/50 text-on-surface-variant hover:text-white flex items-center justify-center border border-white/5 transition-colors">
+                        <span class="material-symbols-outlined text-[18px]">grid_view</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Content Area (Table + Sidebar) -->
+            <div class="flex gap-4 flex-1 min-h-0 relative z-10">
+                
+                <!-- Table -->
+                <div class="glass-card rounded-xl flex-1 flex flex-col overflow-hidden border border-white/5">
+                    <div class="overflow-y-auto custom-scrollbar flex-1">
+                        <table class="w-full text-left text-sm border-collapse">
+                            <thead class="sticky top-0 bg-surface-deep text-[10px] uppercase text-on-surface-variant/70 border-b border-white/5 z-10">
+                                <tr>
+                                    <th class="px-5 py-4 font-medium tracking-wider">CAMPAIGN NAME</th>
+                                    <th class="px-5 py-4 font-medium tracking-wider w-[260px]">SUBJECT</th>
+                                    <th class="px-5 py-4 font-medium tracking-wider">RECIPIENTS</th>
+                                    <th class="px-5 py-4 font-medium tracking-wider">SENT ON</th>
+                                    <th class="px-5 py-4 font-medium tracking-wider">STATUS</th>
+                                    <th class="px-5 py-4 font-medium tracking-wider">PERFORMANCE</th>
+                                    <th class="px-5 py-4 font-medium tracking-wider text-right">ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5 text-xs">
+                                <!-- Row 1 -->
+                                <tr class="hover:bg-white/5 transition-colors group">
+                                    <td class="px-5 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded bg-[#52358C]/30 text-[#B794F6] flex items-center justify-center shrink-0">
+                                                <span class="material-symbols-outlined text-[18px]">campaign</span>
+                                            </div>
+                                            <span class="font-medium text-white text-[12px]">New Year Special Offer</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <p class="text-white text-[12px] truncate w-[260px]">🎉 New Year Special Offer - Up to 20% OFF!</p>
+                                    </td>
+                                    <td class="px-5 py-4 text-white font-medium text-[12px]">18,560</td>
+                                    <td class="px-5 py-4">
+                                        <p class="text-white text-[11px]">12 May 2024</p>
+                                        <p class="text-[10px] text-on-surface-variant mt-0.5">10:30 AM</p>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <span class="px-2 py-1 rounded text-[#68D391] text-[10px] font-medium bg-[#1B5038]/30">Delivered</span>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <div class="flex gap-4">
+                                            <div>
+                                                <p class="text-white font-medium text-[11px]">52.6%</p>
+                                                <p class="text-[9px] text-on-surface-variant">Open Rate</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-white font-medium text-[11px]">16.2%</p>
+                                                <p class="text-[9px] text-on-surface-variant">Click Rate</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4 text-right">
+                                        <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <button class="w-8 h-8 rounded bg-surface-container-highest/50 hover:bg-white/10 text-on-surface-variant hover:text-white flex items-center justify-center transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">visibility</span>
+                                            </button>
+                                            <button class="w-8 h-8 rounded bg-surface-container-highest/50 hover:bg-white/10 text-on-surface-variant hover:text-white flex items-center justify-center transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">more_horiz</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 2 -->
+                                <tr class="hover:bg-white/5 transition-colors group">
+                                    <td class="px-5 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded bg-[#1B5038]/30 text-[#68D391] flex items-center justify-center shrink-0">
+                                                <span class="material-symbols-outlined text-[18px]">shopping_cart</span>
+                                            </div>
+                                            <span class="font-medium text-white text-[12px]">Abandoned Build Reminder</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <p class="text-white text-[12px] truncate w-[260px] opacity-80">Complete your saved build today!</p>
+                                    </td>
+                                    <td class="px-5 py-4 text-white font-medium text-[12px]">8,450</td>
+                                    <td class="px-5 py-4">
+                                        <p class="text-white text-[11px]">11 May 2024</p>
+                                        <p class="text-[10px] text-on-surface-variant mt-0.5">04:15 PM</p>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <span class="px-2 py-1 rounded text-[#68D391] text-[10px] font-medium bg-[#1B5038]/30">Delivered</span>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <div class="flex gap-4">
+                                            <div>
+                                                <p class="text-white font-medium text-[11px]">47.8%</p>
+                                                <p class="text-[9px] text-on-surface-variant">Open Rate</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-white font-medium text-[11px]">12.4%</p>
+                                                <p class="text-[9px] text-on-surface-variant">Click Rate</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4 text-right">
+                                        <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <button class="w-8 h-8 rounded bg-surface-container-highest/50 hover:bg-white/10 text-on-surface-variant hover:text-white flex items-center justify-center transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">visibility</span>
+                                            </button>
+                                            <button class="w-8 h-8 rounded bg-surface-container-highest/50 hover:bg-white/10 text-on-surface-variant hover:text-white flex items-center justify-center transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">more_horiz</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 3 -->
+                                <tr class="hover:bg-white/5 transition-colors group">
+                                    <td class="px-5 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded bg-[#7C4A15]/30 text-[#F6AD55] flex items-center justify-center shrink-0">
+                                                <span class="material-symbols-outlined text-[18px]">inventory_2</span>
+                                            </div>
+                                            <span class="font-medium text-white text-[12px]">Order Confirmation</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <p class="text-white text-[12px] truncate w-[260px] opacity-80">Your Order #ORD-2024-1256 is confirmed</p>
+                                    </td>
+                                    <td class="px-5 py-4 text-white font-medium text-[12px]">2,345</td>
+                                    <td class="px-5 py-4">
+                                        <p class="text-white text-[11px]">10 May 2024</p>
+                                        <p class="text-[10px] text-on-surface-variant mt-0.5">11:20 AM</p>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <span class="px-2 py-1 rounded text-[#68D391] text-[10px] font-medium bg-[#1B5038]/30">Delivered</span>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <div class="flex gap-4">
+                                            <div>
+                                                <p class="text-white font-medium text-[11px]">75.3%</p>
+                                                <p class="text-[9px] text-on-surface-variant">Open Rate</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-white font-medium text-[11px]">28.6%</p>
+                                                <p class="text-[9px] text-on-surface-variant">Click Rate</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4 text-right">
+                                        <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <button class="w-8 h-8 rounded bg-surface-container-highest/50 hover:bg-white/10 text-on-surface-variant hover:text-white flex items-center justify-center transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">visibility</span>
+                                            </button>
+                                            <button class="w-8 h-8 rounded bg-surface-container-highest/50 hover:bg-white/10 text-on-surface-variant hover:text-white flex items-center justify-center transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">more_horiz</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 4 -->
+                                <tr class="hover:bg-white/5 transition-colors group">
+                                    <td class="px-5 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded bg-[#1A4B8C]/30 text-[#63B3ED] flex items-center justify-center shrink-0">
+                                                <span class="material-symbols-outlined text-[18px]">local_shipping</span>
+                                            </div>
+                                            <span class="font-medium text-white text-[12px]">Order Shipped</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <p class="text-white text-[12px] truncate w-[260px] opacity-80">Good news! Your order is on the way</p>
+                                    </td>
+                                    <td class="px-5 py-4 text-white font-medium text-[12px]">2,210</td>
+                                    <td class="px-5 py-4">
+                                        <p class="text-white text-[11px]">09 May 2024</p>
+                                        <p class="text-[10px] text-on-surface-variant mt-0.5">03:30 PM</p>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <span class="px-2 py-1 rounded text-[#68D391] text-[10px] font-medium bg-[#1B5038]/30">Delivered</span>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <div class="flex gap-4">
+                                            <div>
+                                                <p class="text-white font-medium text-[11px]">71.1%</p>
+                                                <p class="text-[9px] text-on-surface-variant">Open Rate</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-white font-medium text-[11px]">22.1%</p>
+                                                <p class="text-[9px] text-on-surface-variant">Click Rate</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4 text-right">
+                                        <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <button class="w-8 h-8 rounded bg-surface-container-highest/50 hover:bg-white/10 text-on-surface-variant hover:text-white flex items-center justify-center transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">visibility</span>
+                                            </button>
+                                            <button class="w-8 h-8 rounded bg-surface-container-highest/50 hover:bg-white/10 text-on-surface-variant hover:text-white flex items-center justify-center transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">more_horiz</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 5 -->
+                                <tr class="hover:bg-white/5 transition-colors group">
+                                    <td class="px-5 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded bg-[#52358C]/30 text-[#B794F6] flex items-center justify-center shrink-0">
+                                                <span class="material-symbols-outlined text-[18px]">star</span>
+                                            </div>
+                                            <span class="font-medium text-white text-[12px]">Product Review Request</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <p class="text-white text-[12px] truncate w-[260px] opacity-80">How was your experience with your purchase?</p>
+                                    </td>
+                                    <td class="px-5 py-4 text-white font-medium text-[12px]">1,980</td>
+                                    <td class="px-5 py-4">
+                                        <p class="text-white text-[11px]">08 May 2024</p>
+                                        <p class="text-[10px] text-on-surface-variant mt-0.5">09:45 AM</p>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <span class="px-2 py-1 rounded text-[#68D391] text-[10px] font-medium bg-[#1B5038]/30">Delivered</span>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <div class="flex gap-4">
+                                            <div>
+                                                <p class="text-white font-medium text-[11px]">34.6%</p>
+                                                <p class="text-[9px] text-on-surface-variant">Open Rate</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-white font-medium text-[11px]">9.2%</p>
+                                                <p class="text-[9px] text-on-surface-variant">Click Rate</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4 text-right">
+                                        <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <button class="w-8 h-8 rounded bg-surface-container-highest/50 hover:bg-white/10 text-on-surface-variant hover:text-white flex items-center justify-center transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">visibility</span>
+                                            </button>
+                                            <button class="w-8 h-8 rounded bg-surface-container-highest/50 hover:bg-white/10 text-on-surface-variant hover:text-white flex items-center justify-center transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">more_horiz</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 6 -->
+                                <tr class="hover:bg-white/5 transition-colors group">
+                                    <td class="px-5 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded bg-[#FC8181]/20 text-[#FC8181] flex items-center justify-center shrink-0">
+                                                <span class="material-symbols-outlined text-[18px]">favorite</span>
+                                            </div>
+                                            <span class="font-medium text-white text-[12px]">Wishlist Price Drop Alert</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <p class="text-white text-[12px] truncate w-[260px] opacity-80">Good news! Items in your wishlist are on sale</p>
+                                    </td>
+                                    <td class="px-5 py-4 text-white font-medium text-[12px]">6,782</td>
+                                    <td class="px-5 py-4">
+                                        <p class="text-white text-[11px]">07 May 2024</p>
+                                        <p class="text-[10px] text-on-surface-variant mt-0.5">05:10 PM</p>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <span class="px-2 py-1 rounded text-[#68D391] text-[10px] font-medium bg-[#1B5038]/30">Delivered</span>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <div class="flex gap-4">
+                                            <div>
+                                                <p class="text-white font-medium text-[11px]">49.2%</p>
+                                                <p class="text-[9px] text-on-surface-variant">Open Rate</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-white font-medium text-[11px]">13.7%</p>
+                                                <p class="text-[9px] text-on-surface-variant">Click Rate</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4 text-right">
+                                        <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <button class="w-8 h-8 rounded bg-surface-container-highest/50 hover:bg-white/10 text-on-surface-variant hover:text-white flex items-center justify-center transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">visibility</span>
+                                            </button>
+                                            <button class="w-8 h-8 rounded bg-surface-container-highest/50 hover:bg-white/10 text-on-surface-variant hover:text-white flex items-center justify-center transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">more_horiz</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 7 - Bounced -->
+                                <tr class="hover:bg-white/5 transition-colors group">
+                                    <td class="px-5 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0">
+                                                <span class="material-symbols-outlined text-[18px]">mail</span>
+                                            </div>
+                                            <span class="font-medium text-white text-[12px]">Newsletter - May 2024</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <p class="text-white text-[12px] truncate w-[260px] opacity-80">May Updates: New Products, Offers & More</p>
+                                    </td>
+                                    <td class="px-5 py-4 text-white font-medium text-[12px]">22,650</td>
+                                    <td class="px-5 py-4">
+                                        <p class="text-white text-[11px]">06 May 2024</p>
+                                        <p class="text-[10px] text-on-surface-variant mt-0.5">10:00 AM</p>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <span class="px-2 py-1 rounded text-[#FC8181] text-[10px] font-medium bg-[#FC8181]/20">Bounced</span>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <div class="flex gap-4">
+                                            <div>
+                                                <p class="text-white font-medium text-[11px]">40.5%</p>
+                                                <p class="text-[9px] text-on-surface-variant">Open Rate</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-white font-medium text-[11px]">11.3%</p>
+                                                <p class="text-[9px] text-on-surface-variant">Click Rate</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4 text-right">
+                                        <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <button class="w-8 h-8 rounded bg-surface-container-highest/50 hover:bg-white/10 text-on-surface-variant hover:text-white flex items-center justify-center transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">visibility</span>
+                                            </button>
+                                            <button class="w-8 h-8 rounded bg-surface-container-highest/50 hover:bg-white/10 text-on-surface-variant hover:text-white flex items-center justify-center transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">more_horiz</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 8 -->
+                                <tr class="hover:bg-white/5 transition-colors group">
+                                    <td class="px-5 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded bg-[#F6AD55]/20 text-[#F6AD55] flex items-center justify-center shrink-0">
+                                                <span class="material-symbols-outlined text-[18px]">notifications_active</span>
+                                            </div>
+                                            <span class="font-medium text-white text-[12px]">Account Verification</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <p class="text-white text-[12px] truncate w-[260px] opacity-80">Verify your email address</p>
+                                    </td>
+                                    <td class="px-5 py-4 text-white font-medium text-[12px]">3,245</td>
+                                    <td class="px-5 py-4">
+                                        <p class="text-white text-[11px]">05 May 2024</p>
+                                        <p class="text-[10px] text-on-surface-variant mt-0.5">02:20 PM</p>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <span class="px-2 py-1 rounded text-[#68D391] text-[10px] font-medium bg-[#1B5038]/30">Delivered</span>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <div class="flex gap-4">
+                                            <div>
+                                                <p class="text-white font-medium text-[11px]">68.3%</p>
+                                                <p class="text-[9px] text-on-surface-variant">Open Rate</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-white font-medium text-[11px]">18.9%</p>
+                                                <p class="text-[9px] text-on-surface-variant">Click Rate</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4 text-right">
+                                        <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <button class="w-8 h-8 rounded bg-surface-container-highest/50 hover:bg-white/10 text-on-surface-variant hover:text-white flex items-center justify-center transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">visibility</span>
+                                            </button>
+                                            <button class="w-8 h-8 rounded bg-surface-container-highest/50 hover:bg-white/10 text-on-surface-variant hover:text-white flex items-center justify-center transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">more_horiz</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="p-4 border-t border-white/5 bg-surface-deep/50 backdrop-blur flex justify-between items-center text-xs">
+                        <p class="text-on-surface-variant">Showing 1 to 8 of 125 campaigns</p>
+                        <div class="flex gap-1 items-center">
+                            <button class="w-8 h-8 rounded flex items-center justify-center hover:bg-white/5 transition-colors disabled:opacity-50 text-white"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+                            <button class="w-8 h-8 rounded bg-primary text-on-primary flex items-center justify-center font-medium">1</button>
+                            <button class="w-8 h-8 rounded flex items-center justify-center hover:bg-white/5 transition-colors text-white">2</button>
+                            <button class="w-8 h-8 rounded flex items-center justify-center hover:bg-white/5 transition-colors text-white">3</button>
+                            <span class="w-8 h-8 flex items-center justify-center text-on-surface-variant">...</span>
+                            <button class="w-8 h-8 rounded flex items-center justify-center hover:bg-white/5 transition-colors text-white">16</button>
+                            <button class="w-8 h-8 rounded flex items-center justify-center hover:bg-white/5 transition-colors text-white"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+                            <div class="flex items-center gap-2 ml-4">
+                                <span class="text-on-surface-variant">10 / page</span>
+                                <span class="material-symbols-outlined text-sm">expand_more</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar -->
+                <div class="w-[340px] shrink-0 flex flex-col gap-6 overflow-y-auto custom-scrollbar pr-1">
+                    
+                    <!-- Email Performance Overview -->
+                    <div class="glass-card p-6 rounded-xl border border-white/5">
+                        <h3 class="text-[13px] font-medium text-white mb-6">Email Performance Overview</h3>
+                        <div class="flex items-center gap-6">
+                            <!-- Conic gradient for chart -->
+                            <div class="relative w-32 h-32 rounded-full shrink-0" style="background: conic-gradient(#68D391 0% 94.3%, #FC8181 94.3% 100%); padding: 14px;">
+                                <div class="bg-surface-deep w-full h-full rounded-full flex flex-col items-center justify-center border border-white/5 shadow-inner">
+                                    <span class="text-lg font-bold text-white leading-none">1,25,680</span>
+                                    <span class="text-[9px] text-on-surface-variant mt-1 text-center">Total Sent</span>
+                                </div>
+                            </div>
+                            <div class="flex-1 space-y-3 text-[11px]">
+                                <div class="flex justify-between items-center">
+                                    <div class="flex items-center gap-2 text-on-surface-variant">
+                                        <span class="w-2 h-2 rounded-full bg-[#68D391]"></span> Delivered
+                                    </div>
+                                    <span class="text-white">94.3% (1,18,560)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="flex items-center gap-2 text-on-surface-variant">
+                                        <span class="w-2 h-2 rounded-full bg-[#FC8181]"></span> Bounced
+                                    </div>
+                                    <span class="text-white">5.7% (7,120)</span>
+                                </div>
+                                <div class="flex justify-between items-center pt-2 border-t border-white/5">
+                                    <div class="flex items-center gap-2 text-on-surface-variant">
+                                        <span class="w-2 h-2 rounded-full bg-[#3182CE]"></span> Opened
+                                    </div>
+                                    <span class="text-white">54.6% (68,450)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="flex items-center gap-2 text-on-surface-variant">
+                                        <span class="w-2 h-2 rounded-full bg-[#F6AD55]"></span> Clicked
+                                    </div>
+                                    <span class="text-white">17.1% (21,340)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="glass-card p-6 rounded-xl border border-white/5">
+                        <h3 class="text-[13px] font-medium text-white mb-4">Quick Actions</h3>
+                        <div class="space-y-2">
+                            <a href="#" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-colors group">
+                                <div class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-[20px] text-on-surface-variant group-hover:text-white transition-colors">campaign</span>
+                                    <div>
+                                        <p class="text-[12px] font-medium text-white">Send Email Campaign</p>
+                                        <p class="text-[10px] text-on-surface-variant mt-0.5">Send email to selected audience</p>
+                                    </div>
+                                </div>
+                                <span class="material-symbols-outlined text-[16px] text-on-surface-variant group-hover:text-white transition-colors">chevron_right</span>
+                            </a>
+                            <a href="#" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-colors group">
+                                <div class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-[20px] text-on-surface-variant group-hover:text-white transition-colors">post_add</span>
+                                    <div>
+                                        <p class="text-[12px] font-medium text-white">Create Template</p>
+                                        <p class="text-[10px] text-on-surface-variant mt-0.5">Design new email template</p>
+                                    </div>
+                                </div>
+                                <span class="material-symbols-outlined text-[16px] text-on-surface-variant group-hover:text-white transition-colors">chevron_right</span>
+                            </a>
+                            <a href="#" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-colors group">
+                                <div class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-[20px] text-on-surface-variant group-hover:text-white transition-colors">group</span>
+                                    <div>
+                                        <p class="text-[12px] font-medium text-white">Manage Subscribers</p>
+                                        <p class="text-[10px] text-on-surface-variant mt-0.5">View and manage subscribers</p>
+                                    </div>
+                                </div>
+                                <span class="material-symbols-outlined text-[16px] text-on-surface-variant group-hover:text-white transition-colors">chevron_right</span>
+                            </a>
+                            <a href="#" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-colors group">
+                                <div class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-[20px] text-on-surface-variant group-hover:text-white transition-colors">settings</span>
+                                    <div>
+                                        <p class="text-[12px] font-medium text-white">Notification Settings</p>
+                                        <p class="text-[10px] text-on-surface-variant mt-0.5">Configure email & notifications</p>
+                                    </div>
+                                </div>
+                                <span class="material-symbols-outlined text-[16px] text-on-surface-variant group-hover:text-white transition-colors">chevron_right</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Recently Used Templates -->
+                    <div class="glass-card p-6 rounded-xl border border-white/5">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-[13px] font-medium text-white">Recently Used Templates</h3>
+                            <a href="#" class="text-[11px] text-primary hover:underline font-medium">View All</a>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-surface-deep/50 border border-white/5">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded bg-cyan-900/40 text-cyan-400 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-[16px]">inventory_2</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-[12px] font-medium text-white">Order Confirmation</p>
+                                        <p class="text-[10px] text-on-surface-variant mt-0.5">Used 245 times</p>
+                                    </div>
+                                </div>
+                                <button class="w-7 h-7 rounded hover:bg-white/5 text-on-surface-variant hover:text-white flex items-center justify-center transition-colors">
+                                    <span class="material-symbols-outlined text-[16px]">more_horiz</span>
+                                </button>
+                            </div>
+                            
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-surface-deep/50 border border-white/5">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded bg-teal-900/40 text-teal-400 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-[16px]">password</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-[12px] font-medium text-white">Password Reset</p>
+                                        <p class="text-[10px] text-on-surface-variant mt-0.5">Used 189 times</p>
+                                    </div>
+                                </div>
+                                <button class="w-7 h-7 rounded hover:bg-white/5 text-on-surface-variant hover:text-white flex items-center justify-center transition-colors">
+                                    <span class="material-symbols-outlined text-[16px]">more_horiz</span>
+                                </button>
+                            </div>
+
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-surface-deep/50 border border-white/5">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded bg-sky-900/40 text-sky-400 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-[16px]">mail</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-[12px] font-medium text-white">Newsletter Template</p>
+                                        <p class="text-[10px] text-on-surface-variant mt-0.5">Used 156 times</p>
+                                    </div>
+                                </div>
+                                <button class="w-7 h-7 rounded hover:bg-white/5 text-on-surface-variant hover:text-white flex items-center justify-center transition-colors">
+                                    <span class="material-symbols-outlined text-[16px]">more_horiz</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+</main>
+<script>
+    // Subtle interaction logic
+    document.querySelectorAll('.glass-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+
+    // Handle Active States in Sidebar
+    const navLinks = document.querySelectorAll('aside nav a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        navLinks.forEach(l => {
+          l.classList.remove('bg-primary-container/20', 'text-primary', 'border-r-2', 'border-primary');
+          l.classList.add('text-on-surface-variant');
+        });
+        link.classList.add('bg-primary-container/20', 'text-primary', 'border-r-2', 'border-primary');
+        link.classList.remove('text-on-surface-variant');
+      });
+    });
+  </script>
+<script src="js/global.js"></script>
+
+
+
+
+<script type="module" src="js/auth.js"></script>
+</body></html>
