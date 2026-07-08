@@ -2,87 +2,959 @@
 
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Orders Management | MakeMyPC Admin</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-                <li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all flex items-center gap-2" href="prebuilt-pcs.html"><span class="material-symbols-outlined text-[16px]">desktop_windows</span> Prebuilt PCs</a></li>
-                <li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all flex items-center gap-2" href="order-tracking.html"><span class="material-symbols-outlined text-[16px]">local_shipping</span> Track Order</a></li>
-                <li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all flex items-center gap-2" href="#"><span class="material-symbols-outlined text-[16px]">info</span> About Us</a></li>
-            </ul>
-        </div>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#adc6ff",
+                    "on-tertiary-container": "#4c1a00",
+                    "inverse-on-surface": "#263046",
+                    "secondary-fixed-dim": "#5cd8da",
+                    "surface-container-low": "#101b30",
+                    "surface-container": "#142034",
+                    "primary-fixed-dim": "#adc6ff",
+                    "outline-variant": "#414755",
+                    "electric-blue": "#007AFF",
+                    "background": "#071327",
+                    "surface-bright": "#2e394f",
+                    "secondary": "#5cd8da",
+                    "surface": "#071327",
+                    "on-primary-container": "#00285c",
+                    "tertiary-container": "#ef6719",
+                    "hardware-gray": "#111111",
+                    "on-background": "#d7e2ff",
+                    "on-tertiary-fixed": "#351000",
+                    "tertiary": "#ffb595",
+                    "primary-container": "#4b8eff",
+                    "surface-tint": "#adc6ff",
+                    "surface-container-lowest": "#030e22",
+                    "primary-fixed": "#d8e2ff",
+                    "on-primary": "#002e69",
+                    "on-secondary-fixed": "#002020",
+                    "surface-deep": "#00081C",
+                    "secondary-container": "#00a4a6",
+                    "on-secondary-fixed-variant": "#004f50",
+                    "cyber-teal": "#00A4A6",
+                    "on-surface": "#d7e2ff",
+                    "tertiary-fixed": "#ffdbcc",
+                    "error": "#ffb4ab",
+                    "on-surface-variant": "#c1c6d7",
+                    "on-tertiary-fixed-variant": "#7c2e00",
+                    "outline": "#8b90a0",
+                    "surface-dim": "#071327",
+                    "on-error": "#690005",
+                    "on-primary-fixed": "#001a41",
+                    "surface-container-highest": "#2a354a",
+                    "inverse-primary": "#005bc1",
+                    "on-primary-fixed-variant": "#004493",
+                    "secondary-fixed": "#7cf5f7",
+                    "surface-variant": "#2a354a",
+                    "inverse-surface": "#d7e2ff",
+                    "on-tertiary": "#571e00",
+                    "on-error-container": "#ffdad6",
+                    "surface-glass": "rgba(255, 255, 255, 0.03)",
+                    "error-container": "#93000a",
+                    "on-secondary": "#003738",
+                    "on-secondary-container": "#003233",
+                    "tertiary-fixed-dim": "#ffb595",
+                    "surface-container-high": "#1f2a3f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "base": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-mono": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom Scrollbar for Glassmorphism */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
 
-        <!-- 3. Policies & Support -->
-        <div>
-            <h5 class="font-label-mono text-label-mono text-on-surface uppercase tracking-widest mb-6">Policies & Support</h5>
-            <ul class="space-y-4">
-                <li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all" href="support-faq.html">FAQ & Support</a></li>
-                <li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all" href="#">Return & Cancellation</a></li>
-                <li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all" href="#">Shipping Policy</a></li>
-                <li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all" href="#">Privacy Policy</a></li>
-                <li><a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-all" href="#">Terms of Service</a></li>
-            </ul>
-        </div>
+        body {
+            background-color: #071327;
+            color: #d7e2ff;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 40px 40px rgba(0,0,0,0.15);
+        }
+        .glass-card:hover {
+            border-color: rgba(0, 122, 255, 0.4);
+            box-shadow: 0 0 20px rgba(0, 122, 255, 0.1);
+        }
+        .status-badge {
+            font-family: 'JetBrains Mono', monospace;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+        .scrollbar-hide
+    </style>
+</head>
+<body class="bg-surface-deep text-on-surface font-body-md text-body-md overflow-x-hidden">
 
-        <!-- 4. Contact -->
-        <div>
-            <h5 class="font-label-mono text-label-mono text-on-surface uppercase tracking-widest mb-6">Contact Us</h5>
-            <ul class="space-y-4 mb-6">
-                <li class="flex items-start gap-3">
-                    <span class="material-symbols-outlined text-on-surface-variant mt-0.5">call</span>
-                    <div>
-                        <p class="text-on-surface font-body-sm text-body-sm">+91 1800-123-4567</p>
-                        <p class="text-on-surface-variant text-xs mt-1">Mon - Sat, 10 AM - 7 PM</p>
-                    </div>
-                </li>
-                <li class="flex items-start gap-3">
-                    <span class="material-symbols-outlined text-on-surface-variant mt-0.5">mail</span>
-                    <div>
-                        <p class="text-on-surface font-body-sm text-body-sm">support@makemypc.in</p>
-                        <p class="text-on-surface-variant text-xs mt-1">We reply within 24 hours</p>
-                    </div>
-                </li>
-            </ul>
-            <!-- Social Links -->
-            <div class="flex gap-4">
-                <a href="#" class="w-10 h-10 rounded-lg glass-card flex items-center justify-center hover:bg-white/10 transition-all group">
-                    <img src="https://cdn.simpleicons.org/facebook/1877F2" alt="Facebook" class="h-5 opacity-70 group-hover:opacity-100 transition-opacity">
+
+<script>
+    // Mobile Menu Logic
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const closeBtn = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (menuBtn && closeBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('translate-x-full');
+            });
+            closeBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+            });
+        }
+    });
+</script>
+
+<div class="flex">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r border-white/10 bg-surface-deep z-50 flex flex-col py-4">
+    <div class="px-6 mb-4 shrink-0">
+        <h1 class="font-headline-sm text-headline-sm font-bold text-electric-blue dark:text-primary">MakeMyPC</h1>
+        <p class="text-[10px] uppercase tracking-widest text-on-surface-variant/50 mt-1">Enterprise Admin</p>
+    </div>
+
+    <nav class="flex flex-col gap-0.5 px-4 flex-1 overflow-y-auto custom-scrollbar pb-4" style="row-gap:2px">
+        <a href="admin-dashboard.html" class="flex items-center gap-3 px-4 py-1.5 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="text-body-sm font-medium">Dashboard</span>
+        </a>
+
+        <details class="group" name="sidebar-menu" style="margin:0">
+            <summary class="flex items-center justify-between px-4 py-1.5 rounded-xl cursor-pointer transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary list-none [&::-webkit-details-marker]:hidden">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">inventory_2</span>
+                    <span class="text-body-sm font-medium">Products</span>
+                </div>
+                <span class="material-symbols-outlined text-sm transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="ml-6 pl-4 border-l border-white/10 flex flex-col space-y-0.5 mt-0.5 mb-1">
+                <a href="product-add.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-1 rounded-lg transition-colors block">
+                    Add Product
                 </a>
-                <a href="#" class="w-10 h-10 rounded-lg glass-card flex items-center justify-center hover:bg-white/10 transition-all group">
-                    <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram" class="h-5 opacity-70 group-hover:opacity-100 transition-opacity">
+                <a href="product-inventory.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-1 rounded-lg transition-colors block">
+                    Inventory
                 </a>
-                <a href="#" class="w-10 h-10 rounded-lg glass-card flex items-center justify-center hover:bg-white/10 transition-all group">
-                    <img src="https://cdn.simpleicons.org/x/FFFFFF" alt="X (Twitter)" class="h-4 opacity-70 group-hover:opacity-100 transition-opacity">
+                <a href="product-categories.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-1 rounded-lg transition-colors block">
+                    Categories
                 </a>
-                <a href="#" class="w-10 h-10 rounded-lg glass-card flex items-center justify-center hover:bg-white/10 transition-all group">
-                    <img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube" class="h-5 opacity-70 group-hover:opacity-100 transition-opacity">
+                <a href="product-brands.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-1 rounded-lg transition-colors block">
+                    Brands
+                </a>
+                <a href="product-compatibility.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-1 rounded-lg transition-colors block">
+                    Compatibility
+                </a>
+                <a href="product-reviews.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-1 rounded-lg transition-colors block">
+                    Reviews
                 </a>
             </div>
-        </div>
+        </details>
+
+        
+
+        <details class="group" name="sidebar-menu" open style="margin:0">
+            <summary class="flex items-center justify-between px-4 py-1.5 rounded-xl cursor-pointer transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary list-none [&::-webkit-details-marker]:hidden">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span class="text-body-sm font-medium">Orders</span>
+                </div>
+                <span class="material-symbols-outlined text-sm transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="ml-6 pl-4 border-l border-white/10 flex flex-col space-y-0.5 mt-0.5 mb-1">
+                <a href="orders-management.html" class="text-sm text-primary font-medium bg-primary/10 px-4 py-1 rounded-lg relative block">
+                    <div class="absolute -left-[17px] top-0 bottom-0 w-[2px] bg-primary"></div>
+                    All Orders
+                </a>
+                <a href="admin-order-history.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-1 rounded-lg transition-colors block">
+                    Order History
+                </a>
+                <a href="admin-order-tracking.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-1 rounded-lg transition-colors block">
+                    Order Tracking
+                </a>
+            </div>
+        </details>
+
+        <details class="group" name="sidebar-menu" style="margin:0">
+            <summary class="flex items-center justify-between px-4 py-1.5 rounded-xl cursor-pointer transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary list-none [&::-webkit-details-marker]:hidden">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">group</span>
+                    <span class="text-body-sm font-medium">Customers</span>
+                </div>
+                <span class="material-symbols-outlined text-[18px] transition-transform duration-300 group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="ml-6 pl-4 border-l border-white/10 flex flex-col space-y-0.5 mt-0.5 mb-1">
+                <a href="admin-customers.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-1 rounded-lg transition-colors block">
+                    All Customers
+                </a>
+                <a href="admin-customer-groups.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-1 rounded-lg transition-colors block">
+                    Customer Groups
+                </a>
+                <a href="admin-saved-builds.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-1 rounded-lg transition-colors block">
+                    Saved Builds
+                </a>
+                <a href="admin-addresses.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-1 rounded-lg transition-colors block">
+                    Addresses
+                </a>
+                <a href="admin-wishlist.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-1 rounded-lg transition-colors block">
+                    Wishlist
+                </a>
+                <a href="admin-support-tickets.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-1 rounded-lg transition-colors block">
+                    Support Tickets
+                </a>
+                <a href="admin-loyalty-rewards.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-1 rounded-lg transition-colors block">
+                    Loyalty &amp; Rewards
+                </a>
+                <a href="admin-activity-logs.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-1 rounded-lg transition-colors block">
+                    Activity Logs
+                </a>
+                <a href="admin-email-notifications.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-1 rounded-lg transition-colors block">
+                    Email &amp; Notifications
+                </a>
+                <a href="admin-blocked-customers.html" class="text-sm text-on-surface-variant hover:text-white px-4 py-1 rounded-lg transition-colors block">
+                    Blocked Customers
+                </a>
+            </div>
+        </details>
+        <a href="admin-assembly.html" class="flex items-center gap-3 px-4 py-1.5 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">build</span>
+            <span class="text-body-sm font-medium">Assembly</span>
+        </a>
+        <a href="admin-payments.html" class="flex items-center gap-3 px-4 py-1.5 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">payments</span>
+            <span class="text-body-sm font-medium">Payments</span>
+        </a>
+        <a href="admin-coupons.html" class="flex items-center gap-3 px-4 py-1.5 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">local_offer</span>
+            <span class="text-body-sm font-medium">Coupons</span>
+        </a>
+        <a href="admin-dashboard-overview.html" class="flex items-center gap-3 px-4 py-1.5 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">analytics</span>
+            <span class="text-body-sm font-medium">Analytics</span>
+        </a>
+
+        <a href="admin-marketing.html" class="flex items-center gap-3 px-4 py-1.5 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">campaign</span>
+            <span class="text-body-sm font-medium">Marketing</span>
+        </a>
+        
+        <a href="admin-reports.html" class="flex items-center gap-3 px-4 py-1.5 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">summarize</span>
+            <span class="text-body-sm font-medium">Reports</span>
+        </a>
+        <a href="admin-shipping.html" class="flex items-center gap-3 px-4 py-1.5 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">local_shipping</span>
+            <span class="text-body-sm font-medium">Shipping</span>
+        </a>
+        
+        <a href="admin-users.html" class="flex items-center gap-3 px-4 py-1.5 rounded-xl transition-all duration-300 text-on-surface-variant hover:bg-white/5 hover:text-primary">
+            <span class="material-symbols-outlined">admin_panel_settings</span>
+            <span class="text-body-sm font-medium">Admin Users</span>
+        </a>
+        
+    </nav>
+
+    <div class="mt-auto px-4 shrink-0 border-t border-white/5 pt-4 pb-4">
+        <details class="group" name="sidebar-profile-menu">
+            <summary class="list-none outline-none">
+                <div class="flex items-center justify-between px-3 py-1.5 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-[#B3D4FF] text-[#0A1929] flex items-center justify-center font-bold text-sm">AD</div>
+                        <div class="overflow-hidden">
+                            <p class="text-xs font-bold text-white truncate mb-0.5">Admin Profile</p>
+                            <p class="text-[10px] text-on-surface-variant truncate mb-1">Super Admin</p>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#00D084]"></span>
+                                <span class="text-[9px] text-[#00D084]/70">Online</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-[18px] text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+                </div>
+            </summary>
+            <div class="p-1 flex flex-col gap-0 mt-1">
+                <a href="admin-profile.html" class="flex items-center gap-3 px-3 py-0.5 rounded-lg text-[11px] font-medium text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors">
+                    <span class="material-symbols-outlined text-[16px]">person</span>
+                    Profile Settings
+                </a>
+                <a href="admin-security.html" class="flex items-center gap-3 px-3 py-0.5 rounded-lg text-[11px] font-medium text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors">
+                    <span class="material-symbols-outlined text-[16px]">lock</span>
+                    Security
+                </a>
+                <a href="admin-preferences.html" class="flex items-center gap-3 px-3 py-0.5 rounded-lg text-[11px] font-medium text-on-surface-variant hover:text-white hover:bg-white/5 transition-colors">
+                    <span class="material-symbols-outlined text-[16px]">settings</span>
+                    Preferences
+                </a>
+                <div class="h-[1px] bg-white/5 my-0.5 mx-2"></div>
+                <a href="index.html" class="flex items-center gap-3 px-3 py-0.5 rounded-lg text-[11px] font-medium text-[#F87171] hover:bg-[#F87171]/10 transition-colors">
+                    <span class="material-symbols-outlined text-[16px]">logout</span>
+                    Sign out
+                </a>
+            </div>
+        </details>
     </div>
-    <div class="max-w-container-max mx-auto px-margin-desktop py-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-on-surface-variant font-label-mono text-label-mono text-xs">© 2024 MakeMyPC. All Rights Reserved. GSTIN: 27AAAAA0000A1Z5</p>
-        <div class="flex gap-x-6 items-center">
-            <!-- Payment Badges placeholder -->
-            <div class="flex gap-2 items-center">
-                <div class="bg-white px-2 py-1 rounded flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
-                    <img src="https://cdn.simpleicons.org/visa/1434CB" alt="VISA" class="h-3 object-contain">
+</aside>
+
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-64 px-6 py-8 md:px-8 bg-surface-dim relative">
+
+    <div class="w-full space-y-6">
+        
+        <!-- Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-2">
+            <div>
+                <h1 class="text-2xl font-bold text-white mb-1">All Orders</h1>
+                <p class="text-sm text-on-surface-variant">View and manage all customer orders in one place.</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <button class="bg-surface border border-white/10 hover:bg-white/5 text-sm font-medium text-white px-4 py-2 rounded-lg transition-colors flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">download</span> Export Orders
+                </button>
+                <button class="bg-electric-blue hover:bg-blue-600 text-sm font-medium text-white px-4 py-2 rounded-lg transition-colors flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">add</span> Create Order
+                </button>
+            </div>
+        </div>
+
+        <!-- KPI Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <!-- Total Orders -->
+            <div class="bg-surface-deep border border-white/5 rounded-xl p-4 flex flex-col relative overflow-hidden group">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full bg-electric-blue/10 flex items-center justify-center text-electric-blue">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                    </div>
+                    <div class="text-[11px] font-medium text-on-surface-variant uppercase tracking-wider">Total Orders</div>
                 </div>
-                <div class="bg-white px-2 py-1 rounded flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="MasterCard" class="h-3 object-contain">
-                </div>
-                <div class="bg-white px-2 py-1 rounded flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" alt="UPI" class="h-3 object-contain">
+                <div class="text-2xl font-bold text-white mb-1">1,254</div>
+                <div class="text-xs text-[#00D084] flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[14px]">arrow_upward</span> 12.6% <span class="text-on-surface-variant">vs last month</span>
                 </div>
             </div>
-            <span class="text-on-surface-variant font-label-mono text-label-mono text-xs hover:text-on-surface cursor-pointer flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-cyber-teal animate-pulse"></span>
-                System Status: <span class="text-cyber-teal">ONLINE</span>
-            </span>
+            <!-- Pending -->
+            <div class="bg-surface-deep border border-white/5 rounded-xl p-4 flex flex-col relative overflow-hidden group">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full bg-[#FFB020]/10 flex items-center justify-center text-[#FFB020]">
+                        <span class="material-symbols-outlined">schedule</span>
+                    </div>
+                    <div class="text-[11px] font-medium text-on-surface-variant uppercase tracking-wider">Pending</div>
+                </div>
+                <div class="text-2xl font-bold text-white mb-1">182</div>
+                <div class="text-xs text-[#00D084] flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[14px]">arrow_upward</span> 8.3% <span class="text-on-surface-variant">vs last month</span>
+                </div>
+            </div>
+            <!-- Processing -->
+            <div class="bg-surface-deep border border-white/5 rounded-xl p-4 flex flex-col relative overflow-hidden group">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full bg-[#B388FF]/10 flex items-center justify-center text-[#B388FF]">
+                        <span class="material-symbols-outlined">inventory_2</span>
+                    </div>
+                    <div class="text-[11px] font-medium text-on-surface-variant uppercase tracking-wider">Processing</div>
+                </div>
+                <div class="text-2xl font-bold text-white mb-1">268</div>
+                <div class="text-xs text-[#00D084] flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[14px]">arrow_upward</span> 11.4% <span class="text-on-surface-variant">vs last month</span>
+                </div>
+            </div>
+            <!-- Shipped -->
+            <div class="bg-surface-deep border border-white/5 rounded-xl p-4 flex flex-col relative overflow-hidden group">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full bg-electric-blue/10 flex items-center justify-center text-electric-blue">
+                        <span class="material-symbols-outlined">local_shipping</span>
+                    </div>
+                    <div class="text-[11px] font-medium text-on-surface-variant uppercase tracking-wider">Shipped</div>
+                </div>
+                <div class="text-2xl font-bold text-white mb-1">642</div>
+                <div class="text-xs text-[#00D084] flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[14px]">arrow_upward</span> 14.2% <span class="text-on-surface-variant">vs last month</span>
+                </div>
+            </div>
+            <!-- Delivered -->
+            <div class="bg-surface-deep border border-white/5 rounded-xl p-4 flex flex-col relative overflow-hidden group">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full bg-[#00D084]/10 flex items-center justify-center text-[#00D084]">
+                        <span class="material-symbols-outlined">check_circle</span>
+                    </div>
+                    <div class="text-[11px] font-medium text-on-surface-variant uppercase tracking-wider">Delivered</div>
+                </div>
+                <div class="text-2xl font-bold text-white mb-1">1,024</div>
+                <div class="text-xs text-[#00D084] flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[14px]">arrow_upward</span> 16.8% <span class="text-on-surface-variant">vs last month</span>
+                </div>
+            </div>
+            <!-- Cancelled -->
+            <div class="bg-surface-deep border border-white/5 rounded-xl p-4 flex flex-col relative overflow-hidden group">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full bg-[#F87171]/10 flex items-center justify-center text-[#F87171]">
+                        <span class="material-symbols-outlined">cancel</span>
+                    </div>
+                    <div class="text-[11px] font-medium text-on-surface-variant uppercase tracking-wider">Cancelled / Returned</div>
+                </div>
+                <div class="text-2xl font-bold text-white mb-1">87</div>
+                <div class="text-xs text-[#F87171] flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[14px]">arrow_downward</span> 5.2% <span class="text-on-surface-variant">vs last month</span>
+                </div>
+            </div>
         </div>
+
+        <!-- Filter Bar -->
+        <div class="flex flex-wrap items-center gap-3">
+            <div class="relative flex-1 min-w-[250px]">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+                <input type="text" placeholder="Search by Order ID, Customer, Email, Phone..." class="w-full bg-surface-deep border border-white/10 rounded-lg pl-9 pr-4 py-2 text-sm text-white focus:outline-none focus:border-primary transition-colors placeholder:text-on-surface-variant/70">
+            </div>
+            
+            <select class="bg-surface-deep border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-primary appearance-none cursor-pointer pr-8 bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236b7280%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:16px] bg-no-repeat bg-[position:right_8px_center]">
+                <option>All Status</option>
+            </select>
+            
+            <select class="bg-surface-deep border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-primary appearance-none cursor-pointer pr-8 bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236b7280%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:16px] bg-no-repeat bg-[position:right_8px_center]">
+                <option>All Payment Status</option>
+            </select>
+
+            <select class="bg-surface-deep border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-primary appearance-none cursor-pointer pr-8 bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236b7280%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:16px] bg-no-repeat bg-[position:right_8px_center]">
+                <option>All Shipping Status</option>
+            </select>
+            
+            <select class="bg-surface-deep border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-primary appearance-none cursor-pointer pr-8 bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236b7280%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:16px] bg-no-repeat bg-[position:right_8px_center]">
+                <option>All Channels</option>
+            </select>
+
+            <button class="bg-surface-deep border border-white/10 hover:bg-white/5 text-sm font-medium text-white px-3 py-2 rounded-lg transition-colors flex items-center gap-2">
+                <span class="material-symbols-outlined text-[16px]">filter_list</span> Filters
+            </button>
+            <button class="text-sm font-medium text-electric-blue hover:underline px-2 transition-colors">
+                Reset
+            </button>
+            
+            <div class="ml-auto flex items-center gap-2 bg-surface-deep border border-white/10 rounded-lg px-3 py-2 text-sm text-white">
+                <span class="material-symbols-outlined text-[16px] text-on-surface-variant">calendar_today</span>
+                12 May 2024 - 18 May 2024
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="bg-surface-deep border border-white/5 rounded-xl overflow-hidden shadow-lg">
+            <div class="overflow-x-auto custom-scrollbar">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-white/5 bg-white/[0.02]">
+                            <th class="px-4 py-3 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider whitespace-nowrap">ORDER ID</th>
+                            <th class="px-4 py-3 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider whitespace-nowrap">CUSTOMER</th>
+                            <th class="px-4 py-3 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider whitespace-nowrap">DATE</th>
+                            <th class="px-4 py-3 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider whitespace-nowrap">TOTAL</th>
+                            <th class="px-4 py-3 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider whitespace-nowrap">PAYMENT</th>
+                            <th class="px-4 py-3 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider whitespace-nowrap">FULFILLMENT</th>
+                            <th class="px-4 py-3 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider whitespace-nowrap">STATUS</th>
+                            <th class="px-4 py-3 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider whitespace-nowrap">CHANNEL</th>
+                            <th class="px-4 py-3 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider whitespace-nowrap text-right">ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/5 text-sm text-white">
+                        <!-- Row 1 -->
+                        <tr class="hover:bg-white/[0.02] transition-colors group">
+                            <td class="px-4 py-3">
+                                <a href="#" class="text-electric-blue font-medium hover:underline">ORD-2024-1254</a>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">18 May 2024, 10:30 AM</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-7 h-7 rounded-full bg-[#007AFF]/20 text-[#007AFF] flex items-center justify-center text-[10px] font-bold shrink-0">RK</div>
+                                    <div class="min-w-0">
+                                        <p class="font-medium text-white truncate">Rohit Kumar</p>
+                                        <p class="text-[11px] text-on-surface-variant truncate">rohit.kumar@email.com</p>
+                                        <p class="text-[11px] text-on-surface-variant truncate">+91 98765 43210</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-3 whitespace-nowrap">
+                                <div class="font-medium">18 May 2024</div>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">10:30 AM</div>
+                            </td>
+                            <td class="px-4 py-3 whitespace-nowrap">
+                                <div class="font-bold">₹45,320</div>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">1 Item</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#00D084]/10 text-[#00D084] border border-[#00D084]/20 mb-1">Paid</span>
+                                <div class="text-[11px] text-on-surface-variant">Online</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#B388FF]/10 text-[#B388FF] border border-[#B388FF]/20 mb-1">Processing</span>
+                                <div class="text-[11px] text-on-surface-variant">Assembling</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#FFB020]/10 text-[#FFB020] border border-[#FFB020]/20">Processing</span>
+                            </td>
+                            <td class="px-4 py-3 text-[11px] text-on-surface-variant">
+                                <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">language</span> Website</div>
+                            </td>
+                            <td class="px-4 py-3 text-right">
+                                <div class="flex items-center justify-end gap-1 opacity-50 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="View"><span class="material-symbols-outlined text-[16px]">visibility</span></button>
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="Print"><span class="material-symbols-outlined text-[16px]">print</span></button>
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="More"><span class="material-symbols-outlined text-[16px]">more_horiz</span></button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 2 -->
+                        <tr class="hover:bg-white/[0.02] transition-colors group">
+                            <td class="px-4 py-3">
+                                <a href="#" class="text-electric-blue font-medium hover:underline">ORD-2024-1253</a>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">18 May 2024, 09:15 AM</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-7 h-7 rounded-full bg-[#FFB020]/20 text-[#FFB020] flex items-center justify-center text-[10px] font-bold shrink-0">PS</div>
+                                    <div class="min-w-0">
+                                        <p class="font-medium text-white truncate">Pooja Sharma</p>
+                                        <p class="text-[11px] text-on-surface-variant truncate">pooja.sharma@email.com</p>
+                                        <p class="text-[11px] text-on-surface-variant truncate">+91 98711 22334</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-3 whitespace-nowrap">
+                                <div class="font-medium">18 May 2024</div>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">09:15 AM</div>
+                            </td>
+                            <td class="px-4 py-3 whitespace-nowrap">
+                                <div class="font-bold">₹28,750</div>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">1 Item</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#00D084]/10 text-[#00D084] border border-[#00D084]/20 mb-1">Paid</span>
+                                <div class="text-[11px] text-on-surface-variant">UPI</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#007AFF]/10 text-[#007AFF] border border-[#007AFF]/20 mb-1">Shipped</span>
+                                <div class="text-[11px] text-on-surface-variant">Shipped on 18 May</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#007AFF]/10 text-[#007AFF] border border-[#007AFF]/20">Shipped</span>
+                            </td>
+                            <td class="px-4 py-3 text-[11px] text-on-surface-variant">
+                                <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">language</span> Website</div>
+                            </td>
+                            <td class="px-4 py-3 text-right">
+                                <div class="flex items-center justify-end gap-1 opacity-50 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="View"><span class="material-symbols-outlined text-[16px]">visibility</span></button>
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="Print"><span class="material-symbols-outlined text-[16px]">print</span></button>
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="More"><span class="material-symbols-outlined text-[16px]">more_horiz</span></button>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <!-- Row 3 -->
+                        <tr class="hover:bg-white/[0.02] transition-colors group">
+                            <td class="px-4 py-3">
+                                <a href="#" class="text-electric-blue font-medium hover:underline">ORD-2024-1252</a>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">17 May 2024, 08:45 PM</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-7 h-7 rounded-full bg-[#B388FF]/20 text-[#B388FF] flex items-center justify-center text-[10px] font-bold shrink-0">AS</div>
+                                    <div class="min-w-0">
+                                        <p class="font-medium text-white truncate">Amit Singh</p>
+                                        <p class="text-[11px] text-on-surface-variant truncate">amit.singh@email.com</p>
+                                        <p class="text-[11px] text-on-surface-variant truncate">+91 91234 56789</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-3 whitespace-nowrap">
+                                <div class="font-medium">17 May 2024</div>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">08:45 PM</div>
+                            </td>
+                            <td class="px-4 py-3 whitespace-nowrap">
+                                <div class="font-bold">₹62,999</div>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">2 Items</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#00D084]/10 text-[#00D084] border border-[#00D084]/20 mb-1">Paid</span>
+                                <div class="text-[11px] text-on-surface-variant">Card</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#007AFF]/10 text-[#007AFF] border border-[#007AFF]/20 mb-1">Shipped</span>
+                                <div class="text-[11px] text-on-surface-variant">Shipped on 17 May</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#007AFF]/10 text-[#007AFF] border border-[#007AFF]/20">Shipped</span>
+                            </td>
+                            <td class="px-4 py-3 text-[11px] text-on-surface-variant">
+                                <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">smartphone</span> Mobile App</div>
+                            </td>
+                            <td class="px-4 py-3 text-right">
+                                <div class="flex items-center justify-end gap-1 opacity-50 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="View"><span class="material-symbols-outlined text-[16px]">visibility</span></button>
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="Print"><span class="material-symbols-outlined text-[16px]">print</span></button>
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="More"><span class="material-symbols-outlined text-[16px]">more_horiz</span></button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 4 -->
+                        <tr class="hover:bg-white/[0.02] transition-colors group">
+                            <td class="px-4 py-3">
+                                <a href="#" class="text-electric-blue font-medium hover:underline">ORD-2024-1251</a>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">17 May 2024, 07:20 PM</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-7 h-7 rounded-full bg-[#00D084]/20 text-[#00D084] flex items-center justify-center text-[10px] font-bold shrink-0">NV</div>
+                                    <div class="min-w-0">
+                                        <p class="font-medium text-white truncate">Neha Verma</p>
+                                        <p class="text-[11px] text-on-surface-variant truncate">neha.verma@email.com</p>
+                                        <p class="text-[11px] text-on-surface-variant truncate">+91 99876 54321</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-3 whitespace-nowrap">
+                                <div class="font-medium">17 May 2024</div>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">07:20 PM</div>
+                            </td>
+                            <td class="px-4 py-3 whitespace-nowrap">
+                                <div class="font-bold">₹19,999</div>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">1 Item</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#FFB020]/10 text-[#FFB020] border border-[#FFB020]/20 mb-1">Pending</span>
+                                <div class="text-[11px] text-on-surface-variant">COD</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-white/10 text-on-surface-variant border border-white/20 mb-1">Pending</span>
+                                <div class="text-[11px] text-on-surface-variant">Waiting for pickup</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#FFB020]/10 text-[#FFB020] border border-[#FFB020]/20">Pending</span>
+                            </td>
+                            <td class="px-4 py-3 text-[11px] text-on-surface-variant">
+                                <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">language</span> Website</div>
+                            </td>
+                            <td class="px-4 py-3 text-right">
+                                <div class="flex items-center justify-end gap-1 opacity-50 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="View"><span class="material-symbols-outlined text-[16px]">visibility</span></button>
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="Print"><span class="material-symbols-outlined text-[16px]">print</span></button>
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="More"><span class="material-symbols-outlined text-[16px]">more_horiz</span></button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 5 -->
+                        <tr class="hover:bg-white/[0.02] transition-colors group">
+                            <td class="px-4 py-3">
+                                <a href="#" class="text-electric-blue font-medium hover:underline">ORD-2024-1250</a>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">17 May 2024, 06:10 PM</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-7 h-7 rounded-full bg-[#00A4A6]/20 text-[#00A4A6] flex items-center justify-center text-[10px] font-bold shrink-0">MJ</div>
+                                    <div class="min-w-0">
+                                        <p class="font-medium text-white truncate">Manoj Jha</p>
+                                        <p class="text-[11px] text-on-surface-variant truncate">manoj.jha@email.com</p>
+                                        <p class="text-[11px] text-on-surface-variant truncate">+91 90011 22334</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-3 whitespace-nowrap">
+                                <div class="font-medium">17 May 2024</div>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">06:10 PM</div>
+                            </td>
+                            <td class="px-4 py-3 whitespace-nowrap">
+                                <div class="font-bold">₹1,15,500</div>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">3 Items</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#00D084]/10 text-[#00D084] border border-[#00D084]/20 mb-1">Paid</span>
+                                <div class="text-[11px] text-on-surface-variant">Net Banking</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#B388FF]/10 text-[#B388FF] border border-[#B388FF]/20 mb-1">Processing</span>
+                                <div class="text-[11px] text-on-surface-variant">Assembling</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#FFB020]/10 text-[#FFB020] border border-[#FFB020]/20">Processing</span>
+                            </td>
+                            <td class="px-4 py-3 text-[11px] text-on-surface-variant">
+                                <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">language</span> Website</div>
+                            </td>
+                            <td class="px-4 py-3 text-right">
+                                <div class="flex items-center justify-end gap-1 opacity-50 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="View"><span class="material-symbols-outlined text-[16px]">visibility</span></button>
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="Print"><span class="material-symbols-outlined text-[16px]">print</span></button>
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="More"><span class="material-symbols-outlined text-[16px]">more_horiz</span></button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 6 -->
+                        <tr class="hover:bg-white/[0.02] transition-colors group">
+                            <td class="px-4 py-3">
+                                <a href="#" class="text-electric-blue font-medium hover:underline">ORD-2024-1249</a>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">16 May 2024, 11:30 AM</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-7 h-7 rounded-full bg-[#FFB020]/20 text-[#FFB020] flex items-center justify-center text-[10px] font-bold shrink-0">SK</div>
+                                    <div class="min-w-0">
+                                        <p class="font-medium text-white truncate">Sanjay Kumar</p>
+                                        <p class="text-[11px] text-on-surface-variant truncate">sanjay.kumar@email.com</p>
+                                        <p class="text-[11px] text-on-surface-variant truncate">+91 87654 32109</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-3 whitespace-nowrap">
+                                <div class="font-medium">16 May 2024</div>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">11:30 AM</div>
+                            </td>
+                            <td class="px-4 py-3 whitespace-nowrap">
+                                <div class="font-bold">₹33,200</div>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">1 Item</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#F87171]/10 text-[#F87171] border border-[#F87171]/20 mb-1">Failed</span>
+                                <div class="text-[11px] text-on-surface-variant">Card</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-white/10 text-on-surface-variant border border-white/20 mb-1">Pending</span>
+                                <div class="text-[11px] text-on-surface-variant">Payment Failed</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#F87171]/10 text-[#F87171] border border-[#F87171]/20">Payment Failed</span>
+                            </td>
+                            <td class="px-4 py-3 text-[11px] text-on-surface-variant">
+                                <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">language</span> Website</div>
+                            </td>
+                            <td class="px-4 py-3 text-right">
+                                <div class="flex items-center justify-end gap-1 opacity-50 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="View"><span class="material-symbols-outlined text-[16px]">visibility</span></button>
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="Print"><span class="material-symbols-outlined text-[16px]">print</span></button>
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="More"><span class="material-symbols-outlined text-[16px]">more_horiz</span></button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 7 -->
+                        <tr class="hover:bg-white/[0.02] transition-colors group">
+                            <td class="px-4 py-3">
+                                <a href="#" class="text-electric-blue font-medium hover:underline">ORD-2024-1248</a>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">16 May 2024, 10:00 AM</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-7 h-7 rounded-full bg-[#B388FF]/20 text-[#B388FF] flex items-center justify-center text-[10px] font-bold shrink-0">VY</div>
+                                    <div class="min-w-0">
+                                        <p class="font-medium text-white truncate">Vikash Yadav</p>
+                                        <p class="text-[11px] text-on-surface-variant truncate">vikash.yadav@email.com</p>
+                                        <p class="text-[11px] text-on-surface-variant truncate">+91 93456 78901</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-3 whitespace-nowrap">
+                                <div class="font-medium">16 May 2024</div>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">10:00 AM</div>
+                            </td>
+                            <td class="px-4 py-3 whitespace-nowrap">
+                                <div class="font-bold">₹26,999</div>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">1 Item</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#00D084]/10 text-[#00D084] border border-[#00D084]/20 mb-1">Paid</span>
+                                <div class="text-[11px] text-on-surface-variant">UPI</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#00D084]/10 text-[#00D084] border border-[#00D084]/20 mb-1">Delivered</span>
+                                <div class="text-[11px] text-on-surface-variant">Delivered on 16 May</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#00D084]/10 text-[#00D084] border border-[#00D084]/20">Delivered</span>
+                            </td>
+                            <td class="px-4 py-3 text-[11px] text-on-surface-variant">
+                                <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">language</span> Website</div>
+                            </td>
+                            <td class="px-4 py-3 text-right">
+                                <div class="flex items-center justify-end gap-1 opacity-50 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="View"><span class="material-symbols-outlined text-[16px]">visibility</span></button>
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="Print"><span class="material-symbols-outlined text-[16px]">print</span></button>
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="More"><span class="material-symbols-outlined text-[16px]">more_horiz</span></button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 8 -->
+                        <tr class="hover:bg-white/[0.02] transition-colors group">
+                            <td class="px-4 py-3">
+                                <a href="#" class="text-electric-blue font-medium hover:underline">ORD-2024-1247</a>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">15 May 2024, 09:20 PM</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-7 h-7 rounded-full bg-[#B388FF]/20 text-[#B388FF] flex items-center justify-center text-[10px] font-bold shrink-0">AP</div>
+                                    <div class="min-w-0">
+                                        <p class="font-medium text-white truncate">Anjali Patel</p>
+                                        <p class="text-[11px] text-on-surface-variant truncate">anjali.patel@email.com</p>
+                                        <p class="text-[11px] text-on-surface-variant truncate">+91 98765 00123</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-3 whitespace-nowrap">
+                                <div class="font-medium">15 May 2024</div>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">09:20 PM</div>
+                            </td>
+                            <td class="px-4 py-3 whitespace-nowrap">
+                                <div class="font-bold">₹58,770</div>
+                                <div class="text-[11px] text-on-surface-variant mt-0.5">2 Items</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#00D084]/10 text-[#00D084] border border-[#00D084]/20 mb-1">Paid</span>
+                                <div class="text-[11px] text-on-surface-variant">Card</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#00D084]/10 text-[#00D084] border border-[#00D084]/20 mb-1">Delivered</span>
+                                <div class="text-[11px] text-on-surface-variant">Delivered on 17 May</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#00D084]/10 text-[#00D084] border border-[#00D084]/20">Delivered</span>
+                            </td>
+                            <td class="px-4 py-3 text-[11px] text-on-surface-variant">
+                                <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">smartphone</span> Mobile App</div>
+                            </td>
+                            <td class="px-4 py-3 text-right">
+                                <div class="flex items-center justify-end gap-1 opacity-50 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="View"><span class="material-symbols-outlined text-[16px]">visibility</span></button>
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="Print"><span class="material-symbols-outlined text-[16px]">print</span></button>
+                                    <button class="w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors" title="More"><span class="material-symbols-outlined text-[16px]">more_horiz</span></button>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="border-t border-white/5 bg-white/[0.01] px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="text-xs text-on-surface-variant">
+                    Showing 1 to 8 of 1,254 orders
+                </div>
+                <div class="flex items-center gap-2">
+                    <button class="w-8 h-8 rounded border border-white/10 flex items-center justify-center text-on-surface-variant hover:bg-white/5 transition-colors disabled:opacity-50">
+                        <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+                    </button>
+                    
+                    <button class="w-8 h-8 rounded bg-electric-blue text-white text-xs font-medium flex items-center justify-center">1</button>
+                    <button class="w-8 h-8 rounded border border-white/10 flex items-center justify-center text-on-surface-variant hover:bg-white/5 hover:text-white text-xs font-medium transition-colors">2</button>
+                    <button class="w-8 h-8 rounded border border-white/10 flex items-center justify-center text-on-surface-variant hover:bg-white/5 hover:text-white text-xs font-medium transition-colors">3</button>
+                    <button class="w-8 h-8 rounded border border-white/10 flex items-center justify-center text-on-surface-variant hover:bg-white/5 hover:text-white text-xs font-medium transition-colors">4</button>
+                    <button class="w-8 h-8 rounded border border-white/10 flex items-center justify-center text-on-surface-variant hover:bg-white/5 hover:text-white text-xs font-medium transition-colors">5</button>
+                    
+                    <span class="text-on-surface-variant text-xs">...</span>
+                    
+                    <button class="w-8 h-8 rounded border border-white/10 flex items-center justify-center text-on-surface-variant hover:bg-white/5 hover:text-white text-xs font-medium transition-colors">157</button>
+                    
+                    <button class="w-8 h-8 rounded border border-white/10 flex items-center justify-center text-on-surface-variant hover:bg-white/5 transition-colors">
+                        <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+                    </button>
+                    
+                    <div class="ml-2 flex items-center gap-2">
+                        <select class="bg-surface-deep border border-white/10 rounded px-2 py-1 text-xs text-white focus:outline-none focus:border-primary appearance-none cursor-pointer pr-6 bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236b7280%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:12px] bg-no-repeat bg-[position:right_4px_center]">
+                            <option>10 / page</option>
+                            <option>25 / page</option>
+                            <option>50 / page</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-</footer>
 
-
-
+</main>
+</div>
+<!-- Micro-interaction Scripts -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Simulated RGB lighting effect on cards
+            const cards = document.querySelectorAll('.glass-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `₹{x}px`);
+                    card.style.setProperty('--mouse-y', `₹{y}px`);
+                });
+            });
+        });
+    </script>
 <script type="module" src="js/auth.js"></script>
+<script src="js/global.js"></script>
 </body></html>

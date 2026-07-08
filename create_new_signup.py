@@ -1,0 +1,319 @@
+import os
+
+html_content = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MakeMyPC - Sign Up</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+                primary: {
+                    DEFAULT: '#2563EB',
+                    light: '#60A5FA',
+                    dark: '#1D4ED8'
+                },
+                surface: {
+                    DEFAULT: '#0B1120',
+                    alt: '#060B14'
+                },
+                'on-surface': '#F8FAFC',
+                'on-surface-variant': '#94A3B8'
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+        body {
+            background-color: #060B14;
+            color: #F8FAFC;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        .tech-bg {
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(37, 99, 235, 0.05) 0%, transparent 50%);
+            background-size: 100% 100%;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .btn-gradient {
+            background: linear-gradient(90deg, #2563EB 0%, #3B82F6 100%);
+        }
+        .btn-gradient:hover {
+            background: linear-gradient(90deg, #1D4ED8 0%, #2563EB 100%);
+        }
+        
+        /* Input autofill styling fix */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        input:-webkit-autofill:active{
+            -webkit-box-shadow: 0 0 0 30px #0F172A inset !important;
+            -webkit-text-fill-color: white !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex text-on-surface">
+
+    <!-- Left Column: Promotional -->
+    <div class="hidden lg:flex w-[55%] bg-surface flex-col justify-between p-12 lg:p-16 relative overflow-hidden tech-bg border-r border-white/5">
+        
+        <!-- Top Section -->
+        <div class="z-10 mt-2 max-w-xl">
+            <h1 class="text-5xl font-bold mb-2">
+                <span class="text-white">Build Better.</span><br>
+                <span class="text-white">Build </span><span class="text-primary">Smarter.</span>
+            </h1>
+            <p class="text-on-surface-variant text-lg mt-6 mb-8 leading-relaxed">
+                Create your account and unlock the best experience to build your dream PC.
+            </p>
+            
+            <div class="space-y-4">
+                <div class="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 w-max pr-8">
+                    <div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary shrink-0">
+                        <span class="material-symbols-outlined">view_in_ar</span>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-white">Personalized Experience</h3>
+                        <p class="text-sm text-on-surface-variant mt-1">Save builds, preferences &amp; get recommendations tailored for you.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 w-max pr-8">
+                    <div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary shrink-0">
+                        <span class="material-symbols-outlined text-[20px]">favorite</span>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-white">Exclusive Benefits</h3>
+                        <p class="text-sm text-on-surface-variant mt-1">Access member-only offers, early access to sales &amp; more.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 w-max pr-8">
+                    <div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary shrink-0">
+                        <span class="material-symbols-outlined">security</span>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-white">Secure &amp; Trusted</h3>
+                        <p class="text-sm text-on-surface-variant mt-1">Your data is safe with enterprise-grade security and privacy.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 w-max pr-8">
+                    <div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary shrink-0">
+                        <span class="material-symbols-outlined">support_agent</span>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-white">Dedicated Support</h3>
+                        <p class="text-sm text-on-surface-variant mt-1">Priority support to help you build with confidence.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PC Image - Positioned absolute to blend with the background -->
+        <div class="absolute right-0 top-0 bottom-0 w-[50%] z-0 pointer-events-none opacity-50 mix-blend-screen overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&q=80&w=800" alt="Gaming PC" class="w-full h-full object-cover" style="mask-image: linear-gradient(to right, transparent, black 30%); -webkit-mask-image: -webkit-linear-gradient(left, transparent, black 30%);">
+        </div>
+        
+        <!-- Bottom Features -->
+        <div class="z-10 flex items-center gap-8 mt-12 pt-6 border-t border-white/10">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-on-surface-variant">gpp_good</span>
+                <div>
+                    <h4 class="text-sm font-semibold text-white">Secure Payments</h4>
+                    <p class="text-xs text-on-surface-variant">100% secure checkout</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-on-surface-variant">replay</span>
+                <div>
+                    <h4 class="text-sm font-semibold text-white">Easy Returns</h4>
+                    <p class="text-xs text-on-surface-variant">Hassle free returns</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-on-surface-variant">local_shipping</span>
+                <div>
+                    <h4 class="text-sm font-semibold text-white">Fast Delivery</h4>
+                    <p class="text-xs text-on-surface-variant">Pan India delivery</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Right Column: Signup Form -->
+    <div class="w-full lg:w-[45%] flex flex-col items-center justify-center p-6 relative">
+        <!-- Abstract Background dots for right side -->
+        <div class="absolute inset-0 z-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(circle, #2563EB 1px, transparent 1px); background-size: 32px 32px;"></div>
+        
+        <div class="w-full max-w-[560px] z-10">
+            <div class="glass-card rounded-3xl p-10 w-full mb-8">
+                
+                <div class="text-center mb-8">
+                    <div class="w-14 h-14 bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-5 border border-primary/30 shadow-[0_0_15px_rgba(37,99,235,0.2)]">
+                        <span class="material-symbols-outlined text-primary text-[28px]">person_add</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white mb-2">Create Your Account</h2>
+                    <p class="text-sm text-on-surface-variant">Join MakeMyPC and start building today!</p>
+                </div>
+                
+                <form action="index.html" method="GET" class="space-y-5">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <!-- Full Name -->
+                        <div class="space-y-2">
+                            <label for="name" class="block text-xs font-semibold text-white">Full Name</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <span class="material-symbols-outlined text-on-surface-variant text-[20px]">person</span>
+                                </div>
+                                <input type="text" id="name" name="name" placeholder="Enter your full name" required
+                                    class="w-full bg-[#0F172A] border border-white/10 rounded-xl py-3 pl-11 pr-4 text-sm text-white placeholder-on-surface-variant focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all">
+                            </div>
+                        </div>
+                        
+                        <!-- Email Address -->
+                        <div class="space-y-2">
+                            <label for="email" class="block text-xs font-semibold text-white">Email Address</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <span class="material-symbols-outlined text-on-surface-variant text-[20px]">mail</span>
+                                </div>
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required
+                                    class="w-full bg-[#0F172A] border border-white/10 rounded-xl py-3 pl-11 pr-4 text-sm text-white placeholder-on-surface-variant focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all">
+                            </div>
+                        </div>
+                        
+                        <!-- Password -->
+                        <div class="space-y-2">
+                            <label for="password" class="block text-xs font-semibold text-white">Password</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <span class="material-symbols-outlined text-on-surface-variant text-[20px]">lock</span>
+                                </div>
+                                <input type="password" id="password" name="password" placeholder="Create a password" required
+                                    class="w-full bg-[#0F172A] border border-white/10 rounded-xl py-3 pl-11 pr-10 text-sm text-white placeholder-on-surface-variant focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all">
+                                <div class="absolute inset-y-0 right-0 pr-4 flex items-center cursor-pointer">
+                                    <span class="material-symbols-outlined text-on-surface-variant text-[18px] hover:text-white transition-colors">visibility_off</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Confirm Password -->
+                        <div class="space-y-2">
+                            <label for="confirm-password" class="block text-xs font-semibold text-white">Confirm Password</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <span class="material-symbols-outlined text-on-surface-variant text-[20px]">lock</span>
+                                </div>
+                                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required
+                                    class="w-full bg-[#0F172A] border border-white/10 rounded-xl py-3 pl-11 pr-10 text-sm text-white placeholder-on-surface-variant focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all">
+                                <div class="absolute inset-y-0 right-0 pr-4 flex items-center cursor-pointer">
+                                    <span class="material-symbols-outlined text-on-surface-variant text-[18px] hover:text-white transition-colors">visibility_off</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Password Criteria Box -->
+                    <div class="bg-[#0F172A]/50 border border-white/5 rounded-xl p-4 mt-2">
+                        <p class="text-xs text-on-surface-variant mb-2">Password must contain:</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-[16px] text-green-500">check_circle</span>
+                                <span class="text-xs text-on-surface-variant">At least 8 characters</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-[16px] text-green-500">check_circle</span>
+                                <span class="text-xs text-on-surface-variant">One number</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-[16px] text-green-500">check_circle</span>
+                                <span class="text-xs text-on-surface-variant">One uppercase letter</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-[16px] text-green-500">check_circle</span>
+                                <span class="text-xs text-on-surface-variant">One special character</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Terms -->
+                    <div class="flex items-start mt-2">
+                        <input id="terms" name="terms" type="checkbox" required
+                            class="h-4 w-4 mt-0.5 rounded border-white/10 bg-[#0F172A] text-primary focus:ring-primary focus:ring-offset-[#060B14]">
+                        <label for="terms" class="ml-2 block text-xs text-on-surface-variant">
+                            I agree to the <a href="#" class="text-primary hover:text-primary-light transition-colors">Terms &amp; Conditions</a> and <a href="#" class="text-primary hover:text-primary-light transition-colors">Privacy Policy</a>
+                        </label>
+                    </div>
+                    
+                    <!-- Sign Up Button -->
+                    <button type="submit"
+                        class="w-full flex items-center justify-center gap-2 btn-gradient text-white rounded-xl py-3.5 px-4 text-sm font-semibold transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(37,99,235,0.5)] mt-2">
+                        Create Account
+                        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                    </button>
+                    
+                    <!-- Divider -->
+                    <div class="relative flex items-center py-2">
+                        <div class="flex-grow border-t border-white/10"></div>
+                        <span class="flex-shrink-0 mx-4 text-xs text-on-surface-variant uppercase tracking-wider">or sign up with</span>
+                        <div class="flex-grow border-t border-white/10"></div>
+                    </div>
+                    
+                    <!-- Google Button -->
+                    <button type="button"
+                        class="w-full flex items-center justify-center gap-3 bg-transparent border border-white/10 hover:bg-white/5 text-white rounded-xl py-3 px-4 text-sm font-medium transition-all">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+                        </svg>
+                        Continue with Google
+                    </button>
+                    
+                    <div class="text-center pt-2">
+                        <p class="text-sm text-on-surface-variant">Already have an account? <a href="login.html" class="text-primary hover:text-primary-light font-medium transition-colors">Log In</a></p>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+
+</body>
+</html>
+"""
+
+with open('signup.html', 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+print("signup.html updated successfully!")
